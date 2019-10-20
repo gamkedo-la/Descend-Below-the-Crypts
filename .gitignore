@@ -1,0 +1,9 @@
+.DS_Store
+.idea/
+.vscode/
+.vs/
+*.iml
+
+not_for_repo/
+node_modules/
+package-lock.json
