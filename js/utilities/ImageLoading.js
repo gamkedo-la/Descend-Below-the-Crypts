@@ -7,6 +7,7 @@ var spiderPic = document.createElement("img");
 var shadowPic = document.createElement("img");
 var feedbackGUIPic = document.createElement("img");
 var healthbarPic = document.createElement("img");
+var characterSelectionBackgroundPic = document.createElement("img");
 
 
 //var titlepagePic = document.createElement("img");
@@ -40,14 +41,15 @@ function loadImages() {
 		var imageList = [
 			//characters
 			{varName: warriorPic, theFile: "warrior.png"},
-			{varName: orcPic, theFile: "orc.png"},
-			{varName: goblinPic, theFile: "goblin.png"},
-			{varName: ogrePic, theFile: "ogre.png"},
-			{varName: ratPic, theFile: "rat.png"},
-			{varName: spiderPic, theFile: "spider.png"},
+			{varName: orcPic, theFile: "monsters/orc.png"},
+			{varName: goblinPic, theFile: "monsters/goblin.png"},
+			{varName: ogrePic, theFile: "monsters/ogre.png"},
+			{varName: ratPic, theFile: "monsters/rat.png"},
+			{varName: spiderPic, theFile: "monsters/spider.png"},
 			{varName: shadowPic, theFile: "shadow.png"},
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},
 			{varName: healthbarPic, theFile: "healthbar.png"},
+			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
 
 			
 			{trackType: TILE_ROAD, theFile: "track_road.png"},

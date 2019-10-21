@@ -21,6 +21,18 @@ function initInput(){
 		MousePosY = mousePos.y;
 	});
 	
+	canvas.addEventListener('click',function(evt){
+		
+		var mousePos = calculateMousePos(evt);
+		
+		MousePosX = mousePos.x;
+		MousePosY = mousePos.y;
+		
+		if(characterSelectionScreen){
+			characterSelectionPageMouseClick(MousePosX, MousePosY);
+		}
+	} );
+	
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
 	

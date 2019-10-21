@@ -16,7 +16,8 @@ function resetEnemyLists(){
 }
 
 //game states
-var liveGame = true;
+var liveGame = false;
+var characterSelectionScreen = true; 
 var pauseScreen = false;
 var inventoryScreen = false;
 var mainMenu = false;
@@ -215,7 +216,9 @@ function checkAllPlayerAndEnemyCollisions(){
 //All movement occurs here.  This is called every frame.
 function drawEverything() {
 	colorRect(0,0,canvas.width,canvas.height, 'black');
-	if(liveGame){
+	if(characterSelectionScreen){
+		drawCharacterSelectionPage();
+	} else if(liveGame){
 		shiftForCameraPan();
 		drawTracks();
 		playerOne.draw();
@@ -235,4 +238,15 @@ function drawEverything() {
 		canvasContext.drawImage(feedbackGUIPic,0, canvas.height-50);
 		colorText("Keys: " + playerOne.keysHeld, 20, 582, "black", "14px Arial Black");
 	}
+}
+//All Game States get reset to false here. 
+/*
+To Do:  Update formula to include state to change to true
+*/
+function updateGameState(){
+	liveGame = false;
+	characterSelectionScreen = false; 
+	pauseScreen = false;
+	inventoryScreen = false;
+	mainMenu = false;
 }
