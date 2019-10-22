@@ -220,7 +220,7 @@ function drawEverything() {
 		drawCharacterSelectionPage();
 	} else if(liveGame){
 		shiftForCameraPan();
-		drawTracks();
+		drawDungeon();
 		playerOne.draw();
 		for(var i = 0; i < goblinList.length; i++){
 			goblinList[i].draw();

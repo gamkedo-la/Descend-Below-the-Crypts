@@ -123,7 +123,7 @@ function tileCoordToIsoCoord(tileC, tileR ){
 	gameCoordToIsoCoord(tileC * ROOM_W, tileR * ROOM_H);
 }
 					
-function drawTracks(){
+function drawDungeon(){
 	var tileIndex = 0;
 	var tileLeftEdgeX = 700
 	var tileTopEdgeY = 0;
