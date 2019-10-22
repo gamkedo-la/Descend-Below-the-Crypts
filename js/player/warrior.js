@@ -134,6 +134,21 @@ function warriorClass() {
 				this.keysHeld--;
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				break;
+			case TILE_WIZARD_BOOK:	
+				//add wizard book
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				console.log("Wizard Book found");
+				break;
+			case TILE_CLERIC_BOOK:	
+				//add cleric book
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				console.log("Cleric Book found");
+				break;
+			case TILE_SKILL_BOOK:	
+				//add skill book
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				console.log("Skill Book found");
+				break;
 			case TILE_YELLOW_KEY:	
 				this.keysHeld++;			
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;

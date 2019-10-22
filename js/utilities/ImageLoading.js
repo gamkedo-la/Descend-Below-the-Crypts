@@ -70,6 +70,9 @@ function loadImages() {
 			{trackType: TILE_PITTRAP_UNARMED, theFile: "track_pittrap.png"},
 			{trackType: TILE_SPIKES_ARMED, theFile: "track_road.png"},
 			{trackType: TILE_SPIKES_UNARMED, theFile: "track_spikes.png"},
+			{trackType: TILE_WIZARD_BOOK, theFile: "wizardBook.png"},
+			{trackType: TILE_CLERIC_BOOK, theFile: "clericBook.png"},
+			{trackType: TILE_SKILL_BOOK, theFile: "skillBook.png"},
 			{trackType: TILE_STAIRS_DOWN, theFile: "stairsDown.png"}
 		];
 			
