@@ -24,7 +24,7 @@ var levelOne = [
 					11, 2, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 1, 
 					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 					 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1, 0, 0, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 6, 1, 
-					 1, 0, 0, 0, 0, 0, 0, 0,17, 0, 0, 0, 0, 0, 0, 1,13,26,10, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+					 1, 0, 0, 0, 0, 0, 0, 0,17, 0,27, 0, 0, 0, 0, 1,13,26,10, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 					11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,13,24, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 					 1, 0, 0, 1, 1, 6, 1, 1, 3, 1, 1, 1, 1, 1, 7, 1,13, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 					11, 9, 0, 1, 1, 0,10, 1, 0,14,10, 1,10,15, 0, 1,13,25, 0, 0, 9, 0, 0, 0, 0, 1, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
@@ -111,6 +111,7 @@ var levelTwo = [
 	const TILE_WIZARD_BOOK = 24;
 	const TILE_CLERIC_BOOK = 25;
 	const TILE_SKILL_BOOK = 26;
+	const TILE_SWORD = 27;
 	
 function gameCoordToIsoCoord (pixelX, pixelY){
 	var camPanX = -350;
@@ -141,18 +142,18 @@ function drawDungeon(){
 		miniMapX = 730;
 		
 		for(var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
-			var trackTypeHere = roomGrid[tileIndex];
+			var tileTypeHere = roomGrid[tileIndex];
 			tileLeftEdgeX += ROOM_W;
 			miniMapX += 4;
 			isoTileLeftEdgeX = (tileLeftEdgeX - tileTopEdgeY)/2;
 			isoTileTopEdgeY = (tileLeftEdgeX + tileTopEdgeY)/4;
 			tileCoordToIsoCoord(eachCol, eachRow);	
 			
-			if( tileTypeHasRoadTransparency(trackTypeHere) ) {
+			if( tileTypeHasRoadTransparency(tileTypeHere) ) {
 				canvasContext.drawImage(trackPics[TILE_ROAD], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 			}
 			//need a helper function here to eliminate the else if
-			if(trackTypeHere == TILE_WALL_WITH_TORCH){
+			if(tileTypeHere == TILE_WALL_WITH_TORCH){
 				canvasContext.drawImage(trackPics[TILE_WALL], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 				
 				var torchFrames = 4;
@@ -163,7 +164,7 @@ function drawDungeon(){
 				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
 				
 
-			} else if (trackTypeHere == TILE_FIRE_PLACE_LIT){
+			} else if (tileTypeHere == TILE_FIRE_PLACE_LIT){
 				canvasContext.drawImage(trackPics[TILE_ROAD], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 				
 				var torchFrames = 4;
@@ -174,18 +175,18 @@ function drawDungeon(){
 				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
 				
 			} else {
-				canvasContext.drawImage(trackPics[trackTypeHere], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+				canvasContext.drawImage(trackPics[tileTypeHere], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 			}
 			//minimap:  This needs refactored
-			if(trackTypeHere == 0){
+			if(tileTypeHere == 0){
 				colorRect(miniMapX, miniMapY, 4, 4, "white");
-			} else if (trackTypeHere == 1 || trackTypeHere == 11 || trackTypeHere == 12 ){
+			} else if (tileTypeHere == 1 || tileTypeHere == 11 || tileTypeHere == 12 ){
 				colorRect(miniMapX, miniMapY, 4, 4, "gray");
-			} else if (trackTypeHere == 3 || trackTypeHere == 6 || trackTypeHere == 7){
+			} else if (tileTypeHere == 3 || tileTypeHere == 6 || tileTypeHere == 7){
 				colorRect(miniMapX, miniMapY, 4, 4, "blue");
-			} else if (trackTypeHere == 4 || trackTypeHere == 8){
+			} else if (tileTypeHere == 4 || tileTypeHere == 8){
 				colorRect(miniMapX, miniMapY, 4, 4, "purple");
-			} else if (trackTypeHere == 5){
+			} else if (tileTypeHere == 5){
 				colorRect(miniMapX, miniMapY, 4, 4, "orange");		
 			}
 			tileIndex++;
@@ -201,7 +202,8 @@ function tileTypeHasRoadTransparency(checkTileType) {
 			checkTileType == TILE_SPIKES_UNARMED ||
 			checkTileType == TILE_WIZARD_BOOK ||
 			checkTileType == TILE_CLERIC_BOOK ||
-			checkTileType == TILE_SKILL_BOOK
+			checkTileType == TILE_SKILL_BOOK ||
+			checkTileType == TILE_SWORD
 			);
 }
 

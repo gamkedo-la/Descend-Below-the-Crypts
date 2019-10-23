@@ -52,35 +52,36 @@ function loadImages() {
 			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
 
 			
-			{trackType: TILE_ROAD, theFile: "track_road.png"},
-			{trackType: TILE_WALL, theFile:  "track_wall.png"},	
-			{trackType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},
-			{trackType: TILE_YELLOW_DOOR, theFile:  "track_yellowdoor.png"},
-			{trackType: TILE_RED_DOOR, theFile:  "track_reddoor.png"},		
-			{trackType: TILE_BLUE_DOOR, theFile:  "track_bluedoor.png"},				
-			{trackType: TILE_YELLOW_KEY, theFile:  "track_yellowkey.png"},			
-			{trackType: TILE_TREASURE, theFile:  "track_treasure.png"},
-			{trackType: TILE_TABLE, theFile:  "track_table.png"},
-			{trackType: TILE_FINISH, theFile: "track_finish.png"},
-			{trackType: TILE_STAIRS, theFile: "track_stairs.png"},
-			{trackType: TILE_BOOKSHELF, theFile: "track_bookshelf.png"},
-			{trackType: TILE_FIRE_PLACE_LIT, theFile: "track_fireplace.png"},
-			{trackType: TILE_FIRE_PLACE, theFile: "track_fireplaceNotLit.png"},
-			{trackType: TILE_PITTRAP_ARMED, theFile: "track_road.png"},
-			{trackType: TILE_PITTRAP_UNARMED, theFile: "track_pittrap.png"},
-			{trackType: TILE_SPIKES_ARMED, theFile: "track_road.png"},
-			{trackType: TILE_SPIKES_UNARMED, theFile: "track_spikes.png"},
-			{trackType: TILE_WIZARD_BOOK, theFile: "wizardBook.png"},
-			{trackType: TILE_CLERIC_BOOK, theFile: "clericBook.png"},
-			{trackType: TILE_SKILL_BOOK, theFile: "skillBook.png"},
-			{trackType: TILE_STAIRS_DOWN, theFile: "stairsDown.png"}
+			{tileType: TILE_ROAD, theFile: "track_road.png"},
+			{tileType: TILE_WALL, theFile:  "track_wall.png"},	
+			{tileType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},
+			{tileType: TILE_YELLOW_DOOR, theFile:  "track_yellowdoor.png"},
+			{tileType: TILE_RED_DOOR, theFile:  "track_reddoor.png"},		
+			{tileType: TILE_BLUE_DOOR, theFile:  "track_bluedoor.png"},				
+			{tileType: TILE_YELLOW_KEY, theFile:  "track_yellowkey.png"},			
+			{tileType: TILE_TREASURE, theFile:  "track_treasure.png"},
+			{tileType: TILE_TABLE, theFile:  "track_table.png"},
+			{tileType: TILE_FINISH, theFile: "track_finish.png"},
+			{tileType: TILE_STAIRS, theFile: "track_stairs.png"},
+			{tileType: TILE_BOOKSHELF, theFile: "track_bookshelf.png"},
+			{tileType: TILE_FIRE_PLACE_LIT, theFile: "track_fireplace.png"},
+			{tileType: TILE_FIRE_PLACE, theFile: "track_fireplaceNotLit.png"},
+			{tileType: TILE_PITTRAP_ARMED, theFile: "track_road.png"},
+			{tileType: TILE_PITTRAP_UNARMED, theFile: "track_pittrap.png"},
+			{tileType: TILE_SPIKES_ARMED, theFile: "track_road.png"},
+			{tileType: TILE_SPIKES_UNARMED, theFile: "track_spikes.png"},
+			{tileType: TILE_WIZARD_BOOK, theFile: "wizardBook.png"},
+			{tileType: TILE_CLERIC_BOOK, theFile: "clericBook.png"},
+			{tileType: TILE_SKILL_BOOK, theFile: "skillBook.png"},
+			{tileType: TILE_STAIRS_DOWN, theFile: "stairsDown.png"},
+			{tileType: TILE_SWORD, theFile: "sword.png"}
 		];
 			
 	picsToLoad = imageList.length;
 
 	for(var i=0; i<imageList.length; i++) {
-		if(imageList[i].trackType != undefined){
-			loadImageForRoomCode(imageList[i].trackType, imageList[i].theFile);
+		if(imageList[i].tileType != undefined){
+			loadImageForRoomCode(imageList[i].tileType, imageList[i].theFile);
 		}
 		else {
 			beginLoadingImage(imageList[i].varName, imageList[i].theFile);
