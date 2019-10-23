@@ -10,7 +10,7 @@ var characterBoxWidth = 155;
 function drawCharacterSelectionPage(){
 	colorRect(0,0,canvas.width,canvas.height, 'white');
 	canvasContext.drawImage(characterSelectionBackgroundPic,0, 0);
-	colorText("Choose your Hero", 150, 200, 'red', "48px Arial Black");
+	colorText("Choose your Hero", 175, 225, 'black', "48px Arial Black");
 	colorText("The Warrior", warriorBoxX+45, 287, 'white', "12px Arial Black");
 	colorText("The Wizard", wizardBoxX+45, 287, 'white', "12px Arial Black");
 	colorText("The Cleric", clericBoxX+50, 287, 'white', "12px Arial Black");
