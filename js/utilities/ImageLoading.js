@@ -74,7 +74,8 @@ function loadImages() {
 			{tileType: TILE_CLERIC_BOOK, theFile: "clericBook.png"},
 			{tileType: TILE_SKILL_BOOK, theFile: "skillBook.png"},
 			{tileType: TILE_STAIRS_DOWN, theFile: "stairsDown.png"},
-			{tileType: TILE_SWORD, theFile: "sword.png"}
+			{tileType: TILE_SWORD, theFile: "sword.png"},
+			{tileType: TILE_MACE, theFile: "mace.png"}
 		];
 			
 	picsToLoad = imageList.length;

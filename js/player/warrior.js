@@ -139,6 +139,11 @@ function warriorClass() {
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				console.log("Sword found");
 				break;
+			case TILE_MACE:	
+				//add sword to the warrior
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				console.log("Mace found");
+				break;
 			case TILE_WIZARD_BOOK:	
 				//add wizard book
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
