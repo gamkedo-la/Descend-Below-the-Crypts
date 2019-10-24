@@ -30,6 +30,9 @@ function initInput(){
 		
 		if(characterSelectionScreen){
 			characterSelectionPageMouseClick(MousePosX, MousePosY);
+		} 
+		if(mainMenu){
+			mainMenuPageMouseClick(MousePosX, MousePosY);
 		}
 	} );
 	

@@ -17,10 +17,10 @@ function resetEnemyLists(){
 
 //game states
 var liveGame = false;
-var characterSelectionScreen = true; 
+var characterSelectionScreen = false; 
 var pauseScreen = false;
 var inventoryScreen = false;
-var mainMenu = false;
+var mainMenu = true;
 
 
 window.onload = function(){
@@ -216,7 +216,9 @@ function checkAllPlayerAndEnemyCollisions(){
 //All movement occurs here.  This is called every frame.
 function drawEverything() {
 	colorRect(0,0,canvas.width,canvas.height, 'black');
-	if(characterSelectionScreen){
+	if (mainMenu){
+		drawMainMenuPage();
+	} else if(characterSelectionScreen){
 		drawCharacterSelectionPage();
 	} else if(liveGame){
 		shiftForCameraPan();
