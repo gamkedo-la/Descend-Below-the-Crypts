@@ -23,6 +23,7 @@ function warriorClass() {
 	this.maxHealth = 4;
 	this.trapCoolDownTimer = 0;
 	this.trapCoolDownCounter = 0;
+	this.goldCoins = 0;
 
 	this.warriorPic = document.createElement("img");
 	
@@ -132,6 +133,11 @@ function warriorClass() {
 				break;	
 			case TILE_TREASURE:	
 				this.keysHeld--;
+				this.goldCoins++;
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				break;
+			case TILE_GOLD_COINS:	
+				this.goldCoins++;
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				break;
 			case TILE_SWORD:	

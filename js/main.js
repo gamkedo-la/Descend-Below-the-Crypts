@@ -237,6 +237,7 @@ function drawEverything() {
 		finishedCameraPan();
 		canvasContext.drawImage(feedbackGUIPic,0, canvas.height-50);
 		colorText("Keys: " + playerOne.keysHeld, 20, 582, "black", "14px Arial Black");
+		colorText("Gold: " + playerOne.goldCoins, 120, 582, "black", "14px Arial Black");
 	}
 }
 //All Game States get reset to false here. 
