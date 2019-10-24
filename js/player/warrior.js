@@ -118,6 +118,7 @@ function warriorClass() {
 
 		switch(walkIntoTileType) {
 			case TILE_ROAD:
+			case TILE_SEWER:
 			case TILE_SPIKES_UNARMED:
 			case TILE_PITTRAP_UNARMED:
 				this.x = nextX;
