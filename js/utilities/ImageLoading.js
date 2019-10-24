@@ -8,7 +8,7 @@ var shadowPic = document.createElement("img");
 var feedbackGUIPic = document.createElement("img");
 var healthbarPic = document.createElement("img");
 var characterSelectionBackgroundPic = document.createElement("img");
-
+var warriorProfilePic = document.createElement("img");
 
 //var titlepagePic = document.createElement("img");
 var trackPics = [];
@@ -50,6 +50,8 @@ function loadImages() {
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},
 			{varName: healthbarPic, theFile: "healthbar.png"},
 			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
+			{varName: warriorProfilePic, theFile: "warriorProfilePic.png"},
+			
 
 			
 			{tileType: TILE_ROAD, theFile: "track_road.png"},
