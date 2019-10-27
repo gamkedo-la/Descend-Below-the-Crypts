@@ -239,7 +239,22 @@ function drawEverything() {
 		finishedCameraPan();
 		canvasContext.drawImage(feedbackGUIPic,0, canvas.height-50);
 		colorText("Keys: " + playerOne.keysHeld, 20, 582, "black", "14px Arial Black");
-		colorText("Gold: " + playerOne.goldCoins, 120, 582, "black", "14px Arial Black");
+		colorText("Gold: " + playerOne.goldCoins, 100, 582, "black", "14px Arial Black");
+		if(playerOne.sword){
+			colorText("Can use Sword", 160, 572, "black", "8px Arial Black");
+		} else {
+			colorText("CAN'T use Sword", 160, 572, "red", "8px Arial Black");
+		}
+		if(playerOne.mace){
+			colorText("Can use Mace", 160, 582, "black", "8px Arial Black");
+		} else {
+			colorText("CAN'T use Mace", 160, 582, "red", "8px Arial Black");
+		}
+		if(playerOne.flameSpell){
+			colorText("Can use Flame Spell", 160, 592, "black", "8px Arial Black");
+		} else {
+			colorText("CAN'T use Flame Spell", 160, 592, "red", "8px Arial Black");
+		}
 	}
 }
 //All Game States get reset to false here. 

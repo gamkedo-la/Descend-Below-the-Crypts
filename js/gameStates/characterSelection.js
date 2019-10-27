@@ -22,20 +22,20 @@ function drawCharacterSelectionPage(){
 function characterSelectionPageMouseClick(mousePosX, mousePosY) {
 	
 	if(		mousePosX > warriorBoxX && mousePosX < warriorBoxX + characterBoxWidth && 
-			mousePosY > warriorBoxY && mousePosY < warriorBoxY + characterBoxHeight){ 
+			mousePosY > warriorBoxY && mousePosY < warriorBoxY + characterBoxHeight){
+					playerOne.init(warriorPic, "The Warrior");			
 					updateGameState();
 					liveGame = true;
-					console.log("Selected Warrior");
 	} else if(	mousePosX > wizardBoxX && mousePosX < wizardBoxX + characterBoxWidth && 
 				mousePosY > wizardBoxY && mousePosY < wizardBoxY + characterBoxHeight){
+					playerOne.init(wizardPic, "The Wizard");
 					updateGameState();
-					liveGame = true;
-					console.log("Selected Wizard");					
+					liveGame = true;				
 	} else if(	mousePosX > clericBoxX && mousePosX < clericBoxX + characterBoxWidth && 
 				mousePosY > clericBoxY && mousePosY < clericBoxY + characterBoxHeight){
+					playerOne.init(clericPic, "The Cleric");
 					updateGameState();
-					liveGame = true;
-					console.log("Selected Cleric");							
+					liveGame = true;						
 	} else {
 		colorRect(0,0,canvas.width,canvas.height, 'red');
 	}

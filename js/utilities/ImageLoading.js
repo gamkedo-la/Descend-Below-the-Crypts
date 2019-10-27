@@ -1,21 +1,25 @@
+//characters
 var warriorPic = document.createElement("img");
+var wizardPic =  document.createElement("img");
+var clericPic =  document.createElement("img");
+var warriorProfilePic = document.createElement("img");
+var wizardProfilePic = document.createElement("img");
+var clericProfilePic = document.createElement("img");
+//enemies
 var goblinPic = document.createElement("img");
 var orcPic = document.createElement("img");
 var ogrePic = document.createElement("img");
 var ratPic = document.createElement("img");
 var spiderPic = document.createElement("img");
+//Game States
+var characterSelectionBackgroundPic = document.createElement("img");
+//var titlepagePic = document.createElement("img");
+
+//misc
 var shadowPic = document.createElement("img");
 var feedbackGUIPic = document.createElement("img");
 var healthbarPic = document.createElement("img");
-var characterSelectionBackgroundPic = document.createElement("img");
-var warriorProfilePic = document.createElement("img");
-var wizardProfilePic = document.createElement("img");
-var clericProfilePic = document.createElement("img");
-
-//var titlepagePic = document.createElement("img");
 var trackPics = [];
-
-
 var picsToLoad = 0;
 
 //All pictures prior to launching the game.  If a picture doesn't load, the game doesn't launch.
@@ -43,19 +47,23 @@ function loadImages() {
 		var imageList = [
 			//characters
 			{varName: warriorPic, theFile: "warrior.png"},
+			{varName: wizardPic, theFile: "wizard.png"},
+			{varName: clericPic, theFile: "cleric.png"},
+			//enemies
 			{varName: orcPic, theFile: "monsters/orc.png"},
 			{varName: goblinPic, theFile: "monsters/goblin.png"},
 			{varName: ogrePic, theFile: "monsters/ogre.png"},
 			{varName: ratPic, theFile: "monsters/spider.png"},
 			{varName: spiderPic, theFile: "monsters/spider.png"},
+			//misc
 			{varName: shadowPic, theFile: "shadow.png"},
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},
 			{varName: healthbarPic, theFile: "healthbar.png"},
 			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
-			{varName: warriorProfilePic, theFile: "warriorProfilePic.png"},
-			{varName: wizardProfilePic, theFile: "wizardProfilePic.png"},
-			{varName: clericProfilePic, theFile: "clericProfilePic.png"},			
-		
+			{varName: warriorProfilePic, theFile: "profilePics/warriorProfilePic.png"},
+			{varName: wizardProfilePic, theFile: "profilePics/wizardProfilePic.png"},
+			{varName: clericProfilePic, theFile: "profilePics/clericProfilePic.png"},			
+			//tiles
 			{tileType: TILE_ROAD, theFile: "track_road.png"},
 			{tileType: TILE_WALL, theFile:  "track_wall.png"},	
 			{tileType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},

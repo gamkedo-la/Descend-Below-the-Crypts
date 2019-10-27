@@ -2,6 +2,7 @@ const ISO_CHAR_FOOT_Y = 8;
 const COLLIDE_BUMP_MULT = 2; // this needs to be improved.  This could potentially cause enemy or player in an illegal position (wall)
 
 function warriorClass() {
+	this.warriorPic = document.createElement("img");
 	this.x = 600;
 	this.y = 800;
 	this.width = 30;
@@ -23,10 +24,15 @@ function warriorClass() {
 	this.maxHealth = 4;
 	this.trapCoolDownTimer = 0;
 	this.trapCoolDownCounter = 0;
-	this.goldCoins = 0;
-
-	this.warriorPic = document.createElement("img");
 	
+	//equipment
+	this.goldCoins = 0;
+	this.keysHeld = 0;
+	this.sword = false;
+	this.mace = false;
+	this.flameSpell = false;
+	this.healSpell = false;
+		
 	this.setupControls = function(northKey,eastKey,southKey,westKey) {
 		this.controlKeyForNorth = northKey;
 		this.controlKeyForEast = eastKey;			
@@ -36,7 +42,7 @@ function warriorClass() {
 
 	this.warriorReset = function() {
 		this.speed = 0;
-		this.keysHeld = 1;
+		this.keysHeld = 0;
 					
 		for(var i=0; i<roomGrid.length; i++){
 			if( roomGrid[i] == TILE_PLAYER) {
@@ -144,21 +150,25 @@ function warriorClass() {
 			case TILE_SWORD:	
 				//add sword to the warrior
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				this.sword = true;
 				console.log("Sword found");
 				break;
 			case TILE_MACE:	
 				//add sword to the warrior
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				this.mace = true;
 				console.log("Mace found");
 				break;
 			case TILE_WIZARD_BOOK:	
 				//add wizard book
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				this.flameSpell = true;
 				console.log("Wizard Book found");
 				break;
 			case TILE_CLERIC_BOOK:	
 				//add cleric book
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				this.healSpell = true;
 				console.log("Cleric Book found");
 				break;
 			case TILE_SKILL_BOOK:	
