@@ -10,6 +10,7 @@ var healthbarPic = document.createElement("img");
 var characterSelectionBackgroundPic = document.createElement("img");
 var warriorProfilePic = document.createElement("img");
 var wizardProfilePic = document.createElement("img");
+var clericProfilePic = document.createElement("img");
 
 //var titlepagePic = document.createElement("img");
 var trackPics = [];
@@ -53,9 +54,8 @@ function loadImages() {
 			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
 			{varName: warriorProfilePic, theFile: "warriorProfilePic.png"},
 			{varName: wizardProfilePic, theFile: "wizardProfilePic.png"},
-			
-
-			
+			{varName: clericProfilePic, theFile: "clericProfilePic.png"},			
+		
 			{tileType: TILE_ROAD, theFile: "track_road.png"},
 			{tileType: TILE_WALL, theFile:  "track_wall.png"},	
 			{tileType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},

@@ -2,8 +2,8 @@ var warriorBoxX = 106;
 var warriorBoxY = 313;
 var wizardBoxX = 338;
 var wizardBoxY = 313;
-var clericBoxX = 565;
-var clericBoxY = 310;
+var clericBoxX = 570;
+var clericBoxY = 313;
 var characterBoxHeight = 205;
 var characterBoxWidth = 155;
 
@@ -16,11 +16,7 @@ function drawCharacterSelectionPage(){
 	/////////////////////////   Art to be replaced /////////////////////////////////
 	canvasContext.drawImage(warriorProfilePic,warriorBoxX, warriorBoxY);
 	canvasContext.drawImage(wizardProfilePic,wizardBoxX, wizardBoxY);
-	colorText("To be replaced with", clericBoxX+15, clericBoxY+90, 'white', "12px Arial Black");
-	colorText("Cleric Profile Pic", clericBoxX+20, clericBoxY+110, 'white', "12px Arial Black");
-	
-	
-	
+	canvasContext.drawImage(clericProfilePic,clericBoxX, clericBoxY);	
 }
 
 function characterSelectionPageMouseClick(mousePosX, mousePosY) {
