@@ -20,7 +20,7 @@ var roomGrid = [];
 
 var levelOne = [
 					 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1, 1,
-					 1,12, 5, 0, 0, 0, 0,29,30, 0,18, 0,20, 0,30, 0, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 1, 
+					 1,12, 5, 0, 0, 0, 0,29,30, 0,18, 0,20, 0,30, 0, 5, 5, 0,31,32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 1, 
 					11, 2, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 1, 
 					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 					 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1, 0, 0, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 6, 1, 
@@ -116,6 +116,8 @@ var levelTwo = [
 	const TILE_MACE = 28;
 	const TILE_GOLD_COINS = 29;
 	const TILE_SEWER = 30;
+	const TILE_HEALING_POTION = 31;
+	const TILE_MANA_POTION = 32;
 	
 function gameCoordToIsoCoord (pixelX, pixelY){
 	var camPanX = -350;
@@ -218,7 +220,9 @@ function tileTypeHasRoadTransparency(checkTileType) {
 			checkTileType == TILE_SKILL_BOOK ||
 			checkTileType == TILE_SWORD ||
 			checkTileType == TILE_MACE ||
-			checkTileType == TILE_SEWER
+			checkTileType == TILE_SEWER ||
+			checkTileType == TILE_HEALING_POTION ||
+			checkTileType == TILE_MANA_POTION
 			);
 }
 
