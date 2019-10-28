@@ -26,18 +26,22 @@ function characterSelectionPageMouseClick(mousePosX, mousePosY) {
 					playerOne.init(warriorPic, "The Warrior");			
 					updateGameState();
 					liveGame = true;
+					basementMusic.loopSong("Decrepit_Basement_draft1");
 	} else if(	mousePosX > wizardBoxX && mousePosX < wizardBoxX + characterBoxWidth && 
 				mousePosY > wizardBoxY && mousePosY < wizardBoxY + characterBoxHeight){
 					playerOne.init(wizardPic, "The Wizard");
 					updateGameState();
-					liveGame = true;				
+					liveGame = true;
+					basementMusic.loopSong("Decrepit_Basement_draft1");					
 	} else if(	mousePosX > clericBoxX && mousePosX < clericBoxX + characterBoxWidth && 
 				mousePosY > clericBoxY && mousePosY < clericBoxY + characterBoxHeight){
 					playerOne.init(clericPic, "The Cleric");
 					updateGameState();
-					liveGame = true;						
+					liveGame = true;
+					basementMusic.loopSong("Decrepit_Basement_draft1");
 	} else {
 		colorRect(0,0,canvas.width,canvas.height, 'red');
 	}
+	
 }
 			

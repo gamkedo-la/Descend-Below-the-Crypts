@@ -176,6 +176,18 @@ function warriorClass() {
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				console.log("Skill Book found");
 				break;
+			case TILE_HEALING_POTION:	
+				//add healing potion
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				console.log("Healing Potion found");
+				break;
+			case TILE_MANA_POTION:	
+				//add mana potion
+				roomGrid[walkIntoTileIndex] = TILE_ROAD;
+				console.log("Mana Potion found");
+				break;				
+				TILE_HEALING_POTION
+				
 			case TILE_YELLOW_KEY:	
 				this.keysHeld++;			
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
