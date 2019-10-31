@@ -61,6 +61,10 @@ function enemyClass() {
 		this.myName = whichName;
 		this.myTile = whichTile;
 		this.enemyReset();
+		if(this.myTile == TILE_ORC){
+			this.height = 35;
+			this.width = 30;
+		}
 	}	
 	 
 	this.movement = function() {

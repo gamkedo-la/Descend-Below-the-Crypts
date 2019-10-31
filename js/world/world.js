@@ -21,7 +21,7 @@ var roomGrid = [];
 var levelOne = [
 					 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1, 1,
 					 1,12, 5, 0, 0, 0, 0,29,30, 0,18, 0,20, 0,30, 0, 5, 5, 0,31,32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
-					11, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+					11, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
 					 1,11, 1,11, 1,11, 1,11, 1,11, 1,11, 1, 0, 0, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 6, 1, 
 					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,13,26,10, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
@@ -192,7 +192,8 @@ function drawDungeon(){
 			} else {
 				canvasContext.drawImage(trackPics[tileTypeHere], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 			}
-			//minimap:  This needs refactored
+			//minimap:  This needs refactored 
+			/*
 			if(tileTypeHere == 0){
 				colorRect(miniMapX, miniMapY, 4, 4, "white");
 			} else if (tileTypeHere == 1 || tileTypeHere == 11 || tileTypeHere == 12 ){
@@ -203,7 +204,7 @@ function drawDungeon(){
 				colorRect(miniMapX, miniMapY, 4, 4, "purple");
 			} else if (tileTypeHere == 5){
 				colorRect(miniMapX, miniMapY, 4, 4, "orange");		
-			}
+			} */ 
 			tileIndex++;
 		} // end of each col
 		miniMapY += 4;

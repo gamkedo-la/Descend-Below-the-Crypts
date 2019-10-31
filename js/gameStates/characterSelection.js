@@ -41,15 +41,13 @@ var buttonList = [
 		}
 	}
 ];
+
 function startWithCharacter(charImage, charName){
 	playerOne.init(charImage, charName);			
 	updateGameState();
 	liveGame = true;
 	basementMusic.loopSong("Decrepit_Basement_draft1");
 }
-
-
-
 
 function drawCharacterSelectionPage(){
 	canvasContext.drawImage(characterSelectionBackgroundPic,0, 0);

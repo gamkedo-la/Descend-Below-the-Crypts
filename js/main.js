@@ -36,8 +36,8 @@ window.onload = function(){
 	
 	var mousePos = calculateMousePos(evt);
 	
-	MousePosX = mousePos.x;
-	MousePosY = mousePos.y;
+	mousePosX = mousePos.x;
+	mousePosY = mousePos.y;
 	});
 	
 	document.addEventListener("keydown", keyPressed);
@@ -224,6 +224,7 @@ function drawEverything() {
 		shiftForCameraPan();
 		drawDungeon();
 		playerOne.draw();
+		drawMouseIndicators();
 		for(var i = 0; i < goblinList.length; i++){
 			goblinList[i].draw();
 		}
@@ -257,6 +258,13 @@ function drawEverything() {
 		}
 	}
 }
+
+function drawMouseIndicators(){
+	colorRect(mouseClickX, mouseClickY, 10, 10, "red");
+	colorText("X: " + mouseClickX + " Y: " + mouseClickY , mouseClickX, mouseClickY, "Black",  "8px Arial Black")
+	
+}
+
 //All Game States get reset to false here. 
 /*
 To Do:  Update formula to include state to change to true

@@ -10,6 +10,9 @@ const KEY_DOWN_ARROW = 40;
 
 const KEY_P = 80;
 
+var mouseClickX = 0;
+var mouseClickY = 0;
+
 
 function initInput(){
 	
@@ -17,22 +20,28 @@ function initInput(){
 	
 		var mousePos = calculateMousePos(evt);
 	
-		MousePosX = mousePos.x;
-		MousePosY = mousePos.y;
+		mousePosX = mousePos.x;
+		mousePosY = mousePos.y;
 	});
 	
 	canvas.addEventListener('click',function(evt){
 		
 		var mousePos = calculateMousePos(evt);
 		
-		MousePosX = mousePos.x;
-		MousePosY = mousePos.y;
+		mousePosX = mousePos.x;
+		mousePosY = mousePos.y;
 		
 		if(characterSelectionScreen){
-			characterSelectionPageMouseClick(MousePosX, MousePosY);
-		} 
-		if(mainMenu){
-			mainMenuPageMouseClick(MousePosX, MousePosY);
+			characterSelectionPageMouseClick(mousePosX, mousePosY);
+		} else if(mainMenu){
+			mainMenuPageMouseClick(mousePosX, mousePosY);
+		} else {  // in game
+			//console.log(mousePosX, mousePosY);
+			//gameCoordToIsoCoord(mousePosX - camPanX, mousePosY - camPanY);
+			gameCoordToIsoCoord(mousePosX - camPanX, mousePosY);
+			console.log(Math.floor(isoDrawX), Math.floor(isoDrawY));
+			mouseClickX = isoDrawX;
+			mouseClickY = isoDrawY;
 		}
 	} );
 	
