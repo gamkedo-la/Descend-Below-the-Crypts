@@ -23,7 +23,7 @@ var inventoryScreen = false;
 var mainMenu = true;
 var debugState = false;
 //debug options
-var displayTileX_Y = true;
+var displayTileX_Y = false;
 
 
 window.onload = function(){
@@ -266,8 +266,8 @@ function drawEverything() {
 }
 
 function drawMouseIndicators(){
-	colorRect(mouseClickX, mouseClickY, 10, 10, "red");
 	gameCoordToIsoCoord(mouseClickX, mouseClickY);
+	colorRect(mouseClickX, mouseClickY, 10, 10, "red");
 	colorText("X: " + mouseClickX + " Y: " + mouseClickY, mouseClickX, mouseClickY, "Black",  "8px Arial Black")
 	
 }
