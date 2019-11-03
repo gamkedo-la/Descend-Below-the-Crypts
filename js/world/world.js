@@ -191,6 +191,10 @@ function drawDungeon(){
 				
 			} else {
 				canvasContext.drawImage(trackPics[tileTypeHere], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+				if(displayTileX_Y){
+					//colorText("X: " + isoDrawX + " Y: " + isoDrawY, isoDrawX, isoDrawY, "black", "6px Arial Black");
+					colorText("X: " + isoDrawX, isoDrawX, isoDrawY, "black", "6px Arial Black");
+				}
 			}
 			//minimap:  This needs refactored 
 			/*

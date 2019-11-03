@@ -21,6 +21,9 @@ var characterSelectionScreen = false;
 var pauseScreen = false;
 var inventoryScreen = false;
 var mainMenu = true;
+var debugState = false;
+//debug options
+var displayTileX_Y = true;
 
 
 window.onload = function(){
@@ -256,12 +259,16 @@ function drawEverything() {
 		} else {
 			colorText("CAN'T use Flame Spell", 160, 592, "red", "8px Arial Black");
 		}
+		if(debugState){
+			colorText("DEBUG STATE", 50, 50, "red", "16px Arial Black");
+		}
 	}
 }
 
 function drawMouseIndicators(){
 	colorRect(mouseClickX, mouseClickY, 10, 10, "red");
-	colorText("X: " + mouseClickX + " Y: " + mouseClickY , mouseClickX, mouseClickY, "Black",  "8px Arial Black")
+	gameCoordToIsoCoord(mouseClickX, mouseClickY);
+	colorText("X: " + mouseClickX + " Y: " + mouseClickY, mouseClickX, mouseClickY, "Black",  "8px Arial Black")
 	
 }
 
@@ -275,4 +282,6 @@ function updateGameState(){
 	pauseScreen = false;
 	inventoryScreen = false;
 	mainMenu = false;
+	debugState = false;
+	//displayTileX_Y = false;
 }

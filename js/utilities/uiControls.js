@@ -2,6 +2,8 @@ const KEY_W = 87; // "W"
 const KEY_S = 83; // "S"
 const KEY_A = 65; // "A"
 const KEY_D = 68; // "D"
+const KEY_1 = 49; // "1"
+const KEY_2 = 50; // "2"
 
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -56,10 +58,17 @@ function keyPressed(evt) {
 	evt.preventDefault();
 	
 	var paused = KEY_P;
+	var debugMood = KEY_1
 	if(paused == evt.keyCode){
 		changePauseState();
+	} else if(debugMood = evt.keyCode){
+		changeDebugState();
 	}
-	
+	if(debugState){
+		if(evt == KEY_2){
+			changeDisplayTileX_Y();
+		}
+	}
 }
 
 function keyReleased(evt) {
@@ -91,4 +100,22 @@ function changePauseState(){
 		pauseScreen = true;
 	}	
 }
+
+function changeDebugState(){
+	if(debugState){
+		//debugState = false
+	} else {
+		debugState = true;
+	}
+}
+
+function changeDisplayTileX_Y(){
+	if(displayTileX_Y){
+		displayTileX_Y = false
+	} else {
+		displayTileX_Y = true;
+	}
+}
+
+
 
