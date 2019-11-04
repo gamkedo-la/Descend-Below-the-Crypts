@@ -5,7 +5,7 @@ function updatedCameraPosition(){
 	gameCoordToIsoCoord(playerOne.x,playerOne.y);
 	camPanX = isoDrawX - canvas.width/2;
 	camPanY = isoDrawY - canvas.height/2;
-	//console.log("Player: x " + Math.floor(isoDrawX) + " y " + Math.floor(isoDrawY)); 
+	console.log("Player: x " + Math.floor(isoDrawX) + " y " + Math.floor(isoDrawY)); 
 	
 	if(camPanX < 0){
 		camPanX = 0;

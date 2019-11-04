@@ -266,10 +266,8 @@ function drawEverything() {
 }
 
 function drawMouseIndicators(){
-	gameCoordToIsoCoord(mouseClickX, mouseClickY);
 	colorRect(mouseClickX, mouseClickY, 10, 10, "red");
 	colorText("X: " + mouseClickX + " Y: " + mouseClickY, mouseClickX, mouseClickY, "Black",  "8px Arial Black")
-	
 }
 
 //All Game States get reset to false here. 

@@ -38,12 +38,10 @@ function initInput(){
 		} else if(mainMenu){
 			mainMenuPageMouseClick(mousePosX, mousePosY);
 		} else {  // in game
-			//console.log(mousePosX, mousePosY);
-			//gameCoordToIsoCoord(mousePosX - camPanX, mousePosY - camPanY);
-			gameCoordToIsoCoord(mousePosX - camPanX, mousePosY);
-			console.log(Math.floor(isoDrawX), Math.floor(isoDrawY));
-			mouseClickX = isoDrawX;
-			mouseClickY = isoDrawY;
+			gameCoordToIsoCoord(mousePosX, mousePosY);
+			console.log(Math.floor(mousePosX), Math.floor(mousePosY));
+			mouseClickX = mousePosX + camPanX;
+			mouseClickY = mousePosY + camPanY;
 		}
 	} );
 	
