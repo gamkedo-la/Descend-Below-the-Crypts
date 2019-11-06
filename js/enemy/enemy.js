@@ -186,7 +186,7 @@ function enemyClass() {
 	}
 	
 	this.wayPointMovement = function (){
-			gameCoordToIsoCoord(this.x,this.y);
+		/*	gameCoordToIsoCoord(this.x,this.y);
 			var enemyXLocation = isoDrawX;
 			var enemyYLocation = isoDrawY;
 			var toTileC = this.wayPointList[0]%ROOM_COLS;
@@ -200,7 +200,39 @@ function enemyClass() {
 			} else if(enemyXLocation > isoDrawX){
 				this.resetDirections();
 				this.moveWest = true;
+			} */
+			
+		var currentTile = getTileIndexAtPixelCoord(this.x,this.y);
+		var currentCol = currentTile%ROOM_COLS;
+		var currentRow = Math.floor(currentTile/ROOM_COLS);		
+		var toTileC = this.wayPointList[0]%ROOM_COLS;
+		var toTileR = Math.floor(this.wayPointList[0]/ROOM_COLS);
+		console.log(currentCol, currentRow, toTileC, toTileR);
+		if(Math.abs(currentCol - toTileC) > Math.abs(currentRow - toTileR)){
+			console.log("travel Col");
+			if(currentCol > toTileC){
+				console.log("Travel North");
+				this.resetDirections();
+				this.moveNorth = true;
+				
+			} else {
+				console.log("Travel South");
+				this.resetDirections();
+				this.moveSouth = true;
 			}
+		} else {
+			console.log("travel Row");
+			if(currentRow > toTileR){
+				console.log("Travel West");
+				this.resetDirections();
+				this.moveWest = true;
+			} else {
+				console.log("Travel East");
+				this.resetDirections();
+				this.moveEast = true;
+			}
+		}
+	
 	}
 		
 	this.resetDirections = function(){
