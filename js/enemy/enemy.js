@@ -76,7 +76,8 @@ function enemyClass() {
 		var nextX = this.x; 
 		var nextY = this.y; 
 		
-		this.randomMovements();
+		//this.randomMovements();
+		this.wayPointMovement();
 		this.speed = 1.0;
 		
 		/*if(this.moveNorth && this.keyHeld_West){
@@ -182,6 +183,24 @@ function enemyClass() {
 					break;
 			}
 		}
+	}
+	
+	this.wayPointMovement = function (){
+			gameCoordToIsoCoord(this.x,this.y);
+			var enemyXLocation = isoDrawX;
+			var enemyYLocation = isoDrawY;
+			var toTileC = this.wayPointList[0]%ROOM_COLS;
+			var toTileR = Math.floor(this.wayPointList[0]/ROOM_COLS);
+			tileCoordToIsoCoord(toTileC, toTileR );
+			
+			console.log(enemyXLocation, isoDrawX);
+			if(enemyXLocation <= isoDrawX){
+				this.resetDirections();
+				this.moveEast = true;
+			} else if(enemyXLocation > isoDrawX){
+				this.resetDirections();
+				this.moveWest = true;
+			}
 	}
 		
 	this.resetDirections = function(){
