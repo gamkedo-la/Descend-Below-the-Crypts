@@ -24,3 +24,12 @@ function colorText(showWords, textX, textY, fillColor, fontStyle) {
   canvasContext.font = fontStyle; //"14px Arial Black"
   canvasContext.fillText(showWords, textX, textY);
 }
+
+function colorLine(fromX,fromY,toX, toY, strokeColor){
+	canvasContext.strokeStyle = strokeColor;
+	canvasContext.beginPath();
+	canvasContext.moveTo(fromX,fromY);
+	canvasContext.lineTo(toX,toY);
+	canvasContext.lineWidth = 2;
+	canvasContext.stroke();
+}

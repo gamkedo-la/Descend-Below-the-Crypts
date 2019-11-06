@@ -17,6 +17,7 @@ function enemyClass() {
 	this.offSetHeight = 0;
 	this.miniMapX = 630;
 	this.miniMapY = 30;
+	this.wayPointList = [];
 	
 	this.maxHealth = 2;
 	this.speed = 3;
@@ -64,6 +65,9 @@ function enemyClass() {
 		if(this.myTile == TILE_ORC){
 			this.height = 35;
 			this.width = 30;
+		}
+		for(var i = 0; i < 2; i++){
+			this.wayPointList.push(Math.floor(Math.random()*roomGrid.length));
 		}
 	}	
 	 
@@ -236,6 +240,18 @@ function enemyClass() {
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, 24, 9, "red");
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, (this.health / this.maxHealth) * 24, 9, "green");
 		canvasContext.drawImage(healthbarPic,isoDrawX-(this.width/2), isoDrawY-this.height - 20);
+		var startX = isoDrawX;
+		var startY = isoDrawY;
+		var toTileC;
+		var toTileR;
+		for(var i = 0; i < this.wayPointList.length; i++){
+			toTileC = this.wayPointList[i]%ROOM_COLS;
+			toTileR = Math.floor(this.wayPointList[i]/ROOM_COLS);
+			tileCoordToIsoCoord(toTileC, toTileR );
+			colorLine(startX,startY,isoDrawX, isoDrawY, "red");
+			startX = isoDrawX;
+			startY = isoDrawY;
+		}
 		//colorRect(this.miniMapX, this.miniMapY, 10, 10, "green");	
 	}
 }
