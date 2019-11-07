@@ -24,6 +24,13 @@ function enemyClass() {
 	this.health = this.maxHealth;
 	
 	this.movementTimer = 0;
+	this.currentwayPoint = 0;
+	this.currentTile = 0;
+	this.currentCol = 0;
+	this.currentRow = 0;	
+	this.toTileC = 0;
+	this.toTileR = 0;
+	this.d = 0; //distance
 	this.moveNorth = false;
 	this.keyHeld_East = false;
 	this.keyHeld_South = false;
@@ -67,7 +74,8 @@ function enemyClass() {
 			this.width = 30;
 		}
 		for(var i = 0; i < 2; i++){
-			this.wayPointList.push(Math.floor(Math.random()*roomGrid.length));
+			//this.wayPointList.push(Math.floor(Math.random()*roomGrid.length));
+			this.wayPointList.push(45,70);
 		}
 	}	
 	 
@@ -201,14 +209,28 @@ function enemyClass() {
 				this.resetDirections();
 				this.moveWest = true;
 			} */
-			
-		var currentTile = getTileIndexAtPixelCoord(this.x,this.y);
-		var currentCol = currentTile%ROOM_COLS;
-		var currentRow = Math.floor(currentTile/ROOM_COLS);		
-		var toTileC = this.wayPointList[0]%ROOM_COLS;
-		var toTileR = Math.floor(this.wayPointList[0]/ROOM_COLS);
-		console.log(currentCol, currentRow, toTileC, toTileR);
-		if(Math.abs(currentCol - toTileC) > Math.abs(currentRow - toTileR)){
+		this.d = dist(this.x, this.y, this.toTileC, this.toTileR);
+		console.log("Distance: " + this.d);
+		
+		if(this.d < 300){
+			this.currentwayPoint = 1;
+			console.log(this.currentwayPoint);
+			if(this.currentwayPoint > this.wayPointList.length){
+				this.currentwayPoint = 1;
+			}
+		}
+		this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
+		this.currentCol = this.currentTile%ROOM_COLS;
+		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);	
+		console.log(this.currentwayPoint);		
+		this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
+		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
+		//console.log(currentCol, currentRow, toTileC, toTileR);
+		
+
+
+		
+		/*if(Math.abs(currentCol - toTileC) < Math.abs(currentRow - toTileR)){
 			console.log("travel Col");
 			if(currentCol > toTileC){
 				console.log("Travel North");
@@ -220,18 +242,15 @@ function enemyClass() {
 				this.resetDirections();
 				this.moveSouth = true;
 			}
-		} else {
-			console.log("travel Row");
-			if(currentRow > toTileR){
-				console.log("Travel West");
+		} else { */
+			if(this.currentRow > this.toTileR){ //west
 				this.resetDirections();
 				this.moveWest = true;
 			} else {
-				console.log("Travel East");
-				this.resetDirections();
+				this.resetDirections(); //east
 				this.moveEast = true;
 			}
-		}
+		//}
 	
 	}
 		
