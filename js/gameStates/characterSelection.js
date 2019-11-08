@@ -6,6 +6,9 @@ var clericBoxX = 570;
 var clericBoxY = 313;
 var characterBoxWidth = 155;
 var characterBoxHeight = 205;
+var characterDisplayMessageOn = false;
+var characterDescription = "";
+
 var buttonList = [
 	{
 	cornerX: warriorBoxX, 
@@ -14,6 +17,9 @@ var buttonList = [
 	height: characterBoxHeight,
 	image: warriorProfilePic,
 	debugName: "Warrior",
+	scrollOver: function(){
+		displayCharacterDescription("A strong young boy..");
+	},
 	func: function(){
 		startWithCharacter(warriorPic, "The Warrior");
 		}
@@ -25,6 +31,9 @@ var buttonList = [
 	height: characterBoxHeight,
 	image: wizardProfilePic,
 	debugName: "Wizard",
+	scrollOver: function(){
+		displayCharacterDescription("A confident young lady..");
+	},
 	func: function(){
 		startWithCharacter(wizardPic, "The Wizard");
 		}
@@ -36,11 +45,19 @@ var buttonList = [
 	height: characterBoxHeight,
 	image: clericProfilePic,
 	debugName: "Cleric",
+	scrollOver: function(){
+		displayCharacterDescription("A religious man who does what is right...");
+	},
 	func: function(){
 		startWithCharacter(clericPic, "The Cleric");
 		}
 	}
 ];
+
+function displayCharacterDescription(description){
+	characterDescription = description;
+	displayCharacterDescription = true;
+}
 
 function startWithCharacter(charImage, charName){
 	playerOne.init(charImage, charName);			
@@ -56,6 +73,21 @@ function drawCharacterSelectionPage(){
 		canvasContext.drawImage(buttonList[i].image,buttonList[i].cornerX,buttonList[i].cornerY);
 		colorText(buttonList[i].debugName, buttonList[i].cornerX+45, buttonList[i].cornerY - 25, 'white', "12px Arial Black");
 	}
+	if(characterDisplayMessageOn){
+		console.log("worked");
+	}
+}
+
+function characterSelectionPageMouseScrollOver(mousePosX, mousePosY) {
+	for(var i = 0; i < buttonList.length; i++){
+		if(		mousePosX > buttonList[i].cornerX && mousePosX < buttonList[i].cornerX + buttonList[i].width && 
+			mousePosY > buttonList[i].cornerY && mousePosY < buttonList[i].cornerY + buttonList[i].height){
+			buttonList[i].scrollOver();
+			return;
+		}
+	}	
+	// Turn off Character Description
+	characterDisplayMessageOn = false;
 }
 
 function characterSelectionPageMouseClick(mousePosX, mousePosY) {

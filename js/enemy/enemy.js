@@ -75,7 +75,7 @@ function enemyClass() {
 		}
 		for(var i = 0; i < 2; i++){
 			//this.wayPointList.push(Math.floor(Math.random()*roomGrid.length));
-			this.wayPointList.push(45,70);
+			this.wayPointList.push(45,70,85,135);
 		}
 	}	
 	 
@@ -132,16 +132,25 @@ function enemyClass() {
 	
 		switch(walkIntoTileType) {
 			case TILE_ROAD:
+			case TILE_WIZARD_BOOK:
+			case TILE_CLERIC_BOOK:
+			case TILE_SKILL_BOOK:
+			case TILE_SWORD:
+			case TILE_MACE:
+			case TILE_GOLD_COINS:
+			case TILE_SEWER:
+			case TILE_HEALING_POTION:
+			case TILE_MANA_POTION:
 			case TILE_YELLOW_KEY:	
-				this.x = nextX;
-				this.y = nextY;
-				break;					
-			case TILE_WALL:
 			case TILE_SPIKES_ARMED:
 			case TILE_SPIKES_UNARMED:
 			case TILE_PITTRAP_ARMED:
 			case TILE_PITTRAP_UNARMED:
 			case TILE_TREASURE:
+				this.x = nextX;
+				this.y = nextY;
+				break;					
+			case TILE_WALL:
 			case TILE_FINISH:			
 			case TILE_YELLOW_DOOR:
 			case TILE_RED_DOOR:
@@ -194,63 +203,49 @@ function enemyClass() {
 	}
 	
 	this.wayPointMovement = function (){
-		/*	gameCoordToIsoCoord(this.x,this.y);
-			var enemyXLocation = isoDrawX;
-			var enemyYLocation = isoDrawY;
-			var toTileC = this.wayPointList[0]%ROOM_COLS;
-			var toTileR = Math.floor(this.wayPointList[0]/ROOM_COLS);
-			tileCoordToIsoCoord(toTileC, toTileR );
-			
-			console.log(enemyXLocation, isoDrawX);
-			if(enemyXLocation <= isoDrawX){
-				this.resetDirections();
-				this.moveEast = true;
-			} else if(enemyXLocation > isoDrawX){
-				this.resetDirections();
-				this.moveWest = true;
-			} */
-		this.d = dist(this.x, this.y, this.toTileC, this.toTileR);
-		console.log("Distance: " + this.d);
+		gameCoordToIsoCoord(this.x,this.y);
+		var enemyXLocation = isoDrawX;
+		var enemyYLocation = isoDrawY;
+		var toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
+		var toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
+		var columnDistance = Math.abs(this.currentCol - this.toTileC);
+		var rowDistance = Math.abs(this.currentRow - this.toTileR);
+		tileCoordToIsoCoord(toTileC, toTileR );
 		
-		if(this.d < 300){
-			this.currentwayPoint = 1;
-			console.log(this.currentwayPoint);
+		//console.log("C: " + columnDistance + " R: " + rowDistance);
+		
+		if(this.currentCol == this.toTileC && this.currentRow == this.toTileR){
+			this.currentwayPoint++;
 			if(this.currentwayPoint > this.wayPointList.length){
-				this.currentwayPoint = 1;
+				this.currentwayPoint = 0;
 			}
-		}
-		this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
-		this.currentCol = this.currentTile%ROOM_COLS;
-		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);	
-		console.log(this.currentwayPoint);		
-		this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
-		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
-		//console.log(currentCol, currentRow, toTileC, toTileR);
-		
-
-
-		
-		/*if(Math.abs(currentCol - toTileC) < Math.abs(currentRow - toTileR)){
-			console.log("travel Col");
-			if(currentCol > toTileC){
-				console.log("Travel North");
+		} else if (rowDistance > columnDistance){
+			if(this.currentRow > this.toTileR){ //North
 				this.resetDirections();
 				this.moveNorth = true;
-				
 			} else {
-				console.log("Travel South");
-				this.resetDirections();
+				this.resetDirections(); //South
 				this.moveSouth = true;
-			}
-		} else { */
-			if(this.currentRow > this.toTileR){ //west
+			}	
+		} else if (columnDistance > rowDistance){
+			if(this.currentCol> this.toTileC){ //West
 				this.resetDirections();
 				this.moveWest = true;
 			} else {
-				this.resetDirections(); //east
+				this.resetDirections(); //East
 				this.moveEast = true;
 			}
-		//}
+		}
+		
+		this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
+		this.currentCol = this.currentTile%ROOM_COLS;
+		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);		
+		this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
+		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
+		
+
+
+
 	
 	}
 		

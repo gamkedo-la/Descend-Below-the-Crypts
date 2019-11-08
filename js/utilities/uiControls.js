@@ -34,6 +34,7 @@ function initInput(){
 		mousePosY = mousePos.y;
 		
 		if(characterSelectionScreen){
+			characterSelectionPageMouseScrollOver(mousePosX, mousePosY)
 			characterSelectionPageMouseClick(mousePosX, mousePosY);
 		} else if(mainMenu){
 			mainMenuPageMouseClick(mousePosX, mousePosY);
