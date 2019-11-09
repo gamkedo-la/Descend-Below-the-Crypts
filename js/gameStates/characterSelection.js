@@ -8,6 +8,10 @@ var characterBoxWidth = 155;
 var characterBoxHeight = 205;
 var characterDisplayMessageOn = false;
 var characterDescription = "";
+var torch1 = new torchFireClass(16, 305, 0);
+var torch2 = new torchFireClass(260, 305, 2);
+var torch3 = new torchFireClass(495, 305, 1);
+var torch4 = new torchFireClass(735, 305, 3);
 
 var buttonList = [
 	{
@@ -46,7 +50,7 @@ var buttonList = [
 	image: clericProfilePic,
 	debugName: "Cleric",
 	scrollOver: function(){
-		displayCharacterDescription("A religious man who does what is right...");
+		displayCharacterDescription("A stern religious man...");
 	},
 	func: function(){
 		startWithCharacter(clericPic, "The Cleric");
@@ -73,12 +77,17 @@ function drawCharacterSelectionPage(){
 		canvasContext.drawImage(buttonList[i].image,buttonList[i].cornerX,buttonList[i].cornerY);
 		colorText(buttonList[i].debugName, buttonList[i].cornerX+45, buttonList[i].cornerY - 25, 'white', "12px Arial Black");
 	}
-	if(characterDisplayMessageOn){
+	if(characterDisplayMessageOn){ // this isn't working yet
 		console.log("worked");
 	}
+	sharedAnimCycle++;
 	
-	var torchFrames = 3;
-	var animOffset = 1 + Math.floor(sharedAnimCycle * 0.1)  % torchFrames;
+	torch1.draw();
+	torch2.draw();
+	torch3.draw();
+	torch4.draw();
+	
+	/*
 	var torchFirePicWidth = 64;
 	var torchFirePicHeight = 62;
 	sharedAnimCycle++;
@@ -98,9 +107,7 @@ function drawCharacterSelectionPage(){
 	canvasContext.drawImage(torchFirePic,
 				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
 				735, 305, torchFirePicWidth, torchFirePicHeight);
-
-
-
+	*/
 }
 
 function characterSelectionPageMouseScrollOver(mousePosX, mousePosY) {
@@ -127,3 +134,27 @@ function characterSelectionPageMouseClick(mousePosX, mousePosY) {
 	colorRect(0,0,canvas.width,canvas.height, 'red');	
 }
 			
+function torchFireClass(xPos, yPos, startFrame){
+	this.x = xPos;
+	this.y = yPos;
+	this.torchFirePicHeight = 62;
+	this.torchFirePicWidth = 64;
+	this.torchFrames = 3;
+	this.animCycle = 0;
+	this.animCycleAdvance = startFrame;
+		
+	this.draw = function(){
+		this.animCycle++;
+		if(this.animCycle > 5){
+			this.animCycle = 0;
+			this.animCycleAdvance++
+		}
+		if(this.animCycleAdvance > this.torchFrames){
+			this.animCycleAdvance = 0;
+		}
+			
+		canvasContext.drawImage(torchFirePic,
+			this.animCycleAdvance * this.torchFirePicWidth, 0, this.torchFirePicWidth, this.torchFirePicHeight, 
+			this.x, this.y, this.torchFirePicWidth, this.torchFirePicHeight);
+	}
+}	

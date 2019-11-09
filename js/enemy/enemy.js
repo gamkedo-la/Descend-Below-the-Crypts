@@ -240,11 +240,6 @@ function enemyClass() {
 		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);		
 		this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
 		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
-		
-
-
-
-	
 	}
 		
 	this.resetDirections = function(){
