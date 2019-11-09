@@ -60,15 +60,16 @@ function keyPressed(evt) {
 		case KEY_1: // debugMode
 			changeDebugState();
 			break;
+
 		case KEY_P:
 			changePauseState();
 			break;
-		default:
+		default: // warning: just because a key isn't used above doesn't mean debugState isn't using it
 			gameUsedKey = false;
 			break;
 	}
 
-	if(debugState && gameUsedKey == false){
+	if(debugState && gameUsedKey == false){ // NOTE: some keys are used for debug!
 		gameUsedKey = true; // assume true until we hit default case
 		switch(evt.keyCode) {
 			 case KEY_2:

@@ -260,7 +260,16 @@ function drawEverything() {
 			colorText("CAN'T use Flame Spell", 160, 592, "red", "8px Arial Black");
 		}
 		if(debugState){
-			colorText("DEBUG STATE", 50, 50, "red", "16px Arial Black");
+			var debugLineY = 50;
+			var debugLineSkipY = 20;
+			var debugFont = "16px Arial Black";
+			var debugColor = "white";
+
+			var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
+
+			colorText("DEBUG STATE", 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY;
+			colorText("player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
 		}
 	}
 }
