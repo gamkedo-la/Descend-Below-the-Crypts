@@ -57,14 +57,17 @@ function keyPressed(evt) {
 	evt.preventDefault();
 	
 	var paused = KEY_P;
-	var debugMood = KEY_1
-	if(paused == evt.keyCode){
+	var debugMode = KEY_1
+	if(evt.keyCode == paused){
+		console.log("pause toggle");
 		changePauseState();
-	} else if(debugMood = evt.keyCode){
+	} else if(evt.keyCode == debugMode){
+		console.log("debug toggle");
 		changeDebugState();
 	}
 	if(debugState){
-		if(evt == KEY_2){
+		if(evt.keyCode == KEY_2){
+			console.log("display tile change");
 			changeDisplayTileX_Y();
 		}
 	}
@@ -93,27 +96,15 @@ function setKeyHoldState(thisKey, thisWarrior, setTo) {
 }
 
 function changePauseState(){
-	if(pauseScreen){
-		pauseScreen = false;
-	} else {
-		pauseScreen = true;
-	}	
+	pauseScreen = !pauseScreen;
 }
 
 function changeDebugState(){
-	if(debugState){
-		//debugState = false
-	} else {
-		debugState = true;
-	}
+	debugState = !debugState;
 }
 
 function changeDisplayTileX_Y(){
-	if(displayTileX_Y){
-		displayTileX_Y = false
-	} else {
-		displayTileX_Y = true;
-	}
+	displayTileX_Y = !displayTileX_Y;
 }
 
 
