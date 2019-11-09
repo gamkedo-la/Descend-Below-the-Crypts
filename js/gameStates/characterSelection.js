@@ -76,6 +76,31 @@ function drawCharacterSelectionPage(){
 	if(characterDisplayMessageOn){
 		console.log("worked");
 	}
+	
+	var torchFrames = 3;
+	var animOffset = 1 + Math.floor(sharedAnimCycle * 0.1)  % torchFrames;
+	var torchFirePicWidth = 64;
+	var torchFirePicHeight = 62;
+	sharedAnimCycle++;
+	
+	canvasContext.drawImage(torchFirePic,
+				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
+				16, 305, torchFirePicWidth, torchFirePicHeight);
+
+	canvasContext.drawImage(torchFirePic,
+				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
+				260, 305, torchFirePicWidth, torchFirePicHeight);
+				
+	canvasContext.drawImage(torchFirePic,
+				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
+				495, 305, torchFirePicWidth, torchFirePicHeight);
+
+	canvasContext.drawImage(torchFirePic,
+				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
+				735, 305, torchFirePicWidth, torchFirePicHeight);
+
+
+
 }
 
 function characterSelectionPageMouseScrollOver(mousePosX, mousePosY) {

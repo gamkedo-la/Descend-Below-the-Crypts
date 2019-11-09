@@ -13,6 +13,7 @@ var ratPic = document.createElement("img");
 var spiderPic = document.createElement("img");
 //Game States
 var characterSelectionBackgroundPic = document.createElement("img");
+var torchFirePic = document.createElement("img");
 //var titlepagePic = document.createElement("img");
 
 //misc
@@ -60,9 +61,11 @@ function loadImages() {
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},
 			{varName: healthbarPic, theFile: "healthbar.png"},
 			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
+			{varName: torchFirePic, theFile: "gameStates/torchFire.png"},
 			{varName: warriorProfilePic, theFile: "profilePics/warriorProfilePic.png"},
 			{varName: wizardProfilePic, theFile: "profilePics/wizardProfilePic.png"},
-			{varName: clericProfilePic, theFile: "profilePics/clericProfilePic.png"},			
+			{varName: clericProfilePic, theFile: "profilePics/clericProfilePic.png"},	
+			
 			//tiles
 			{tileType: TILE_ROAD, theFile: "track_road.png"},
 			{tileType: TILE_WALL, theFile:  "track_wall.png"},	
