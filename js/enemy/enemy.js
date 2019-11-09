@@ -73,10 +73,8 @@ function enemyClass() {
 			this.height = 35;
 			this.width = 30;
 		}
-		for(var i = 0; i < 2; i++){
-			//this.wayPointList.push(Math.floor(Math.random()*roomGrid.length));
-			this.wayPointList.push(45,70,85,135);
-		}
+		this.wayPointList = [];
+		this.wayPointList.push(85,125,130,90, 47, 92, 57, 60);
 	}	
 	 
 	this.movement = function() {
@@ -313,9 +311,14 @@ function enemyClass() {
 			toTileC = this.wayPointList[i]%ROOM_COLS;
 			toTileR = Math.floor(this.wayPointList[i]/ROOM_COLS);
 			tileCoordToIsoCoord(toTileC, toTileR );
-			colorLine(startX,startY,isoDrawX, isoDrawY, "red");
+			if(i>0) { // skip first
+				colorLine(startX,startY,isoDrawX, isoDrawY, (i <= this.currentwayPoint ? "yellow" : "red"));
+			}
 			startX = isoDrawX;
 			startY = isoDrawY;
+			if(i == this.currentwayPoint) {
+				colorRect(startX-5,startY-5,10,10,"cyan");
+			}
 		}
 		//colorRect(this.miniMapX, this.miniMapY, 10, 10, "green");	
 	}
