@@ -54,22 +54,36 @@ function initInput(){
 
 function keyPressed(evt) {
 	setKeyHoldState(evt.keyCode, playerOne, true);
-	evt.preventDefault();
 	
-	var paused = KEY_P;
-	var debugMode = KEY_1
-	if(evt.keyCode == paused){
-		console.log("pause toggle");
-		changePauseState();
-	} else if(evt.keyCode == debugMode){
-		console.log("debug toggle");
-		changeDebugState();
+	var gameUsedKey = true;
+	switch(evt.keyCode) {
+		case KEY_1: // debugMode
+			changeDebugState();
+			break;
+		case KEY_P:
+			changePauseState();
+			break;
+		default:
+			gameUsedKey = false;
+			break;
 	}
-	if(debugState){
-		if(evt.keyCode == KEY_2){
-			console.log("display tile change");
-			changeDisplayTileX_Y();
+
+	if(debugState && gameUsedKey == false){
+		gameUsedKey = true; // assume true until we hit default case
+		switch(evt.keyCode) {
+			 case KEY_2:
+				changeDisplayTileX_Y();
+				break;
+			default:
+				gameUsedKey = false;
+				break;
 		}
+	}
+
+	if(gameUsedKey) {
+		evt.preventDefault();
+	} else {
+		console.log("unused key pressed / unrecognized, " + evt.keyCode + "(does debugState need to be on? press Key 1)");
 	}
 }
 
@@ -97,14 +111,17 @@ function setKeyHoldState(thisKey, thisWarrior, setTo) {
 
 function changePauseState(){
 	pauseScreen = !pauseScreen;
+	console.log("pause toggle, is now "+pauseScreen);
 }
 
 function changeDebugState(){
 	debugState = !debugState;
+	console.log("debug toggle, is now "+debugState);
 }
 
 function changeDisplayTileX_Y(){
 	displayTileX_Y = !displayTileX_Y;
+	console.log("display tile change, is now "+displayTileX_Y);
 }
 
 
