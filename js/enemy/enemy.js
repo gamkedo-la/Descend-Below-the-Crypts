@@ -154,6 +154,8 @@ function enemyClass() {
 			case TILE_RED_DOOR:
 			case TILE_BLUE_DOOR:
 			case TILE_TABLE:
+			case TILE_TOMB:
+			case TILE_TOMB_2:
 			default:
 				this.movementTimer = 0;
 				break;

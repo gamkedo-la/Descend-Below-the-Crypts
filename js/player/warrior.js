@@ -215,6 +215,9 @@ function warriorClass() {
 			case TILE_WALL_WITH_TORCH:
 			case TILE_TABLE:
 			case TILE_BOOKSHELF:
+			case TILE_TOMB:
+			case TILE_TOMB_2:
+			case TILE_COLUMN:
 			default:
 				break;
 		} // END OF SWITCH CASE		

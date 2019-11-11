@@ -94,7 +94,10 @@ function loadImages() {
 			{tileType: TILE_GOLD_COINS, theFile: "goldCoins.png"},
 			{tileType: TILE_HEALING_POTION, theFile: "potion1.png"},
 			{tileType: TILE_MANA_POTION, theFile: "potion2.png"},
-			{tileType: TILE_SEWER, theFile: "sewer.png"}
+			{tileType: TILE_SEWER, theFile: "sewer.png"},
+			{tileType: TILE_TOMB, theFile: "tomb.png"},
+			{tileType: TILE_TOMB_2, theFile: "tomb2.png"},
+			{tileType: TILE_COLUMN, theFile: "column.png"}
 		];
 			
 	picsToLoad = imageList.length;
