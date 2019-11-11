@@ -97,7 +97,8 @@ function loadImages() {
 			{tileType: TILE_SEWER, theFile: "sewer.png"},
 			{tileType: TILE_TOMB, theFile: "tomb.png"},
 			{tileType: TILE_TOMB_2, theFile: "tomb2.png"},
-			{tileType: TILE_COLUMN, theFile: "column.png"}
+			{tileType: TILE_COLUMN, theFile: "column.png"},
+			{tileType: TILE_CRYPT, theFile: "crypt.png"}
 		];
 			
 	picsToLoad = imageList.length;
