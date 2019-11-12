@@ -100,8 +100,13 @@ function loadImages() {
 			{tileType: TILE_SEWER, theFile: "sewer.png"},
 			{tileType: TILE_TOMB, theFile: "tomb.png"},
 			{tileType: TILE_TOMB_2, theFile: "tomb2.png"},
+			{tileType: TILE_TOMB_3, theFile: "tomb3.png"},
+			{tileType: TILE_TOMB_4, theFile: "tomb4.png"},
 			{tileType: TILE_COLUMN, theFile: "column.png"},
-			{tileType: TILE_CRYPT, theFile: "crypt.png"}
+			{tileType: TILE_CRYPT, theFile: "crypt.png"},
+			{tileType: TILE_CRYPT_BODY, theFile: "cryptBody.png"},
+			{tileType: TILE_WALL_ART, theFile: "wallArt.png"},
+			{tileType: TILE_WALL_SHIELD, theFile: "shieldOnWall.png"},
 		];
 			
 	picsToLoad = imageList.length;
