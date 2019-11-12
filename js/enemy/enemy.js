@@ -130,6 +130,7 @@ function enemyClass() {
 	
 		switch(walkIntoTileType) {
 			case TILE_ROAD:
+			case TILE_CRYPT_FLOOR:
 			case TILE_WIZARD_BOOK:
 			case TILE_CLERIC_BOOK:
 			case TILE_SKILL_BOOK:

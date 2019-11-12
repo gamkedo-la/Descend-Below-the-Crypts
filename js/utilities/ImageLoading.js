@@ -68,8 +68,11 @@ function loadImages() {
 			
 			//tiles
 			{tileType: TILE_ROAD, theFile: "track_road.png"},
+			{tileType: TILE_CRYPT_FLOOR, theFile: "track_crypt_floor.png"},
 			{tileType: TILE_WALL, theFile:  "track_wall.png"},	
+			{tileType: TILE_CRYPT_WALL, theFile:  "track_crypt_wall.png"},	
 			{tileType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},
+			{tileType: TILE_CRYPT_TORCH, theFile:  "track_wall_with_torch.png"},
 			{tileType: TILE_YELLOW_DOOR, theFile:  "track_yellowdoor.png"},
 			{tileType: TILE_RED_DOOR, theFile:  "track_reddoor.png"},		
 			{tileType: TILE_BLUE_DOOR, theFile:  "track_bluedoor.png"},				
