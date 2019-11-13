@@ -14,7 +14,8 @@ var spiderPic = document.createElement("img");
 //Game States
 var characterSelectionBackgroundPic = document.createElement("img");
 var torchFirePic = document.createElement("img");
-//var titlepagePic = document.createElement("img");
+var mainMenuPic = document.createElement("img");
+var menuScreenPic = document.createElement("img");
 
 //misc
 var shadowPic = document.createElement("img");
@@ -61,6 +62,8 @@ function loadImages() {
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},
 			{varName: healthbarPic, theFile: "healthbar.png"},
 			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
+			{varName: mainMenuPic, theFile: "gameStates/titlescreen.png"},
+			{varName: menuScreenPic, theFile: "gameStates/menuScreen.png"},
 			{varName: torchFirePic, theFile: "gameStates/torchFire.png"},
 			{varName: warriorProfilePic, theFile: "profilePics/warriorProfilePic.png"},
 			{varName: wizardProfilePic, theFile: "profilePics/wizardProfilePic.png"},

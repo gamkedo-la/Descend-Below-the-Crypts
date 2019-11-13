@@ -12,6 +12,7 @@ var torch1 = new torchFireClass(16, 305, 0);
 var torch2 = new torchFireClass(260, 305, 2);
 var torch3 = new torchFireClass(495, 305, 1);
 var torch4 = new torchFireClass(735, 305, 3);
+var torch5 = new torchFireClass(450, 415, 3);
 
 var buttonList = [
 	{
