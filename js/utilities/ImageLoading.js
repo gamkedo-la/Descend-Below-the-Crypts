@@ -110,6 +110,24 @@ function loadImages() {
 			{tileType: TILE_CRYPT_BODY, theFile: "cryptBody.png"},
 			{tileType: TILE_WALL_ART, theFile: "wallArt.png"},
 			{tileType: TILE_WALL_SHIELD, theFile: "shieldOnWall.png"},
+			{tileType: TILE_RED_RUG_BL, theFile: "track_rug_bottom_left.png"},
+			{tileType: TILE_RED_RUG_TR, theFile: "track_rug_top_right.png"},
+			{tileType: TILE_RED_RUG_TL, theFile: "track_rug_top_left.png"},
+			{tileType: TILE_RED_RUG_BR, theFile: "track_rug_bottom_right.png"},
+			{tileType: TILE_RED_RUG_TOP, theFile: "track_rug_top.png"},
+			{tileType: TILE_RED_RUG_BOT, theFile: "track_rug_bottom.png"},
+			{tileType: TILE_RED_RUG_CEN, theFile: "track_rug.png"},
+			{tileType: TILE_RED_RUG_L, theFile: "track_rug_left.png"},
+			{tileType: TILE_RED_RUG_R, theFile: "track_rug_right.png"},
+			{tileType: TILE_BLUE_RUG_BL, theFile: "track_blue_rug_bottom_left.png"},
+			{tileType: TILE_BLUE_RUG_TR, theFile: "track_blue_rug_top_right.png"},
+			{tileType: TILE_BLUE_RUG_TL, theFile: "track_blue_rug_top_left.png"},
+			{tileType: TILE_BLUE_RUG_BR, theFile: "track_blue_rug_bottom_right.png"},
+			{tileType: TILE_BLUE_RUG_TOP, theFile: "track_blue_rug_top.png"},
+			{tileType: TILE_BLUE_RUG_BOT, theFile: "track_blue_rug_bottom.png"},
+			{tileType: TILE_BLUE_RUG_CEN, theFile: "track_blue_rug.png"},
+			{tileType: TILE_BLUE_RUG_L, theFile: "track_blue_rug_left.png"},
+			{tileType: TILE_BLUE_RUG_R, theFile: "track_blue_rug_right.png"}
 		];
 			
 	picsToLoad = imageList.length;
