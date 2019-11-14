@@ -7,9 +7,8 @@ function drawMainMenuPage(){
 	colorText("Start", 360, 255, 'white', "24px Arial Black");
 	colorText("Instructions", 320, 305, 'white', "24px Arial Black");
 	colorText("Credits", 350, 355, 'white', "24px Arial Black");
-
-
 	torch5.draw();
+	torch6.draw();
 }
 
 function mainMenuPageMouseClick(mousePosX, mousePosY) {
