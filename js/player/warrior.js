@@ -127,6 +127,24 @@ function warriorClass() {
 			case TILE_ROAD:
 			case TILE_CRYPT_FLOOR:
 			case TILE_SEWER:
+			case TILE_RED_RUG_TL:
+			case TILE_RED_RUG_TR:
+			case TILE_RED_RUG_BL:
+			case TILE_RED_RUG_BR:
+			case TILE_RED_RUG_TOP:
+			case TILE_RED_RUG_BOT:
+			case TILE_RED_RUG_CEN:
+			case TILE_RED_RUG_L:
+			case TILE_RED_RUG_R:
+			case TILE_BLUE_RUG_TL:
+			case TILE_BLUE_RUG_TR:
+			case TILE_BLUE_RUG_BL:
+			case TILE_BLUE_RUG_BR:
+			case TILE_BLUE_RUG_TOP:
+			case TILE_BLUE_RUG_BOT:
+			case TILE_BLUE_RUG_CEN:
+			case TILE_BLUE_RUG_L:
+			case TILE_BLUE_RUG_R:
 			case TILE_SPIKES_UNARMED:
 			case TILE_PITTRAP_UNARMED:
 				this.x = nextX;
