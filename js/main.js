@@ -3,16 +3,10 @@ var canvasContext;
 
 //characters (Player, NPC's, Enemies)
 var playerOne = new warriorClass();
-var goblinList = [];
-var orcList = [];
-var ogreList = [];
-var ratList = [];
+var enemyList = [];
 
 function resetEnemyLists(){
-	goblinList = [];
-	orcList = [];
-	ogreList = [];
-	ratList = [];
+	enemyList = [];
 }
 
 //game states
@@ -71,7 +65,9 @@ function imageLoadingDoneSoStartGame(){
 	playerOne.init(warriorPic, "The Warrior");
 	for(var i = 0; i < roomGrid.length; i++){
 		if(roomGrid[i] == TILE_GOBLIN){
+			console.log("Tile Goblin matched");
 			addGoblin();
+			
 		} 
 		if(roomGrid[i] == TILE_ORC){
 			addOrc();
@@ -79,40 +75,39 @@ function imageLoadingDoneSoStartGame(){
 		if(roomGrid[i] == TILE_OGRE){
 			addOgre();
 		}
-	}
-	for(var i = 0; i < goblinList.length; i++){
-		goblinList[i].init(goblinPic, goblinNames[i], TILE_GOBLIN);
-	}
-	for(var i = 0; i < orcList.length; i++){
-		orcList[i].init(orcPic, orcNames[i], TILE_ORC);
-	}		
-	for(var i = 0; i < ogreList.length; i++){
-		ogreList[i].init(ogrePic, ogreNames[i], TILE_OGRE);
-	}
-	for(var i = 0; i < ratList.length; i++){
-		ratList[i].init(ratPic, ratNames[i], TILE_RAT);
+		if(roomGrid[i] == TILE_RAT){
+			addRat();
+		}
 	}
 }
+function randFromList(fromList){
+	var randIdx = Math.floor(Math.random()*fromList.length);
+	return fromList[randIdx];
 
+}
 //Adds an enemy 
 function addGoblin(){
 	var tempEnemy = new enemyClass();
-	goblinList.push(tempEnemy);
+	tempEnemy.init(goblinPic, randFromList(goblinNames), TILE_GOBLIN);
+	enemyList.push(tempEnemy);
 }
 
 function addOrc(){
 	var tempEnemy = new enemyClass();
-	orcList.push(tempEnemy);
+	tempEnemy.init(orcPic, randFromList(orcNames), TILE_ORC);
+	enemyList.push(tempEnemy);
 }
 
 function addOgre(){
 	var tempEnemy = new enemyClass();
-	ogreList.push(tempEnemy);
+	tempEnemy.init(ogrePic, randFromList(ogreNames), TILE_OGRE);
+	enemyList.push(tempEnemy);
 }
 
 function addRat(){
 	var tempEnemy = new ratClass();
-	ratList.push(tempEnemy);
+	tempEnemy.init(ratPic, randFromList(ratNames), TILE_RAT);
+	enemyList.push(tempEnemy);
 }
 
 function nextLevel() {
@@ -142,10 +137,10 @@ function loadLevel(whichLevel) {
 			addRat();
 		}
 	}
-	for(var i = 0; i < goblinList.length; i++){
-		goblinList[i].init(goblinPic, goblinNames[i], TILE_GOBLIN);
+	for(var i = 0; i < enemyList.length; i++){
+		enemyList[i].init(goblinPic, goblinNames[i], TILE_GOBLIN);
 	}
-	for(var i = 0; i < orcList.length; i++){
+	/*for(var i = 0; i < orcList.length; i++){
 		orcList[i].init(orcPic, orcNames[i], TILE_ORC);
 	}		
 	for(var i = 0; i < ogreList.length; i++){
@@ -153,7 +148,7 @@ function loadLevel(whichLevel) {
 	}
 	for(var i = 0; i < ratList.length; i++){
 		ratList[i].init(ratPic, ogreNames[i], TILE_OGRE);
-	}
+	} */
 	console.log("Finish Load Level");
 }
 
@@ -162,18 +157,10 @@ function loadLevel(whichLevel) {
 function moveEverything() {
 	if(liveGame){
 		playerOne.movement();
-		for(var i = 0; i < goblinList.length; i++){
-			goblinList[i].movement();
+		for(var i = 0; i < enemyList.length; i++){
+			enemyList[i].movement();
 		}
-		for(var i = 0; i < orcList.length; i++){
-			orcList[i].movement();
-		}
-		for(var i = 0; i < ogreList.length; i++){
-			ogreList[i].movement();
-		}
-		for(var i = 0; i < ratList.length; i++){
-			ratList[i].movement();
-		}
+		
 		updatedCameraPosition();
 	}
 }
@@ -182,37 +169,13 @@ function moveEverything() {
 //This requires refactoring.  Too many individual lines checking monsters to players
 function checkAllPlayerAndEnemyCollisions(){
 	//check goblins
-	for(var i = 0; i < goblinList.length; i++){
-		playerOne.checkCollisionsAgainst(goblinList[i]);
-		for(var ii = i+1; ii < goblinList.length; ii++){
-			goblinList[i].checkCollisionsAgainst(goblinList[ii]);
-			goblinList[i].checkCollisionsAgainst(playerOne);
+	for(var i = 0; i < enemyList.length; i++){
+		playerOne.checkCollisionsAgainst(enemyList[i]);
+		for(var ii = i+1; ii < enemyList.length; ii++){
+			enemyList[i].checkCollisionsAgainst(enemyList[ii]);
+			enemyList[i].checkCollisionsAgainst(playerOne);
 		}
 	}
-	//check orcs
-	for(var i = 0; i < orcList.length; i++){
-		playerOne.checkCollisionsAgainst(orcList[i]);
-		for(var ii = i+1; ii < orcList.length; ii++){
-		orcList[i].checkCollisionsAgainst(orcList[ii]);
-		orcList[i].checkCollisionsAgainst(playerOne);
-		}
-	}
-	//check ogres
-	for(var i = 0; i < ogreList.length; i++){
-		playerOne.checkCollisionsAgainst(ogreList[i]);
-		for(var ii = i+1; ii < orcList.length; ii++){
-		ogreList[i].checkCollisionsAgainst(ogreList[ii]);
-		ogreList[i].checkCollisionsAgainst(playerOne);
-		}
-	}
-	//check rats
-	for(var i = 0; i < ratList.length; i++){
-		playerOne.checkCollisionsAgainst(ratList[i]);
-		for(var ii = i+1; ii < ratList.length; ii++){
-		ratList[i].checkCollisionsAgainst(ratList[ii]);
-		ratList[i].checkCollisionsAgainst(playerOne);
-		}
-	} 
 }
 
 
@@ -228,17 +191,8 @@ function drawEverything() {
 		drawDungeon();
 		playerOne.draw();
 		drawMouseIndicators();
-		for(var i = 0; i < goblinList.length; i++){
-			goblinList[i].draw();
-		}
-		for(var i = 0; i < orcList.length; i++){
-			orcList[i].draw();
-		}
-		for(var i = 0; i < ogreList.length; i++){
-			ogreList[i].draw();
-		}
-		for(var i = 0; i < ratList.length; i++){
-			ratList[i].draw();
+		for(var i = 0; i < enemyList.length; i++){
+			enemyList[i].draw();
 		}
 		finishedCameraPan();
 		canvasContext.drawImage(feedbackGUIPic,0, canvas.height-50);

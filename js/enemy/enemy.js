@@ -4,7 +4,9 @@ goblinNames = [ "Lalx", "Hosterz", "Wruc", "Arx", "Plex", "Brong", "Bogz",
 				
 orcNames = [ "Orc 1", "Orc 2", "Orc 3", "Orc 4", "Orc 5", "Orc 6"];     
 
-ogreNames = [ "Ogre 1", "Ogre 2", "Ogre 3", "Ogre 4", "Ogre 5", "Ogre 6"];     
+ogreNames = [ "Ogre 1", "Ogre 2", "Ogre 3", "Ogre 4", "Ogre 5", "Ogre 6"];
+
+ratNames = [ "Slinter", "Bob" ];     
 
 
 function enemyClass() {
@@ -49,6 +51,7 @@ function enemyClass() {
 		if(this.homeX == undefined) {
 			for(var i=0; i<roomGrid.length; i++){
 				if( roomGrid[i] == this.myTile) {
+					console.log("Found start position for " + this.myName + " at " + i);
 					var tileRow = Math.floor(i/ROOM_COLS);
 					var tileCol	= i%ROOM_COLS;
 					
