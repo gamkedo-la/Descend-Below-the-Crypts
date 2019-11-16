@@ -53,7 +53,7 @@ function loadImages() {
 			{varName: clericPic, theFile: "cleric.png"},
 			//enemies
 			{varName: orcPic, theFile: "monsters/orc1.png"},
-			{varName: goblinPic, theFile: "monsters/goblin.png"},
+			{varName: goblinPic, theFile: "monsters/goblinAnim.png"},
 			{varName: ogrePic, theFile: "monsters/ogre.png"},
 			{varName: ratPic, theFile: "monsters/spider.png"},
 			{varName: spiderPic, theFile: "monsters/spider.png"},
@@ -82,6 +82,8 @@ function loadImages() {
 			{tileType: TILE_YELLOW_KEY, theFile:  "track_yellowkey.png"},			
 			{tileType: TILE_TREASURE, theFile:  "track_treasure.png"},
 			{tileType: TILE_TABLE, theFile:  "track_table.png"},
+			{tileType: TILE_TABLE_2, theFile:  "table2.png"},
+			{tileType: TILE_TABLE_3, theFile:  "table2.png"},
 			{tileType: TILE_FINISH, theFile: "track_finish.png"},
 			{tileType: TILE_STAIRS, theFile: "track_stairs.png"},
 			{tileType: TILE_BOOKSHELF, theFile: "track_bookshelf.png"},
@@ -127,7 +129,7 @@ function loadImages() {
 			{tileType: TILE_BLUE_RUG_BOT, theFile: "track_blue_rug_bottom.png"},
 			{tileType: TILE_BLUE_RUG_CEN, theFile: "track_blue_rug.png"},
 			{tileType: TILE_BLUE_RUG_L, theFile: "track_blue_rug_left.png"},
-			{tileType: TILE_BLUE_RUG_R, theFile: "track_blue_rug_right.png"}
+			{tileType: TILE_BLUE_RUG_R, theFile: "track_blue_rug_right.png"},
 		];
 			
 	picsToLoad = imageList.length;

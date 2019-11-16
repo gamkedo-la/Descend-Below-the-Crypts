@@ -1,6 +1,8 @@
 var canvas;
 var canvasContext;
 
+var skipToGame = true;
+
 //characters (Player, NPC's, Enemies)
 var playerOne = new warriorClass();
 var enemyList = [];
@@ -137,9 +139,11 @@ function loadLevel(whichLevel) {
 			addRat();
 		}
 	}
+	
 	for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].init(goblinPic, goblinNames[i], TILE_GOBLIN);
 	}
+	
 	/*for(var i = 0; i < orcList.length; i++){
 		orcList[i].init(orcPic, orcNames[i], TILE_ORC);
 	}		
@@ -149,6 +153,7 @@ function loadLevel(whichLevel) {
 	for(var i = 0; i < ratList.length; i++){
 		ratList[i].init(ratPic, ogreNames[i], TILE_OGRE);
 	} */
+	
 	console.log("Finish Load Level");
 }
 

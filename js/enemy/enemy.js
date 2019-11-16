@@ -6,14 +6,14 @@ orcNames = [ "Orc 1", "Orc 2", "Orc 3", "Orc 4", "Orc 5", "Orc 6"];
 
 ogreNames = [ "Ogre 1", "Ogre 2", "Ogre 3", "Ogre 4", "Ogre 5", "Ogre 6"];
 
-ratNames = [ "Slinter", "Bob" ];     
+ratNames = [ "Splinter", "Bob" ];     
 
 
 function enemyClass() {
 	this.x = 600;
 	this.y = 800;
-	this.width = 30; //30
-	this.height = 30; //30
+	this.width = 30; 
+	this.height = 31; 
 	this.isoEnemyFootY = 8;
 	this.offSetWidth = 0;
 	this.offSetHeight = 0;
@@ -27,6 +27,10 @@ function enemyClass() {
 	
 	this.movementTimer = 0;
 	this.currentwayPoint = 0;
+	this.frameTick = 0; // animation - called every frame
+	this.ticksPerFrame = 5; //frame ticks advance the frame
+	this.numberOfFrames = 4; //number of frames in character sprite sheet
+	this.frameIndex  = 0; //frame sprite sheet is on
 	this.currentTile = 0;
 	this.currentCol = 0;
 	this.currentRow = 0;	
@@ -73,7 +77,7 @@ function enemyClass() {
 		this.myTile = whichTile;
 		this.enemyReset();
 		if(this.myTile == TILE_ORC){
-			this.height = 35;
+			this.height = 31;
 			this.width = 30;
 		}
 		this.wayPointList = [];
@@ -85,8 +89,10 @@ function enemyClass() {
 		var nextX = this.x; 
 		var nextY = this.y; 
 		
-		//this.randomMovements();
-		this.wayPointMovement();
+		this.randomMovements();
+		//this.wayPointMovement();
+		//this.rest();
+		
 		this.speed = 1.0;
 		
 		/*if(this.moveNorth && this.keyHeld_West){
@@ -264,7 +270,11 @@ function enemyClass() {
 		this.currentCol = this.currentTile%ROOM_COLS;
 		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);		
 		this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
-		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
+		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS); 
+	} 
+	
+	this.rest = function(){
+		this.resetDirections();
 	}
 		
 	this.resetDirections = function(){
@@ -312,13 +322,29 @@ function enemyClass() {
 		}
 		return false;
 	}
-		
+
+	this.animateEnemy = function(){
+		this.frameTick++;
+		if (this.frameTick > this.ticksPerFrame) {
+			this.frameTick = 0;
+			this.frameIndex++;
+		}
+		if (this.frameIndex  < this.numberOfFrames - 1) {
+			this.offSetWidth = this.frameIndex * this.width;
+		} else {
+			this.frameIndex  = 0;
+		}
+	}
+
 	this.draw = function(){
+		this.animateEnemy();
 		gameCoordToIsoCoord(this.x,this.y);
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y);
 		colorText(this.myName, isoDrawX + 20, isoDrawY - 30, "black", "8px Arial Black");
 		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height, 
 								isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y, this.width, this.height);
+		
+		
 		//displays health
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, 24, 9, "red");
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, (this.health / this.maxHealth) * 24, 9, "green");
