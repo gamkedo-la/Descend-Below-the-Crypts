@@ -4,6 +4,7 @@ var soundSetforMeetings = true; //make false to hear at normal level
 
 //sounds
 var crashIntoConeSound = new SoundOverlapsClass("crashCone");
+var choosingWarrior = new SoundOverlapsClass("choosingWarrior");
 var basementMusic = new BackgroundMusicClass()
 
 function setFormat() {

@@ -28,6 +28,7 @@ var buttonList = [
 	},
 	func: function(){
 		startWithCharacter(warriorPic, "The Warrior");
+		choosingWarrior.play();
 		}
 	},
 	{
