@@ -3,7 +3,8 @@
 function drawMainMenuPage(){
 	canvasContext.drawImage(mainMenuPic, 0, 0);
 	canvasContext.drawImage(menuScreenPic, 250, 200);
-	colorText("Descend Below the Crypts", 50, 125, 'black', "48px Arial Black");
+	canvasContext.drawImage(titleBarPic, 10, 25);
+	colorText("Descend Below the Crypts", 50, 80, 'black', "48px Arial Black");
 	colorText("Start", 360, 255, 'white', "24px Arial Black");
 	colorText("Instructions", 320, 305, 'white', "24px Arial Black");
 	colorText("Credits", 350, 355, 'white', "24px Arial Black");
