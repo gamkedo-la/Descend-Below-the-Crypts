@@ -365,7 +365,7 @@ function enemyClass() {
 			if(i == this.currentwayPoint) {
 				colorRect(startX-5,startY-5,10,10,"cyan");
 			}
-		}
+		} 
 		//colorRect(this.miniMapX, this.miniMapY, 10, 10, "green");	
 	}
 }

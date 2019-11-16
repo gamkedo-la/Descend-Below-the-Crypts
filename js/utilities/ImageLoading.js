@@ -130,6 +130,15 @@ function loadImages() {
 			{tileType: TILE_BLUE_RUG_CEN, theFile: "track_blue_rug.png"},
 			{tileType: TILE_BLUE_RUG_L, theFile: "track_blue_rug_left.png"},
 			{tileType: TILE_BLUE_RUG_R, theFile: "track_blue_rug_right.png"},
+			{tileType: TILE_GREEN_RUG_BL, theFile: "track_green_rug_bottom_left.png"},
+			{tileType: TILE_GREEN_RUG_TR, theFile: "track_green_rug_top_right.png"},
+			{tileType: TILE_GREEN_RUG_TL, theFile: "track_green_rug_top_left.png"},
+			{tileType: TILE_GREEN_RUG_BR, theFile: "track_green_rug_bottom_right.png"},
+			{tileType: TILE_GREEN_RUG_TOP, theFile: "track_green_rug_top.png"},
+			{tileType: TILE_GREEN_RUG_BOT, theFile: "track_green_rug_bottom.png"},
+			{tileType: TILE_GREEN_RUG_CEN, theFile: "track_green_rug.png"},
+			{tileType: TILE_GREEN_RUG_L, theFile: "track_green_rug_left.png"},
+			{tileType: TILE_GREEN_RUG_R, theFile: "track_green_rug_right.png"},
 		];
 			
 	picsToLoad = imageList.length;
