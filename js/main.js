@@ -21,6 +21,7 @@ var debugState = false;
 //debug options
 var displayTileX_Y = false;
 
+var soundDelay = 0;
 
 window.onload = function(){
 			
@@ -62,6 +63,7 @@ function imageLoadingDoneSoStartGame(){
 		moveEverything();
 		checkAllPlayerAndEnemyCollisions();
 		drawEverything();
+		checkForSounds();
 	}, 1000/framesPerSecond);
 	loadLevel(levelOne)
 	playerOne.init(warriorPic, "The Warrior");
@@ -156,6 +158,19 @@ function loadLevel(whichLevel) {
 	
 	console.log("Finish Load Level");
 }
+
+function checkForSounds(){
+	if(playerOne.playWarriorsThoughtsForSecondLevel){
+		soundDelay++;
+		console.log(soundDelay);
+		if(soundDelay == 290){
+			warriorEnteringSecondLevel.play();
+			soundDelay = 0;
+			playerOne.playWarriorsThoughtsForSecondLevel = false;
+		}
+	}
+}
+
 
 			
 //All movement occurs here.  This is called every frame.

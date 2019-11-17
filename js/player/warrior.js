@@ -34,6 +34,9 @@ function warriorClass() {
 	this.flameSpell = false;
 	this.healSpell = false;
 		
+	//conditions
+	this.playWarriorsThoughtsForSecondLevel = false;	
+		
 	this.setupControls = function(northKey,eastKey,southKey,westKey) {
 		this.controlKeyForNorth = northKey;
 		this.controlKeyForEast = eastKey;			
@@ -214,7 +217,8 @@ function warriorClass() {
 				break;			
 			case TILE_FINISH:
 			case TILE_STAIRS_DOWN:
-				console.log("Stair 2");
+				enteringSecondLevelNarrative.play();
+				this.playWarriorsThoughtsForSecondLevel = true;
 				loadLevel(levelTwo);
 				break;
 			case TILE_STAIRS:

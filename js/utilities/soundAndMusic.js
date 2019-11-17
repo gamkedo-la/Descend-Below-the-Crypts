@@ -1,11 +1,17 @@
 var audioFormat;
 var isMuted = false;
-var soundSetforMeetings = true; //make false to hear at normal level
+var soundSetforMeetings = false; //make false to hear at normal level
 
 //sounds
 var crashIntoConeSound = new SoundOverlapsClass("crashCone");
-var choosingWarrior = new SoundOverlapsClass("choosingWarrior");
 var basementMusic = new BackgroundMusicClass()
+
+//Quest Based
+var enteringSecondLevelNarrative = new SoundOverlapsClass("enteringSecondLevel");
+
+//Warrior's Voice
+var choosingWarrior = new SoundOverlapsClass("choosingWarrior");
+var warriorEnteringSecondLevel = new SoundOverlapsClass("warriorsThoughtsSecondLevel");
 
 function setFormat() {
     var audio = new Audio();
