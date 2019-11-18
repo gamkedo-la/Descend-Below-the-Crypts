@@ -24,7 +24,6 @@ var displayTileX_Y = false;
 var soundDelay = 0;
 
 window.onload = function(){
-	// This comment will be removed in the next commit :D
 			
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
