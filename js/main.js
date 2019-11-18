@@ -69,11 +69,34 @@ function updateMinimap(){
 	var miniMapWidth = 100;
 	var miniMapHeight = 100;
 	
-	// Display mini map backfround:
+	var playerMiniMapPosX = miniMapPosX + (miniMapWidth/2);
+	var playerMiniMapPosY = miniMapPosY + (miniMapHeight/2);
+	
+	var enemyToPlayerProportionFactor = 1/10;
+	
+	// Display mini map background:
 	colorRect(miniMapPosX,miniMapPosY,miniMapWidth,miniMapHeight, "rgba(255, 255, 255, 0.5)");
 	
 	// Display player in the middle (green dot):
-	colorCircle(miniMapPosX + (miniMapWidth/2) , miniMapPosY + (miniMapHeight/2), 2, 'green')
+	colorCircle( playerMiniMapPosX, playerMiniMapPosY , 2, 'green')
+	
+	
+	for(var i = 0; i < enemyList.length; i++){
+		var enemyPosX = enemyList[i].x;
+		var enemyPosY = enemyList[i].y;
+		
+		
+		// calculate the different of position:
+		var enemyToPlayerXdistance = enemyPosX - playerPosX;
+		var enemyToPlayerYdistance = enemyPosY - playerPosY;
+		
+		// display enemy on the mini map with proportion distance:
+		
+		colorCircle(
+		playerMiniMapPosX + (enemyToPlayerXdistance * enemyToPlayerProportionFactor) ,
+		playerMiniMapPosY + (enemyToPlayerYdistance * enemyToPlayerProportionFactor), 2, 'red')
+	}
+	
 }
 
 function imageLoadingDoneSoStartGame(){
