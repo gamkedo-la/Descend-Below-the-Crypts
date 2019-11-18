@@ -20,7 +20,11 @@ function warriorClass() {
 	this.canMoveNorth = true;
 	this.canMoveEast = true;
 	this.canMoveSouth = true;
-	this.canMoveWest = true;	
+	this.canMoveWest = true;
+	this.frameTick = 0; // animation - called every frame
+	this.ticksPerFrame = 5; //frame ticks advance the frame
+	this.numberOfFrames = 4; //number of frames in character sprite sheet
+	this.frameIndex  = 0; //frame sprite sheet is on	
 	this.health = 4;
 	this.maxHealth = 4;
 	this.trapCoolDownTimer = 0;
@@ -280,9 +284,23 @@ function warriorClass() {
 		}
 		return false;
 	}
+	
+	this.animatePlayer = function(){
+		this.frameTick++;
+		if (this.frameTick > this.ticksPerFrame) {
+			this.frameTick = 0;
+			this.frameIndex++;
+		}
+		if (this.frameIndex  < this.numberOfFrames - 1) {
+			this.offSetWidth = this.frameIndex * this.width;
+		} else {
+			this.frameIndex  = 0;
+		}
+	}
 		
 	this.draw = function(){
 		gameCoordToIsoCoord(this.x,this.y);
+		this.animatePlayer();
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y);
 		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height, 
 								isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y, this.width, this.height);
