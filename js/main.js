@@ -92,9 +92,15 @@ function updateMinimap(){
 		
 		// display enemy on the mini map with proportion distance:
 		
-		colorCircle(
-		playerMiniMapPosX + (enemyToPlayerXdistance * enemyToPlayerProportionFactor) ,
-		playerMiniMapPosY + (enemyToPlayerYdistance * enemyToPlayerProportionFactor), 2, 'red')
+		var enemyMiniMapPosX = playerMiniMapPosX + (enemyToPlayerXdistance * enemyToPlayerProportionFactor);
+		var enemyMiniMapPosY = playerMiniMapPosY + (enemyToPlayerYdistance * enemyToPlayerProportionFactor);
+		
+		// Check if enemy map position is within the map window:
+		if(enemyMiniMapPosX < (miniMapPosX+miniMapWidth) && enemyMiniMapPosX > miniMapPosX &&
+		enemyMiniMapPosY > miniMapPosY && enemyMiniMapPosY < (miniMapPosY +miniMapHeight )){
+		
+			colorCircle(enemyMiniMapPosX , enemyMiniMapPosY, 2, 'red')		
+		}
 	}
 	
 }
