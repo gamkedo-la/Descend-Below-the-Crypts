@@ -63,6 +63,17 @@ function updateMinimap(){
 	// get player position
 	var playerPosX = playerOne.x;
 	var playerPosY = playerOne.y;
+	
+	var miniMapPosX = 10;
+	var miniMapPosY = 10;
+	var miniMapWidth = 100;
+	var miniMapHeight = 100;
+	
+	// Display mini map backfround:
+	colorRect(miniMapPosX,miniMapPosY,miniMapWidth,miniMapHeight, "rgba(255, 255, 255, 0.5)");
+	
+	// Display player in the middle (green dot):
+	colorCircle(miniMapPosX + (miniMapWidth/2) , miniMapPosY + (miniMapHeight/2), 2, 'green')
 }
 
 function imageLoadingDoneSoStartGame(){
@@ -222,7 +233,6 @@ function drawEverything() {
 		for(var i = 0; i < enemyList.length; i++){
 			enemyList[i].draw();
 		}
-		updateMinimap();
 		finishedCameraPan();
 		canvasContext.drawImage(feedbackGUIPic,0, canvas.height-50);
 		colorText("Keys: " + playerOne.keysHeld, 20, 582, "black", "14px Arial Black");
@@ -254,6 +264,8 @@ function drawEverything() {
 			debugLineY += debugLineSkipY;
 			colorText("player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
 		}
+		
+		updateMinimap();
 	}
 }
 
