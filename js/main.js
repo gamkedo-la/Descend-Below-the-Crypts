@@ -57,6 +57,14 @@ function calculateMousePos(evt) {
 	};
 }
 
+
+function updateMinimap(){
+	
+	// get player position
+	var playerPosX = playerOne.x;
+	var playerPosY = playerOne.y;
+}
+
 function imageLoadingDoneSoStartGame(){
 	var framesPerSecond = 30;
 	setInterval(function() {
@@ -214,6 +222,7 @@ function drawEverything() {
 		for(var i = 0; i < enemyList.length; i++){
 			enemyList[i].draw();
 		}
+		updateMinimap();
 		finishedCameraPan();
 		canvasContext.drawImage(feedbackGUIPic,0, canvas.height-50);
 		colorText("Keys: " + playerOne.keysHeld, 20, 582, "black", "14px Arial Black");
