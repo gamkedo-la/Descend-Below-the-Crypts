@@ -20,6 +20,7 @@ var mainMenu = true;
 var debugState = false;
 //debug options
 var displayTileX_Y = false;
+var moveFast = false;
 
 var soundDelay = 0;
 
@@ -281,6 +282,10 @@ function drawEverything() {
 		} else {
 			colorText("CAN'T use Flame Spell", 160, 592, "red", "8px Arial Black");
 		}
+		
+		// Reset moving speed (not in debug mode):
+		playerOne.playerMovementSpeed= playerOne.originalMovementSpeed;
+		
 		if(debugState){
 			var debugLineY = 50;
 			var debugLineSkipY = 20;
@@ -292,6 +297,13 @@ function drawEverything() {
 			colorText("DEBUG STATE", 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
 			colorText("player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
+			if(moveFast===true){
+				colorText("Fast move: ENABLED", 50, debugLineY+18, debugColor, debugFont);
+				playerOne.playerMovementSpeed += 5;
+			}
+			else{
+				colorText("Fast move: DISABLED", 50, debugLineY+18, debugColor, debugFont);
+			}
 		}
 		
 		updateMinimap();

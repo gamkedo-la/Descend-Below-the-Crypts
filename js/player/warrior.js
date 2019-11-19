@@ -13,6 +13,7 @@ function warriorClass() {
 	this.miniMapX = 630;
 	this.miniMapY = 30;
 	this.playerMovementSpeed = 3.0;
+	this.originalMovementSpeed = this.playerMovementSpeed;
 	this.keyHeld_North = false;
 	this.keyHeld_East = false;
 	this.keyHeld_South = false;

@@ -4,6 +4,7 @@ const KEY_A = 65; // "A"
 const KEY_D = 68; // "D"
 const KEY_1 = 49; // "1"
 const KEY_2 = 50; // "2"
+const KEY_3 = 51; // "3"
 
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -75,6 +76,8 @@ function keyPressed(evt) {
 			 case KEY_2:
 				changeDisplayTileX_Y();
 				break;
+			 case KEY_3:
+				enableFastMoving();
 			default:
 				gameUsedKey = false;
 				break;
@@ -123,6 +126,10 @@ function changeDebugState(){
 function changeDisplayTileX_Y(){
 	displayTileX_Y = !displayTileX_Y;
 	console.log("display tile change, is now "+displayTileX_Y);
+}
+
+function enableFastMoving(){
+	moveFast = !moveFast;
 }
 
 
