@@ -21,6 +21,7 @@ var debugState = false;
 //debug options
 var displayTileX_Y = false;
 var moveFast = false;
+var isInvulnerable = false;
 
 var soundDelay = 0;
 
@@ -65,8 +66,8 @@ function updateMinimap(){
 	var playerPosX = playerOne.x;
 	var playerPosY = playerOne.y;
 	
-	var miniMapPosX = 10;
-	var miniMapPosY = 10;
+	var miniMapPosX = 630;
+	var miniMapPosY = 30;
 	var miniMapWidth = 100;
 	var miniMapHeight = 100;
 	
@@ -297,12 +298,16 @@ function drawEverything() {
 			colorText("DEBUG STATE", 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
 			colorText("player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY;
+			colorText("fast move: "+ moveFast, 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY;
+			colorText("invulnerable mode: "+ isInvulnerable, 50, debugLineY, debugColor, debugFont);
+			
 			if(moveFast===true){
-				colorText("Fast move: ENABLED", 50, debugLineY+18, debugColor, debugFont);
 				playerOne.playerMovementSpeed += 5;
 			}
-			else{
-				colorText("Fast move: DISABLED", 50, debugLineY+18, debugColor, debugFont);
+			if(isInvulnerable===true){
+				playerOne.health = playerOne.maxHealth;
 			}
 		}
 		

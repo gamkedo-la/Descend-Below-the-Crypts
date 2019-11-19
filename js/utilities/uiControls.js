@@ -5,6 +5,7 @@ const KEY_D = 68; // "D"
 const KEY_1 = 49; // "1"
 const KEY_2 = 50; // "2"
 const KEY_3 = 51; // "3"
+const KEY_4 = 52; // "4"
 
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -77,7 +78,10 @@ function keyPressed(evt) {
 				changeDisplayTileX_Y();
 				break;
 			 case KEY_3:
-				enableFastMoving();
+				toggleFastMoving();
+				break;
+			case KEY_4:
+				toggleInvulnerablity();
 				break;
 			default:
 				gameUsedKey = false;
@@ -129,9 +133,14 @@ function changeDisplayTileX_Y(){
 	console.log("display tile change, is now "+displayTileX_Y);
 }
 
-function enableFastMoving(){
+function toggleFastMoving(){
 	moveFast = !moveFast;
 		console.log("fast moving is now "+moveFast);
+}
+
+function toggleInvulnerablity(){
+	isInvulnerable = !isInvulnerable;
+		console.log("invulnerable mode is now "+isInvulnerable);
 }
 
 
