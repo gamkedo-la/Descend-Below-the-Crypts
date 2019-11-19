@@ -153,6 +153,15 @@ function warriorClass() {
 			case TILE_BLUE_RUG_CEN:
 			case TILE_BLUE_RUG_L:
 			case TILE_BLUE_RUG_R:
+			case TILE_GREEN_RUG_TL:
+			case TILE_GREEN_RUG_TR:
+			case TILE_GREEN_RUG_BL:
+			case TILE_GREEN_RUG_BR:
+			case TILE_GREEN_RUG_TOP:
+			case TILE_GREEN_RUG_BOT:
+			case TILE_GREEN_RUG_CEN:
+			case TILE_GREEN_RUG_L:
+			case TILE_GREEN_RUG_R:
 			case TILE_SPIKES_UNARMED:
 			case TILE_PITTRAP_UNARMED:
 				this.x = nextX;
@@ -248,10 +257,10 @@ function warriorClass() {
 			case TILE_COLUMN:
 			default:
 				break;
-		} // END OF SWITCH CASE		
+		} 	
 		this.trapCoolDown();
 		
-	}	// END OF THIS.MOVEMENT
+	}	
 
 		
 	this.checkCollisionsAgainst = function(otherHumanoid){

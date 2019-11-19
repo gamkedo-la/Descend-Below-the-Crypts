@@ -205,8 +205,6 @@ function loadLevel(whichLevel) {
 	for(var i = 0; i < ratList.length; i++){
 		ratList[i].init(ratPic, ogreNames[i], TILE_OGRE);
 	} */
-	
-	console.log("Finish Load Level");
 }
 
 function checkForSounds(){
