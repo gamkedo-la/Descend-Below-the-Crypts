@@ -78,6 +78,7 @@ function keyPressed(evt) {
 				break;
 			 case KEY_3:
 				enableFastMoving();
+				break;
 			default:
 				gameUsedKey = false;
 				break;
@@ -130,6 +131,7 @@ function changeDisplayTileX_Y(){
 
 function enableFastMoving(){
 	moveFast = !moveFast;
+		console.log("fast moving is now "+moveFast);
 }
 
 
