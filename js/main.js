@@ -22,6 +22,7 @@ var debugState = false;
 var displayTileX_Y = false;
 var moveFast = false;
 var isInvulnerable = false;
+var hasUnlimitedKeys = false;
 
 var soundDelay = 0;
 
@@ -306,6 +307,9 @@ function drawEverything() {
 			}
 			if(isInvulnerable===true){
 				playerOne.health = playerOne.maxHealth;
+			}
+			if(hasUnlimitedKeys===true){
+				playerOne.keysHeld = 999;
 			}
 		}
 		

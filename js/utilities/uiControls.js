@@ -6,6 +6,7 @@ const KEY_1 = 49; // "1"
 const KEY_2 = 50; // "2"
 const KEY_3 = 51; // "3"
 const KEY_4 = 52; // "4"
+const KEY_5 = 53; // "5"
 
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -83,6 +84,9 @@ function keyPressed(evt) {
 			case KEY_4:
 				toggleInvulnerablity();
 				break;
+			case KEY_5:
+				toggleHasUnlimitedKeys();
+				break;
 			default:
 				gameUsedKey = false;
 				break;
@@ -143,5 +147,8 @@ function toggleInvulnerablity(){
 		console.log("invulnerable mode is now "+isInvulnerable);
 }
 
-
+function toggleHasUnlimitedKeys(){
+	hasUnlimitedKeys = !hasUnlimitedKeys;
+		console.log("Character now has unlimited keys: "+hasUnlimitedKeys)
+}
 
