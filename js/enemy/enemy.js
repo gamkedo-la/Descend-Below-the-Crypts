@@ -1,14 +1,3 @@
-goblinNames = [ "Lalx", "Hosterz", "Wruc", "Arx", "Plex", "Brong", "Bogz", 
-				"Stror", "Klerk", "Rizz", "Lals", "Urt", "Xagz", "Slirm", 
-				"Kiok", "Wrokx", "Fiog", "Goziord"];
-				
-orcNames = [ "Orc 1", "Orc 2", "Orc 3", "Orc 4", "Orc 5", "Orc 6"];     
-
-ogreNames = [ "Ogre 1", "Ogre 2", "Ogre 3", "Ogre 4", "Ogre 5", "Ogre 6"];
-
-ratNames = [ "Splinter", "Bob" ];     
-
-
 function enemyClass() {
 	this.x = 600;
 	this.y = 800;
@@ -20,7 +9,6 @@ function enemyClass() {
 	this.miniMapX = 630;
 	this.miniMapY = 30;
 
-	
 	this.maxHealth = 2;
 	this.health = this.maxHealth;
 	//Movement related
@@ -80,10 +68,6 @@ function enemyClass() {
 		this.myName = whichName;
 		this.myTile = whichTile;
 		this.enemyReset();
-		if(this.myTile == TILE_ORC){
-			this.height = 31;
-			this.width = 30;
-		}
 		this.wayPointList = [];
 		this.wayPointList.push(85,125,130,90, 47, 92, 57, 60);
 	}	

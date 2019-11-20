@@ -64,30 +64,31 @@ function pathFinder() {
     var neighborsForIndex = function(index, isPassable) {
         var result = [];
 
-        let above = indexAboveIndex(index);
-        if (above != null) {
-			console.log(levelList[levelNow]);
+        var above = indexAboveIndex(index);
+        var below = indexBelowIndex(index);
+		var left = indexLeftofIndex(index);
+		var right = indexRightOfIndex(index);
+		
+		console.log("A: " + above + " B: " + below + " L: " + left + " R: " + right);
+		if (above != null) { //checking if tile above is present and adding it to result
             if (isPassable(levelList[levelNow][above])) {
                 result.push(above);
             }
         }
-
-        let below = indexBelowIndex(index);
-        if (below != null) {
+        
+        if (below != null) { //checking if tile below is present and adding it to result
             if (isPassable(levelList[levelNow][below])) {
                 result.push(below);
             }
         }
 
-        let left = indexLeftofIndex(index);
-        if (left != null) {
+        if (left != null) { //checking if tile to the left is present and adding it to result
             if (isPassable(levelList[levelNow][left])) {
                 result.push(left);
             }
         }
-
-        let right = indexRightOfIndex(index);
-        if (right != null) {
+        
+        if (right != null) { //checking if tile to the right is present and adding it to result
             if (isPassable(levelList[levelNow][right])) {
                 result.push(right);
             }
@@ -107,7 +108,7 @@ function pathFinder() {
 
     var indexBelowIndex = function(index) {
         var result = index + ROOM_COLS;
-        if (result >= levelList[levelNow].length) {
+        if (result >= 0){//levelList[levelNow].length) {
             return null;
         } else {
             return result;
@@ -125,7 +126,7 @@ function pathFinder() {
 
     var indexRightOfIndex = function(index) {
         var result = index + 1;
-        if ((result >= levelList[levelNow].length) || (result % ROOM_COLS == 0)) {
+        if ((result >= 0)){//levelList[levelNow].length) || (result % ROOM_COLS == 0)) {
             return null;
         } else {
             return result;
