@@ -77,8 +77,8 @@ function enemyClass() {
 		var nextX = this.x; 
 		var nextY = this.y; 
 		
-		this.randomMovements();
-		//this.wayPointMovement();
+		//this.randomMovements();
+		this.wayPointMovement();
 		//this.rest();
 		
 		this.speed = 1.0;
@@ -243,9 +243,11 @@ function enemyClass() {
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, this.isPassableTile);
 		this.currentPathIndex = 0;
 		
-		const currentTile = getTileIndexAtPixelCoord(this.x, this.y);
-		const nextTile = this.currentPath[ this.currentPathIndex ];
-
+		var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
+		var nextTile = this.currentPath[ this.currentPathIndex ];
+		console.log(nextTile);
+		
+		
 		if (currentTile == nextTile) {
 			this.currentPathIndex++;
 			if (this.currentPathIndex == this.currentPath.length) {
