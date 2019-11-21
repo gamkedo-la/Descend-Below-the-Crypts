@@ -13,7 +13,7 @@ function resetEnemyLists(){
 
 //game states
 var liveGame = false;
-var characterSelectionScreen = false; 
+var characterSelectionScreen = false;
 var pauseScreen = false;
 var inventoryScreen = false;
 var mainMenu = true;
@@ -23,89 +23,90 @@ var displayTileX_Y = false;
 var moveFast = false;
 var isInvulnerable = false;
 var hasUnlimitedKeys = false;
+var noClipEnabled = false;
 
 var soundDelay = 0;
 
 window.onload = function(){
-			
+
 	canvas = document.getElementById('gameCanvas');
 	canvasContext = canvas.getContext('2d');
-				
+
 	loadImages();
-	
-	initInput();	
-	
+
+	initInput();
+
 	canvas.addEventListener('mousemove', function(evt) {
-	
+
 	var mousePos = calculateMousePos(evt);
-	
+
 	mousePosX = mousePos.x;
 	mousePosY = mousePos.y;
 	});
-	
+
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
-	
+
 	playerOne.warriorReset();
 }
 
 function calculateMousePos(evt) {
-	
+
 	var rect = canvas.getBoundingClientRect(), root = document.documentElement;
 	var mouseX = evt.clientX - rect.left - root.scrollLeft;
 	var mouseY = evt.clientY - rect.top - root.scrollTop;
 	return {
-		x: mouseX, 
+		x: mouseX,
 		y: mouseY
 	};
 }
 
 
 function updateMinimap(){
-	
+
 	// get player position
 	var playerPosX = playerOne.x;
 	var playerPosY = playerOne.y;
-	
+
 	var miniMapPosX = 630;
 	var miniMapPosY = 30;
 	var miniMapWidth = 100;
 	var miniMapHeight = 100;
-	
+
 	var playerMiniMapPosX = miniMapPosX + (miniMapWidth/2);
 	var playerMiniMapPosY = miniMapPosY + (miniMapHeight/2);
-	
+
 	var enemyToPlayerProportionFactor = 1/10;
-	
+
 	// Display mini map background:
 	colorRect(miniMapPosX,miniMapPosY,miniMapWidth,miniMapHeight, "rgba(255, 255, 255, 0.5)");
-	
+
 	// Display player in the middle (green dot):
 	colorCircle( playerMiniMapPosX, playerMiniMapPosY , 2, 'green')
-	
-	
+
+
 	for(var i = 0; i < enemyList.length; i++){
 		var enemyPosX = enemyList[i].x;
 		var enemyPosY = enemyList[i].y;
-		
-		
+
+
 		// calculate the different of position:
 		var enemyToPlayerXdistance = enemyPosX - playerPosX;
 		var enemyToPlayerYdistance = enemyPosY - playerPosY;
-		
+
 		// display enemy on the mini map with proportion distance:
-		
+
 		var enemyMiniMapPosX = playerMiniMapPosX + (enemyToPlayerXdistance * enemyToPlayerProportionFactor);
 		var enemyMiniMapPosY = playerMiniMapPosY + (enemyToPlayerYdistance * enemyToPlayerProportionFactor);
-		
+
 		// Check if enemy map position is within the map window:
 		if(enemyMiniMapPosX < (miniMapPosX+miniMapWidth) && enemyMiniMapPosX > miniMapPosX &&
 		enemyMiniMapPosY > miniMapPosY && enemyMiniMapPosY < (miniMapPosY +miniMapHeight )){
-		
-			colorCircle(enemyMiniMapPosX , enemyMiniMapPosY, 2, 'red')		
+
+			colorCircle(enemyMiniMapPosX , enemyMiniMapPosY, 2, 'red')
 		}
 	}
-	
+
 }
 
 function imageLoadingDoneSoStartGame(){
@@ -122,8 +123,8 @@ function imageLoadingDoneSoStartGame(){
 		if(roomGrid[i] == TILE_GOBLIN){
 			console.log("Tile Goblin matched");
 			addGoblin();
-			
-		} 
+
+		}
 		if(roomGrid[i] == TILE_ORC){
 			addOrc();
 		}
@@ -140,7 +141,7 @@ function randFromList(fromList){
 	return fromList[randIdx];
 
 }
-//Adds an enemy 
+//Adds an enemy
 function addGoblin(){
 	var tempEnemy = new enemyClass();
 	tempEnemy.init(goblinPic, randFromList(goblinNames), TILE_GOBLIN);
@@ -173,15 +174,15 @@ function nextLevel() {
 	loadLevel(levelList[levelNow]);
 }
 
-function loadLevel(whichLevel) {	
+function loadLevel(whichLevel) {
 	resetEnemyLists();
 	roomGrid = whichLevel.slice();
 	playerOne.warriorReset();
-	
+
 	for(var i = 0; i < roomGrid.length; i++){
 		if(roomGrid[i] == TILE_GOBLIN){
 			addGoblin();
-		} 
+		}
 		if(roomGrid[i] == TILE_ORC){
 			addOrc();
 		}
@@ -192,14 +193,14 @@ function loadLevel(whichLevel) {
 			addRat();
 		}
 	}
-	
+
 	for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].init(goblinPic, goblinNames[i], TILE_GOBLIN);
 	}
-	
+
 	/*for(var i = 0; i < orcList.length; i++){
 		orcList[i].init(orcPic, orcNames[i], TILE_ORC);
-	}		
+	}
 	for(var i = 0; i < ogreList.length; i++){
 		ogreList[i].init(ogrePic, ogreNames[i], TILE_OGRE);
 	}
@@ -221,7 +222,7 @@ function checkForSounds(){
 }
 
 
-			
+
 //All movement occurs here.  This is called every frame.
 function moveEverything() {
 	if(liveGame){
@@ -229,7 +230,7 @@ function moveEverything() {
 		for(var i = 0; i < enemyList.length; i++){
 			enemyList[i].movement();
 		}
-		
+
 		updatedCameraPosition();
 	}
 }
@@ -282,10 +283,10 @@ function drawEverything() {
 		} else {
 			colorText("CAN'T use Flame Spell", 160, 592, "red", "8px Arial Black");
 		}
-		
+
 		// Reset moving speed (not in debug mode):
 		playerOne.playerMovementSpeed= playerOne.originalMovementSpeed;
-		
+
 		if(debugState){
 			var debugLineY = 50;
 			var debugLineSkipY = 20;
@@ -301,7 +302,7 @@ function drawEverything() {
 			colorText("fast move: "+ moveFast, 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
 			colorText("invulnerable mode: "+ isInvulnerable, 50, debugLineY, debugColor, debugFont);
-			
+
 			if(moveFast===true){
 				playerOne.playerMovementSpeed += 5;
 			}
@@ -311,8 +312,10 @@ function drawEverything() {
 			if(hasUnlimitedKeys===true){
 				playerOne.keysHeld = 999;
 			}
+
+			playerOne.noClipMode = noClipEnabled
 		}
-		
+
 		updateMinimap();
 	}
 }
@@ -322,13 +325,13 @@ function drawMouseIndicators(){
 	colorText("X: " + mouseClickX + " Y: " + mouseClickY, mouseClickX, mouseClickY, "Black",  "8px Arial Black")
 }
 
-//All Game States get reset to false here. 
+//All Game States get reset to false here.
 /*
 To Do:  Update formula to include state to change to true
 */
 function updateGameState(){
 	liveGame = false;
-	characterSelectionScreen = false; 
+	characterSelectionScreen = false;
 	pauseScreen = false;
 	inventoryScreen = false;
 	mainMenu = false;

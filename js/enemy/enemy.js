@@ -1,8 +1,8 @@
 function enemyClass() {
 	this.x = 600;
 	this.y = 800;
-	this.width = 30; 
-	this.height = 31; 
+	this.width = 30;
+	this.height = 31;
 	this.isoEnemyFootY = 8;
 	this.offSetWidth = 0;
 	this.offSetHeight = 0;
@@ -24,7 +24,7 @@ function enemyClass() {
 	this.frameIndex  = 0; //frame sprite sheet is on
 	this.currentTile = 0;
 	this.currentCol = 0;
-	this.currentRow = 0;	
+	this.currentRow = 0;
 	this.toTileC = 0;
 	this.toTileR = 0;
 	this.d = 0; //distance
@@ -36,33 +36,33 @@ function enemyClass() {
 	this.canMoveEast = true;
 	this.canMoveSouth = true;
 	this.canMoveWest = true;
-	
+
 	this.pathFindingQueue = [];
-	
+
 	this.enemyReset = function() {
 		this.speed = 3;
 		this.hitPoints = this.maxHitPoints;
 		this.pather = new pathFinder();
-				
+
 		if(this.homeX == undefined) {
 			for(var i=0; i<roomGrid.length; i++){
 				if( roomGrid[i] == this.myTile) {
 					console.log("Found start position for " + this.myName + " at " + i);
 					var tileRow = Math.floor(i/ROOM_COLS);
 					var tileCol	= i%ROOM_COLS;
-					
-					this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W; 
-					this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H; 
+
+					this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W;
+					this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
 
 					roomGrid[i] = TILE_ROAD;
 					break;
-				} 
+				}
 			}
 		}
 		this.x = this.homeX;
 		this.y = this.homeY;
 	}
-					
+
 	this.init = function(whichGraphic, whichName, whichTile) {
 		this.myBitmap = whichGraphic;
 		this.myName = whichName;
@@ -70,19 +70,19 @@ function enemyClass() {
 		this.enemyReset();
 		this.wayPointList = [];
 		this.wayPointList.push(85,125,130,90, 47, 92, 57, 60);
-	}	
-	 
+	}
+
 	this.movement = function() {
-		
-		var nextX = this.x; 
-		var nextY = this.y; 
-		
+
+		var nextX = this.x;
+		var nextY = this.y;
+
 		//this.randomMovements();
 		this.wayPointMovement();
 		//this.rest();
-		
+
 		this.speed = 1.0;
-		
+
 		/*if(this.moveNorth && this.keyHeld_West){
 			nextY -= PLAYER_MOVE_SPEED;
 		} else if(this.moveNorth && this.keyHeld_East){
@@ -96,7 +96,7 @@ function enemyClass() {
 		} else if(this.keyHeld_South && this.keyHeld_East){
 			nextY += PLAYER_MOVE_SPEED;
 			this.miniMapX += PLAYER_MOVE_SPEED/10;
-			this.miniMapY += PLAYER_MOVE_SPEED/10; 
+			this.miniMapY += PLAYER_MOVE_SPEED/10;
 		} else */ if(this.moveNorth && this.canMoveNorth){
 			nextY -= this.speed;
 			this.offSetHeight = this.height * 4;
@@ -117,14 +117,14 @@ function enemyClass() {
 		}
 		this.miniMapX = nextX;
 		this.miniMapY = nextY;
-		
+
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
 		var walkIntoTileType = TILE_WALL;
-		
-		if(walkIntoTileType != undefined){	
+
+		if(walkIntoTileType != undefined){
 			walkIntoTileType = roomGrid[walkIntoTileIndex];
 		}
-	
+
 		switch(walkIntoTileType) {
 			case TILE_ROAD:
 			case TILE_CRYPT_FLOOR:
@@ -156,7 +156,7 @@ function enemyClass() {
 			case TILE_SEWER:
 			case TILE_HEALING_POTION:
 			case TILE_MANA_POTION:
-			case TILE_YELLOW_KEY:	
+			case TILE_YELLOW_KEY:
 			case TILE_SPIKES_ARMED:
 			case TILE_SPIKES_UNARMED:
 			case TILE_PITTRAP_ARMED:
@@ -164,9 +164,9 @@ function enemyClass() {
 			case TILE_TREASURE:
 				this.x = nextX;
 				this.y = nextY;
-				break;					
+				break;
 			case TILE_WALL:
-			case TILE_FINISH:			
+			case TILE_FINISH:
 			case TILE_YELLOW_DOOR:
 			case TILE_RED_DOOR:
 			case TILE_BLUE_DOOR:
@@ -176,14 +176,14 @@ function enemyClass() {
 			default:
 				this.movementTimer = 0;
 				break;
-		} 
-	}	
-	
+		}
+	}
+
 	this.isPassableTile = function (aTile) {
 
 		switch (aTile) { // THE TILES THAT CAN'T BE PASSED THROUGH FOR PATHFINDING
 			case TILE_WALL:
-			case TILE_FINISH:			
+			case TILE_FINISH:
 			case TILE_YELLOW_DOOR:
 			case TILE_RED_DOOR:
 			case TILE_BLUE_DOOR:
@@ -195,17 +195,17 @@ function enemyClass() {
 				return true;
 		}
 	}
-	
+
 	this.randomMovements = function(){
 		var whichDirection =  Math.round(Math.random() * 10);
 		this.movementTimer--;
-	
+
 		if(this.movementTimer <= 0){
 			switch(whichDirection) {
 				case 0:
 				case 1:
 					this.resetDirections();
-					this.moveNorth = true;					
+					this.moveNorth = true;
 					this.movementTimer = 300;
 					break;
 				case 2:
@@ -233,21 +233,21 @@ function enemyClass() {
 					this.movementTimer = 300;
 					break;
 			}
-		}	
+		}
 	}
-	
+
 	this.wayPointMovement = function (){
 		gameCoordToIsoCoord(this.x,this.y);
 		var playerTileIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, this.isPassableTile);
 		this.currentPathIndex = 0;
-		
+
 		var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
 		var nextTile = this.currentPath[ this.currentPathIndex ];
 		console.log(nextTile);
-		
-		
+
+
 		if (currentTile == nextTile) {
 			this.currentPathIndex++;
 			if (this.currentPathIndex == this.currentPath.length) {
@@ -268,7 +268,7 @@ function enemyClass() {
 			this.resetDirections();
 			this.moveEast = true;
 		}
-		
+
 		var enemyXLocation = isoDrawX;
 		var enemyYLocation = isoDrawY;
 		var toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
@@ -276,9 +276,9 @@ function enemyClass() {
 		var columnDistance = Math.abs(this.currentCol - this.toTileC);
 		var rowDistance = Math.abs(this.currentRow - this.toTileR);
 		tileCoordToIsoCoord(toTileC, toTileR );
-		
+
 		//console.log("C: " + columnDistance + " R: " + rowDistance);
-		
+
 		if(this.currentCol == this.toTileC && this.currentRow == this.toTileR){
 			this.currentwayPoint++;
 			if(this.currentwayPoint > this.wayPointList.length){
@@ -291,7 +291,7 @@ function enemyClass() {
 			} else {
 				this.resetDirections(); //South
 				this.moveSouth = true;
-			}	
+			}
 		} else if (columnDistance > rowDistance){
 			if(this.currentCol> this.toTileC){ //West
 				this.resetDirections();
@@ -301,27 +301,27 @@ function enemyClass() {
 				this.moveEast = true;
 			}
 		}
-		
+
 		this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
 		this.currentCol = this.currentTile%ROOM_COLS;
-		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);		
+		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
 		this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
-		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS); 
+		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
 	}
-	
+
 	this.rest = function(){
 		this.resetDirections();
 	}
-		
+
 	this.resetDirections = function(){
 		this.moveNorth = false;
 		this.moveWest = false;
 		this.moveSouth = false;
 		this.moveEast = false;
-	}	
-	
+	}
+
 	this.checkCollisionsAgainst = function(otherHumanoid){
-		if(this.collisionTest(otherHumanoid)){
+		if(this.collisionTest(otherHumanoid) && otherHumanoid.noClipMode===false){
 			if(this.moveNorth){
 				this.canMoveNorth = false;
 				this.resetDirections();
@@ -341,7 +341,7 @@ function enemyClass() {
 				this.canMoveWest = false;
 				this.resetDirections();
 				this.moveEast = true;
-				this.x += this.speed;				
+				this.x += this.speed;
 			}
 		} else {
 			this.canMoveNorth = true;
@@ -350,7 +350,7 @@ function enemyClass() {
 			this.canMoveWest = true;
 		}
 	}
-	
+
 	this.collisionTest = function(otherHumanoid){
 		if(	this.x > otherHumanoid.x - 20 && this.x < otherHumanoid.x + 20 &&
 			this.y > otherHumanoid.y - 20 && this.y < otherHumanoid.y + 20){
@@ -377,10 +377,10 @@ function enemyClass() {
 		gameCoordToIsoCoord(this.x,this.y);
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y);
 		colorText(this.myName, isoDrawX + 20, isoDrawY - 30, "black", "8px Arial Black");
-		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height, 
+		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height,
 								isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y, this.width, this.height);
-		
-		
+
+
 		//displays health
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, 24, 9, "red");
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, (this.health / this.maxHealth) * 24, 9, "green");
@@ -401,7 +401,7 @@ function enemyClass() {
 			if(i == this.currentwayPoint) {
 				colorRect(startX-5,startY-5,10,10,"cyan");
 			}
-		} 
-		//colorRect(this.miniMapX, this.miniMapY, 10, 10, "green");	
+		}
+		//colorRect(this.miniMapX, this.miniMapY, 10, 10, "green");
 	}
 }

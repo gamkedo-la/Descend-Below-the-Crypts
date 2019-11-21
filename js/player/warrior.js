@@ -25,12 +25,13 @@ function warriorClass() {
 	this.frameTick = 0; // animation - called every frame
 	this.ticksPerFrame = 5; //frame ticks advance the frame
 	this.numberOfFrames = 4; //number of frames in character sprite sheet
-	this.frameIndex  = 0; //frame sprite sheet is on	
+	this.frameIndex  = 0; //frame sprite sheet is on
 	this.health = 4;
 	this.maxHealth = 4;
 	this.trapCoolDownTimer = 0;
 	this.trapCoolDownCounter = 0;
-	
+	this.noClipMode = false;
+
 	//equipment
 	this.goldCoins = 0;
 	this.keysHeld = 0;
@@ -38,13 +39,13 @@ function warriorClass() {
 	this.mace = false;
 	this.flameSpell = false;
 	this.healSpell = false;
-		
+
 	//conditions
-	this.playWarriorsThoughtsForSecondLevel = false;	
-		
+	this.playWarriorsThoughtsForSecondLevel = false;
+
 	this.setupControls = function(northKey,eastKey,southKey,westKey) {
 		this.controlKeyForNorth = northKey;
-		this.controlKeyForEast = eastKey;			
+		this.controlKeyForEast = eastKey;
 		this.controlKeyForSouth = southKey;
 		this.controlKeyForWest = westKey;
 	}
@@ -52,7 +53,7 @@ function warriorClass() {
 	this.warriorReset = function() {
 		this.speed = 0;
 		this.keysHeld = 0;
-					
+
 		for(var i=0; i<roomGrid.length; i++){
 			if( roomGrid[i] == TILE_PLAYER) {
 				var tileRow = Math.floor(i/ROOM_COLS);
@@ -60,36 +61,36 @@ function warriorClass() {
 				var tileLeftEdgeX = 700
 				var tileTopEdgeY = 0;
 
-				this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W; 
-				this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H; 
+				this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W;
+				this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
 
 				roomGrid[i] = TILE_ROAD;
 				break;
 			}
 		}
-	
+
 		this.x = this.homeX;
 		this.y = this.homeY;
 		this.miniMapX = this.homeX + 750;
 		this.miniMapY = this.homeY + 2;
 	}
-					
+
 	this.init = function(whichGraphic, whichName) {
 		this.myBitmap = whichGraphic;
 		this.myName = whichName;
 		this.warriorReset();
-	}	
-	 
+	}
+
 	this.movement = function() {
-		
-		var nextX = this.x; 
-		var nextY = this.y; 
+
+		var nextX = this.x;
+		var nextY = this.y;
 		var collisionX = nextX;
 		var collisionY = nextY;
-		
+
 		if(this.keyHeld_North && this.keyHeld_West){
 			nextY -= this.playerMovementSpeed;
-			collisionY = nextY 
+			collisionY = nextY
 		} else if(this.keyHeld_North && this.keyHeld_East){
 			nextX += this.playerMovementSpeed;
 			this.miniMapX += this.playerMovementSpeed/10;
@@ -101,7 +102,7 @@ function warriorClass() {
 		} else if(this.keyHeld_South && this.keyHeld_East){
 			nextY += this.playerMovementSpeed;
 			this.miniMapX += this.playerMovementSpeed/10;
-			this.miniMapY += this.playerMovementSpeed/10; 
+			this.miniMapY += this.playerMovementSpeed/10;
 		} else if(this.keyHeld_North && this.canMoveNorth){
 			nextY -= this.playerMovementSpeed;
 			this.offSetHeight = this.height * 4;
@@ -123,11 +124,11 @@ function warriorClass() {
 		}
 		this.miniMapX = nextX;
 		this.miniMapY = nextY;
-		
+
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
 		var walkIntoTileType = TILE_WALL;
-		
-		if(walkIntoTileType != undefined){	
+
+		if(walkIntoTileType != undefined){
 			walkIntoTileType = roomGrid[walkIntoTileIndex];
 		}
 
@@ -170,65 +171,69 @@ function warriorClass() {
 			case TILE_YELLOW_DOOR:
 			case TILE_RED_DOOR:
 			case TILE_BLUE_DOOR:
-				if(this.keysHeld > 0){
+				if(this.noClipMode===true) {
+					this.x = nextX;
+					this.y = nextY;
+				}
+				else if(this.keysHeld > 0){
 					this.keysHeld--;
 					roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				}
-				break;	
-			case TILE_TREASURE:	
+				break;
+			case TILE_TREASURE:
 				this.keysHeld--;
 				this.goldCoins++;
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				break;
-			case TILE_GOLD_COINS:	
+			case TILE_GOLD_COINS:
 				this.goldCoins++;
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				break;
-			case TILE_SWORD:	
+			case TILE_SWORD:
 				//add sword to the warrior
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				this.sword = true;
 				console.log("Sword found");
 				break;
-			case TILE_MACE:	
+			case TILE_MACE:
 				//add sword to the warrior
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				this.mace = true;
 				console.log("Mace found");
 				break;
-			case TILE_WIZARD_BOOK:	
+			case TILE_WIZARD_BOOK:
 				//add wizard book
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				this.flameSpell = true;
 				console.log("Wizard Book found");
 				break;
-			case TILE_CLERIC_BOOK:	
+			case TILE_CLERIC_BOOK:
 				//add cleric book
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				this.healSpell = true;
 				console.log("Cleric Book found");
 				break;
-			case TILE_SKILL_BOOK:	
+			case TILE_SKILL_BOOK:
 				//add skill book
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				console.log("Skill Book found");
 				break;
-			case TILE_HEALING_POTION:	
+			case TILE_HEALING_POTION:
 				//add healing potion
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				console.log("Healing Potion found");
 				break;
-			case TILE_MANA_POTION:	
+			case TILE_MANA_POTION:
 				//add mana potion
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
 				console.log("Mana Potion found");
-				break;				
+				break;
 				TILE_HEALING_POTION
-				
-			case TILE_YELLOW_KEY:	
-				this.keysHeld++;			
+
+			case TILE_YELLOW_KEY:
+				this.keysHeld++;
 				roomGrid[walkIntoTileIndex] = TILE_ROAD;
-				break;			
+				break;
 			case TILE_FINISH:
 			case TILE_STAIRS_DOWN:
 				enteringSecondLevelNarrative.play();
@@ -237,16 +242,20 @@ function warriorClass() {
 				break;
 			case TILE_STAIRS:
 				this.warriorReset();
-				break;			
+				break;
 			case TILE_PITTRAP_ARMED:
-				this.takeDamageFromTrap(1);
-				roomGrid[walkIntoTileIndex] = TILE_PITTRAP_UNARMED;
-				crashIntoConeSound.play();
+				if(this.noClipMode!==true) {
+					this.takeDamageFromTrap(1);
+					roomGrid[walkIntoTileIndex] = TILE_PITTRAP_UNARMED;
+					crashIntoConeSound.play();
+				}
 				break;
 			case TILE_SPIKES_ARMED:
-				this.takeDamageFromTrap(1);
-				roomGrid[walkIntoTileIndex] = TILE_SPIKES_UNARMED;
-				crashIntoConeSound.play();
+				if(this.noClipMode!==true) {
+					this.takeDamageFromTrap(1);
+					roomGrid[walkIntoTileIndex] = TILE_SPIKES_UNARMED;
+					crashIntoConeSound.play();
+				}
 				break;
 			case TILE_WALL:
 			case TILE_WALL_WITH_TORCH:
@@ -255,16 +264,20 @@ function warriorClass() {
 			case TILE_TOMB:
 			case TILE_TOMB_2:
 			case TILE_COLUMN:
+				if (this.noClipMode===true) {
+					this.x = nextX;
+					this.y = nextY;
+				}
 			default:
 				break;
-		} 	
+		}
 		this.trapCoolDown();
-		
-	}	
 
-		
+	}
+
+
 	this.checkCollisionsAgainst = function(otherHumanoid){
-		if(this.collisionTest(otherHumanoid)){
+		if((this.collisionTest(otherHumanoid)) && (this.noClipMode===false)){
 			console.log("collision");
 			if(this.keyHeld_North){
 				this.canMoveNorth = false;
@@ -277,7 +290,7 @@ function warriorClass() {
 				this.y -= this.playerMovementSpeed * COLLIDE_BUMP_MULT;
 			} else if(this.keyHeld_West){
 				this.canMoveWest = false;
-				this.x += this.playerMovementSpeed * COLLIDE_BUMP_MULT;				
+				this.x += this.playerMovementSpeed * COLLIDE_BUMP_MULT;
 			}
 		} else {
 			this.canMoveNorth = true;
@@ -286,7 +299,7 @@ function warriorClass() {
 			this.canMoveWest = true;
 		}
 	}
-	
+
 	this.collisionTest = function(otherHumanoid){
 		if(	this.x > otherHumanoid.x - 20 && this.x < otherHumanoid.x + 20 &&
 			this.y > otherHumanoid.y - 20 && this.y < otherHumanoid.y + 20){
@@ -294,7 +307,7 @@ function warriorClass() {
 		}
 		return false;
 	}
-	
+
 	this.animatePlayer = function(){
 		this.frameTick++;
 		if (this.frameTick > this.ticksPerFrame) {
@@ -307,19 +320,19 @@ function warriorClass() {
 			this.frameIndex  = 0;
 		}
 	}
-		
+
 	this.draw = function(){
 		gameCoordToIsoCoord(this.x,this.y);
 		this.animatePlayer();
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y);
-		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height, 
+		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height,
 								isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y, this.width, this.height);
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, 24, 9, "red");
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, (this.health / this.maxHealth) * 24, 9, "green");
 		canvasContext.drawImage(healthbarPic,isoDrawX-(this.width/2), isoDrawY-this.height - 20);
-		//colorRect(this.miniMapX, this.miniMapY, 4, 4, "green");	
+		//colorRect(this.miniMapX, this.miniMapY, 4, 4, "green");
 	}
-		
+
 	//this delivers damage to the player when setting off a trap
 	this.takeDamageFromTrap = function(howMuchDamage){
 		if(this.trapCoolDownCounter == 0){
@@ -327,7 +340,7 @@ function warriorClass() {
 		}
 		trapCoolDownTimer = true;
 	}
-	
+
 	//this is used to keep traps from constantly causing damage to the player
 	this.trapCoolDown = function(){
 		if(this.trapCoolDownTimer == true){
@@ -338,6 +351,6 @@ function warriorClass() {
 			this.trapCoolDownTimer = false;
 		}
 	}
-	
-	
+
+
 }

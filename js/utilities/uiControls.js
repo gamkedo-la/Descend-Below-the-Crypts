@@ -7,6 +7,7 @@ const KEY_2 = 50; // "2"
 const KEY_3 = 51; // "3"
 const KEY_4 = 52; // "4"
 const KEY_5 = 53; // "5"
+const KEY_6 = 54; // "6"
 
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -20,22 +21,22 @@ var mouseClickY = 0;
 
 
 function initInput(){
-	
+
 	canvas.addEventListener('mousemove', function(evt) {
-	
+
 		var mousePos = calculateMousePos(evt);
-	
+
 		mousePosX = mousePos.x;
 		mousePosY = mousePos.y;
 	});
-	
+
 	canvas.addEventListener('click',function(evt){
-		
+
 		var mousePos = calculateMousePos(evt);
-		
+
 		mousePosX = mousePos.x;
 		mousePosY = mousePos.y;
-		
+
 		if(characterSelectionScreen){
 			characterSelectionPageMouseScrollOver(mousePosX, mousePosY)
 			characterSelectionPageMouseClick(mousePosX, mousePosY);
@@ -48,16 +49,16 @@ function initInput(){
 			mouseClickY = mousePosY + camPanY;
 		}
 	} );
-	
+
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
-	
+
 	playerOne.setupControls(KEY_W, KEY_D, KEY_S, KEY_A);
 }
 
 function keyPressed(evt) {
 	setKeyHoldState(evt.keyCode, playerOne, true);
-	
+
 	var gameUsedKey = true;
 	switch(evt.keyCode) {
 		case KEY_1: // debugMode
@@ -87,6 +88,8 @@ function keyPressed(evt) {
 			case KEY_5:
 				toggleHasUnlimitedKeys();
 				break;
+			case KEY_6:
+				toggleNoClip();
 			default:
 				gameUsedKey = false;
 				break;
@@ -106,7 +109,7 @@ function keyReleased(evt) {
 
 
 function setKeyHoldState(thisKey, thisWarrior, setTo) {
-	
+
 	if(thisKey == thisWarrior.controlKeyForNorth){
 		thisWarrior.keyHeld_North = setTo;
 	}
@@ -116,7 +119,7 @@ function setKeyHoldState(thisKey, thisWarrior, setTo) {
 	if(thisKey == thisWarrior.controlKeyForSouth){
 		thisWarrior.keyHeld_South = setTo;
 	}
-	
+
 	if(thisKey == thisWarrior.controlKeyForWest){
 		thisWarrior.keyHeld_West = setTo;
 	}
@@ -152,3 +155,7 @@ function toggleHasUnlimitedKeys(){
 		console.log("Character now has unlimited keys: "+hasUnlimitedKeys)
 }
 
+function toggleNoClip() {
+	noClipEnabled = !noClipEnabled;
+		console.log("No Clip is now "+noClipEnabled)
+}
