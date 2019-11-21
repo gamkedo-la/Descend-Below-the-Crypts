@@ -1,5 +1,7 @@
 function pathFinder() {
     this.pathFrom_To_ = function(start, target, isPassableFunction) {
+        console.log("Tracking: " + target);
+
         var frontier = [];
         frontier.push(start);
         var cameFrom = {};
@@ -30,7 +32,7 @@ function pathFinder() {
             path.splice(0, 0, current);
             current = cameFrom[current];
             if (current == undefined) {
-                return null;
+                return [];
             }
         }
 
@@ -68,14 +70,14 @@ function pathFinder() {
         var below = indexBelowIndex(index);
 		var left = indexLeftofIndex(index);
 		var right = indexRightOfIndex(index);
-		
+
 	//	console.log("A: " + above + " B: " + below + " L: " + left + " R: " + right);
 		if (above != null) { //checking if tile above is present and adding it to result
             if (isPassable(levelList[levelNow][above])) {
                 result.push(above);
             }
         }
-        
+
         if (below != null) { //checking if tile below is present and adding it to result
             if (isPassable(levelList[levelNow][below])) {
                 result.push(below);
@@ -87,7 +89,7 @@ function pathFinder() {
                 result.push(left);
             }
         }
-        
+
         if (right != null) { //checking if tile to the right is present and adding it to result
             if (isPassable(levelList[levelNow][right])) {
                 result.push(right);

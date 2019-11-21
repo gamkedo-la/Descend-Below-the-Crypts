@@ -241,72 +241,76 @@ function enemyClass() {
 		var playerTileIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, this.isPassableTile);
-		this.currentPathIndex = 0;
 
-		var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
-		var nextTile = this.currentPath[ this.currentPathIndex ];
-		console.log(nextTile);
+		if (this.currentPath.count > 0) {
+			this.currentPathIndex = 0;
+
+			var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
+			var nextTile = this.currentPath[ this.currentPathIndex ];
+			console.log(nextTile);
 
 
-		if (currentTile == nextTile) {
-			this.currentPathIndex++;
-			if (this.currentPathIndex == this.currentPath.length) {
-				return null;
+			if (currentTile == nextTile) {
+				this.currentPathIndex++;
+				if (this.currentPathIndex == this.currentPath.length) {
+					return null;
+				}
 			}
-		}
 
-		if (nextTile - currentTile > 1) {
-			this.resetDirections();
-			this.moveSouth = true;
-		} else if (nextTile - currentTile < -1) {
-			this.resetDirections();
-			this.moveNorth = true;
-		} else if (nextTile - currentTile == -1) {
-			this.resetDirections();
-			this.moveWest = true;
-		} else if (nextTile - currentTile == 1) {
-			this.resetDirections();
-			this.moveEast = true;
-		}
-
-		var enemyXLocation = isoDrawX;
-		var enemyYLocation = isoDrawY;
-		var toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
-		var toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
-		var columnDistance = Math.abs(this.currentCol - this.toTileC);
-		var rowDistance = Math.abs(this.currentRow - this.toTileR);
-		tileCoordToIsoCoord(toTileC, toTileR );
-
-		//console.log("C: " + columnDistance + " R: " + rowDistance);
-
-		if(this.currentCol == this.toTileC && this.currentRow == this.toTileR){
-			this.currentwayPoint++;
-			if(this.currentwayPoint > this.wayPointList.length){
-				this.currentwayPoint = 0;
-			}
-		} else if (rowDistance > columnDistance){
-			if(this.currentRow > this.toTileR){ //North
+			if (nextTile - currentTile > 1) {
+				this.resetDirections();
+				this.moveSouth = true;
+			} else if (nextTile - currentTile < -1) {
 				this.resetDirections();
 				this.moveNorth = true;
-			} else {
-				this.resetDirections(); //South
-				this.moveSouth = true;
-			}
-		} else if (columnDistance > rowDistance){
-			if(this.currentCol> this.toTileC){ //West
+			} else if (nextTile - currentTile == -1) {
 				this.resetDirections();
 				this.moveWest = true;
-			} else {
-				this.resetDirections(); //East
+			} else if (nextTile - currentTile == 1) {
+				this.resetDirections();
 				this.moveEast = true;
 			}
 		}
+		else {
+			var enemyXLocation = isoDrawX;
+			var enemyYLocation = isoDrawY;
+			var toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
+			var toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
+			var columnDistance = Math.abs(this.currentCol - this.toTileC);
+			var rowDistance = Math.abs(this.currentRow - this.toTileR);
+			tileCoordToIsoCoord(toTileC, toTileR );
 
-		this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
-		this.currentCol = this.currentTile%ROOM_COLS;
-		this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
-		this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
-		this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
+			//console.log("C: " + columnDistance + " R: " + rowDistance);
+
+			if(this.currentCol == this.toTileC && this.currentRow == this.toTileR){
+				this.currentwayPoint++;
+				if(this.currentwayPoint > this.wayPointList.length){
+					this.currentwayPoint = 0;
+				}
+			} else if (rowDistance > columnDistance){
+				if(this.currentRow > this.toTileR){ //North
+					this.resetDirections();
+					this.moveNorth = true;
+				} else {
+					this.resetDirections(); //South
+					this.moveSouth = true;
+				}
+			} else if (columnDistance > rowDistance){
+				if(this.currentCol> this.toTileC){ //West
+					this.resetDirections();
+					this.moveWest = true;
+				} else {
+					this.resetDirections(); //East
+					this.moveEast = true;
+				}
+			}
+
+			this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
+			this.currentCol = this.currentTile%ROOM_COLS;
+			this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
+			this.toTileC = this.wayPointList[this.currentwayPoint]%ROOM_COLS;
+			this.toTileR = Math.floor(this.wayPointList[this.currentwayPoint]/ROOM_COLS);
+		}
 	}
 
 	this.rest = function(){
