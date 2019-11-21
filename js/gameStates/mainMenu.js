@@ -1,4 +1,7 @@
-
+var leftDoorOpenningSpeed = -3;
+var rightDoorOpenningSpeed = 3;
+var doorLeftXPosition = 0;
+var doorRightXPosition = 400;
 
 function drawMainMenuPage(){
 	canvasContext.drawImage(mainMenuPic, 0, 0);
@@ -10,12 +13,18 @@ function drawMainMenuPage(){
 	colorText("Credits", 350, 355, 'white', "24px Arial Black");
 	torch5.draw();
 	torch6.draw();
+	drawDoorsOpenning();
 }
 
-function mainMenuPageMouseClick(mousePosX, mousePosY) {
-	
+function drawDoorsOpenning(){
+	doorLeftXPosition += leftDoorOpenningSpeed;
+	doorRightXPosition += rightDoorOpenningSpeed;
+	canvasContext.drawImage(leftDoorOpenningPic, doorLeftXPosition, 0);
+	canvasContext.drawImage(rightDoorOpenningPic, doorRightXPosition, 0);
+}
 
-	
+
+function mainMenuPageMouseClick(mousePosX, mousePosY) {	
 	if(		mousePosX > 0 && mousePosX < 800 && 
 			mousePosY > 0 && mousePosY < 600){ 
 					updateGameState();
@@ -24,4 +33,7 @@ function mainMenuPageMouseClick(mousePosX, mousePosY) {
 		colorRect(0,0,canvas.width,canvas.height, 'red');
 	}
 }
+
+
+
 			
