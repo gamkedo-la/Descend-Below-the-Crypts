@@ -264,11 +264,13 @@ function warriorClass() {
 			case TILE_TOMB:
 			case TILE_TOMB_2:
 			case TILE_COLUMN:
-				if (this.noClipMode===true) {
-					this.x = nextX;
-					this.y = nextY;
-				}
 			default:
+				if (this.noClipMode===true) {
+					if (getTileIndexAtPixelCoord(nextX, nextY) != undefined) {
+						this.x = nextX;
+						this.y = nextY;
+					}
+				}
 				break;
 		}
 		this.trapCoolDown();
