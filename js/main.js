@@ -1,7 +1,7 @@
 var canvas;
 var canvasContext;
 
-var skipToGame = true;
+var skipToGame = false;
 
 //characters (Player, NPC's, Enemies)
 var playerOne = new warriorClass();
