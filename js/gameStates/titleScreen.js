@@ -11,11 +11,17 @@ function drawMainMenuPage(){
 	colorText("Start", 360, 255, 'white', "24px Arial Black");
 	colorText("Instructions", 320, 305, 'white', "24px Arial Black");
 	colorText("Credits", 350, 355, 'white', "24px Arial Black");
-	torch5.draw();
+	addSmoke(315, 460); //torch 5
+	addSmoke(475, 455); //torch 6
+	moveSmoke()
+	drawSmoke();
+	torch5.draw();	
 	torch6.draw();
+		
 	if(doorLeftXPosition > - 500){
 		drawDoorsOpenning();
 	}
+
 }
 
 function drawDoorsOpenning(){
