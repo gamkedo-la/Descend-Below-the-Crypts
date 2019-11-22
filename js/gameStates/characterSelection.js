@@ -142,13 +142,13 @@ function torchFireClass(xPos, yPos, startFrame){
 	this.y = yPos;
 	this.torchFirePicHeight = 62;
 	this.torchFirePicWidth = 64;
-	this.torchFrames = 3;
+	this.torchFrames = 7;
 	this.animCycle = 0;
 	this.animCycleAdvance = startFrame;
 		
 	this.draw = function(){
 		this.animCycle++;
-		if(this.animCycle > 5){
+		if(this.animCycle > 6){
 			this.animCycle = 0;
 			this.animCycleAdvance++
 		}
