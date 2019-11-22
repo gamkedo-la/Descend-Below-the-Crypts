@@ -11,8 +11,11 @@ function drawMainMenuPage(){
 	colorText("Start", 360, 255, 'white', "24px Arial Black");
 	colorText("Instructions", 320, 305, 'white', "24px Arial Black");
 	colorText("Credits", 350, 355, 'white', "24px Arial Black");
-	addSmoke(315, 460); //torch 5
-	addSmoke(475, 455); //torch 6
+	var toAddSmoke = getRndInteger(0, 10)
+	if(toAddSmoke > 5){
+		addSmoke(315, 460); //torch 5
+		addSmoke(475, 455); //torch 6
+	}
 	moveSmoke()
 	drawSmoke();
 	torch5.draw();	
@@ -37,6 +40,7 @@ function mainMenuPageMouseClick(mousePosX, mousePosY) {
 			mousePosY > 0 && mousePosY < 600){ 
 					updateGameState();
 					characterSelectionScreen = true;
+					removeSmoke();
 	} else {
 		colorRect(0,0,canvas.width,canvas.height, 'red');
 	}

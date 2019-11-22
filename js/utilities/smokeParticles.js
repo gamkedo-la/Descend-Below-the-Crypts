@@ -5,8 +5,8 @@ const START_SMOKE = 100;
 
 const GRAVITY_PER_CYCLE = 0.1;
 
-var remX = 300, remY = 200;
-var remW = 300, remH = 200;
+var remX = 0, remY = 0;
+var remW = 800, remH = 600;
 
 function smokeClass() {
 	this.x = 75;
@@ -42,8 +42,7 @@ var canvas, canvasContext;
 
 function addSmoke(smokeX, smokeY) {
 	var tempSmoke;
-	console.log(smokeX, smokeY);
-
+	
 	tempSmoke = new smokeClass();
 	tempSmoke.x = smokeX;
 	tempSmoke.y = smokeY;
@@ -69,7 +68,7 @@ function getRndInteger(min, max) {
   return Math.random() * (max - min) + min;
 }
 
-function removeBall() {
+function removeSmoke() {
 	for(var i=0; i<smokeList.length; i++) {
 		if(smokeList[i].x > remX && 
 			smokeList[i].x < remX+remW && 

@@ -85,10 +85,14 @@ function drawCharacterSelectionPage(){
 	}
 	sharedAnimCycle++;
 	
-	addSmoke(50, 335); //torch 1
-	addSmoke(300, 335); //torch 2
-	addSmoke(520, 335); //torch 3
-	addSmoke(760, 335); //torch 4
+	var toAddSmoke = getRndInteger(0, 10)
+	if(toAddSmoke > 5){
+		addSmoke(50, 335); //torch 1
+		addSmoke(300, 335); //torch 2
+		addSmoke(520, 335); //torch 3
+		addSmoke(760, 335); //torch 4
+	}
+	
 	moveSmoke()
 	drawSmoke();
 	
