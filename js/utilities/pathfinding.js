@@ -1,6 +1,5 @@
 function pathFinder() {
     this.pathFrom_To_ = function(start, target, isPassableFunction) {
-        console.log("Tracking: " + target);
 
         var frontier = [];
         frontier.push(start);

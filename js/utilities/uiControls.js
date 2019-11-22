@@ -16,6 +16,23 @@ const KEY_DOWN_ARROW = 40;
 
 const KEY_P = 80;
 
+const NORMAL_KEY_MAP = {
+	[KEY_W]: null,
+	[KEY_S]: null,
+	[KEY_A]: null,
+	[KEY_D]: null,
+	[KEY_P]: changePauseState,
+	[KEY_1]: changeDebugState
+};
+
+const DEBUG_KEY_MAP = {
+	[KEY_2]: changeDisplayTileX_Y,
+	[KEY_3]: toggleInvulnerablity,
+	[KEY_4]: toggleFastMoving,
+	[KEY_5]: toggleHasUnlimitedKeys,
+	[KEY_6]: toggleNoClip
+};
+
 var mouseClickX = 0;
 var mouseClickY = 0;
 
@@ -59,40 +76,24 @@ function initInput(){
 function keyPressed(evt) {
 	setKeyHoldState(evt.keyCode, playerOne, true);
 
-	var gameUsedKey = true;
-	switch(evt.keyCode) {
-		case KEY_1: // debugMode
-			changeDebugState();
-			break;
-
-		case KEY_P:
-			changePauseState();
-			break;
-		default: // warning: just because a key isn't used above doesn't mean debugState isn't using it
-			gameUsedKey = false;
-			break;
+	var gameUsedKey = false;
+	for (var key in NORMAL_KEY_MAP) {
+		if (key == evt.keyCode) {
+			gameUsedKey = true;
+			if (typeof NORMAL_KEY_MAP[key] === 'function') {
+				NORMAL_KEY_MAP[key]();
+			}
+		}
 	}
 
-	if(debugState && gameUsedKey == false){ // NOTE: some keys are used for debug!
-		gameUsedKey = true; // assume true until we hit default case
-		switch(evt.keyCode) {
-			 case KEY_2:
-				changeDisplayTileX_Y();
-				break;
-			 case KEY_3:
-				toggleFastMoving();
-				break;
-			case KEY_4:
-				toggleInvulnerablity();
-				break;
-			case KEY_5:
-				toggleHasUnlimitedKeys();
-				break;
-			case KEY_6:
-				toggleNoClip();
-			default:
-				gameUsedKey = false;
-				break;
+	if (debugState) {
+		for (var key in DEBUG_KEY_MAP) {
+			if (key === evt.keyCode) {
+				gameUsedKey = true;
+				if (typeof DEBUG_KEY_MAP[key] === 'function') {
+					DEBUG_KEY_MAP[key]();
+				}
+			}
 		}
 	}
 
