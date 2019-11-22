@@ -302,8 +302,9 @@ function drawEverything() {
 			colorText("CAN'T use Flame Spell", 160, 592, "red", "8px Arial Black");
 		}
 
-		// Reset moving speed (not in debug mode):
+		// Turn off cheats when no in debug mode:
 		playerOne.playerMovementSpeed= playerOne.originalMovementSpeed;
+		playerOne.noClipMode = false;
 
 		if(debugState){
 			var debugLineY = 50;
@@ -311,15 +312,36 @@ function drawEverything() {
 			var debugFont = "16px Arial Black";
 			var debugColor = "white";
 
+			var rectColour = "rgba(255, 255, 255, 0.3)";
+			var debugLineCount = 7;
+			var statsLineCount = 2;
+
 			var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 
-			colorText("DEBUG STATE", 50, debugLineY, debugColor, debugFont);
+			// Debug Menu
+			colorRect(40, debugLineY - 20, 250, debugLineSkipY*debugLineCount+1 + 10, rectColour)
+
+			colorText("DEBUG MODE", 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
+			colorText("1. Turn off Debug Mode", 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("fast move: "+ moveFast, 50, debugLineY, debugColor, debugFont);
+			colorText("2. Tile Coords: " + displayTileX_Y, 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("invulnerable mode: "+ isInvulnerable, 50, debugLineY, debugColor, debugFont);
+			colorText("3. Godmode: "+ isInvulnerable, 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY;
+			colorText("4. Fast move: "+ moveFast, 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY;
+			colorText("5. Unlimited Keys: "+ hasUnlimitedKeys, 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY;
+			colorText("6. No Clip: "+ noClipEnabled, 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY*2;
+
+			// Stats Menu
+			colorRect(40, debugLineY - 20, 250, debugLineSkipY*statsLineCount+1 + 10, rectColour)
+
+			colorText("STATS", 50, debugLineY, debugColor, debugFont);
+			debugLineY += debugLineSkipY;
+			colorText("Player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
 
 			if(moveFast===true){
 				playerOne.playerMovementSpeed += 5;
