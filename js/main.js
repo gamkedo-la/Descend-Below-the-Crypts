@@ -18,6 +18,21 @@ var pauseScreen = false;
 var inventoryScreen = false;
 var mainMenu = true;
 var debugState = false;
+
+function skipStraightToGame(){
+	liveGame = false;
+	characterSelectionScreen = true;
+	pauseScreen = false;
+	inventoryScreen = false;
+	mainMenu = false;
+	debugState = false;
+	buttonList[0].func(); //can change index with whatever character desired.
+	console.log("AVOIDING TITLE SCREEN AND CHARACTER SELECT.  GOING STRAIGHT TO GAME");
+	console.log("EXPECT ERROR FOR MUSIC DUE TO NOT CLICKING FIRST");
+}
+
+
+
 //debug options
 var displayTileX_Y = false;
 var moveFast = false;
@@ -134,6 +149,9 @@ function imageLoadingDoneSoStartGame(){
 		if(roomGrid[i] == TILE_RAT){
 			addRat();
 		}
+	}
+	if(skipToGame){
+		skipStraightToGame()
 	}
 }
 function randFromList(fromList){
