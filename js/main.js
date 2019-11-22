@@ -325,15 +325,15 @@ function drawEverything() {
 			debugLineY += debugLineSkipY;
 			colorText("1. Turn off Debug Mode", 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("2. Tile Coords: " + displayTileX_Y, 50, debugLineY, debugColor, debugFont);
+			colorText("2. Tile Coords: " + (displayTileX_Y ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("3. Godmode: "+ isInvulnerable, 50, debugLineY, debugColor, debugFont);
+			colorText("3. Godmode: "+ (isInvulnerable ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("4. Fast move: "+ moveFast, 50, debugLineY, debugColor, debugFont);
+			colorText("4. Fast move: "+ (moveFast ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("5. Unlimited Keys: "+ hasUnlimitedKeys, 50, debugLineY, debugColor, debugFont);
+			colorText("5. Unlimited Keys: "+ (hasUnlimitedKeys ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("6. No Clip: "+ noClipEnabled, 50, debugLineY, debugColor, debugFont);
+			colorText("6. No Clip: "+ (noClipEnabled ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY*2;
 
 			// Stats Menu
