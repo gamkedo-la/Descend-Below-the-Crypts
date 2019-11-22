@@ -88,7 +88,7 @@ function keyPressed(evt) {
 
 	if (debugState) {
 		for (var key in DEBUG_KEY_MAP) {
-			if (key === evt.keyCode) {
+			if (key == evt.keyCode) {
 				gameUsedKey = true;
 				if (typeof DEBUG_KEY_MAP[key] === 'function') {
 					DEBUG_KEY_MAP[key]();
