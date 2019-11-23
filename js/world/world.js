@@ -386,7 +386,8 @@ function getTileIndexAtPixelCoord(pixelX,pixelY){
 }
 
 function isWallTransparent(object, tileIndex) {
-	return getTileIndexAtPixelCoord(object.x, object.y) + 1 == tileIndex ||
+	return getTileIndexAtPixelCoord(object.x, object.y) == tileIndex ||
+				 getTileIndexAtPixelCoord(object.x, object.y) + 1 == tileIndex ||
 				 getTileIndexAtPixelCoord(object.x, object.y) + 40 == tileIndex ||
 				 getTileIndexAtPixelCoord(object.x, object.y) + 41 == tileIndex;
 }
