@@ -271,7 +271,7 @@ function drawWorld(){
 				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
 
 			} else {
-				if (isWallTransparent(playerOne, tileIndex) && tileTypeHere == TILE_WALL) {
+				if (isWallTransparent(playerOne, tileIndex) && (tileTypeHere == TILE_WALL || tileTypeHere == TILE_CRYPT_WALL)) {
 					canvasContext.globalAlpha = 0.4;
 				}
 
@@ -387,7 +387,6 @@ function getTileIndexAtPixelCoord(pixelX,pixelY){
 
 function isWallTransparent(object, tileIndex) {
 	return getTileIndexAtPixelCoord(object.x, object.y) + 1 == tileIndex ||
-				 getTileIndexAtPixelCoord(object.x, object.y) + 39 == tileIndex ||
 				 getTileIndexAtPixelCoord(object.x, object.y) + 40 == tileIndex ||
 				 getTileIndexAtPixelCoord(object.x, object.y) + 41 == tileIndex;
 }
