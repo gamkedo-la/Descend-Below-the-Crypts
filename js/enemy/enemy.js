@@ -242,7 +242,7 @@ function enemyClass() {
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, this.isPassableTile);
 
-		if (this.currentPath.count > 0) {
+		if (this.currentPath.length > 0) {
 			this.currentPathIndex = 0;
 
 			var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
