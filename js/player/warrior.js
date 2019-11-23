@@ -323,7 +323,7 @@ function warriorClass() {
 		}
 	}
 
-	this.draw = function(){
+	/*this.draw = function(){
 		gameCoordToIsoCoord(this.x,this.y);
 		this.animatePlayer();
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - ISO_CHAR_FOOT_Y);
@@ -333,7 +333,7 @@ function warriorClass() {
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, (this.health / this.maxHealth) * 24, 9, "green");
 		canvasContext.drawImage(healthbarPic,isoDrawX-(this.width/2), isoDrawY-this.height - 20);
 		//colorRect(this.miniMapX, this.miniMapY, 4, 4, "green");
-	}
+	}*/
 
 	//this delivers damage to the player when setting off a trap
 	this.takeDamageFromTrap = function(howMuchDamage){

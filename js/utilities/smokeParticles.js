@@ -32,9 +32,9 @@ function smokeClass() {
 	this.draw = function() {
 		colorCircle(this.x,this.y,
 			(20 * this.cyclesLeft/130.0),
-		 this.myColor); 
+		 this.myColor);
 	}
-} 
+}
 
 var smokeList = [];
 
@@ -42,7 +42,7 @@ var canvas, canvasContext;
 
 function addSmoke(smokeX, smokeY) {
 	var tempSmoke;
-	
+
 	tempSmoke = new smokeClass();
 	tempSmoke.x = smokeX;
 	tempSmoke.y = smokeY;
@@ -70,26 +70,26 @@ function getRndInteger(min, max) {
 
 function removeSmoke() {
 	for(var i=0; i<smokeList.length; i++) {
-		if(smokeList[i].x > remX && 
-			smokeList[i].x < remX+remW && 
-			smokeList[i].y > remY && 
+		if(smokeList[i].x > remX &&
+			smokeList[i].x < remX+remW &&
+			smokeList[i].y > remY &&
 			smokeList[i].y < remY+remH) {
-			
+
 			smokeList[i].readyToRemove = true;
 		}
 	}
 }
 
-function keyPressed(evt) {
+/*function keyPressed(evt) {
 	if(evt.keyCode == KEY_LETTER_W) {
 		for(var i=0; i < START_SMOKE; i++) {
 			addSmoke(100, 300);
-		}	
+		}
 	}
 	if(evt.keyCode == KEY_LETTER_S) {
 		removeBall();
 	}
-}
+}*/
 
 window.onload = function() {
 	canvas = document.getElementById('gameCanvas');

@@ -276,8 +276,8 @@ function drawEverything() {
 		drawCharacterSelectionPage();
 	} else if(liveGame){
 		shiftForCameraPan();
-		drawDungeon();
-		playerOne.draw();
+		drawWorld();
+		//playerOne.draw();
 		drawMouseIndicators();
 		for(var i = 0; i < enemyList.length; i++){
 			enemyList[i].draw();
