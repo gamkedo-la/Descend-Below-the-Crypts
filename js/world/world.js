@@ -198,26 +198,36 @@ function drawWorld(){
 			isoTileTopEdgeY = (tileLeftEdgeX + tileTopEdgeY)/4;
 			tileCoordToIsoCoord(eachCol, eachRow);
 
-			if( tileTypeHasRoadTransparency(tileTypeHere) ) {
+			if( tileTypeHasRoadTransparency(tileTypeHere)) {
 				canvasContext.drawImage(trackPics[TILE_ROAD], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 			}
-			if( tileTypeHasCryptFloorTransparency(tileTypeHere) ) {
+			else if( tileTypeHasCryptFloorTransparency(tileTypeHere) ) {
 				canvasContext.drawImage(trackPics[TILE_CRYPT_FLOOR], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 			}
-			if( tileTypeHasWallTransparency(tileTypeHere) ) {
+			else if( tileTypeHasWallTransparency(tileTypeHere) ) {
+				if (isWallTransparent(playerOne, tileIndex)) {
+					canvasContext.globalAlpha = 0.4;
+				}
+
 				canvasContext.drawImage(trackPics[TILE_WALL], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+				canvasContext.globalAlpha = 1.0;
 			}
-			if( tileTypeHasRedRugTransparency(tileTypeHere) ) {
+			else if( tileTypeHasRedRugTransparency(tileTypeHere) ) {
 				canvasContext.drawImage(trackPics[TILE_RED_RUG_CEN], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 			}
-			if( tileTypeHasBlueRugTransparency(tileTypeHere) ) {
+			else if( tileTypeHasBlueRugTransparency(tileTypeHere) ) {
 				canvasContext.drawImage(trackPics[TILE_BLUE_RUG_CEN], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 			}
 
 
 			//need a helper function here to eliminate the else if
 			if(tileTypeHere == TILE_WALL_WITH_TORCH){
+				if (isWallTransparent(playerOne, tileIndex)) {
+					canvasContext.globalAlpha = 0.4;
+				}
+
 				canvasContext.drawImage(trackPics[TILE_WALL], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+				canvasContext.globalAlpha = 1.0;
 
 				var torchFrames = 4;
 				var animOffset = (eachCol + eachRow + Math.floor(sharedAnimCycle * 0.1) ) % torchFrames;
@@ -226,7 +236,12 @@ function drawWorld(){
 				animOffset * ISO_TILE_DRAW_W, 0, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H,
 				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
 			} else if (tileTypeHere == TILE_CRYPT_TORCH){
+				if (isWallTransparent(playerOne, tileIndex)) {
+					canvasContext.globalAlpha = 0.4;
+				}
+
 				canvasContext.drawImage(trackPics[TILE_CRYPT_WALL], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+				canvasContext.globalAlpha = 1.0;
 
 				var torchFrames = 4;
 				var animOffset = (eachCol + eachRow + Math.floor(sharedAnimCycle * 0.1) ) % torchFrames;
@@ -256,11 +271,16 @@ function drawWorld(){
 				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
 
 			} else {
+				if (isWallTransparent(playerOne, tileIndex) && tileTypeHere == TILE_WALL) {
+					canvasContext.globalAlpha = 0.4;
+				}
+
 				canvasContext.drawImage(trackPics[tileTypeHere], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+				canvasContext.globalAlpha = 1.0;
+
 				if(displayTileX_Y){
 					//colorText("X: " + isoDrawX + " Y: " + isoDrawY, isoDrawX, isoDrawY, "black", "6px Arial Black");
-					//colorText("X: " + isoDrawX, isoDrawX, isoDrawY, "black", "6px Arial Black");
-					colorText(tileIndex, isoDrawX, isoDrawY, "black", "6px Arial Black");
+					colorText("X: " + isoDrawX, isoDrawX, isoDrawY, "black", "6px Arial Black");
 				}
 			}
 
@@ -293,6 +313,8 @@ function drawWorld(){
 		miniMapY += 4;
 		tileTopEdgeY += ROOM_H;
 	} // end of each row
+
+	//transparentWalls = [];
 }
 
 function tileTypeHasRoadTransparency(checkTileType) {
@@ -361,6 +383,13 @@ function getTileIndexAtPixelCoord(pixelX,pixelY){
 
 	var tileIndex = roomTileToIndex(tileCol, tileRow);
 	return tileIndex;
+}
+
+function isWallTransparent(object, tileIndex) {
+	return getTileIndexAtPixelCoord(object.x, object.y) + 1 == tileIndex ||
+				 getTileIndexAtPixelCoord(object.x, object.y) + 39 == tileIndex ||
+				 getTileIndexAtPixelCoord(object.x, object.y) + 40 == tileIndex ||
+				 getTileIndexAtPixelCoord(object.x, object.y) + 41 == tileIndex;
 }
 
 

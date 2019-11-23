@@ -1,4 +1,5 @@
 const ISO_CHAR_FOOT_Y = 8;
+const ISO_CHAR_FOOT_Y_DRAW = 20;
 const COLLIDE_BUMP_MULT = 2; // this needs to be improved.  This could potentially cause enemy or player in an illegal position (wall)
 
 
