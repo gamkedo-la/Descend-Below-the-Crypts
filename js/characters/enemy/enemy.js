@@ -92,7 +92,6 @@ class Enemy extends Character {
 			this.offSetHeight = this.height * 2;
 		//	this.miniMapY += PLAYER_MOVE_SPEED/5;
 		} else if(this.moveWest && this.canMoveWest){
-      console.log("Moving west...");
 			nextX -= this.speed;
 			this.offSetHeight = this.height * 3;
 		//	this.miniMapX -= PLAYER_MOVE_SPEED/5;

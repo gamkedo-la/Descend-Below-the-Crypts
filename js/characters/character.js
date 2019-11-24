@@ -57,10 +57,6 @@ class Character {
   }
 
   draw() {
-    if (this instanceof Enemy) {
-      console.log(`x: ${this.x} y: ${this.y}`);
-    }
-
     this.animate();
     gameCoordToIsoCoord(this.x, this.y);
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY);
