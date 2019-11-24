@@ -43,12 +43,12 @@ function beginLoadingImage(imgVar, fileName) {
 
 function loadImageForRoomCode(trackCode, fileName)  {
 	trackPics[trackCode] = document.createElement("img");
-	beginLoadingImage(trackPics[trackCode], fileName);	
+	beginLoadingImage(trackPics[trackCode], fileName);
 }
 
 //All images are loaded here.  varNames are for any pictures that are not tiles.
 function loadImages() {
-	
+
 		var imageList = [
 			//characters
 			{varName: warriorPic, theFile: "warrior.png"},
@@ -73,19 +73,19 @@ function loadImages() {
 			{varName: torchFirePic, theFile: "gameStates/torchFire.png"},
 			{varName: warriorProfilePic, theFile: "profilePics/warriorProfilePic.png"},
 			{varName: wizardProfilePic, theFile: "profilePics/wizardProfilePic.png"},
-			{varName: clericProfilePic, theFile: "profilePics/clericProfilePic.png"},	
-			
+			{varName: clericProfilePic, theFile: "profilePics/clericProfilePic.png"},
+
 			//tiles
 			{tileType: TILE_ROAD, theFile: "track_road.png"},
 			{tileType: TILE_CRYPT_FLOOR, theFile: "track_crypt_floor.png"},
-			{tileType: TILE_WALL, theFile:  "track_wall.png"},	
-			{tileType: TILE_CRYPT_WALL, theFile:  "track_crypt_wall.png"},	
+			{tileType: TILE_WALL, theFile:  "track_wall.png"},
+			{tileType: TILE_CRYPT_WALL, theFile:  "track_crypt_wall.png"},
 			{tileType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},
 			{tileType: TILE_CRYPT_TORCH, theFile:  "track_wall_with_torch.png"},
 			{tileType: TILE_YELLOW_DOOR, theFile:  "track_yellowdoor.png"},
-			{tileType: TILE_RED_DOOR, theFile:  "track_reddoor.png"},		
-			{tileType: TILE_BLUE_DOOR, theFile:  "track_bluedoor.png"},				
-			{tileType: TILE_YELLOW_KEY, theFile:  "track_yellowkey.png"},			
+			{tileType: TILE_RED_DOOR, theFile:  "track_reddoor.png"},
+			{tileType: TILE_BLUE_DOOR, theFile:  "track_bluedoor.png"},
+			{tileType: TILE_YELLOW_KEY, theFile:  "track_yellowkey.png"},
 			{tileType: TILE_TREASURE, theFile:  "track_treasure.png"},
 			{tileType: TILE_TABLE, theFile:  "track_table.png"},
 			{tileType: TILE_TABLE_2, theFile:  "table2.png"},
@@ -146,7 +146,7 @@ function loadImages() {
 			{tileType: TILE_GREEN_RUG_L, theFile: "track_green_rug_left.png"},
 			{tileType: TILE_GREEN_RUG_R, theFile: "track_green_rug_right.png"},
 		];
-			
+
 	picsToLoad = imageList.length;
 
 	for(var i=0; i<imageList.length; i++) {

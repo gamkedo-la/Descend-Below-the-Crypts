@@ -11,6 +11,6 @@ class Orc extends Enemy {
   }
 
   init() {
-    super.init(goblinPic, randFromList(ORC_NAMES), TILE_ORC);
+    super.init(orcPic, randFromList(ORC_NAMES), TILE_ORC);
   }
 }

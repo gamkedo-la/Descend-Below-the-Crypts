@@ -10,10 +10,6 @@ class Enemy extends Character {
     this.movementTimer = 0;
     this.currentWayPoint = 0;
     this.pathFindingQueue = [];
-    this.canMoveNorth = true;
-    this.canMoveEast = true;
-    this.canMoveSouth = true;
-    this.canMoveWest = true;
 
     // Position
     this.currentTile = 0;
