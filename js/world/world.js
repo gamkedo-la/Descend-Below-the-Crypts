@@ -285,14 +285,7 @@ function drawWorld(){
 			}
 
 			if (getTileIndexAtPixelCoord(playerOne.x, playerOne.y) == tileIndex) {
-				gameCoordToIsoCoord(playerOne.x,playerOne.y);
-				playerOne.animatePlayer();
-				canvasContext.drawImage(shadowPic,isoDrawX-(playerOne.width/2), isoDrawY-playerOne.height - ISO_CHAR_FOOT_Y);
-				canvasContext.drawImage(playerOne.myBitmap, playerOne.offSetWidth, playerOne.offSetHeight, playerOne.width, playerOne.height,
-										isoDrawX-(playerOne.width/2), isoDrawY-playerOne.height - ISO_CHAR_FOOT_Y, playerOne.width, playerOne.height);
-				colorRect(isoDrawX-(playerOne.width/2) + 3, isoDrawY-playerOne.height - 19, 24, 9, "red");
-				colorRect(isoDrawX-(playerOne.width/2) + 3, isoDrawY-playerOne.height - 19, (playerOne.health / playerOne.maxHealth) * 24, 9, "green");
-				canvasContext.drawImage(healthbarPic,isoDrawX-(playerOne.width/2), isoDrawY-playerOne.height - 20);
+				playerOne.draw();
 				//colorRect(this.miniMapX, this.miniMapY, 4, 4, "green");
 			}
 			//minimap:  This needs refactored

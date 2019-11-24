@@ -4,7 +4,8 @@ var canvasContext;
 var skipToGame = false;
 
 //characters (Player, NPC's, Enemies)
-var playerOne = new warriorClass();
+//var playerOne = new warriorClass();
+var playerOne = new Warrior();
 var enemyList = [];
 
 function resetEnemyLists(){
@@ -62,7 +63,7 @@ window.onload = function(){
 	document.addEventListener("keydown", keyPressed);
 	document.addEventListener("keyup", keyReleased);
 
-	playerOne.warriorReset();
+	playerOne.reset();
 }
 
 function calculateMousePos(evt) {
@@ -133,7 +134,7 @@ function imageLoadingDoneSoStartGame(){
 		checkForSounds();
 	}, 1000/framesPerSecond);
 	loadLevel(levelOne)
-	playerOne.init(warriorPic, "The Warrior");
+	playerOne.init();
 	for(var i = 0; i < roomGrid.length; i++){
 		if(roomGrid[i] == TILE_GOBLIN){
 			console.log("Tile Goblin matched");
@@ -161,26 +162,38 @@ function randFromList(fromList){
 }
 //Adds an enemy
 function addGoblin(){
-	var tempEnemy = new enemyClass();
-	tempEnemy.init(goblinPic, randFromList(goblinNames), TILE_GOBLIN);
+	var tempEnemy = new Goblin();
+	tempEnemy.init();
 	enemyList.push(tempEnemy);
 }
 
 function addOrc(){
-	var tempEnemy = new enemyClass();
-	tempEnemy.init(orcPic, randFromList(orcNames), TILE_ORC);
+	//var tempEnemy = new enemyClass();
+	//tempEnemy.init(orcPic, randFromList(orcNames), TILE_ORC);
+	//enemyList.push(tempEnemy);
+
+	var tempEnemy = new Goblin();
+	tempEnemy.init();
 	enemyList.push(tempEnemy);
 }
 
 function addOgre(){
-	var tempEnemy = new enemyClass();
-	tempEnemy.init(ogrePic, randFromList(ogreNames), TILE_OGRE);
+	//var tempEnemy = new enemyClass();
+	//tempEnemy.init(ogrePic, randFromList(ogreNames), TILE_OGRE);
+	//enemyList.push(tempEnemy);
+
+	var tempEnemy = new Ogre();
+	tempEnemy.init();
 	enemyList.push(tempEnemy);
 }
 
 function addRat(){
-	var tempEnemy = new ratClass();
-	tempEnemy.init(ratPic, randFromList(ratNames), TILE_RAT);
+	//var tempEnemy = new ratClass();
+	//tempEnemy.init(ratPic, randFromList(ratNames), TILE_RAT);
+	//enemyList.push(tempEnemy);
+
+	var tempEnemy = new Rat();
+	tempEnemy.init();
 	enemyList.push(tempEnemy);
 }
 
@@ -195,7 +208,7 @@ function nextLevel() {
 function loadLevel(whichLevel) {
 	resetEnemyLists();
 	roomGrid = whichLevel.slice();
-	playerOne.warriorReset();
+	playerOne.reset();
 
 	for(var i = 0; i < roomGrid.length; i++){
 		if(roomGrid[i] == TILE_GOBLIN){
@@ -212,9 +225,9 @@ function loadLevel(whichLevel) {
 		}
 	}
 
-	for(var i = 0; i < enemyList.length; i++){
+	/*for(var i = 0; i < enemyList.length; i++){
 		enemyList[i].init(goblinPic, goblinNames[i], TILE_GOBLIN);
-	}
+	}*/
 
 	/*for(var i = 0; i < orcList.length; i++){
 		orcList[i].init(orcPic, orcNames[i], TILE_ORC);
@@ -303,7 +316,7 @@ function drawEverything() {
 		}
 
 		// Turn off cheats when no in debug mode:
-		playerOne.playerMovementSpeed= playerOne.originalMovementSpeed;
+		playerOne.movementSpeed= playerOne.originalMovementSpeed;
 		playerOne.noClipMode = false;
 
 		if(debugState){
@@ -344,7 +357,7 @@ function drawEverything() {
 			colorText("Player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
 
 			if(moveFast===true){
-				playerOne.playerMovementSpeed += 5;
+				playerOne.movementSpeed += 5;
 			}
 			if(isInvulnerable===true){
 				playerOne.health = playerOne.maxHealth;
