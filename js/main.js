@@ -111,26 +111,26 @@ function updateMinimap(){
 			
 
 			// Walls:
-			if(levelOne[tileIndex] == TILE_WALL ||
-			levelOne[tileIndex] == TILE_WALL_WITH_TORCH ||
-			levelOne[tileIndex] == TILE_CRYPT_WALL ||
-			levelOne[tileIndex] == TILE_WALL_ART ||
-			levelOne[tileIndex] == TILE_WALL_SHIELD){
+			if(roomGrid[tileIndex] == TILE_WALL ||
+			roomGrid[tileIndex] == TILE_WALL_WITH_TORCH ||
+			roomGrid[tileIndex] == TILE_CRYPT_WALL ||
+			roomGrid[tileIndex] == TILE_WALL_ART ||
+			roomGrid[tileIndex] == TILE_WALL_SHIELD){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
 			}
 
 			// Yellow doors:
-			else if(levelOne[tileIndex]== TILE_YELLOW_DOOR){
+			else if(roomGrid[tileIndex]== TILE_YELLOW_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "yellow");
 			}
 
 			// Red doors:
-			else if(levelOne[tileIndex]== TILE_RED_DOOR){
+			else if(roomGrid[tileIndex]== TILE_RED_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "red");
 			}
 
 			// Blue doors:
-			else if(levelOne[tileIndex]== TILE_BLUE_DOOR){
+			else if(roomGrid[tileIndex]== TILE_BLUE_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "blue");
 			}
 
