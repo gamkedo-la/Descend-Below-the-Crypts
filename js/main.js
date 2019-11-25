@@ -87,7 +87,6 @@ function updateMinimap(){
 	const colSpacing = 4;
 	
 	var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
-	console.log(playerTile)
 
 	for(var rowIndex=0; rowIndex< ROOM_ROWS; rowIndex++){
 

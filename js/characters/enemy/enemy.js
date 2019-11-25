@@ -61,41 +61,21 @@ class Enemy extends Character {
 		//this.rest();
 
 		this.speed = 1.0;
-
-		/*if(this.moveNorth && this.keyHeld_West){
-			nextY -= PLAYER_MOVE_SPEED;
-		} else if(this.moveNorth && this.keyHeld_East){
-			nextX += PLAYER_MOVE_SPEED;
-			this.miniMapX += PLAYER_MOVE_SPEED/10;
-			this.miniMapY -= PLAYER_MOVE_SPEED/10;
-		} else if(this.keyHeld_South && this.keyHeld_West){
-			nextX -= PLAYER_MOVE_SPEED;
-			this.miniMapX -= PLAYER_MOVE_SPEED/10;
-			this.miniMapY += PLAYER_MOVE_SPEED/10;
-		} else if(this.keyHeld_South && this.keyHeld_East){
-			nextY += PLAYER_MOVE_SPEED;
-			this.miniMapX += PLAYER_MOVE_SPEED/10;
-			this.miniMapY += PLAYER_MOVE_SPEED/10;
-		} else */ if(this.moveNorth && this.canMoveNorth){
+		if(this.moveNorth && this.canMoveNorth){
 			nextY -= this.speed;
 			this.offSetHeight = this.height * 4;
 		} else if(this.moveEast && this.canMoveEast){
 			nextX += this.speed;
 			this.offSetHeight = this.height * 1;
-		//	this.miniMapX += PLAYER_MOVE_SPEED/5;
 		} else if(this.moveSouth && this.canMoveSouth){
 			nextY += this.speed;
 			this.offSetHeight = this.height * 2;
-		//	this.miniMapY += PLAYER_MOVE_SPEED/5;
 		} else if(this.moveWest && this.canMoveWest){
 			nextX -= this.speed;
 			this.offSetHeight = this.height * 3;
-		//	this.miniMapX -= PLAYER_MOVE_SPEED/5;
 		} else {
 			this.offSetHeight = 0;
 		}
-		this.miniMapX = nextX;
-		this.miniMapY = nextY;
 
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
 		var walkIntoTileType = TILE_WALL;
@@ -349,7 +329,6 @@ class Enemy extends Character {
 				colorRect(startX-5,startY-5,10,10,"cyan");
 			}
 		}
-		//colorRect(this.miniMapX, this.miniMapY, 10, 10, "green");
   }
 
   rest() {

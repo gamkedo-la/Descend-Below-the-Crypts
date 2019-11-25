@@ -68,8 +68,6 @@ class Player extends Character {
 
     this.x = this.homeX;
 		this.y = this.homeY;
-    this.miniMapX = this.homeX + 750;
-		this.miniMapY = this.homeY + 2;
   }
 
   movement() {
@@ -83,38 +81,25 @@ class Player extends Character {
 			collisionY = nextY
 		} else if(this.keyHeld_North && this.keyHeld_East){
 			nextX += this.movementSpeed;
-			this.miniMapX += this.movementSpeed/10;
-			this.miniMapY -= this.movementSpeed/10;
 		} else if(this.keyHeld_South && this.keyHeld_West){
 			nextX -= this.movementSpeed;
-			this.miniMapX -= this.movementSpeed/10;
-			this.miniMapY += this.movementSpeed/10;
 		} else if(this.keyHeld_South && this.keyHeld_East){
 			nextY += this.movementSpeed;
-			this.miniMapX += this.movementSpeed/10;
-			this.miniMapY += this.movementSpeed/10;
 		} else if(this.keyHeld_North && this.canMoveNorth){
 			nextY -= this.movementSpeed;
 			this.offSetHeight = this.height * 4;
-			this.miniMapY -= this.movementSpeed/15;
 		} else if(this.keyHeld_East && this.canMoveEast){
 			nextX += this.movementSpeed;
 			this.offSetHeight = this.height * 1;
-			this.miniMapX += this.movementSpeed/15;
 		} else if(this.keyHeld_South && this.canMoveSouth){
 			nextY += this.movementSpeed;
 			this.offSetHeight = this.height * 2;
-			this.miniMapY += this.movementSpeed/15;
 		} else if(this.keyHeld_West && this.canMoveWest){
 			nextX -= this.movementSpeed;
 			this.offSetHeight = this.height * 3;
-			this.miniMapX -= this.movementSpeed/15;
 		} else {
 			this.offSetHeight = 0;
 		}
-
-		this.miniMapX = nextX;
-		this.miniMapY = nextY;
 
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
 		var walkIntoTileType = TILE_WALL;

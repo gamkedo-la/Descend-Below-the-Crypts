@@ -182,18 +182,14 @@ function drawWorld(){
 	var tileTopEdgeY = 0;
 	var isoTileLeftEdgeX = 0;
 	var isoTileTopEdgeY = 0;
-	var miniMapX = 750;
-	var miniMapY = 2;
 	sharedAnimCycle++;
 
 	for(var eachRow = 0; eachRow < ROOM_ROWS; eachRow++){
 		tileLeftEdgeX = 7;
-		miniMapX = 730;
 
 		for(var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
 			var tileTypeHere = roomGrid[tileIndex];
 			tileLeftEdgeX += ROOM_W;
-			miniMapX += 4;
 			isoTileLeftEdgeX = (tileLeftEdgeX - tileTopEdgeY)/2;
 			isoTileTopEdgeY = (tileLeftEdgeX + tileTopEdgeY)/4;
 			tileCoordToIsoCoord(eachCol, eachRow);
@@ -286,24 +282,9 @@ function drawWorld(){
 
 			if (getTileIndexAtPixelCoord(playerOne.x, playerOne.y) == tileIndex) {
 				playerOne.draw();
-				//colorRect(this.miniMapX, this.miniMapY, 4, 4, "green");
 			}
-			//minimap:  This needs refactored
-			/*
-			if(tileTypeHere == 0){
-				colorRect(miniMapX, miniMapY, 4, 4, "white");
-			} else if (tileTypeHere == 1 || tileTypeHere == 11 || tileTypeHere == 12 ){
-				colorRect(miniMapX, miniMapY, 4, 4, "gray");
-			} else if (tileTypeHere == 3 || tileTypeHere == 6 || tileTypeHere == 7){
-				colorRect(miniMapX, miniMapY, 4, 4, "blue");
-			} else if (tileTypeHere == 4 || tileTypeHere == 8){
-				colorRect(miniMapX, miniMapY, 4, 4, "purple");
-			} else if (tileTypeHere == 5){
-				colorRect(miniMapX, miniMapY, 4, 4, "orange");
-			} */
 			tileIndex++;
 		} // end of each col
-		miniMapY += 4;
 		tileTopEdgeY += ROOM_H;
 	} // end of each row
 
