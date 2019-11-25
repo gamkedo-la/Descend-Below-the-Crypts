@@ -86,7 +86,9 @@ function updateMinimap(){
 	const rowSpacing= 4;
 	const colSpacing = 4;
 	
+	// Get player tile index:
 	var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
+	
 
 	for(var rowIndex=0; rowIndex< ROOM_ROWS; rowIndex++){
 
@@ -94,9 +96,18 @@ function updateMinimap(){
 			
 			var tileIndex = colIndex + ROOM_COLS*rowIndex;
 			
+			// Player
 			if( tileIndex == playerTile){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "green");
 			}
+			
+			// Enemies
+				for(var i = 0; i < enemyList.length; i++){
+					var enemyTile = getTileIndexAtPixelCoord(enemyList[i].x, enemyList[i].y);
+					if( tileIndex == enemyTile){
+						colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "purple");
+					}
+				}
 			
 
 			// Walls:
