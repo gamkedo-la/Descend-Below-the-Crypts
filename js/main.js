@@ -80,46 +80,44 @@ function calculateMousePos(evt) {
 
 function updateMinimap(){
 
-	// get player position
-	var playerPosX = playerOne.x;
-	var playerPosY = playerOne.y;
-
-	var miniMapPosX = 630;
+	var miniMapPosX = 10;
 	var miniMapPosY = 30;
-	var miniMapWidth = 100;
-	var miniMapHeight = 100;
+	
+	const rowSpacing= 4;
+	const colSpacing = 4;
 
-	var playerMiniMapPosX = miniMapPosX + (miniMapWidth/2);
-	var playerMiniMapPosY = miniMapPosY + (miniMapHeight/2);
+	for(var rowIndex=0; rowIndex< ROOM_ROWS; rowIndex++){
 
-	var enemyToPlayerProportionFactor = 1/10;
-
-	// Display mini map background:
-	colorRect(miniMapPosX,miniMapPosY,miniMapWidth,miniMapHeight, "rgba(255, 255, 255, 0.5)");
-
-	// Display player in the middle (green dot):
-	colorCircle( playerMiniMapPosX, playerMiniMapPosY , 2, 'green')
-
-
-	for(var i = 0; i < enemyList.length; i++){
-		var enemyPosX = enemyList[i].x;
-		var enemyPosY = enemyList[i].y;
-
-
-		// calculate the different of position:
-		var enemyToPlayerXdistance = enemyPosX - playerPosX;
-		var enemyToPlayerYdistance = enemyPosY - playerPosY;
-
-		// display enemy on the mini map with proportion distance:
-
-		var enemyMiniMapPosX = playerMiniMapPosX + (enemyToPlayerXdistance * enemyToPlayerProportionFactor);
-		var enemyMiniMapPosY = playerMiniMapPosY + (enemyToPlayerYdistance * enemyToPlayerProportionFactor);
-
-		// Check if enemy map position is within the map window:
-		if(enemyMiniMapPosX < (miniMapPosX+miniMapWidth) && enemyMiniMapPosX > miniMapPosX &&
-		enemyMiniMapPosY > miniMapPosY && enemyMiniMapPosY < (miniMapPosY +miniMapHeight )){
-
-			colorCircle(enemyMiniMapPosX , enemyMiniMapPosY, 2, 'red')
+		for(var colIndex= 0; colIndex< ROOM_COLS; colIndex++){
+			
+			// Draw walls:
+			if(levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL ||
+			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_WITH_TORCH ||
+			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_CRYPT_WALL ||
+			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_ART ||
+			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_SHIELD){
+				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
+			}
+			
+			// Yellow door:
+			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_YELLOW_DOOR){
+				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "yellow");
+			}
+			
+			// Red door:
+			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_RED_DOOR){
+				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "red");
+			}
+			
+			// Bluw door:
+			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_BLUE_DOOR){
+				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "blue");
+			}
+			
+			// Draw background:
+			else{
+				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(255, 255, 255, 0.5)");
+			}
 		}
 	}
 
