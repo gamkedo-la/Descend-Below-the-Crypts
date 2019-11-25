@@ -85,36 +85,46 @@ function updateMinimap(){
 
 	const rowSpacing= 4;
 	const colSpacing = 4;
+	
+	var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
+	console.log(playerTile)
 
 	for(var rowIndex=0; rowIndex< ROOM_ROWS; rowIndex++){
 
 		for(var colIndex= 0; colIndex< ROOM_COLS; colIndex++){
+			
+			var tileIndex = colIndex + ROOM_COLS*rowIndex;
+			
+			if( tileIndex == playerTile){
+				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "green");
+			}
+			
 
-			// Draw walls:
-			if(levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL ||
-			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_WITH_TORCH ||
-			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_CRYPT_WALL ||
-			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_ART ||
-			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_SHIELD){
+			// Walls:
+			if(levelOne[tileIndex] == TILE_WALL ||
+			levelOne[tileIndex] == TILE_WALL_WITH_TORCH ||
+			levelOne[tileIndex] == TILE_CRYPT_WALL ||
+			levelOne[tileIndex] == TILE_WALL_ART ||
+			levelOne[tileIndex] == TILE_WALL_SHIELD){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
 			}
 
-			// Yellow door:
-			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_YELLOW_DOOR){
+			// Yellow doors:
+			else if(levelOne[tileIndex]== TILE_YELLOW_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "yellow");
 			}
 
-			// Red door:
-			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_RED_DOOR){
+			// Red doors:
+			else if(levelOne[tileIndex]== TILE_RED_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "red");
 			}
 
-			// Bluw door:
-			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_BLUE_DOOR){
+			// Blue doors:
+			else if(levelOne[tileIndex]== TILE_BLUE_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "blue");
 			}
 
-			// Draw background:
+			// Background:
 			else{
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(255, 255, 255, 0.5)");
 			}
@@ -333,9 +343,9 @@ function drawEverything() {
 			// Debug Menu
 			colorRect(startX, debugLineY - 20, 250, debugLineSkipY*debugLineCount+1 + 10, rectColour)
 
-			colorText("DEBUG MODE", startX + 10, debugLineY, debugColor, debugFont);
+			colorText("DEBUG MENU", startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("1. Turn off Debug Mode", startX + 10, debugLineY, debugColor, debugFont);
+			colorText("1. Show/Hide debug menu", startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
 			colorText("2. Tile Coords: " + (displayTileX_Y ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
