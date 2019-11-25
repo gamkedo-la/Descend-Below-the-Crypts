@@ -82,14 +82,14 @@ function updateMinimap(){
 
 	var miniMapPosX = 10;
 	var miniMapPosY = 30;
-	
+
 	const rowSpacing= 4;
 	const colSpacing = 4;
 
 	for(var rowIndex=0; rowIndex< ROOM_ROWS; rowIndex++){
 
 		for(var colIndex= 0; colIndex< ROOM_COLS; colIndex++){
-			
+
 			// Draw walls:
 			if(levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL ||
 			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_WITH_TORCH ||
@@ -98,22 +98,22 @@ function updateMinimap(){
 			levelOne[colIndex + ROOM_COLS*rowIndex] == TILE_WALL_SHIELD){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
 			}
-			
+
 			// Yellow door:
 			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_YELLOW_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "yellow");
 			}
-			
+
 			// Red door:
 			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_RED_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "red");
 			}
-			
+
 			// Bluw door:
 			else if(levelOne[colIndex + ROOM_COLS*rowIndex]== TILE_BLUE_DOOR){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "blue");
 			}
-			
+
 			// Draw background:
 			else{
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(255, 255, 255, 0.5)");
@@ -322,6 +322,7 @@ function drawEverything() {
 			var debugLineSkipY = 20;
 			var debugFont = "16px Arial Black";
 			var debugColor = "white";
+			var startX = 500;
 
 			var rectColour = "rgba(255, 255, 255, 0.3)";
 			var debugLineCount = 7;
@@ -330,29 +331,29 @@ function drawEverything() {
 			var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 
 			// Debug Menu
-			colorRect(40, debugLineY - 20, 250, debugLineSkipY*debugLineCount+1 + 10, rectColour)
+			colorRect(startX, debugLineY - 20, 250, debugLineSkipY*debugLineCount+1 + 10, rectColour)
 
-			colorText("DEBUG MODE", 50, debugLineY, debugColor, debugFont);
+			colorText("DEBUG MODE", startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("1. Turn off Debug Mode", 50, debugLineY, debugColor, debugFont);
+			colorText("1. Turn off Debug Mode", startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("2. Tile Coords: " + (displayTileX_Y ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
+			colorText("2. Tile Coords: " + (displayTileX_Y ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("3. Godmode: "+ (isInvulnerable ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
+			colorText("3. Godmode: "+ (isInvulnerable ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("4. Fast move: "+ (moveFast ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
+			colorText("4. Fast move: "+ (moveFast ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("5. Unlimited Keys: "+ (hasUnlimitedKeys ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
+			colorText("5. Unlimited Keys: "+ (hasUnlimitedKeys ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("6. No Clip: "+ (noClipEnabled ? "On" : "Off"), 50, debugLineY, debugColor, debugFont);
+			colorText("6. No Clip: "+ (noClipEnabled ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY*2;
 
 			// Stats Menu
-			colorRect(40, debugLineY - 20, 250, debugLineSkipY*statsLineCount+1 + 10, rectColour)
+			colorRect(startX, debugLineY - 20, 250, debugLineSkipY*statsLineCount+1 + 10, rectColour)
 
-			colorText("STATS", 50, debugLineY, debugColor, debugFont);
+			colorText("STATS", startX + 10, debugLineY, debugColor, debugFont);
 			debugLineY += debugLineSkipY;
-			colorText("Player tile: " + playerTile, 50, debugLineY, debugColor, debugFont);
+			colorText("Player tile: " + playerTile, startX + 10, debugLineY, debugColor, debugFont);
 
 			if(moveFast===true){
 				playerOne.movementSpeed += 5;
