@@ -13,18 +13,19 @@ function drawMainMenuPage(){
 	colorText("Credits", 350, 355, 'white', "24px Arial Black");
 	var toAddSmoke = getRndInteger(0, 10)
 	if(toAddSmoke > 5){
-		addSmoke(315, 460); //torch 5
-		addSmoke(475, 455); //torch 6
+		addSmoke(315, 460, 100); //torch 5
+		addSmoke(475, 455, 5000); //torch 6
 	}
 	moveSmoke()
 	drawSmoke();
 	torch5.draw();	
 	torch6.draw();
-		
+	warriorEyes2.draw();
+	wizardEyes2.draw();	
+	
 	if(doorLeftXPosition > - 500){
 		drawDoorsOpenning();
 	}
-
 }
 
 function drawDoorsOpenning(){
@@ -33,7 +34,6 @@ function drawDoorsOpenning(){
 	canvasContext.drawImage(leftDoorOpenningPic, doorLeftXPosition, 0);
 	canvasContext.drawImage(rightDoorOpenningPic, doorRightXPosition, 0);
 }
-
 
 function mainMenuPageMouseClick(mousePosX, mousePosY) {	
 	if(		mousePosX > 0 && mousePosX < 800 && 

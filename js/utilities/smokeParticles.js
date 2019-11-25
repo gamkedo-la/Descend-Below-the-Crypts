@@ -1,10 +1,6 @@
 const KEY_LETTER_W = 87;
 const KEY_LETTER_S = 83;
 
-const START_SMOKE = 100;
-
-const GRAVITY_PER_CYCLE = 0.1;
-
 var remX = 0, remY = 0;
 var remW = 800, remH = 600;
 
@@ -13,6 +9,7 @@ function smokeClass() {
 	this.y = 75;
 	this.velX = 5;
 	this.velY = -7;
+	this.amountOfSmoke = 100;
 	this.readyToRemove = false;
 	this.cyclesLeft = 300;
 	this.myColor;
@@ -40,7 +37,7 @@ var smokeList = [];
 
 var canvas, canvasContext;
 
-function addSmoke(smokeX, smokeY) {
+function addSmoke(smokeX, smokeY, amount) {
 	var tempSmoke;
 
 	tempSmoke = new smokeClass();
@@ -49,14 +46,15 @@ function addSmoke(smokeX, smokeY) {
 	tempSmoke.velX = getRndInteger(-1, 1)
 	tempSmoke.velY = getRndInteger(-3, -1)
 	tempSmoke.cyclesLeft = 30 + Math.floor( Math.random() * 100 );
+	tempSmoke.amountOfSmoke = amount;
 
 	var colorOptions = Math.random();
 	if(colorOptions < 0.25) {
 		tempSmoke.myColor = "darkGray";
 	} else if (colorOptions >= 0.25 && colorOptions <= 0.5) {
-		tempSmoke.myColor = "DimGray";
+		tempSmoke.myColor = "rgba(100,149,237,.2)";
 	} else if (colorOptions > 0.5 && colorOptions <= 0.6) {
-		tempSmoke.myColor = "black";
+		tempSmoke.myColor = "rgba(100,149,237,.4)";
 	} else {
 		tempSmoke.myColor = "lightGray";
 	}
@@ -78,27 +76,6 @@ function removeSmoke() {
 			smokeList[i].readyToRemove = true;
 		}
 	}
-}
-
-/*function keyPressed(evt) {
-	if(evt.keyCode == KEY_LETTER_W) {
-		for(var i=0; i < START_SMOKE; i++) {
-			addSmoke(100, 300);
-		}
-	}
-	if(evt.keyCode == KEY_LETTER_S) {
-		removeBall();
-	}
-}*/
-
-window.onload = function() {
-	canvas = document.getElementById('gameCanvas');
-	canvasContext = canvas.getContext('2d');
-
-	document.addEventListener("keydown", keyPressed);
-
-	var framesPerSecond = 30;
-	setInterval(updateAll, 1000/framesPerSecond);
 }
 
 function updateAll() {

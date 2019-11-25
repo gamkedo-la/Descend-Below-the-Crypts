@@ -1,9 +1,14 @@
 var warriorBoxX = 106;
 var warriorBoxY = 313;
+var warriorEyes = new eyesAnimationClass(warriorBoxX, warriorBoxY, 0, warriorEyesPic);
+var warriorEyes2 = new eyesAnimationClass(613, 360, 0, warriorEyesPic); // for title screen
 var wizardBoxX = 338;
 var wizardBoxY = 313;
+var wizardEyes = new eyesAnimationClass(wizardBoxX, wizardBoxY, 0, wizardEyesPic);
+var wizardEyes2 = new eyesAnimationClass(22, 350, 0, wizardEyesPic); // for title screen
 var clericBoxX = 570;
 var clericBoxY = 313;
+var clericEyes = new eyesAnimationClass(clericBoxX, clericBoxY, 0, clericEyesPic);
 var characterBoxWidth = 155;
 var characterBoxHeight = 205;
 var characterDisplayMessageOn = false;
@@ -12,8 +17,8 @@ var torch1 = new torchFireClass(16, 305, 0);
 var torch2 = new torchFireClass(260, 305, 2);
 var torch3 = new torchFireClass(495, 305, 1);
 var torch4 = new torchFireClass(735, 305, 3);
-var torch5 = new torchFireClass(450, 415, 3);
-var torch6 = new torchFireClass(288, 430, 3);
+var torch5 = new torchFireClass(450, 415, 3); // for title screen
+var torch6 = new torchFireClass(288, 430, 3); // for title screen
 
 var buttonList = [
 	{
@@ -100,28 +105,9 @@ function drawCharacterSelectionPage(){
 	torch2.draw();
 	torch3.draw();
 	torch4.draw();
-	
-	/*
-	var torchFirePicWidth = 64;
-	var torchFirePicHeight = 62;
-	sharedAnimCycle++;
-	
-	canvasContext.drawImage(torchFirePic,
-				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
-				16, 305, torchFirePicWidth, torchFirePicHeight);
-
-	canvasContext.drawImage(torchFirePic,
-				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
-				260, 305, torchFirePicWidth, torchFirePicHeight);
-				
-	canvasContext.drawImage(torchFirePic,
-				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
-				495, 305, torchFirePicWidth, torchFirePicHeight);
-
-	canvasContext.drawImage(torchFirePic,
-				animOffset * torchFirePicWidth, 0, torchFirePicWidth, torchFirePicHeight, 
-				735, 305, torchFirePicWidth, torchFirePicHeight);
-	*/
+	warriorEyes.draw();
+	clericEyes.draw();
+	wizardEyes.draw();
 }
 
 function characterSelectionPageMouseScrollOver(mousePosX, mousePosY) {
@@ -147,7 +133,48 @@ function characterSelectionPageMouseClick(mousePosX, mousePosY) {
 	//Flash Red if invalid click
 	colorRect(0,0,canvas.width,canvas.height, 'red');	
 }
+
+function eyesAnimationClass(xPos,yPos, startFrame, whichPic){
+	this.x = xPos;
+	this.y = yPos;
+	this.eyesPicHeight = 200;
+	this.eyesPicWidth = 150;
+	this.eyesFrames = 5;
+	this.animCycle = 0;
+	this.animCycleAdvance = startFrame;
+	this.blink = false;
+	this.eyesPicture = whichPic
+		
+	this.draw = function(){
+		if(this.blink == false){
+			var toBlink = Math.random();
+			if(toBlink < .005){
+				this.blink = true;
+			} else {
+				this.blink = false;
+			}
+		}
+		
+		if(this.blink){
+			this.animCycle++;
+			if(this.animCycle > 6){
+				this.animCycle = 0;
+				this.animCycleAdvance++
+			}
+			if(this.animCycleAdvance > this.eyesFrames){
+				this.animCycleAdvance = 0;
+				this.blink = false;
+			}
+		}
 			
+
+			
+		canvasContext.drawImage(this.eyesPicture,
+			this.animCycleAdvance * this.eyesPicWidth, 0, this.eyesPicWidth, this.eyesPicHeight, 
+			this.x, this.y, this.eyesPicWidth, this.eyesPicHeight);
+	}
+}	
+		
 function torchFireClass(xPos, yPos, startFrame){
 	this.x = xPos;
 	this.y = yPos;
