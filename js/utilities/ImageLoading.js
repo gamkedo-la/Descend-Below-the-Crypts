@@ -30,6 +30,10 @@ var healthbarPic = document.createElement("img");
 var trackPics = [];
 var picsToLoad = 0;
 
+// HUD
+var healthHUD = document.createElement("img");
+var manaHUD = document.createElement("img");
+
 //All pictures prior to launching the game.  If a picture doesn't load, the game doesn't launch.
 function countLoadedImagesAndLaunchIfReady(){
 		picsToLoad--;
@@ -80,6 +84,10 @@ function loadImages() {
 			{varName: wizardEyesPic, theFile: "profilePics/wizard/eyes.png"},
 			{varName: clericProfilePic, theFile: "profilePics/cleric/clericProfilePic.png"},
 			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},
+			
+			// HUD
+			{varName: healthHUD, theFile: "HUD/healthHUD.png"},
+			{varName: manaHUD, theFile: "HUD/manaHUD.png"},
 
 			//tiles
 			{tileType: TILE_ROAD, theFile: "track_road.png"},

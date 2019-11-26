@@ -329,23 +329,29 @@ function drawEverything() {
 			enemyList[i].draw();
 		}
 		finishedCameraPan();
-		canvasContext.drawImage(feedbackGUIPic,0, canvas.height-50);
-		colorText("Keys: " + playerOne.keysHeld, 20, 582, "black", "14px Arial Black");
-		colorText("Gold: " + playerOne.goldCoins, 100, 582, "black", "14px Arial Black");
+		
+		canvasContext.globalAlpha = 0.6;
+		canvasContext.drawImage(healthHUD,50, canvas.height-130);
+		canvasContext.drawImage(manaHUD,canvas.width-150, canvas.height-130);
+		canvasContext.globalAlpha = 1.0;
+		
+		canvasContext.drawImage(feedbackGUIPic,200, canvas.height-50);
+		colorText("Keys: " + playerOne.keysHeld, 220, 582, "black", "14px Arial Black");
+		colorText("Gold: " + playerOne.goldCoins, 300, 582, "black", "14px Arial Black");
 		if(playerOne.sword){
-			colorText("Can use Sword", 160, 572, "black", "8px Arial Black");
+			colorText("Can use Sword", 360, 572, "black", "8px Arial Black");
 		} else {
-			colorText("CAN'T use Sword", 160, 572, "red", "8px Arial Black");
+			colorText("CAN'T use Sword", 360, 572, "red", "8px Arial Black");
 		}
 		if(playerOne.mace){
-			colorText("Can use Mace", 160, 582, "black", "8px Arial Black");
+			colorText("Can use Mace", 360, 582, "black", "8px Arial Black");
 		} else {
-			colorText("CAN'T use Mace", 160, 582, "red", "8px Arial Black");
+			colorText("CAN'T use Mace", 360, 582, "red", "8px Arial Black");
 		}
 		if(playerOne.flameSpell){
-			colorText("Can use Flame Spell", 160, 592, "black", "8px Arial Black");
+			colorText("Can use Flame Spell", 360, 592, "black", "8px Arial Black");
 		} else {
-			colorText("CAN'T use Flame Spell", 160, 592, "red", "8px Arial Black");
+			colorText("CAN'T use Flame Spell", 360, 592, "red", "8px Arial Black");
 		}
 
 		// Turn off cheats when no in debug mode:
