@@ -304,7 +304,7 @@ class Player extends Character {
   takeDamageFromTrap(howMuchDamage) {
     if (this.trapCoolDownCounter == 0)
       this.health -= howMuchDamage;
-    trapCoolDownTimer = true;
+    this.trapCoolDownTimer = true;
   }
 
   trapCoolDown() {
