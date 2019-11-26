@@ -98,9 +98,12 @@ function updateMinimap(){
 			
 			var renderDistance = 400;
 			
+			var elementXPos = miniMapPosX+ colSpacing*colIndex;
+			var elementYPos = miniMapPosY+ rowSpacing*rowIndex;
+			
 			// Player
 			if( tileIndex == playerTile){
-				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "green");
+				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "green");
 			}
 			
 			// Enemies
@@ -114,7 +117,7 @@ function updateMinimap(){
 					var distance = Math.sqrt( x*x + y*y );
 					
 					if( tileIndex == enemyTile && distance <= renderDistance){
-						colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "purple");
+						colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "purple");
 					}
 				}
 			
@@ -125,27 +128,27 @@ function updateMinimap(){
 			roomGrid[tileIndex] == TILE_CRYPT_WALL ||
 			roomGrid[tileIndex] == TILE_WALL_ART ||
 			roomGrid[tileIndex] == TILE_WALL_SHIELD){
-				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
+				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
 			}
 
 			// Yellow doors:
 			else if(roomGrid[tileIndex]== TILE_YELLOW_DOOR){
-				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "yellow");
+				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "yellow");
 			}
 
 			// Red doors:
 			else if(roomGrid[tileIndex]== TILE_RED_DOOR){
-				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "red");
+				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "red");
 			}
 
 			// Blue doors:
 			else if(roomGrid[tileIndex]== TILE_BLUE_DOOR){
-				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "blue");
+				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "blue");
 			}
 
 			// Background:
 			else{
-				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "rgba(255, 255, 255, 0.5)");
+				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "rgba(255, 255, 255, 0.5)");
 			}
 		}
 	}
