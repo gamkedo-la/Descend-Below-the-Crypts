@@ -96,6 +96,8 @@ function updateMinimap(){
 			
 			var tileIndex = colIndex + ROOM_COLS*rowIndex;
 			
+			var renderDistance = 400;
+			
 			// Player
 			if( tileIndex == playerTile){
 				colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "green");
@@ -104,7 +106,14 @@ function updateMinimap(){
 			// Enemies
 				for(var i = 0; i < enemyList.length; i++){
 					var enemyTile = getTileIndexAtPixelCoord(enemyList[i].x, enemyList[i].y);
-					if( tileIndex == enemyTile){
+					
+					// Calculate distance between enemy and player:
+					// I'm experiementing this feature, might remove it later
+					var x = playerOne.x - enemyList[i].x;
+					var y = playerOne.y - enemyList[i].y;
+					var distance = Math.sqrt( x*x + y*y );
+					
+					if( tileIndex == enemyTile && distance <= renderDistance){
 						colorRect(miniMapPosX+ colSpacing*colIndex ,miniMapPosY+ rowSpacing*rowIndex,rowSpacing,colSpacing, "purple");
 					}
 				}
