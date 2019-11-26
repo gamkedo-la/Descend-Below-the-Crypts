@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.1" name="Pickups" tilewidth="50" tileheight="50" tilecount="7" columns="0">
+<tileset version="1.2" tiledversion="1.3.1" name="Pickups" tilewidth="50" tileheight="50" tilecount="9" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0">
   <image width="50" height="50" source="../clericBook.png"/>
@@ -21,5 +21,11 @@
  </tile>
  <tile id="6">
   <image width="50" height="50" source="../wizardBook.png"/>
+ </tile>
+ <tile id="7">
+  <image width="50" height="50" source="../sword.png"/>
+ </tile>
+ <tile id="8">
+  <image width="50" height="50" source="../track_treasure.png"/>
  </tile>
 </tileset>
