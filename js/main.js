@@ -127,7 +127,10 @@ function updateMinimap(){
 			roomGrid[tileIndex] == TILE_WALL_WITH_TORCH ||
 			roomGrid[tileIndex] == TILE_CRYPT_WALL ||
 			roomGrid[tileIndex] == TILE_WALL_ART ||
-			roomGrid[tileIndex] == TILE_WALL_SHIELD){
+			roomGrid[tileIndex] == TILE_WALL_SHIELD ||
+			roomGrid[tileIndex] == TILE_CRYPT || 
+			roomGrid[tileIndex] == TILE_CRYPT_TORCH ||
+			roomGrid[tileIndex] == TILE_CRYPT_BODY){
 				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
 			}
 
