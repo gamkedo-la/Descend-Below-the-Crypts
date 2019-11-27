@@ -27,10 +27,10 @@ class Player extends Character {
 		this.moveEast = false;
 		this.moveWest = false;
 
-        /* this.keyHeld_North = false;
+        this.keyHeld_North = false;
 		this.keyHeld_East = false;
 		this.keyHeld_South = false;
-		this.keyHeld_West = false; */
+		this.keyHeld_West = false; 
 
         // Attributes
         this.trapCoolDownTimer = 0;
@@ -88,16 +88,16 @@ class Player extends Character {
 
         this.wayPointMovement();
 		
-        if (this.moveNorth && this.canMoveNorth) {
+        if (this.moveNorth && this.canMoveNorth || this.keyHeld_North && this.canMoveNorth) {
             nextY -= this.movementSpeed;
             this.offSetHeight = this.height * 4;
-        } else if (this.moveEast && this.canMoveEast) {
+        } else if (this.moveEast && this.canMoveEast || this.keyHeld_East && this.canMoveEast) {
             nextX += this.movementSpeed;
             this.offSetHeight = this.height * 1;
-        } else if (this.moveSouth && this.canMoveSouth) {
+        } else if (this.moveSouth && this.canMoveSouth || this.keyHeld_South && this.canMoveSouth) {
             nextY += this.movementSpeed;
             this.offSetHeight = this.height * 2;
-        } else if (this.moveWest && this.canMoveWest) {
+        } else if (this.moveWest && this.canMoveWest || this.keyHeld_West && this.canMoveWest) {
             nextX -= this.movementSpeed;
             this.offSetHeight = this.height * 3;
         } else {
@@ -330,7 +330,7 @@ class Player extends Character {
                 this.moveEast = true;
             }
         } else {
-			var toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
+			/*var toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
 			var toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
 			var columnDistance = Math.abs(this.currentCol - this.toTileC);
 			var rowDistance = Math.abs(this.currentRow - this.toTileR);
@@ -363,7 +363,7 @@ class Player extends Character {
 					this.resetDirections(); //East
 					this.moveEast = true;
 				}
-			}
+			} */
 
 			this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
 			this.currentCol = this.currentTile%ROOM_COLS;
