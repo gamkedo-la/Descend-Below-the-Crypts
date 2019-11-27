@@ -11,6 +11,9 @@
   <image width="50" height="50" source="../track_crypt_wall.png"/>
  </tile>
  <tile id="3">
+  <properties>
+   <property name="ID" type="int" value="1"/>
+  </properties>
   <image width="50" height="50" source="../track_wall.png"/>
  </tile>
 </tileset>
