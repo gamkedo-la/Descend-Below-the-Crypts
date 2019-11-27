@@ -70,7 +70,7 @@ function pathFinder() {
 		var left = indexLeftofIndex(index);
 		var right = indexRightOfIndex(index);
 
-	//	console.log("A: " + above + " B: " + below + " L: " + left + " R: " + right);
+		//console.log("A: " + above + " B: " + below + " L: " + left + " R: " + right);
 		if (above != null) { //checking if tile above is present and adding it to result
             if (isPassable(levelList[levelNow][above])) {
                 result.push(above);

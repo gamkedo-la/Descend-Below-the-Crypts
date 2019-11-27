@@ -43,8 +43,8 @@ function initInput(){
 
 		var mousePos = calculateMousePos(evt);
 
-		mousePosX = mousePos.x;
-		mousePosY = mousePos.y;
+		mousePosX = 0;
+		mousePosY = 0;
 	});
 
 	canvas.addEventListener('click',function(evt){
@@ -61,7 +61,7 @@ function initInput(){
 			mainMenuPageMouseClick(mousePosX, mousePosY);
 		} else {  // in game
 			gameCoordToIsoCoord(mousePosX, mousePosY);
-			console.log(Math.floor(mousePosX), Math.floor(mousePosY));
+			//console.log(Math.floor(mousePosX), Math.floor(mousePosY));
 			mouseClickX = mousePosX + camPanX;
 			mouseClickY = mousePosY + camPanY;
 		}

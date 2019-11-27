@@ -8,7 +8,6 @@ class Enemy extends Character {
     this.wayPointList = [];
     this.currentWayPoint = 0;
     this.movementTimer = 0;
-    this.currentWayPoint = 0;
     this.pathFindingQueue = [];
 
     // Position
@@ -195,7 +194,7 @@ class Enemy extends Character {
   }
 
   wayPointMovement() {
-    gameCoordToIsoCoord(this.x,this.y);
+		gameCoordToIsoCoord(this.x,this.y);
 		var playerTileIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, this.isPassableTile);
@@ -205,7 +204,7 @@ class Enemy extends Character {
 
 			var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
 			var nextTile = this.currentPath[ this.currentPathIndex ];
-			console.log(nextTile);
+			//console.log(nextTile);
 
 
 			if (currentTile == nextTile) {
