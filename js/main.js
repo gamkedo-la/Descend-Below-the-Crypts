@@ -330,10 +330,7 @@ function drawEverything() {
 		}
 		finishedCameraPan();
 		
-		canvasContext.globalAlpha = 0.6;
-		canvasContext.drawImage(healthHUD,50, canvas.height-130);
-		canvasContext.drawImage(manaHUD,canvas.width-150, canvas.height-130);
-		canvasContext.globalAlpha = 1.0;
+		drawHUD();
 		
 		canvasContext.drawImage(feedbackGUIPic,200, canvas.height-50);
 		colorText("Keys: " + playerOne.keysHeld, 220, 582, "black", "14px Arial Black");
@@ -411,6 +408,40 @@ function drawEverything() {
 
 		updateMinimap();
 	}
+}
+
+function drawHUD(){
+	
+	// Set alpha:
+	canvasContext.globalAlpha = 0.7;
+	
+	// HP and MP:
+	canvasContext.drawImage(healthHUD,10, canvas.height-100);
+	canvasContext.drawImage(manaHUD,canvas.width-110, canvas.height-100);
+	
+	// Inventory
+	var font = "bold 18px Arial";
+	
+	const iconXPos = 5;
+	const iconYPos = 160;
+	var iconVerticalSpacing = 50;
+	var currentYPos = iconYPos;
+	
+	if(playerOne.goldCoins >0){
+	canvasContext.drawImage(goldHUD,iconXPos, currentYPos);
+	colorText("x"+playerOne.goldCoins, iconXPos+17 , currentYPos+37, 'red', font);
+	currentYPos +=iconVerticalSpacing;
+	}
+	
+	if(playerOne.keysHeld >0){
+	canvasContext.drawImage(keyHUD,iconXPos, currentYPos);
+	colorText("x"+playerOne.keysHeld,iconXPos+17 , currentYPos+37, 'red', font);
+	currentYPos +=iconVerticalSpacing;
+	}
+	
+	// Reset alpha:
+	canvasContext.globalAlpha = 1.0;
+	
 }
 
 function drawMouseIndicators(){
