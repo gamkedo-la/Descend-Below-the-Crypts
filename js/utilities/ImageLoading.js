@@ -33,6 +33,7 @@ var picsToLoad = 0;
 // HUD
 var healthHUD = document.createElement("img");
 var manaHUD = document.createElement("img");
+var inventoryHUD = document.createElement("img");
 var goldHUD = document.createElement("img");
 var keyHUD = document.createElement("img");
 
@@ -90,6 +91,7 @@ function loadImages() {
 			// HUD
 			{varName: healthHUD, theFile: "HUD/healthHUD.png"},
 			{varName: manaHUD, theFile: "HUD/manaHUD.png"},
+			{varName: inventoryHUD, theFile: "HUD/inventory.png"},
 			{varName: goldHUD, theFile: "HUD/goldIcon.png"},
 			{varName: keyHUD, theFile: "HUD/keyIcon.png"},
 

@@ -413,29 +413,37 @@ function drawEverything() {
 function drawHUD(){
 	
 	// Set alpha:
-	canvasContext.globalAlpha = 0.7;
+	const HUD_OPACITY= 0.7;
+	canvasContext.globalAlpha = HUD_OPACITY;
 	
 	// HP and MP:
 	canvasContext.drawImage(healthHUD,10, canvas.height-100);
 	canvasContext.drawImage(manaHUD,canvas.width-110, canvas.height-100);
 	
 	// Inventory
-	var font = "bold 18px Arial";
+	var font = "bold 17px Arial";
 	
 	const iconXPos = 5;
 	const iconYPos = 160;
-	var iconVerticalSpacing = 50;
+	var iconVerticalSpacing = 45;
 	var currentYPos = iconYPos;
 	
+	// Inventory BG:
+	canvasContext.drawImage(inventoryHUD,iconXPos, currentYPos);
+	
 	if(playerOne.goldCoins >0){
-	canvasContext.drawImage(goldHUD,iconXPos, currentYPos);
-	colorText("x"+playerOne.goldCoins, iconXPos+17 , currentYPos+37, 'red', font);
+	canvasContext.drawImage(goldHUD,iconXPos+2, currentYPos+5);
+	canvasContext.globalAlpha = 1.0;
+	colorText("x"+playerOne.goldCoins, iconXPos+2+16 , currentYPos+40, 'red', font);
+	canvasContext.globalAlpha = HUD_OPACITY;
 	currentYPos +=iconVerticalSpacing;
 	}
 	
 	if(playerOne.keysHeld >0){
-	canvasContext.drawImage(keyHUD,iconXPos, currentYPos);
-	colorText("x"+playerOne.keysHeld,iconXPos+17 , currentYPos+37, 'red', font);
+	canvasContext.drawImage(keyHUD,iconXPos+2, currentYPos+5);
+	canvasContext.globalAlpha = 1.0;
+	colorText("x"+playerOne.keysHeld,iconXPos+2+16 , currentYPos+40, 'red', font);
+	canvasContext.globalAlpha = HUD_OPACITY;
 	currentYPos +=iconVerticalSpacing;
 	}
 	
