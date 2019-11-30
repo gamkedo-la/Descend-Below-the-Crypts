@@ -2,7 +2,7 @@ function colorRect(topLeftX, topLeftY, boxWidth, boxHeight, fillColor){
 	canvasContext.fillStyle = fillColor;
 	canvasContext.fillRect(topLeftX,topLeftY,boxWidth,boxHeight);
 }
-			
+
 function colorCircle(centerX, centerY, radius, fillColor){
 	canvasContext.fillStyle = fillColor;
 	canvasContext.beginPath();
@@ -32,4 +32,70 @@ function colorLine(fromX,fromY,toX, toY, strokeColor){
 	canvasContext.lineTo(toX,toY);
 	canvasContext.lineWidth = 2;
 	canvasContext.stroke();
+}
+
+function eyesAnimationClass(xPos,yPos, startFrame, whichPic){
+	this.x = xPos;
+	this.y = yPos;
+	this.eyesPicHeight = 200;
+	this.eyesPicWidth = 150;
+	this.eyesFrames = 5;
+	this.animCycle = 0;
+	this.animCycleAdvance = startFrame;
+	this.blink = false;
+	this.eyesPicture = whichPic
+
+	this.draw = function(){
+		if(this.blink == false){
+			var toBlink = Math.random();
+			if(toBlink < .005){
+				this.blink = true;
+			} else {
+				this.blink = false;
+			}
+		}
+
+		if(this.blink){
+			this.animCycle++;
+			if(this.animCycle > 6){
+				this.animCycle = 0;
+				this.animCycleAdvance++
+			}
+			if(this.animCycleAdvance > this.eyesFrames){
+				this.animCycleAdvance = 0;
+				this.blink = false;
+			}
+		}
+
+
+
+		canvasContext.drawImage(this.eyesPicture,
+			this.animCycleAdvance * this.eyesPicWidth, 0, this.eyesPicWidth, this.eyesPicHeight,
+			this.x, this.y, this.eyesPicWidth, this.eyesPicHeight);
+	}
+}
+
+function torchFireClass(xPos, yPos, startFrame){
+	this.x = xPos;
+	this.y = yPos;
+	this.torchFirePicHeight = 62;
+	this.torchFirePicWidth = 64;
+	this.torchFrames = 7;
+	this.animCycle = 0;
+	this.animCycleAdvance = startFrame;
+
+	this.draw = function(){
+		this.animCycle++;
+		if(this.animCycle > 6){
+			this.animCycle = 0;
+			this.animCycleAdvance++
+		}
+		if(this.animCycleAdvance > this.torchFrames){
+			this.animCycleAdvance = 0;
+		}
+
+		canvasContext.drawImage(torchFirePic,
+			this.animCycleAdvance * this.torchFirePicWidth, 0, this.torchFirePicWidth, this.torchFirePicHeight,
+			this.x, this.y, this.torchFirePicWidth, this.torchFirePicHeight);
+	}
 }
