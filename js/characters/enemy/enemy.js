@@ -21,27 +21,27 @@ class Enemy extends Character {
 
   init(whichGraphic, whichName, whichTile) {
     super.init(whichGraphic, whichName, whichTile);
-    this.reset();
     this.wayPointList = [];
     this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60);
   }
 
-  reset() {
+  reset(roomGrid) {
+    this.roomGrid = roomGrid;
     this.speed = 3;
     this.health = this.maxHealth;
     this.pather = new pathFinder();
 
     if(this.homeX == undefined) {
-			for(var i=0; i<roomGrid.length; i++){
-				if( roomGrid[i] == this.myTile) {
-					console.log("Found start position for " + this.myName + " at " + i);
-					var tileRow = Math.floor(i/ROOM_COLS);
+			for(var i=0; i<this.roomGrid.length; i++) {
+				if(this.roomGrid[i] == this.myTile) {
+          this.roomGrid[i] = TILE_ROAD;
+
+          var tileRow = Math.floor(i/ROOM_COLS);
 					var tileCol	= i%ROOM_COLS;
 
 					this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W;
 					this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
 
-					roomGrid[i] = TILE_ROAD;
 					break;
 				}
 			}
@@ -60,16 +60,16 @@ class Enemy extends Character {
 		//this.rest();
 
 		this.speed = 1.0;
-		if(this.moveNorth && this.canMoveNorth){
+		if(this.moveNorth && this.canMoveNorth) {
 			nextY -= this.speed;
 			this.offSetHeight = this.height * 4;
-		} else if(this.moveEast && this.canMoveEast){
+		} else if(this.moveEast && this.canMoveEast) {
 			nextX += this.speed;
 			this.offSetHeight = this.height * 1;
-		} else if(this.moveSouth && this.canMoveSouth){
+		} else if(this.moveSouth && this.canMoveSouth) {
 			nextY += this.speed;
 			this.offSetHeight = this.height * 2;
-		} else if(this.moveWest && this.canMoveWest){
+		} else if(this.moveWest && this.canMoveWest) {
 			nextX -= this.speed;
 			this.offSetHeight = this.height * 3;
 		} else {
@@ -79,8 +79,8 @@ class Enemy extends Character {
 		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
 		var walkIntoTileType = TILE_WALL;
 
-		if(walkIntoTileType != undefined){
-			walkIntoTileType = roomGrid[walkIntoTileIndex];
+		if(walkIntoTileType != undefined) {
+			walkIntoTileType = this.roomGrid[walkIntoTileIndex];
 		}
 
 		switch(walkIntoTileType) {
@@ -199,7 +199,7 @@ class Enemy extends Character {
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, this.isPassableTile);
 
-		if (this.currentPath.length > 0) {
+		/*if (this.currentPath.length > 0) {
 			this.currentPathIndex = 0;
 
 			var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
@@ -228,7 +228,7 @@ class Enemy extends Character {
 				this.moveEast = true;
 			}
 		}
-		else {
+		else {*/
 			var enemyXLocation = isoDrawX;
 			var enemyYLocation = isoDrawY;
 			var toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
@@ -267,7 +267,7 @@ class Enemy extends Character {
 			this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
 			this.toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
 			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
-		}
+		//}
   }
 
   checkCollisionsAgainst(otherHumanoid) {

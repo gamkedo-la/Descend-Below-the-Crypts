@@ -1,39 +1,72 @@
-var leftDoorOpenningSpeed = -3;
-var rightDoorOpenningSpeed = 3;
-var doorLeftXPosition = 0;
-var doorRightXPosition = 400;
+class MainMenu extends GameState {
+  constructor() {
+    super();
 
-function drawMainMenuPage(){
-	canvasContext.drawImage(mainMenuPic, 0, 0);
-	canvasContext.drawImage(menuScreenPic, 250, 200);
-	canvasContext.drawImage(titleBarPic, 10, 25);
-	colorText("Descend Below the Crypts", 50, 80, 'black', "48px Arial Black");
-	colorText("Start", 360, 255, 'white', "24px Arial Black");
-	colorText("Instructions", 320, 305, 'white', "24px Arial Black");
-	colorText("Credits", 350, 355, 'white', "24px Arial Black");
-	torch5.draw();
-	torch6.draw();
-	drawDoorsOpenning();
+    this.doorOpeningSpeed = 3;
+    this.doorLeftXPosition = 0;
+    this.doorRightXPosition = 400;
+
+    this.warriorEyes = new eyesAnimationClass(613, 360, 0, warriorEyesPic);
+    this.wizardEyes = new eyesAnimationClass(22, 350, 0, wizardEyesPic);
+
+    this.torch1 = new torchFireClass(450, 415, 3);
+    this.torch2 = new torchFireClass(288, 430, 3);
+  }
+
+  draw() {
+    super.draw();
+
+    canvasContext.drawImage(mainMenuPic, 0, 0);
+    canvasContext.drawImage(menuScreenPic, 250, 0);
+    canvasContext.drawImage(titleBarPic, 10, 25);
+
+    colorText("Descend Below the Crypts", 50, 80, 'black', "48px Arial Black");
+  	colorText("Start", 360, 255, 'white', "24px Arial Black");
+  	colorText("Instructions", 320, 305, 'white', "24px Arial Black");
+  	colorText("Credits", 350, 355, 'white', "24px Arial Black");
+
+    var toAddSmoke = getRndInteger(0, 10);
+    if (toAddSmoke > 0) {
+      addSmoke(315, 460, 100);
+      addSmoke(475, 455, 5000);
+    }
+
+    moveSmoke();
+    drawSmoke();
+    this.torch1.draw();
+    this.torch2.draw();
+    this.warriorEyes.draw();
+    this.wizardEyes.draw();
+
+    if (this.doorLeftXPosition > -500)
+      this.drawDoorsOpening();
+  }
+
+  drawDoorsOpening() {
+    this.doorLeftXPosition -= this.doorOpeningSpeed;
+  	this.doorRightXPosition += this.doorOpeningSpeed;
+  	canvasContext.drawImage(leftDoorOpenningPic, this.doorLeftXPosition, 0);
+  	canvasContext.drawImage(rightDoorOpenningPic, this.doorRightXPosition, 0);
+  }
+
+  onMouseClick(mouseX, mouseY) {
+    if (mouseX > 0 && mouseX < 800 &&
+  			mouseY > 0 && mouseY < 600) {
+  	   gameStateManager.setState(State.CHARSELECT);
+  	} else {
+  	   colorRect(0,0,canvas.width,canvas.height, 'red');
+  	}
+  }
+
+  onMouseMove(mouseX, mouseY) {
+
+  }
+
+  onKeyPress(evt) {
+
+  }
+
+  onKeyRelease(evt) {
+    
+  }
 }
-
-function drawDoorsOpenning(){
-	doorLeftXPosition += leftDoorOpenningSpeed;
-	doorRightXPosition += rightDoorOpenningSpeed;
-	canvasContext.drawImage(leftDoorOpenningPic, doorLeftXPosition, 0);
-	canvasContext.drawImage(rightDoorOpenningPic, doorRightXPosition, 0);
-}
-
-
-function mainMenuPageMouseClick(mousePosX, mousePosY) {	
-	if(		mousePosX > 0 && mousePosX < 800 && 
-			mousePosY > 0 && mousePosY < 600){ 
-					updateGameState();
-					characterSelectionScreen = true;
-	} else {
-		colorRect(0,0,canvas.width,canvas.height, 'red');
-	}
-}
-
-
-
-			

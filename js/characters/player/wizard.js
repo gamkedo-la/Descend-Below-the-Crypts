@@ -6,9 +6,6 @@ const WIZARD_HEIGHT = 30;
 class Wizard extends Player {
   constructor() {
     super(WIZARD_MAX_HEALTH, WIZARD_MOVEMENT_SPEED, WIZARD_WIDTH, WIZARD_HEIGHT);
-  }
-
-  init() {
     super.init(wizardPic, "The Wizard");
   }
 }

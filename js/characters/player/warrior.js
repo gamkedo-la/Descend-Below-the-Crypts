@@ -6,9 +6,6 @@ const WARRIOR_HEIGHT = 30;
 class Warrior extends Player {
   constructor() {
     super(WARRIOR_MAX_HEALTH, WARRIOR_MOVEMENT_SPEED, WARRIOR_WIDTH, WARRIOR_HEIGHT);
-  }
-
-  init() {
     super.init(warriorPic, "The Warrior");
   }
 }

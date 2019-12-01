@@ -21,6 +21,11 @@ class Character {
   	this.canMoveEast = true;
   	this.canMoveSouth = true;
   	this.canMoveWest = true;
+    this.moveNorth = false;
+    this.moveSouth = false;
+    this.moveEast = false;
+    this.moveWest = false;
+    this.roomGrid = [];
 
     // Animations
     this.frameTick = 0; // animation - called every frame
