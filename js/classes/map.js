@@ -3,6 +3,7 @@ class Map {
     this.enemyList = [];
     this.loaded = false;
     this.roomGrid = level;
+    this.highlightedTileIndex = null;
 
     for (var tile of this.roomGrid) {
       switch(tile) {
@@ -50,10 +51,13 @@ class Map {
   onMouseClick(mouseX, mouseY) {
     mouseClickX = mouseX;
 		mouseClickY = mouseY;
+
+    console.log(`Clicked at: ${this.highlightedTileIndex}`);
   }
 
   onMouseMove(mouseX, mouseY) {
-
+    // Highlight tile based on mouse move
+    this.highlightedTileIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
   }
 
   onKeyPress(evt) {
@@ -84,7 +88,12 @@ class Map {
   			tileCoordToIsoCoord(eachCol, eachRow);
 
         if( tileTypeHasRoadTransparency(tileTypeHere)) {
+          if (this.highlightedTileIndex == tileIndex)
+            canvasContext.globalAlpha = 0.8;
+
   				canvasContext.drawImage(trackPics[TILE_ROAD], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+
+          canvasContext.globalAlpha = 1.0;
   			}
   			else if( tileTypeHasCryptFloorTransparency(tileTypeHere) ) {
   				canvasContext.drawImage(trackPics[TILE_CRYPT_FLOOR], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
@@ -112,7 +121,7 @@ class Map {
   				}
 
   				canvasContext.drawImage(trackPics[TILE_WALL], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
-  				canvasContext.globalAlpha = 1.0;
+  				canvasContext.globalAlpha = 1;
 
   				var torchFrames = 4;
   				var animOffset = (eachCol + eachRow + Math.floor(sharedAnimCycle * 0.1) ) % torchFrames;
@@ -159,6 +168,9 @@ class Map {
   				if (isWallTransparent(playerOne, tileIndex) && (tileTypeHere == TILE_WALL || tileTypeHere == TILE_CRYPT_WALL)) {
   					canvasContext.globalAlpha = 0.4;
   				}
+
+          else if (this.highlightedTileIndex == tileIndex && tileTypeHere == TILE_ROAD)
+            canvasContext.globalAlpha = 0.8;
 
           canvasContext.drawImage(trackPics[tileTypeHere], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
   				canvasContext.globalAlpha = 1.0;

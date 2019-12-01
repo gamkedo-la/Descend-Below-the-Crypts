@@ -67,6 +67,6 @@ class MainMenu extends GameState {
   }
 
   onKeyRelease(evt) {
-    
+
   }
 }

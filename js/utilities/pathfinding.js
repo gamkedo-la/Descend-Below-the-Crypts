@@ -63,34 +63,36 @@ function pathFinder() {
     };
 
     var neighborsForIndex = function(index, isPassable) {
-        var result = [];
+    var result = [];
 
-        var above = indexAboveIndex(index);
-        var below = indexBelowIndex(index);
+    var above = indexAboveIndex(index);
+    var below = indexBelowIndex(index);
 		var left = indexLeftofIndex(index);
 		var right = indexRightOfIndex(index);
 
+    var roomGrid = gameStateManager.getState().levelList[gameStateManager.getState().level];
+
 		//console.log("A: " + above + " B: " + below + " L: " + left + " R: " + right);
 		if (above != null) { //checking if tile above is present and adding it to result
-            if (isPassable(levelList[levelNow][above])) {
+            if (isPassable(roomGrid[above])) {
                 result.push(above);
             }
         }
 
         if (below != null) { //checking if tile below is present and adding it to result
-            if (isPassable(levelList[levelNow][below])) {
+            if (isPassable(roomGrid[below])) {
                 result.push(below);
             }
         }
 
         if (left != null) { //checking if tile to the left is present and adding it to result
-            if (isPassable(levelList[levelNow][left])) {
+            if (isPassable(roomGrid[left])) {
                 result.push(left);
             }
         }
 
         if (right != null) { //checking if tile to the right is present and adding it to result
-            if (isPassable(levelList[levelNow][right])) {
+            if (isPassable(roomGrid[right])) {
                 result.push(right);
             }
         }

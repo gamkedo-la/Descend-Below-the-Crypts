@@ -68,6 +68,7 @@ class Play extends GameState {
 
     this.setup = false;
     this.level = 0;
+    this.levelList = [ levelOne, levelTwo ];
     this.mapStack = [ new Map(levelOne),
                       new Map(levelTwo) ];
 
