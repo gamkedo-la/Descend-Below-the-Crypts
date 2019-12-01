@@ -50,12 +50,17 @@ class MainMenu extends GameState {
   }
 
   onMouseClick(mouseX, mouseY) {
-    if (mouseX > 0 && mouseX < 800 &&
-  			mouseY > 0 && mouseY < 600) {
+    if (mouseX < 460 && mouseY < 315 &&
+      mouseX > 318 && mouseY > 285) {
+        gameStateManager.setState(State.INSTRUCTIONS);
+    }
+    else if (mouseX > 353 && mouseX < 422 &&
+  			mouseY > 235 && mouseY < 256) {
   	   gameStateManager.setState(State.CHARSELECT);
   	} else {
   	   colorRect(0,0,canvas.width,canvas.height, 'red');
-  	}
+    }
+  
   }
 
   onMouseMove(mouseX, mouseY) {
