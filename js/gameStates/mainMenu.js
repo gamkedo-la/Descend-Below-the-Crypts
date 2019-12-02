@@ -50,14 +50,29 @@ class MainMenu extends GameState {
   }
 
   onMouseClick(mouseX, mouseY) {
-    if (mouseX < 460 && mouseY < 315 &&
-      mouseX > 318 && mouseY > 285) {
-        gameStateManager.setState(State.INSTRUCTIONS);
+    const START_LEFT_EDGE = 353;
+    const START_RIGHT_EDGE = 422;
+    const START_TOP_EDGE = 235;
+    const START_BOTTOM_EDGE = 256;
+
+    const INSTRUCTION_LEFT_EDGE = 318;
+    const INSTRUCTION_RIGHT_EDGE = 460;
+    const INSTRUCTION_TOP_EDGE = 285;
+    const INSTRUCTION_BOTTOM_EDGE = 315;
+
+    
+    if (mouseX > START_LEFT_EDGE && mouseX < START_RIGHT_EDGE &&
+        mouseY > START_TOP_EDGE && mouseY < START_BOTTOM_EDGE)
+    {
+      gameStateManager.setState(State.CHARSELECT);
     }
-    else if (mouseX > 353 && mouseX < 422 &&
-  			mouseY > 235 && mouseY < 256) {
-  	   gameStateManager.setState(State.CHARSELECT);
-  	} else {
+    else if (mouseX < INSTRUCTION_RIGHT_EDGE && mouseX > INSTRUCTION_LEFT_EDGE &&
+             mouseY < INSTRUCTION_BOTTOM_EDGE && mouseY > INSTRUCTION_TOP_EDGE)
+    {
+      gameStateManager.setState(State.INSTRUCTIONS);
+    }
+    else 
+    {
   	   colorRect(0,0,canvas.width,canvas.height, 'red');
     }
   
