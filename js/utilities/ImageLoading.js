@@ -37,6 +37,8 @@ var manaHUD = document.createElement("img");
 var inventoryHUD = document.createElement("img");
 var goldHUD = document.createElement("img");
 var keyHUD = document.createElement("img");
+var healPotionHUD = document.createElement("img");
+var manaPotionHUD = document.createElement("img");
 
 //All pictures prior to launching the game.  If a picture doesn't load, the game doesn't launch.
 function countLoadedImagesAndLaunchIfReady(){
@@ -96,6 +98,8 @@ function loadImages() {
 			{varName: inventoryHUD, theFile: "HUD/inventory.png"},
 			{varName: goldHUD, theFile: "HUD/goldIcon.png"},
 			{varName: keyHUD, theFile: "HUD/keyIcon.png"},
+			{varName: healPotionHUD, theFile: "HUD/HPPotionIcon.png"},
+			{varName: manaPotionHUD, theFile: "HUD/MPPotionIcon.png"},
 
 			//tiles
 			{tileType: TILE_ROAD, theFile: "track_road.png"},

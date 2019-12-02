@@ -6,6 +6,10 @@ class Player extends Character {
         this.goldCoins = 0;
         this.keysHeld = 0;
 
+        // Inventory
+        this.healPotionsHeld = 0;
+        this.manaPotionsHeld = 0;
+
         // Warrior
         this.sword = false;
         this.mace = false;
@@ -218,11 +222,13 @@ class Player extends Character {
                 //add healing potion
                 this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                 console.log("Healing Potion found");
+                this.healPotionsHeld++;
                 break;
             case TILE_MANA_POTION:
                 //add mana potion
                 this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                 console.log("Mana Potion found");
+                this.manaPotionsHeld++;
                 break;
             case TILE_YELLOW_KEY:
                 this.keysHeld++;
