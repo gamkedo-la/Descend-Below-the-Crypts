@@ -7,7 +7,7 @@ class InstructionMenu extends GameState {
     super.draw();
 
     canvasContext.drawImage(mainMenuPic, 0, 0);
-    canvasContext.drawImage(menuScreenPic, 250, 0);
+    canvasContext.drawImage(instructionScreenPic, 10, 100);
     canvasContext.drawImage(titleBarPic, 10, 25);
 
     colorText("Instructions", 50, 80, 'black', "48px Arial Black");

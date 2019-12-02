@@ -21,6 +21,7 @@ var rightDoorOpenningPic = document.createElement("img");
 var torchFirePic = document.createElement("img");
 var mainMenuPic = document.createElement("img");
 var menuScreenPic = document.createElement("img");
+var instructionScreenPic = document.createElement("img");
 var titleBarPic = document.createElement("img");
 
 //misc
@@ -80,6 +81,7 @@ function loadImages() {
 			{varName: rightDoorOpenningPic, theFile: "gameStates/rightDoor.png"},
 			{varName: titleBarPic, theFile: "gameStates/titleBar.png"},
 			{varName: menuScreenPic, theFile: "gameStates/menuScreen.png"},
+			{varName: instructionScreenPic, theFile: "gameStates/InstructionScreen.png"},
 			{varName: torchFirePic, theFile: "gameStates/torchFire.png"},
 			{varName: warriorProfilePic, theFile: "profilePics/warrior/warriorProfilePic.png"},
 			{varName: warriorEyesPic, theFile: "profilePics/warrior/eyes.png"},
