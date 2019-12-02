@@ -19,6 +19,9 @@ class Map {
         case TILE_RAT:
           this.enemyList.push(new Rat());
           break;
+		case TILE_KINGS_TOMB:
+          this.enemyList.push(new SkeletonKingsTomb());
+          break; 
       }
     }
   }

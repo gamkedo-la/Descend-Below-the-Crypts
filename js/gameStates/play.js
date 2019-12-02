@@ -292,15 +292,15 @@ class Play extends GameState {
       colorText("x"+playerOne.healPotionsHeld,iconXPos+2+16 , currentYPos+40, 'red', font);
       canvasContext.globalAlpha = HUD_OPACITY;
       currentYPos +=iconVerticalSpacing;
-      }
+    }
 
-      if(playerOne.manaPotionsHeld >0){
-        canvasContext.drawImage(manaPotionHUD,iconXPos+2, currentYPos+5);
-        canvasContext.globalAlpha = 1.0;
-        colorText("x"+playerOne.manaPotionsHeld,iconXPos+2+16 , currentYPos+40, 'red', font);
-        canvasContext.globalAlpha = HUD_OPACITY;
-        currentYPos +=iconVerticalSpacing;
-        }
+    if(playerOne.manaPotionsHeld >0){
+	  canvasContext.drawImage(manaPotionHUD,iconXPos+2, currentYPos+5);
+	  canvasContext.globalAlpha = 1.0;
+	  colorText("x"+playerOne.manaPotionsHeld,iconXPos+2+16 , currentYPos+40, 'red', font);
+	  canvasContext.globalAlpha = HUD_OPACITY;
+	  currentYPos +=iconVerticalSpacing;
+	}
 
   	// Reset alpha:
   	canvasContext.globalAlpha = 1.0;

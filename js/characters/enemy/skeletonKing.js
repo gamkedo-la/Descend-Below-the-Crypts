@@ -1,0 +1,14 @@
+const SKELTONKINGS_TOMB_MAX_HEALTH = 1000;
+const SKELTONKINGS_TOMB_MOVEMENT_SPEED = 0;
+const SKELTONKINGS_TOMB_WIDTH = 70;
+const SKELTONKINGS_TOMB_HEIGHT = 59;
+
+class SkeletonKingsTomb extends Enemy {
+  constructor() {
+    super(SKELTONKINGS_TOMB_MAX_HEALTH, SKELTONKINGS_TOMB_MOVEMENT_SPEED, SKELTONKINGS_TOMB_WIDTH, SKELTONKINGS_TOMB_HEIGHT)
+  }
+
+  init() {
+    super.init(kingsTombPic, "Lazarus's Tomb", TILE_KINGS_TOMB);
+  }
+}

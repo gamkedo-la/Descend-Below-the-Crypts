@@ -26,6 +26,7 @@ var titleBarPic = document.createElement("img");
 
 //misc
 var shadowPic = document.createElement("img");
+var kingsTombPic = document.createElement("img");
 var feedbackGUIPic = document.createElement("img");
 var healthbarPic = document.createElement("img");
 var trackPics = [];
@@ -90,7 +91,8 @@ function loadImages() {
 			{varName: wizardProfilePic, theFile: "profilePics/wizard/wizardProfilePic.png"},
 			{varName: wizardEyesPic, theFile: "profilePics/wizard/eyes.png"},
 			{varName: clericProfilePic, theFile: "profilePics/cleric/clericProfilePic.png"},
-			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},
+			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},			
+			{varName: kingsTombPic, theFile: "kingsTomb.png"},
 			
 			// HUD
 			{varName: healthHUD, theFile: "HUD/healthHUD.png"},
@@ -171,6 +173,9 @@ function loadImages() {
 			{tileType: TILE_GREEN_RUG_CEN, theFile: "track_green_rug.png"},
 			{tileType: TILE_GREEN_RUG_L, theFile: "track_green_rug_left.png"},
 			{tileType: TILE_GREEN_RUG_R, theFile: "track_green_rug_right.png"},
+			{tileType: TILE_KINGS_CHAMBER_WALL, theFile: "track_kings_chamber_walls.png"},
+			{tileType: TILE_KINGS_CHAMBER_SNAKE, theFile: "track_kings_chamber_snakes.png"},
+			{tileType: TILE_KINGS_CHAMBER_SPIDER, theFile: "track_kings_chamber_spider.png"},
 		];
 
 	picsToLoad = imageList.length;

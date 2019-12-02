@@ -306,11 +306,11 @@ class Player extends Character {
         if (this.currentPath.length > 0) {
             this.currentPathIndex = 0;
 
-			console.log("Pathing");
+			//console.log("Pathing");
 
             var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
             var nextTile = this.currentPath[this.currentPathIndex];
-            console.log(nextTile);
+           // console.log(nextTile);
 
 
             if (currentTile == nextTile) {
