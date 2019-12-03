@@ -239,6 +239,8 @@ class Player extends Character {
                 enteringSecondLevelNarrative.play();
                 this.playWarriorsThoughtsForSecondLevel = true;
                 gameStateManager.getState().loadLevel(1);
+				basementMusic.startOrStopMusic();
+				cryptMusic.loopSong("Into_The_Crypts");
                 break;
             case TILE_STAIRS:
                 this.reset(this.roomGrid);

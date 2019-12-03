@@ -4,7 +4,8 @@ var soundSetforMeetings = false; //make false to hear at normal level
 
 //sounds
 var crashIntoConeSound = new SoundOverlapsClass("crashCone");
-var basementMusic = new BackgroundMusicClass()
+var basementMusic = new BackgroundMusicClass();
+var cryptMusic = new BackgroundMusicClass();
 
 //Quest Based
 var enteringSecondLevelNarrative = new SoundOverlapsClass("enteringSecondLevel");
