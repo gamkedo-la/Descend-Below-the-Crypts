@@ -14,31 +14,11 @@ function initInput() {
 
 	canvas.addEventListener('click', function(evt) {
 		var mousePos = calculateMousePos(evt);
-		
-		var inventoryClick = false;
 
 		mousePosX = mousePos.x;
 		mousePosY = mousePos.y;
 
-		// Check inventory clicks:
-		if(mousePosX >= inventoryCoords.healPotionXPos &&
-			 mousePosX <= inventoryCoords.healPotionXPos+ INVENTORY_ICON_WIDTH &&
-			mousePosY >= inventoryCoords.healPotionYPos &&
-			 mousePosY <= inventoryCoords.healPotionYPos+ INVENTORY_ICON_HEIGHT &&
-			 playerOne.healPotionsHeld >0 ){
-			
-			playerOne.useHealPotion();
-			inventoryClick = true;
-		}
-		if(mousePosX >= inventoryCoords.manaPotionXPos &&
-			mousePosX <= inventoryCoords.manaPotionXPos+ INVENTORY_ICON_WIDTH &&
-		   mousePosY >= inventoryCoords.manaPotionYPos &&
-			mousePosY <= inventoryCoords.manaPotionYPos+ INVENTORY_ICON_HEIGHT &&
-			playerOne.manaPotionsHeld >0 ){
-		   
-		   playerOne.useManaPotion();
-		   inventoryClick = true;
-	   }
+		var inventoryClick = detectInventoryClicks(mousePosX, mousePosY);
 
 		if(inventoryClick=== false){
 			gameStateManager.getState().onMouseClick(mousePosX, mousePosY);
@@ -52,4 +32,30 @@ function initInput() {
 	document.addEventListener("keyup", function(evt) {
 		gameStateManager.getState().onKeyRelease(evt);
 	});
+}
+
+
+function detectInventoryClicks(mousePosX, mousePosY){
+		if(mousePosX >= inventoryCoords.healPotionXPos &&
+			mousePosX <= inventoryCoords.healPotionXPos+ INVENTORY_ICON_WIDTH &&
+		   mousePosY >= inventoryCoords.healPotionYPos &&
+			mousePosY <= inventoryCoords.healPotionYPos+ INVENTORY_ICON_HEIGHT &&
+			playerOne.healPotionsHeld >0 ){
+		   
+		   playerOne.useHealPotion();
+		   return true;
+	   }
+	   else if(mousePosX >= inventoryCoords.manaPotionXPos &&
+		   mousePosX <= inventoryCoords.manaPotionXPos+ INVENTORY_ICON_WIDTH &&
+		  mousePosY >= inventoryCoords.manaPotionYPos &&
+		   mousePosY <= inventoryCoords.manaPotionYPos+ INVENTORY_ICON_HEIGHT &&
+		   playerOne.manaPotionsHeld >0 ){
+		  
+		  playerOne.useManaPotion();
+		  return true;
+	  }
+	  else{
+		  return false;
+	  }
+
 }
