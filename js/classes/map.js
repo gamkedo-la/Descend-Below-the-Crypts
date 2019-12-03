@@ -21,7 +21,10 @@ class Map {
           break;
 		case TILE_KINGS_TOMB:
           this.enemyList.push(new SkeletonKingsTomb());
-          break; 
+          break;
+		case TILE_SKELETON_KING:
+          this.enemyList.push(new SkeletonKing());
+          break; 		  
       }
     }
   }

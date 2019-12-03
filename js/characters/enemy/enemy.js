@@ -32,108 +32,116 @@ class Enemy extends Character {
     this.pather = new pathFinder();
 
     if(this.homeX == undefined) {
-			for(var i=0; i<this.roomGrid.length; i++) {
-				if(this.roomGrid[i] == this.myTile) {
-          this.roomGrid[i] = TILE_ROAD;
-
-          var tileRow = Math.floor(i/ROOM_COLS);
-					var tileCol	= i%ROOM_COLS;
-
-					this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W;
-					this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
-
-					break;
+		for(var i=0; i<this.roomGrid.length; i++) {
+			if(this.roomGrid[i] == this.myTile) {
+				if(this.roomGrid[i] == TILE_KINGS_TOMB ||
+				   this.roomGrid[i] == TILE_SKELETON_KING)
+				{
+					this.roomGrid[i] = TILE_GREEN_RUG_CEN;
+				} else {
+					this.roomGrid[i] = TILE_ROAD;
 				}
+				var tileRow = Math.floor(i/ROOM_COLS);
+				var tileCol	= i%ROOM_COLS;
+
+				this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W;
+				this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
+
+				break;
 			}
 		}
+	}
 
-		this.x = this.homeX;
-		this.y = this.homeY;
+	this.x = this.homeX;
+	this.y = this.homeY;
   }
 
   movement() {
-    var nextX = this.x;
-		var nextY = this.y;
+	var nextX = this.x;
+	var nextY = this.y;
 
+	if(this.canMove){
 		//this.randomMovements();
 		this.wayPointMovement();
-		//this.rest();
+	} else {
+		this.rest();
+	}
+	
+	this.speed = 1.0;
+	if(this.moveNorth && this.canMoveNorth) {
+		nextY -= this.speed;
+		this.offSetHeight = this.height * 4;
+	} else if(this.moveEast && this.canMoveEast) {
+		nextX += this.speed;
+		this.offSetHeight = this.height * 1;
+	} else if(this.moveSouth && this.canMoveSouth) {
+		nextY += this.speed;
+		this.offSetHeight = this.height * 2;
+	} else if(this.moveWest && this.canMoveWest) {
+		nextX -= this.speed;
+		this.offSetHeight = this.height * 3;
+	} else {
+		this.offSetHeight = 0;
+	}
 
-		this.speed = 1.0;
-		if(this.moveNorth && this.canMoveNorth) {
-			nextY -= this.speed;
-			this.offSetHeight = this.height * 4;
-		} else if(this.moveEast && this.canMoveEast) {
-			nextX += this.speed;
-			this.offSetHeight = this.height * 1;
-		} else if(this.moveSouth && this.canMoveSouth) {
-			nextY += this.speed;
-			this.offSetHeight = this.height * 2;
-		} else if(this.moveWest && this.canMoveWest) {
-			nextX -= this.speed;
-			this.offSetHeight = this.height * 3;
-		} else {
-			this.offSetHeight = 0;
-		}
+	var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
+	var walkIntoTileType = TILE_WALL;
 
-		var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
-		var walkIntoTileType = TILE_WALL;
+	if(walkIntoTileType != undefined) {
+		walkIntoTileType = this.roomGrid[walkIntoTileIndex];
+	}
 
-		if(walkIntoTileType != undefined) {
-			walkIntoTileType = this.roomGrid[walkIntoTileIndex];
-		}
-
-		switch(walkIntoTileType) {
-			case TILE_ROAD:
-			case TILE_CRYPT_FLOOR:
-			case TILE_RED_RUG_TL:
-			case TILE_RED_RUG_TR:
-			case TILE_RED_RUG_BL:
-			case TILE_RED_RUG_BR:
-			case TILE_RED_RUG_TOP:
-			case TILE_RED_RUG_BOT:
-			case TILE_RED_RUG_CEN:
-			case TILE_RED_RUG_L:
-			case TILE_RED_RUG_R:
-			case TILE_BLUE_RUG_TL:
-			case TILE_BLUE_RUG_TR:
-			case TILE_BLUE_RUG_BL:
-			case TILE_BLUE_RUG_BR:
-			case TILE_BLUE_RUG_TOP:
-			case TILE_BLUE_RUG_BOT:
-			case TILE_BLUE_RUG_CEN:
-			case TILE_BLUE_RUG_L:
-			case TILE_BLUE_RUG_R:
-			case TILE_CRYPT_FLOOR:
-			case TILE_WIZARD_BOOK:
-			case TILE_CLERIC_BOOK:
-			case TILE_SKILL_BOOK:
-			case TILE_SWORD:
-			case TILE_MACE:
-			case TILE_GOLD_COINS:
-			case TILE_SEWER:
-			case TILE_HEALING_POTION:
-			case TILE_MANA_POTION:
-			case TILE_YELLOW_KEY:
-			case TILE_SPIKES_ARMED:
-			case TILE_SPIKES_UNARMED:
-			case TILE_PITTRAP_ARMED:
-			case TILE_PITTRAP_UNARMED:
-			case TILE_TREASURE:
-				this.x = nextX;
-				this.y = nextY;
-				break;
-			case TILE_WALL:
-			case TILE_FINISH:
-			case TILE_YELLOW_DOOR:
-			case TILE_RED_DOOR:
-			case TILE_BLUE_DOOR:
-			case TILE_TABLE:
-			case TILE_TOMB:
-			case TILE_TOMB_2:
-			default:
-				this.movementTimer = 0;
-				break;
+	switch(walkIntoTileType) {
+		case TILE_ROAD:
+		case TILE_CRYPT_FLOOR:
+		case TILE_RED_RUG_TL:
+		case TILE_RED_RUG_TR:
+		case TILE_RED_RUG_BL:
+		case TILE_RED_RUG_BR:
+		case TILE_RED_RUG_TOP:
+		case TILE_RED_RUG_BOT:
+		case TILE_RED_RUG_CEN:
+		case TILE_RED_RUG_L:
+		case TILE_RED_RUG_R:
+		case TILE_BLUE_RUG_TL:
+		case TILE_BLUE_RUG_TR:
+		case TILE_BLUE_RUG_BL:
+		case TILE_BLUE_RUG_BR:
+		case TILE_BLUE_RUG_TOP:
+		case TILE_BLUE_RUG_BOT:
+		case TILE_BLUE_RUG_CEN:
+		case TILE_BLUE_RUG_L:
+		case TILE_BLUE_RUG_R:
+		case TILE_CRYPT_FLOOR:
+		case TILE_WIZARD_BOOK:
+		case TILE_CLERIC_BOOK:
+		case TILE_SKILL_BOOK:
+		case TILE_SWORD:
+		case TILE_MACE:
+		case TILE_GOLD_COINS:
+		case TILE_SEWER:
+		case TILE_HEALING_POTION:
+		case TILE_MANA_POTION:
+		case TILE_YELLOW_KEY:
+		case TILE_SPIKES_ARMED:
+		case TILE_SPIKES_UNARMED:
+		case TILE_PITTRAP_ARMED:
+		case TILE_PITTRAP_UNARMED:
+		case TILE_TREASURE:
+			this.x = nextX;
+			this.y = nextY;
+			break;
+		case TILE_WALL:
+		case TILE_FINISH:
+		case TILE_YELLOW_DOOR:
+		case TILE_RED_DOOR:
+		case TILE_BLUE_DOOR:
+		case TILE_TABLE:
+		case TILE_TOMB:
+		case TILE_TOMB_2:
+		default:
+			this.movementTimer = 0;
+			break;
 		}
 	}
 

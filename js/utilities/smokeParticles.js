@@ -1,6 +1,3 @@
-const KEY_LETTER_W = 87;
-const KEY_LETTER_S = 83;
-
 var remX = 0, remY = 0;
 var remW = 800, remH = 600;
 
@@ -27,7 +24,7 @@ function smokeClass() {
 	}
 
 	this.draw = function() {
-		colorCircle(this.x,this.y,
+		colorCircle(isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY,
 			(20 * this.cyclesLeft/130.0),
 		 this.myColor);
 	}

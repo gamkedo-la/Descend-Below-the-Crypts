@@ -27,6 +27,7 @@ var titleBarPic = document.createElement("img");
 //misc
 var shadowPic = document.createElement("img");
 var kingsTombPic = document.createElement("img");
+var greenParticlePic = document.createElement("img");
 var feedbackGUIPic = document.createElement("img");
 var healthbarPic = document.createElement("img");
 var trackPics = [];
@@ -93,6 +94,7 @@ function loadImages() {
 			{varName: clericProfilePic, theFile: "profilePics/cleric/clericProfilePic.png"},
 			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},			
 			{varName: kingsTombPic, theFile: "kingsTomb.png"},
+			{varName: greenParticlePic, theFile: "greenParticle.png"},
 			
 			// HUD
 			{varName: healthHUD, theFile: "HUD/healthHUD.png"},
