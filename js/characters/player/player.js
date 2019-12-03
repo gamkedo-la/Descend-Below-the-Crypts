@@ -429,4 +429,18 @@ class Player extends Character {
         colorRect(isoDrawX - (this.width / 2) + 3, isoDrawY - this.height - 19, (this.health / this.maxHealth) * 24, 9, "green");
         canvasContext.drawImage(healthbarPic, isoDrawX - (this.width / 2), isoDrawY - this.height - 20);
     }
+
+    useHealPotion() {
+        console.log("Heal potion used");
+
+        // This variable need to be global?
+        var healPotionRecoveryPercent = this.maxHealth* 0.25; // 25%
+        
+        this.healPotionsHeld--;
+        this.health += healPotionRecoveryPercent;
+      }
+      useManaPotion() {
+        console.log("Mana potion used");
+        this.manaPotionsHeld--;
+      }
 }

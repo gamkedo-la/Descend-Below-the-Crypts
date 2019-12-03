@@ -15,6 +15,13 @@ const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
 const KEY_DOWN_ARROW = 40;
 
+var inventoryCoords = {
+  healPotionXPos : 0,
+  healPotionYPos : 0,
+  manaPotionXPos : 0,
+  manaPotionYPos : 0
+}
+
 const NORMAL_KEY_MAP = {
   [KEY_W]: null,
   [KEY_S]: null,
@@ -287,17 +294,23 @@ class Play extends GameState {
     }
     
     if(playerOne.healPotionsHeld >0){
-      canvasContext.drawImage(healPotionHUD,iconXPos+2, currentYPos+5);
+      inventoryCoords.healPotionXPos = iconXPos+2;
+      inventoryCoords.healPotionYPos = currentYPos+5;
+
+      canvasContext.drawImage(healPotionHUD,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos);
       canvasContext.globalAlpha = 1.0;
-      colorText("x"+playerOne.healPotionsHeld,iconXPos+2+16 , currentYPos+40, 'red', font);
+      colorText("x"+playerOne.healPotionsHeld,inventoryCoords.healPotionXPos+16 , inventoryCoords.healPotionYPos+35, 'red', font);
       canvasContext.globalAlpha = HUD_OPACITY;
       currentYPos +=iconVerticalSpacing;
     }
 
     if(playerOne.manaPotionsHeld >0){
-	  canvasContext.drawImage(manaPotionHUD,iconXPos+2, currentYPos+5);
+    inventoryCoords.manaPotionXPos = iconXPos+2;
+    inventoryCoords.manaPotionYPos = currentYPos+5;
+
+	  canvasContext.drawImage(manaPotionHUD,inventoryCoords.manaPotionXPos, inventoryCoords.manaPotionYPos);
 	  canvasContext.globalAlpha = 1.0;
-	  colorText("x"+playerOne.manaPotionsHeld,iconXPos+2+16 , currentYPos+40, 'red', font);
+	  colorText("x"+playerOne.manaPotionsHeld,inventoryCoords.manaPotionXPos+16 , inventoryCoords.manaPotionYPos+35, 'red', font);
 	  canvasContext.globalAlpha = HUD_OPACITY;
 	  currentYPos +=iconVerticalSpacing;
 	}
