@@ -7,6 +7,8 @@ var crashIntoConeSound = new SoundOverlapsClass("crashCone");
 var basementMusic = new BackgroundMusicClass();
 var cryptMusic = new BackgroundMusicClass();
 
+var musicSound = null;
+
 //Quest Based
 var enteringSecondLevelNarrative = new SoundOverlapsClass("enteringSecondLevel");
 
@@ -52,7 +54,6 @@ function SoundOverlapsClass(filenameWithPath) {
 }  
 
 function BackgroundMusicClass() {
-    var musicSound = null;
     this.loopSong = function(filenameWithPath) {
 		setFormat();
 
