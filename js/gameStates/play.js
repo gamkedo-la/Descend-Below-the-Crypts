@@ -162,38 +162,38 @@ class Play extends GameState {
   }
 
   detectHUDClicks(mousePosX, mousePosY){
-		if(mousePosX >= inventoryCoords.healPotionXPos &&
-			mousePosX <= inventoryCoords.healPotionXPos+ INVENTORY_ICON_WIDTH &&
-		   mousePosY >= inventoryCoords.healPotionYPos &&
-			mousePosY <= inventoryCoords.healPotionYPos+ INVENTORY_ICON_HEIGHT &&
+		if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos) == true &&
 			playerOne.healPotionsHeld >0 ){
 		   
 		   playerOne.useHealPotion();
 	   }
-	   else if(mousePosX >= inventoryCoords.manaPotionXPos &&
-		   mousePosX <= inventoryCoords.manaPotionXPos+ INVENTORY_ICON_WIDTH &&
-		  mousePosY >= inventoryCoords.manaPotionYPos &&
-		   mousePosY <= inventoryCoords.manaPotionYPos+ INVENTORY_ICON_HEIGHT &&
+	   else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.manaPotionXPos, inventoryCoords.manaPotionYPos) == true &&
 		   playerOne.manaPotionsHeld >0 ){
 		  
 		  playerOne.useManaPotion();
     }
-    else if(mousePosX >= inventoryCoords.swordXPos &&
-      mousePosX <= inventoryCoords.swordXPos + INVENTORY_ICON_WIDTH &&
-     mousePosY >= inventoryCoords.swordYPos &&
-      mousePosY <= inventoryCoords.swordYPos+ INVENTORY_ICON_HEIGHT &&
+    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true &&
       playerOne.sword){
      
      console.log('use sword');
    }
-   else if(mousePosX >= inventoryCoords.punchXPos &&
-    mousePosX <= inventoryCoords.punchXPos + INVENTORY_ICON_WIDTH &&
-   mousePosY >= inventoryCoords.punchYPos &&
-    mousePosY <= inventoryCoords.punchYPos+ INVENTORY_ICON_HEIGHT){
+   else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
    
    console.log('punch');
  }
 
+}
+
+checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
+  if(mousePosX >= iconXPos &&
+    mousePosX <= iconXPos + INVENTORY_ICON_WIDTH &&
+   mousePosY >= iconYPos &&
+    mousePosY <= iconYPos + INVENTORY_ICON_HEIGHT){
+      return true;
+    }
+  else{
+    return false;
+  }
 }
 
   onMouseMove(mouseX, mouseY) {
