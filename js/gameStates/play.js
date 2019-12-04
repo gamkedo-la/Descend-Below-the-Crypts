@@ -18,11 +18,15 @@ const KEY_DOWN_ARROW = 40;
 const INVENTORY_ICON_WIDTH=40;
 const INVENTORY_ICON_HEIGHT=40;
 
+const HUD_OPACITY= 0.7;
+
 var inventoryCoords = {
   healPotionXPos : 0,
   healPotionYPos : 0,
   manaPotionXPos : 0,
-  manaPotionYPos : 0
+  manaPotionYPos : 0,
+  swordXPos : 0,
+  swordYPos : 0,
 }
 
 const NORMAL_KEY_MAP = {
@@ -123,6 +127,7 @@ class Play extends GameState {
       this.drawDebugMenu();
 
     // Default HUD
+    /*
     canvasContext.drawImage(feedbackGUIPic,200, canvas.height-50);
 		colorText("Keys: " + playerOne.keysHeld, 220, 582, "black", "14px Arial Black");
 		colorText("Gold: " + playerOne.goldCoins, 300, 582, "black", "14px Arial Black");
@@ -142,7 +147,7 @@ class Play extends GameState {
 			colorText("Can use Flame Spell", 360, 592, "black", "8px Arial Black");
 		} else {
 			colorText("CAN'T use Flame Spell", 360, 592, "red", "8px Arial Black");
-    }
+    }*/
     
     if( this.pause )  {
        this.drawPause()
@@ -151,10 +156,10 @@ class Play extends GameState {
 
   onMouseClick(mouseX,  mouseY) {
     this.mapStack[this.level].onMouseClick(mouseX, mouseY);
-    this.detectInventoryClicks(mousePosX, mousePosY);
+    this.detectHUDClicks(mousePosX, mousePosY);
   }
 
-  detectInventoryClicks(mousePosX, mousePosY){
+  detectHUDClicks(mousePosX, mousePosY){
 		if(mousePosX >= inventoryCoords.healPotionXPos &&
 			mousePosX <= inventoryCoords.healPotionXPos+ INVENTORY_ICON_WIDTH &&
 		   mousePosY >= inventoryCoords.healPotionYPos &&
@@ -162,7 +167,6 @@ class Play extends GameState {
 			playerOne.healPotionsHeld >0 ){
 		   
 		   playerOne.useHealPotion();
-		   return true;
 	   }
 	   else if(mousePosX >= inventoryCoords.manaPotionXPos &&
 		   mousePosX <= inventoryCoords.manaPotionXPos+ INVENTORY_ICON_WIDTH &&
@@ -171,11 +175,15 @@ class Play extends GameState {
 		   playerOne.manaPotionsHeld >0 ){
 		  
 		  playerOne.useManaPotion();
-		  return true;
-	  }
-	  else{
-		  return false;
-	  }
+    }
+    else if(mousePosX >= inventoryCoords.swordXPos &&
+      mousePosX <= inventoryCoords.swordXPos + INVENTORY_ICON_WIDTH &&
+     mousePosY >= inventoryCoords.swordYPos &&
+      mousePosY <= inventoryCoords.swordYPos+ INVENTORY_ICON_HEIGHT &&
+      playerOne.sword){
+     
+     console.log('use sword');
+   }
 
 }
 
@@ -313,15 +321,21 @@ class Play extends GameState {
   }
 
   drawHUD() {
+      
     // Set alpha:
-  	const HUD_OPACITY= 0.7;
-  	canvasContext.globalAlpha = HUD_OPACITY;
+    canvasContext.globalAlpha = HUD_OPACITY;
 
-  	// HP and MP:
+    // HP and MP:
   	canvasContext.drawImage(healthHUD,10, canvas.height-100);
   	canvasContext.drawImage(manaHUD,canvas.width-110, canvas.height-100);
+    
+    this.drawItemHUD();
+    this.drawAbilityHUD();
+  }
 
-  	// Inventory
+  drawItemHUD() {
+
+  	// Inventory:
   	var font = "bold 17px Arial";
 
   	const iconXPos = 5;
@@ -335,7 +349,7 @@ class Play extends GameState {
   	if(playerOne.goldCoins >0){
   	canvasContext.drawImage(goldHUD,iconXPos+2, currentYPos+5);
   	canvasContext.globalAlpha = 1.0;
-  	colorText("x"+playerOne.goldCoins, iconXPos+2+16 , currentYPos+40, 'red', font);
+  	colorText("x"+playerOne.goldCoins, iconXPos+2+16 , currentYPos+35, 'red', font);
   	canvasContext.globalAlpha = HUD_OPACITY;
   	currentYPos +=iconVerticalSpacing;
   	}
@@ -343,7 +357,7 @@ class Play extends GameState {
   	if(playerOne.keysHeld >0){
   	canvasContext.drawImage(keyHUD,iconXPos+2, currentYPos+5);
   	canvasContext.globalAlpha = 1.0;
-  	colorText("x"+playerOne.keysHeld,iconXPos+2+16 , currentYPos+40, 'red', font);
+  	colorText("x"+playerOne.keysHeld,iconXPos+2+16 , currentYPos+35, 'red', font);
   	canvasContext.globalAlpha = HUD_OPACITY;
   	currentYPos +=iconVerticalSpacing;
     }
@@ -368,10 +382,28 @@ class Play extends GameState {
 	  colorText("x"+playerOne.manaPotionsHeld,inventoryCoords.manaPotionXPos+16 , inventoryCoords.manaPotionYPos+35, 'red', font);
 	  canvasContext.globalAlpha = HUD_OPACITY;
 	  currentYPos +=iconVerticalSpacing;
-	}
+	  }
+  }
 
-  	// Reset alpha:
-  	canvasContext.globalAlpha = 1.0;
+  drawAbilityHUD() {
+
+    // Abilities:
+    
+    var iconHorizontalSpacing = 45;
+    const iconXPos = 280;
+  	const iconYPos = canvas.height-80;
+    var currentXPos = iconXPos;
+    
+    // Inventory BG:
+  	canvasContext.drawImage(abilityHUD,280, canvas.height-80);
+    
+    if(playerOne.sword) {
+      inventoryCoords.swordXPos = currentXPos+3;
+      inventoryCoords.swordYPos = iconYPos+2;
+  
+      canvasContext.drawImage(swordHUD,inventoryCoords.swordXPos, inventoryCoords.swordYPos);
+      currentXPos +=iconHorizontalSpacing;
+    }
   }
 
   drawMinimap() {
