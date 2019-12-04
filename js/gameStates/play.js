@@ -29,6 +29,7 @@ const NORMAL_KEY_MAP = {
   [KEY_D]: null,
   [KEY_P]: function(gameState) {
     gameState.pause = !gameState.pause;
+    gameState.handlePauseMovement();
   },
   [KEY_1]: function(gameState) {
     gameState.debug = !gameState.debug;
@@ -138,7 +139,11 @@ class Play extends GameState {
 			colorText("Can use Flame Spell", 360, 592, "black", "8px Arial Black");
 		} else {
 			colorText("CAN'T use Flame Spell", 360, 592, "red", "8px Arial Black");
-		}
+    }
+    
+    if( this.pause )  {
+       this.drawPause()
+    }
   }
 
   onMouseClick(mouseX,  mouseY) {
@@ -218,6 +223,17 @@ class Play extends GameState {
   	}
   }
 
+  /**
+   *  Handles Pause Movement for enemies and player
+   */
+  handlePauseMovement() {
+    var enemyList = this.mapStack[this.level].enemyList;
+    for( var i = 0; i < enemyList.length; ++i ) {
+      enemyList[i].canMove = !enemyList[i].canMove;
+    }
+    playerOne.canMove = !playerOne.canMove;
+  }
+
   drawDebugMenu() {
     var debugLineY = 50;
     var debugLineSkipY = 20;
@@ -255,6 +271,16 @@ class Play extends GameState {
     colorText("STATS", startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY;
     colorText("Player tile: " + playerTile, startX + 10, debugLineY, debugColor, debugFont);
+  }
+
+  /**
+   *  Draws the pause screen and menu
+   */
+  drawPause() {
+    const blackTransparent = 'rgba(0,0,0,0.5)';
+    colorRect( 0, 0, canvas.width, canvas.height, blackTransparent );
+    canvasContext.drawImage(menuScreenPic, ( canvas.width / 2 ) - 150, 0 );
+    colorText( "PAUSED", ( canvas.width / 2 ) - 100, canvas.height / 2 , 'black', "52px Arial  Black" );
   }
 
   drawHUD() {

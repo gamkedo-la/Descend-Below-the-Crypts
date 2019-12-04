@@ -28,9 +28,9 @@ class Player extends Character {
         this.pathFindingQueue = [];
 
         this.keyHeld_North = false;
-		    this.keyHeld_East = false;
-		    this.keyHeld_South = false;
-		    this.keyHeld_West = false;
+		this.keyHeld_East = false;
+		this.keyHeld_South = false;
+		this.keyHeld_West = false;
 
         // Attributes
         this.trapCoolDownTimer = 0;
@@ -90,21 +90,24 @@ class Player extends Character {
 
         this.wayPointMovement();
 
-        if (this.moveNorth && this.canMoveNorth || this.keyHeld_North && this.canMoveNorth) {
-            nextY -= this.movementSpeed;
-            this.offSetHeight = this.height * 4;
-        } else if (this.moveEast && this.canMoveEast || this.keyHeld_East && this.canMoveEast) {
-            nextX += this.movementSpeed;
-            this.offSetHeight = this.height * 1;
-        } else if (this.moveSouth && this.canMoveSouth || this.keyHeld_South && this.canMoveSouth) {
-            nextY += this.movementSpeed;
-            this.offSetHeight = this.height * 2;
-        } else if (this.moveWest && this.canMoveWest || this.keyHeld_West && this.canMoveWest) {
-            nextX -= this.movementSpeed;
-            this.offSetHeight = this.height * 3;
-        } else {
-            this.offSetHeight = 0;
+        if( this.canMove ) {
+            if (this.moveNorth && this.canMoveNorth || this.keyHeld_North && this.canMoveNorth) {
+                nextY -= this.movementSpeed;
+                this.offSetHeight = this.height * 4;
+            } else if (this.moveEast && this.canMoveEast || this.keyHeld_East && this.canMoveEast) {
+                nextX += this.movementSpeed;
+                this.offSetHeight = this.height * 1;
+            } else if (this.moveSouth && this.canMoveSouth || this.keyHeld_South && this.canMoveSouth) {
+                nextY += this.movementSpeed;
+                this.offSetHeight = this.height * 2;
+            } else if (this.moveWest && this.canMoveWest || this.keyHeld_West && this.canMoveWest) {
+                nextX -= this.movementSpeed;
+                this.offSetHeight = this.height * 3;
+            } else {
+                this.offSetHeight = 0;
+            }
         }
+
 
         var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX, nextY);
         var walkIntoTileType = TILE_WALL;
