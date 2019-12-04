@@ -25,6 +25,8 @@ var inventoryCoords = {
   healPotionYPos : 0,
   manaPotionXPos : 0,
   manaPotionYPos : 0,
+  punchXPos : 0,
+  punchYPos: 0,
   swordXPos : 0,
   swordYPos : 0,
 }
@@ -184,6 +186,13 @@ class Play extends GameState {
      
      console.log('use sword');
    }
+   else if(mousePosX >= inventoryCoords.punchXPos &&
+    mousePosX <= inventoryCoords.punchXPos + INVENTORY_ICON_WIDTH &&
+   mousePosY >= inventoryCoords.punchYPos &&
+    mousePosY <= inventoryCoords.punchYPos+ INVENTORY_ICON_HEIGHT){
+   
+   console.log('punch');
+ }
 
 }
 
@@ -395,7 +404,13 @@ class Play extends GameState {
     var currentXPos = iconXPos;
     
     // Inventory BG:
-  	canvasContext.drawImage(abilityHUD,280, canvas.height-80);
+    canvasContext.drawImage(abilityHUD,280, canvas.height-80);
+    
+    inventoryCoords.punchXPos = currentXPos+3;
+    inventoryCoords.punchYPos = iconYPos+2;
+
+    canvasContext.drawImage(punchHUD,inventoryCoords.punchXPos, inventoryCoords.punchYPos);
+    currentXPos +=iconHorizontalSpacing;
     
     if(playerOne.sword) {
       inventoryCoords.swordXPos = currentXPos+3;
