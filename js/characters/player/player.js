@@ -94,17 +94,23 @@ class Player extends Character {
             if (this.moveNorth && this.canMoveNorth || this.keyHeld_North && this.canMoveNorth) {
                 nextY -= this.movementSpeed;
                 this.offSetHeight = this.height * 4;
+                this.enableAnimation=true;
             } else if (this.moveEast && this.canMoveEast || this.keyHeld_East && this.canMoveEast) {
                 nextX += this.movementSpeed;
                 this.offSetHeight = this.height * 1;
+                this.enableAnimation=true;
             } else if (this.moveSouth && this.canMoveSouth || this.keyHeld_South && this.canMoveSouth) {
                 nextY += this.movementSpeed;
                 this.offSetHeight = this.height * 2;
+                this.enableAnimation=true;
             } else if (this.moveWest && this.canMoveWest || this.keyHeld_West && this.canMoveWest) {
                 nextX -= this.movementSpeed;
                 this.offSetHeight = this.height * 3;
+                this.enableAnimation=true;
             } else {
-                this.offSetHeight = 0;
+                // Reset to the first frame in the last movement direction animation:
+                this.offSetWidth = 0;
+                this.enableAnimation=false;
             }
         }
 

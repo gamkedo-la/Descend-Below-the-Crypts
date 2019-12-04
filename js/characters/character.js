@@ -29,6 +29,7 @@ class Character {
     this.roomGrid = [];
 
     // Animations
+    this.enableAnimation = false;
     this.frameTick = 0; // animation - called every frame
   	this.ticksPerFrame = 5; //frame ticks advance the frame
   	this.numberOfFrames = 4; //number of frames in character sprite sheet
@@ -63,7 +64,9 @@ class Character {
   }
 
   draw() {
-    this.animate();
+    if(this.enableAnimation==true){
+      this.animate();
+    }
     gameCoordToIsoCoord(this.x, this.y);
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY);
 		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height,
