@@ -155,7 +155,6 @@ class Play extends GameState {
        this.drawPause()
     }
   }
-
   onMouseClick(mouseX,  mouseY) {
     this.mapStack[this.level].onMouseClick(mouseX, mouseY);
     this.detectHUDClicks(mousePosX, mousePosY);
@@ -184,6 +183,12 @@ class Play extends GameState {
 
 }
 
+detectHUDHover(mousePosX, mousePosY){
+  if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
+    console.log('punch hover');
+  }
+}
+
 checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   if(mousePosX >= iconXPos &&
     mousePosX <= iconXPos + INVENTORY_ICON_WIDTH &&
@@ -198,6 +203,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 
   onMouseMove(mouseX, mouseY) {
     this.mapStack[this.level].onMouseMove(mouseX, mouseY);
+    this.detectHUDHover(mouseX, mouseY);
   }
 
   onKeyPress(evt) {

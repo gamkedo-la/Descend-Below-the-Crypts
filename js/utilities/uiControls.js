@@ -18,6 +18,15 @@ function initInput() {
 		gameStateManager.getState().onMouseClick(mousePosX, mousePosY);
 	});
 
+	canvas.addEventListener('mousemove', function(evt){
+		var mousePos = calculateMousePos(evt);
+
+		mousePosX = mousePos.x;
+		mousePosY = mousePos.y;
+		gameStateManager.getState().onMouseMove(mousePosX, mousePosY);
+
+	});
+
 	document.addEventListener("keydown", function(evt) {
 		gameStateManager.getState().onKeyPress(evt);
 	});
