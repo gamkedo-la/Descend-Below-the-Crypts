@@ -15,6 +15,9 @@ const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
 const KEY_DOWN_ARROW = 40;
 
+const INVENTORY_ICON_WIDTH=40;
+const INVENTORY_ICON_HEIGHT=40;
+
 var inventoryCoords = {
   healPotionXPos : 0,
   healPotionYPos : 0,
@@ -148,7 +151,33 @@ class Play extends GameState {
 
   onMouseClick(mouseX,  mouseY) {
     this.mapStack[this.level].onMouseClick(mouseX, mouseY);
+    this.detectInventoryClicks(mousePosX, mousePosY);
   }
+
+  detectInventoryClicks(mousePosX, mousePosY){
+		if(mousePosX >= inventoryCoords.healPotionXPos &&
+			mousePosX <= inventoryCoords.healPotionXPos+ INVENTORY_ICON_WIDTH &&
+		   mousePosY >= inventoryCoords.healPotionYPos &&
+			mousePosY <= inventoryCoords.healPotionYPos+ INVENTORY_ICON_HEIGHT &&
+			playerOne.healPotionsHeld >0 ){
+		   
+		   playerOne.useHealPotion();
+		   return true;
+	   }
+	   else if(mousePosX >= inventoryCoords.manaPotionXPos &&
+		   mousePosX <= inventoryCoords.manaPotionXPos+ INVENTORY_ICON_WIDTH &&
+		  mousePosY >= inventoryCoords.manaPotionYPos &&
+		   mousePosY <= inventoryCoords.manaPotionYPos+ INVENTORY_ICON_HEIGHT &&
+		   playerOne.manaPotionsHeld >0 ){
+		  
+		  playerOne.useManaPotion();
+		  return true;
+	  }
+	  else{
+		  return false;
+	  }
+
+}
 
   onMouseMove(mouseX, mouseY) {
     this.mapStack[this.level].onMouseMove(mouseX, mouseY);
