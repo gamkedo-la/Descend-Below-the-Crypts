@@ -387,6 +387,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
     canvasContext.globalAlpha = HUD_OPACITY;
 
     // HP and MP:
+	colorRect(20, 512, 50,(playerOne.health / playerOne.maxHealth) * 72, "red");
   	canvasContext.drawImage(healthHUD,10, canvas.height-100);
   	canvasContext.drawImage(manaHUD,canvas.width-110, canvas.height-100);
     
