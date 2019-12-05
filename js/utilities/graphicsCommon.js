@@ -25,6 +25,35 @@ function colorText(showWords, textX, textY, fillColor, fontStyle) {
   canvasContext.fillText(showWords, textX, textY);
 }
 
+function toolTipText(txt, font, x, y) {
+	/// lets save current state as we make a lot of changes        
+	canvasContext.save();
+	
+    /// set font
+    canvasContext.font = font;
+
+    /// draw text from top - makes life easier at the moment
+    canvasContext.textBaseline = 'top';
+
+    /// color for background
+    canvasContext.fillStyle = '#f50';
+
+    /// get width of text
+    var width = canvasContext.measureText(txt).width;
+
+    /// draw background rect assuming height of font
+    canvasContext.fillRect(x, y, width, parseInt(font, 10));
+
+    /// text color
+    canvasContext.fillStyle = '#000';
+
+    /// draw text on top
+    canvasContext.fillText(txt, x, y);
+
+    /// restore original state
+    canvasContext.restore();
+}
+
 function colorLine(fromX,fromY,toX, toY, strokeColor){
 	canvasContext.strokeStyle = strokeColor;
 	canvasContext.beginPath();

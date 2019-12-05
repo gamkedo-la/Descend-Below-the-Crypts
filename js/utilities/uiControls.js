@@ -18,7 +18,7 @@ function initInput() {
 		gameStateManager.getState().onMouseClick(mousePosX, mousePosY);
 	});
 
-	canvas.addEventListener('mousemove', function(evt){
+	canvas.addEventListener('onmouseenter', function(evt){
 		var mousePos = calculateMousePos(evt);
 
 		mousePosX = mousePos.x;

@@ -25,11 +25,20 @@ var inventoryCoords = {
   healPotionYPos : 0,
   manaPotionXPos : 0,
   manaPotionYPos : 0,
+  goldXPos: 0,
+  goldYPos: 0,
+  keyXPos: 0,
+  keyYPos: 0,
   punchXPos : 0,
   punchYPos: 0,
   swordXPos : 0,
   swordYPos : 0,
 }
+
+// Tooltip:
+var tooltipTxt = '';
+var tooltipPosX = 0;
+var tooltipPosY = 0;
 
 const NORMAL_KEY_MAP = {
   [KEY_W]: null,
@@ -154,6 +163,13 @@ class Play extends GameState {
     if( this.pause )  {
        this.drawPause()
     }
+
+    // Tooltip text:
+    if(tooltipTxt != ''){
+      var bufferSpace = 10;
+      var toolTipFont = "16px Arial Black";
+      toolTipText(tooltipTxt,toolTipFont, tooltipPosX + bufferSpace, tooltipPosY + bufferSpace );
+    }
   }
   onMouseClick(mouseX,  mouseY) {
     this.mapStack[this.level].onMouseClick(mouseX, mouseY);
@@ -185,7 +201,37 @@ class Play extends GameState {
 
 detectHUDHover(mousePosX, mousePosY){
   if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
-    console.log('punch hover');
+    tooltipTxt = "Punch is bla bla..";
+    tooltipPosX = mousePosX;
+    tooltipPosY = mousePosY;
+  }
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true){
+    tooltipTxt = "Sword is bla bla..";
+    tooltipPosX = mousePosX;
+    tooltipPosY = mousePosY;
+  }
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.keyXPos, inventoryCoords.keyYPos) == true){
+    tooltipTxt = "Key is bla bla..";
+    tooltipPosX = mousePosX;
+    tooltipPosY = mousePosY;
+  }
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.goldXPos, inventoryCoords.goldYPos) == true){
+    tooltipTxt = "Gold is bla bla..";
+    tooltipPosX = mousePosX;
+    tooltipPosY = mousePosY;
+  }
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos) == true){
+    tooltipTxt = "Heal Potion recovers 25% of your health";
+    tooltipPosX = mousePosX;
+    tooltipPosY = mousePosY;
+  }
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.manaPotionXPos, inventoryCoords.manaPotionYPos) == true){
+    tooltipTxt = "Mana Potion is bla bla..";
+    tooltipPosX = mousePosX;
+    tooltipPosY = mousePosY;
+  }
+  else{
+    tooltipTxt = '';
   }
 }
 
@@ -362,19 +408,25 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   	canvasContext.drawImage(inventoryHUD,iconXPos, currentYPos);
 
   	if(playerOne.goldCoins >0){
-  	canvasContext.drawImage(goldHUD,iconXPos+2, currentYPos+5);
-  	canvasContext.globalAlpha = 1.0;
-  	colorText("x"+playerOne.goldCoins, iconXPos+2+16 , currentYPos+35, 'red', font);
-  	canvasContext.globalAlpha = HUD_OPACITY;
-  	currentYPos +=iconVerticalSpacing;
+      inventoryCoords.goldXPos = iconXPos+2;
+      inventoryCoords.goldYPos = currentYPos+5;
+
+      canvasContext.drawImage(goldHUD,inventoryCoords.goldXPos, inventoryCoords.goldYPos);
+      canvasContext.globalAlpha = 1.0;
+      colorText("x"+playerOne.goldCoins, inventoryCoords.goldXPos+16 , inventoryCoords.goldYPos+35, 'red', font);
+      canvasContext.globalAlpha = HUD_OPACITY;
+      currentYPos +=iconVerticalSpacing;
   	}
 
   	if(playerOne.keysHeld >0){
-  	canvasContext.drawImage(keyHUD,iconXPos+2, currentYPos+5);
-  	canvasContext.globalAlpha = 1.0;
-  	colorText("x"+playerOne.keysHeld,iconXPos+2+16 , currentYPos+35, 'red', font);
-  	canvasContext.globalAlpha = HUD_OPACITY;
-  	currentYPos +=iconVerticalSpacing;
+      inventoryCoords.keyXPos = iconXPos+2;
+      inventoryCoords.keyYPos = currentYPos+5;
+
+      canvasContext.drawImage(keyHUD,inventoryCoords.keyXPos, inventoryCoords.keyYPos);
+      canvasContext.globalAlpha = 1.0;
+      colorText("x"+playerOne.keysHeld,inventoryCoords.keyXPos+16 , inventoryCoords.keyYPos+35, 'red', font);
+      canvasContext.globalAlpha = HUD_OPACITY;
+      currentYPos +=iconVerticalSpacing;
     }
     
     if(playerOne.healPotionsHeld >0){
