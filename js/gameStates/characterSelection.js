@@ -95,7 +95,7 @@ class CharacterSelection extends GameState {
         playerOne = new Wizard();
 
       gameStateManager.setState(State.PLAY);
-      basementMusic.loopSong("Decrepit_Basement_draft1");
+      basementMusic.loopSong("basement_music");
     } else
       //Flash Red if invalid click
       colorRect(0,0,canvas.width,canvas.height, 'red');
