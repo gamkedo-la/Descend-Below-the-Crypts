@@ -20,6 +20,15 @@ const INVENTORY_ICON_HEIGHT=40;
 
 const HUD_OPACITY= 0.7;
 
+const PUNCH_COOLDOWN_TIME = 1;
+const SWORD_COOLDOWN_TIME = 4;
+
+var punchCoolingDown = false;
+var swordCoolingDown = false;
+
+var punchCoolDownTimer = 0;
+var swordCoolDownTimer = 0;
+
 var inventoryCoords = {
   healPotionXPos : 0,
   healPotionYPos : 0,
@@ -107,6 +116,8 @@ class Play extends GameState {
     this.moveFast = false;
     this.hasUnlimitedKeys = false;
     this.noClipEnabled = false;
+
+    this.coolDown();
   }
 
   draw() {
@@ -189,12 +200,25 @@ class Play extends GameState {
     }
     else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true &&
       playerOne.sword){
-     
-     console.log('use sword');
+
+      if(swordCoolingDown == false){
+        swordCoolingDown = true;
+
+        // Reset cooldown timer:
+        swordCoolDownTimer = SWORD_COOLDOWN_TIME;
+
+        playerOne.attackWithSword();
+      }
    }
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
-   
-   console.log('punch');
+      if(punchCoolingDown == false){
+        punchCoolingDown = true;
+
+        // Reset cooldown timer:
+        punchCoolDownTimer = PUNCH_COOLDOWN_TIME;
+
+        playerOne.attackWithPunch();
+      }
  }
 
 }
@@ -465,6 +489,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   drawAbilityHUD() {
 
     // Abilities:
+    var coolDownTimerfont = "bold 25px Arial";
     
     var iconHorizontalSpacing = 45;
     const iconXPos = 280;
@@ -480,13 +505,44 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
     canvasContext.drawImage(punchHUD,inventoryCoords.punchXPos, inventoryCoords.punchYPos);
     currentXPos +=iconHorizontalSpacing;
     
+    if(punchCoolingDown==true){
+      canvasContext.drawImage(coolDownHUD,inventoryCoords.punchXPos, inventoryCoords.punchYPos);
+      colorText(punchCoolDownTimer, 
+        inventoryCoords.punchXPos+ 15,
+        inventoryCoords.punchYPos+ 30, 'red', coolDownTimerfont);
+    }
+    
     if(playerOne.sword) {
       inventoryCoords.swordXPos = currentXPos+3;
       inventoryCoords.swordYPos = iconYPos+2;
   
       canvasContext.drawImage(swordHUD,inventoryCoords.swordXPos, inventoryCoords.swordYPos);
       currentXPos +=iconHorizontalSpacing;
+
+      if(swordCoolingDown==true){
+        canvasContext.drawImage(coolDownHUD,inventoryCoords.swordXPos, inventoryCoords.swordYPos);
+        colorText(swordCoolDownTimer, 
+          inventoryCoords.swordXPos+ 15,
+          inventoryCoords.swordYPos+ 30, 'red', coolDownTimerfont);
+      }
     }
+  }
+
+  coolDown(){
+    setInterval(function() {
+      if(punchCoolDownTimer >0){
+        punchCoolDownTimer--;
+      }
+      else{
+        punchCoolingDown = false;
+      }
+      if(swordCoolDownTimer >0){
+        swordCoolDownTimer--;
+      }
+      else{
+        swordCoolingDown = false;
+      }
+    }, 1000);
   }
 
   drawMinimap() {
