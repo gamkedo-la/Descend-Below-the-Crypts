@@ -15,6 +15,8 @@ class Character {
     this.maxHealth = maxHealth;
     this.health = this.maxHealth;
   	this.movementSpeed = movementSpeed;
+	this.mana = 0;
+	this.maxMana = 0;
 
     // Movement
 	  this.canMove = true // meant for classes that can move

@@ -7,5 +7,7 @@ class Cleric extends Player {
   constructor() {
     super(CLERIC_MAX_HEALTH, CLERIC_MOVEMENT_SPEED, CLERIC_WIDTH, CLERIC_HEIGHT);
     super.init(clericPic, "The Cleric");
+	this.mana = 2;
+	this.maxMana = 2;
   }
 }

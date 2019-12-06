@@ -7,5 +7,7 @@ class Wizard extends Player {
   constructor() {
     super(WIZARD_MAX_HEALTH, WIZARD_MOVEMENT_SPEED, WIZARD_WIDTH, WIZARD_HEIGHT);
     super.init(wizardPic, "The Wizard");
+	this.mana = 4;
+	this.maxMana = 4;
   }
 }

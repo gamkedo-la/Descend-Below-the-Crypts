@@ -385,16 +385,25 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       
     // Set alpha:
     canvasContext.globalAlpha = HUD_OPACITY;
-
+	
     // HP and MP:
-	colorRect(20, 512, 50,(playerOne.health / playerOne.maxHealth) * 72, "red");
+	this.fillHealthOrMana(22, 510, 46, 73, "red", playerOne.health / playerOne.maxHealth);
+	this.fillHealthOrMana(canvas.width-68, 510, 46, 73, "blue", playerOne.mana / playerOne.maxMana);
   	canvasContext.drawImage(healthHUD,10, canvas.height-100);
-  	canvasContext.drawImage(manaHUD,canvas.width-110, canvas.height-100);
+  	canvasContext.drawImage(manaHUD,canvas.width-80, canvas.height-100);
     
     this.drawItemHUD();
     this.drawAbilityHUD();
   }
+  
+  fillHealthOrMana(leftX, topY, width, height, fillColor, fillPerc){
+		canvasContext.fillStyle = fillColor;
+		var heightLeft = Math.floor((1.0-fillPerc)*height);
+		canvasContext.fillRect(leftX, topY+heightLeft, width, height-heightLeft);
+	//	colorRect(20, 512, 50,(playerOne.health / playerOne.maxHealth) * 72, "red");  
+   }
 
+  
   drawItemHUD() {
 
   	// Inventory:
