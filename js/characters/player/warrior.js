@@ -8,4 +8,12 @@ class Warrior extends Player {
     super(WARRIOR_MAX_HEALTH, WARRIOR_MOVEMENT_SPEED, WARRIOR_WIDTH, WARRIOR_HEIGHT);
     super.init(warriorPic, "The Warrior");
   }
+
+  attackWithSword(){
+    console.log('Attacking with sword');
+  }
+
+  attackWithPunch(){
+    console.log('Attacking with punch');
+  }
 }
