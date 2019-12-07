@@ -14,6 +14,7 @@ var orcPic = document.createElement("img");
 var ogrePic = document.createElement("img");
 var ratPic = document.createElement("img");
 var spiderPic = document.createElement("img");
+var skeletonKingPic = document.createElement("img");
 //Game States
 var characterSelectionBackgroundPic = document.createElement("img");
 var leftDoorOpenningPic = document.createElement("img");
@@ -79,6 +80,7 @@ function loadImages() {
 			{varName: ogrePic, theFile: "monsters/ogre.png"},
 			{varName: ratPic, theFile: "monsters/spider.png"},
 			{varName: spiderPic, theFile: "monsters/spider.png"},
+			{varName: skeletonKingPic, theFile: "monsters/skeletonKing.png"},
 			//misc
 			{varName: shadowPic, theFile: "shadow.png"},
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},

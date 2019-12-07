@@ -4,8 +4,8 @@ const SKELETON_KING_NAME = [ "Lazarus"];
 
 const SKELETON_KING_MAX_HEALTH = 2;
 const SKELETON_KING_MOVEMENT_SPEED = 3;
-const SKELETON_KING_WIDTH = 30;
-const SKELETON_KING_HEIGHT = 31;
+const SKELETON_KING_WIDTH = 33;
+const SKELETON_KING_HEIGHT = 54;
 
 class SkeletonKing extends Enemy {
   constructor() {
@@ -13,7 +13,7 @@ class SkeletonKing extends Enemy {
   }
 
   init() {
-    super.init(goblinPic, randFromList(SKELETON_KING_NAME), TILE_SKELETON_KING);
+    super.init(skeletonKingPic, randFromList(SKELETON_KING_NAME), TILE_SKELETON_KING);
   }
 }
 
