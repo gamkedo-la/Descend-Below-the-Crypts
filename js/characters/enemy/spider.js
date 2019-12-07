@@ -3,7 +3,7 @@ const SPIDER_NAMES = [ "Splinter", "Bob" ];
 const SPIDER_MAX_HEALTH = 2;
 const SPIDER_MOVEMENT_SPEED = 3;
 const SPIDER_WIDTH = 31;
-const SPIDER_HEIGHT = 30;
+const SPIDER_HEIGHT = 24;
 
 class Spider extends Enemy {
   constructor() {
@@ -12,5 +12,6 @@ class Spider extends Enemy {
 
   init() {
     super.init(spiderPic, randFromList(SPIDER_NAMES), TILE_SPIDER);
+	this.enableAnimation = false;
   }
 }

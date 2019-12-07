@@ -2,8 +2,8 @@ const RAT_NAMES = [ "rat"];
 
 const RAT_MAX_HEALTH = 2;
 const RAT_MOVEMENT_SPEED = 3;
-const RAT_WIDTH = 31;
-const RAT_HEIGHT = 30;
+const RAT_WIDTH = 58;
+const RAT_HEIGHT = 29;
 
 class Rat extends Enemy {
   constructor() {
@@ -12,5 +12,6 @@ class Rat extends Enemy {
 
   init() {
     super.init(ratPic, randFromList(RAT_NAMES), TILE_RAT);
+	this.enableAnimation = false;
   }
 }

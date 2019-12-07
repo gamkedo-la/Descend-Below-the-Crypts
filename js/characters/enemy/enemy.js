@@ -61,8 +61,11 @@ class Enemy extends Character {
 	var nextY = this.y;
 
 	if(this.canMove){
-		//this.randomMovements();
-		this.wayPointMovement();
+		if(this.myTile == TILE_SKELETON_KING){
+			this.randomMovements();
+		} else {
+			this.wayPointMovement();
+		}
 	} else {
 		this.rest();
 	}
@@ -112,6 +115,15 @@ class Enemy extends Character {
 		case TILE_BLUE_RUG_CEN:
 		case TILE_BLUE_RUG_L:
 		case TILE_BLUE_RUG_R:
+		case TILE_GREEN_RUG_TL:
+		case TILE_GREEN_RUG_TR:
+		case TILE_GREEN_RUG_BL:
+		case TILE_GREEN_RUG_BR:
+		case TILE_GREEN_RUG_TOP:
+		case TILE_GREEN_RUG_BOT:
+		case TILE_GREEN_RUG_CEN:
+		case TILE_GREEN_RUG_L:
+		case TILE_GREEN_RUG_R:
 		case TILE_CRYPT_FLOOR:
 		case TILE_WIZARD_BOOK:
 		case TILE_CLERIC_BOOK:
@@ -164,6 +176,7 @@ class Enemy extends Character {
   randomMovements() {
     var whichDirection =  Math.round(Math.random() * 10);
 		this.movementTimer--;
+		console.log(this.movementTimer);
 
 		if(this.movementTimer <= 0){
 			switch(whichDirection) {

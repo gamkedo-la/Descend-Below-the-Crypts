@@ -19,6 +19,9 @@ class Map {
         case TILE_RAT:
           this.enemyList.push(new Rat());
           break;
+		case TILE_SPIDER:
+          this.enemyList.push(new Spider());
+          break; 
 		case TILE_KINGS_TOMB:
           this.enemyList.push(new SkeletonKingsTomb());
           break;
@@ -208,8 +211,8 @@ class Map {
   	for(var i = 0; i < this.enemyList.length; i++){
   		playerOne.checkCollisionsAgainst(this.enemyList[i]);
   		for(var ii = i+1; ii < this.enemyList.length; ii++){
-  			enemyList[i].checkCollisionsAgainst(this.enemyList[ii]);
-  			enemyList[i].checkCollisionsAgainst(playerOne);
+  			this.enemyList[i].checkCollisionsAgainst(this.enemyList[ii]);
+  			this.enemyList[i].checkCollisionsAgainst(playerOne);
   		}
   	}
   }

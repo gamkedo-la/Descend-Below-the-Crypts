@@ -78,7 +78,7 @@ function loadImages() {
 			{varName: orcPic, theFile: "monsters/orc1.png"},
 			{varName: goblinPic, theFile: "monsters/goblinAnim.png"},
 			{varName: ogrePic, theFile: "monsters/ogre.png"},
-			{varName: ratPic, theFile: "monsters/spider.png"},
+			{varName: ratPic, theFile: "monsters/rat.png"},
 			{varName: spiderPic, theFile: "monsters/spider.png"},
 			{varName: skeletonKingPic, theFile: "monsters/skeletonKing.png"},
 			//misc
