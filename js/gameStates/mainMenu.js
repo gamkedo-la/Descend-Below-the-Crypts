@@ -69,7 +69,7 @@ class MainMenu extends GameState {
    * 
    * @returns {boolean} 
    */
-  isMouseClickOnStartBoundary() {
+  isMouseClickInStartBoundary() {
     const START_LEFT_EDGE = 353;
     const START_RIGHT_EDGE = 422;
     const START_TOP_EDGE = 235;
@@ -84,7 +84,7 @@ class MainMenu extends GameState {
    * 
    * @returns {boolean} 
    */
-  isMouseClickOnInstructionBoundary() {
+  isMouseClickInInstructionBoundary() {
     const INSTRUCTION_LEFT_EDGE = 318;
     const INSTRUCTION_RIGHT_EDGE = 460;
     const INSTRUCTION_TOP_EDGE = 285;
@@ -99,7 +99,7 @@ class MainMenu extends GameState {
    *  
    * @returns {boolean}
    */
-  isMouseClickOnCreditsBoundary() {
+  isMouseClickInCreditsBoundary() {
     const CREDITS_LEFT_EDGE = 318;
     const CREDITS_RIGHT_EDGE = 460;
     const CREDITS_TOP_EDGE = 340;
@@ -113,13 +113,13 @@ class MainMenu extends GameState {
    * Handles gamestate selection
    */
   handleStateSelection() {
-    if ( this.isMouseClickOnStartBoundary() ) {
+    if ( this.isMouseClickInStartBoundary() ) {
       gameStateManager.setState( State.CHARSELECT ) ;
     }
-    else if ( this.isMouseClickOnInstructionBoundary() ) {
+    else if ( this.isMouseClickInInstructionBoundary() ) {
       gameStateManager.setState( State.INSTRUCTIONS );
     }
-    else if ( this.isMouseClickOnCreditsBoundary() ) {
+    else if ( this.isMouseClickInCreditsBoundary() ) {
   	    gameStateManager.setState( State.CREDITS );
     }
   }
