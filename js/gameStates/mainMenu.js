@@ -2,6 +2,9 @@ class MainMenu extends GameState {
   constructor() {
     super();
 
+    this.mouseXClickPosition = 0;
+    this.mouseYClickPosition = 0;
+    
     this.doorOpeningSpeed = 3;
     this.doorLeftXPosition = 0;
     this.doorRightXPosition = 400;
@@ -49,33 +52,76 @@ class MainMenu extends GameState {
   	canvasContext.drawImage(rightDoorOpenningPic, this.doorRightXPosition, 0);
   }
 
-  onMouseClick(mouseX, mouseY) {
+  /**
+   * Handles mouse click event
+   * 
+   * @param {number} mouseXPosition 
+   * @param {number} mouseYPosition 
+   */
+  onMouseClick( mouseXPosition, mouseYPosition ) {
+    this.mouseXClickPosition = mouseXPosition;
+    this.mouseYClickPosition = mouseYPosition;
+    this.handleStateSelection();
+  }
+  
+  /**
+   * Checks if mouse click is within start text boundary
+   * 
+   * @returns {boolean} 
+   */
+  isMouseClickOnStartBoundary() {
     const START_LEFT_EDGE = 353;
     const START_RIGHT_EDGE = 422;
     const START_TOP_EDGE = 235;
     const START_BOTTOM_EDGE = 256;
 
+    return this.mouseXClickPosition > START_LEFT_EDGE && this.mouseXClickPosition < START_RIGHT_EDGE &&
+    this.mouseYClickPosition > START_TOP_EDGE && this.mouseYClickPosition < START_BOTTOM_EDGE;
+  }
+
+  /**
+   * Checks if mouse click is within instruction text boundary
+   * 
+   * @returns {boolean} 
+   */
+  isMouseClickOnInstructionBoundary() {
     const INSTRUCTION_LEFT_EDGE = 318;
     const INSTRUCTION_RIGHT_EDGE = 460;
     const INSTRUCTION_TOP_EDGE = 285;
     const INSTRUCTION_BOTTOM_EDGE = 315;
 
-    
-    if (mouseX > START_LEFT_EDGE && mouseX < START_RIGHT_EDGE &&
-        mouseY > START_TOP_EDGE && mouseY < START_BOTTOM_EDGE)
-    {
-      gameStateManager.setState(State.CHARSELECT);
+    return this.mouseXClickPosition < INSTRUCTION_RIGHT_EDGE && this.mouseXClickPosition > INSTRUCTION_LEFT_EDGE &&
+    this.mouseYClickPosition < INSTRUCTION_BOTTOM_EDGE && this.mouseYClickPosition > INSTRUCTION_TOP_EDGE;
+  }
+
+  /**
+   * Checks if mouse click is within credits text boundary
+   *  
+   * @returns {boolean}
+   */
+  isMouseClickOnCreditsBoundary() {
+    const CREDITS_LEFT_EDGE = 318;
+    const CREDITS_RIGHT_EDGE = 460;
+    const CREDITS_TOP_EDGE = 340;
+    const CREDITS_BOTTOM_EDGE = 360;
+
+    return this.mouseXClickPosition < CREDITS_RIGHT_EDGE && this.mouseXClickPosition > CREDITS_LEFT_EDGE &&
+    this.mouseYClickPosition < CREDITS_BOTTOM_EDGE && this.mouseYClickPosition > CREDITS_TOP_EDGE;
+  }
+
+  /**
+   * Handles gamestate selection
+   */
+  handleStateSelection() {
+    if ( this.isMouseClickOnStartBoundary() ) {
+      gameStateManager.setState( State.CHARSELECT ) ;
     }
-    else if (mouseX < INSTRUCTION_RIGHT_EDGE && mouseX > INSTRUCTION_LEFT_EDGE &&
-             mouseY < INSTRUCTION_BOTTOM_EDGE && mouseY > INSTRUCTION_TOP_EDGE)
-    {
-      gameStateManager.setState(State.INSTRUCTIONS);
+    else if ( this.isMouseClickOnInstructionBoundary() ) {
+      gameStateManager.setState( State.INSTRUCTIONS );
     }
-    else 
-    {
-  	   colorRect(0,0,canvas.width,canvas.height, 'red');
+    else if ( this.isMouseClickOnCreditsBoundary() ) {
+  	    gameStateManager.setState( State.CREDITS );
     }
-  
   }
 
   onMouseMove(mouseX, mouseY) {

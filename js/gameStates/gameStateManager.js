@@ -3,6 +3,7 @@ const State = {
   CHARSELECT: 1,
   PLAY: 2,
   INSTRUCTIONS: 3,
+  CREDITS: 4
 };
 
 class GameStateManager {
@@ -11,7 +12,9 @@ class GameStateManager {
     this.stateStack = [ new MainMenu(),
                         new CharacterSelection(),
                         new Play(),
-                        new InstructionMenu() ];
+                        new InstructionMenu(),
+                        new Credits() 
+                      ];
   }
 
   setState(newState) {
