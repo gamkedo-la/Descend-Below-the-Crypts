@@ -229,27 +229,32 @@ detectHUDHover(mousePosX, mousePosY){
     tooltipPosX = mousePosX;
     tooltipPosY = mousePosY;
   }
-  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true){
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true
+  && playerOne.sword){
     tooltipTxt = "Sword is bla bla..";
     tooltipPosX = mousePosX;
     tooltipPosY = mousePosY;
   }
-  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.keyXPos, inventoryCoords.keyYPos) == true){
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.keyXPos, inventoryCoords.keyYPos) == true
+  && playerOne.keysHeld > 0){
     tooltipTxt = "Key is bla bla..";
     tooltipPosX = mousePosX;
     tooltipPosY = mousePosY;
   }
-  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.goldXPos, inventoryCoords.goldYPos) == true){
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.goldXPos, inventoryCoords.goldYPos) == true
+  && playerOne.goldCoins > 0){
     tooltipTxt = "Gold is bla bla..";
     tooltipPosX = mousePosX;
     tooltipPosY = mousePosY;
   }
-  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos) == true){
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos) == true
+  && playerOne.healPotionsHeld > 0){
     tooltipTxt = "Heal Potion recovers 25% of your health";
     tooltipPosX = mousePosX;
     tooltipPosY = mousePosY;
   }
-  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.manaPotionXPos, inventoryCoords.manaPotionYPos) == true){
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.manaPotionXPos, inventoryCoords.manaPotionYPos) == true
+  && playerOne.manaPotionsHeld >0){
     tooltipTxt = "Mana Potion is bla bla..";
     tooltipPosX = mousePosX;
     tooltipPosY = mousePosY;
