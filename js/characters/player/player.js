@@ -445,6 +445,11 @@ class Player extends Character {
         
         this.healPotionsHeld--;
         this.health += healPotionRecoveryPercent;
+
+        // If new health is > max health:
+        if(this.health> this.maxHealth){
+            this.health = this.maxHealth;
+        }
       }
       useManaPotion() {
         console.log("Mana potion used");
