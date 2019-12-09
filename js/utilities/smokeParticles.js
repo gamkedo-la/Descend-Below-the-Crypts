@@ -24,9 +24,7 @@ function smokeClass() {
 	}
 
 	this.draw = function() {
-		colorCircle(isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY,
-			(20 * this.cyclesLeft/130.0),
-		 this.myColor);
+		colorCircle(this.x, this.y, (20 * this.cyclesLeft/130.0), this.myColor);
 	}
 }
 

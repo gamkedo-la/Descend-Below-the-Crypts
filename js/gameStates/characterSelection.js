@@ -72,7 +72,7 @@ class CharacterSelection extends GameState {
   		addSmoke(760, 335); //torch 4
   	}
 
-  	moveSmoke()
+  	moveSmoke();
   	drawSmoke();
 
   	this.torch1.draw();
