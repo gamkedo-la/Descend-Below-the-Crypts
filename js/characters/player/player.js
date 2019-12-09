@@ -438,8 +438,6 @@ class Player extends Character {
     }
 
     useHealPotion() {
-        console.log("Heal potion used");
-
         // This variable need to be global?
         var healPotionRecoveryPercent = this.maxHealth* 0.25; // 25%
         
@@ -450,6 +448,17 @@ class Player extends Character {
         if(this.health> this.maxHealth){
             this.health = this.maxHealth;
         }
+
+        // We have to write this in order to reference this correctly inside setTimeout()
+        var _this = this;
+
+        // play FX:
+        _this.showHealFX=true;
+
+        setTimeout(function(){
+            _this.showHealFX = false;
+        }, 1000);
+
       }
       useManaPotion() {
         console.log("Mana potion used");

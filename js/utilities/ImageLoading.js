@@ -47,6 +47,10 @@ var abilityHUD = document.createElement("img");
 var swordHUD = document.createElement("img");
 var punchHUD = document.createElement("img");
 
+
+// FX
+var healFX = document.createElement("img");
+
 //All pictures prior to launching the game.  If a picture doesn't load, the game doesn't launch.
 function countLoadedImagesAndLaunchIfReady(){
 		picsToLoad--;
@@ -114,6 +118,9 @@ function loadImages() {
 			{varName: abilityHUD, theFile: "HUD/abilities.png"},
 			{varName: swordHUD, theFile: "HUD/swordIcon.png"},
 			{varName: punchHUD, theFile: "HUD/punchIcon.png"},
+
+			// FX
+			{varName: healFX, theFile: "FX/healEffect.png"},
 
 			//tiles
 			{tileType: TILE_ROAD, theFile: "track_road.png"},

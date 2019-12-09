@@ -35,7 +35,15 @@ class Character {
     this.frameTick = 0; // animation - called every frame
   	this.ticksPerFrame = 5; //frame ticks advance the frame
   	this.numberOfFrames = 4; //number of frames in character sprite sheet
-  	this.frameIndex  = 0; //frame sprite sheet is on
+    this.frameIndex  = 0; //frame sprite sheet is on
+    
+    // Heal FX
+    this.showHealFX = false;
+    this.healFXFrameTick = 0;
+  	this.healFXTicksPerFrame = 5; 
+  	this.healFXNumberOfFrames = 4; 
+    this.healFXFrameIndex  = 0; 
+    this.healFXOffSetWidth = 0;
   }
 
   init(whichGraphic, whichName, whichTile) {
@@ -58,6 +66,18 @@ class Character {
 			this.frameIndex  = 0;
   }
 
+  animateHealFX() {
+    this.healFXFrameTick++;
+		if (this.healFXFrameTick > this.healFXTicksPerFrame) {
+			this.healFXFrameTick = 0;
+			this.healFXFrameIndex++;
+		}
+		if (this.healFXFrameIndex  < this.healFXNumberOfFrames - 1)
+			this.healFXOffSetWidth = this.healFXFrameIndex * this.width;
+		else
+			this.healFXFrameIndex  = 0;
+  }
+
   collisionTest(otherHumanoid) {
     if(	this.x > otherHumanoid.x - 20 && this.x < otherHumanoid.x + 20 &&
 			this.y > otherHumanoid.y - 20 && this.y < otherHumanoid.y + 20)
@@ -69,9 +89,15 @@ class Character {
     if(this.enableAnimation==true){
       this.animate();
     }
+    this.animateHealFX();
     gameCoordToIsoCoord(this.x, this.y);
 		canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY);
 		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height,
-								isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY, this.width, this.height);
+                isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY, this.width, this.height);
+                
+    if(this.showHealFX == true){
+      canvasContext.drawImage(healFX, this.healFXOffSetWidth, 0, this.width, this.height,
+        isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY, this.width, this.height);
+    }
   }
 }
