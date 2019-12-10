@@ -54,7 +54,7 @@ var healFX = document.createElement("img");
 //All pictures prior to launching the game.  If a picture doesn't load, the game doesn't launch.
 function countLoadedImagesAndLaunchIfReady(){
 		picsToLoad--;
-		console.log(picsToLoad);
+		//console.log(picsToLoad);
 		if(picsToLoad == 0) {
 			imageLoadingDoneSoStartGame();
 	}
@@ -102,10 +102,10 @@ function loadImages() {
 			{varName: wizardProfilePic, theFile: "profilePics/wizard/wizardProfilePic.png"},
 			{varName: wizardEyesPic, theFile: "profilePics/wizard/eyes.png"},
 			{varName: clericProfilePic, theFile: "profilePics/cleric/clericProfilePic.png"},
-			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},			
+			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},
 			{varName: kingsTombPic, theFile: "kingsTomb.png"},
 			{varName: greenParticlePic, theFile: "greenParticle.png"},
-			
+
 			// HUD
 			{varName: healthHUD, theFile: "HUD/healthHUD.png"},
 			{varName: manaHUD, theFile: "HUD/manaHUD.png"},

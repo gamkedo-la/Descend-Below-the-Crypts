@@ -9,6 +9,7 @@ const KEY_3 = 51; // "3"
 const KEY_4 = 52; // "4"
 const KEY_5 = 53; // "5"
 const KEY_6 = 54; // "6"
+const KEY_7 = 55; // "7"
 
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -91,6 +92,9 @@ const DEBUG_KEY_MAP = {
   },
   [KEY_6]: function(gameState) {
     gameState.noClipEnabled = !gameState.noClipEnabled;
+  },
+  [KEY_7]: function(gameState) {
+    zoom = !zoom;
   }
 };
 
@@ -170,7 +174,7 @@ class Play extends GameState {
 		} else {
 			colorText("CAN'T use Flame Spell", 360, 592, "red", "8px Arial Black");
     }*/
-    
+
     if( this.pause )  {
        this.drawPause()
     }
@@ -190,12 +194,12 @@ class Play extends GameState {
   detectHUDClicks(mousePosX, mousePosY){
 		if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos) == true &&
 			playerOne.healPotionsHeld >0 ){
-		   
+
 		   playerOne.useHealPotion();
 	   }
 	   else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.manaPotionXPos, inventoryCoords.manaPotionYPos) == true &&
 		   playerOne.manaPotionsHeld >0 ){
-		  
+
 		  playerOne.useManaPotion();
     }
     else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true &&
@@ -369,7 +373,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
     var startX = 500;
 
     var rectColour = "rgba(255, 255, 255, 0.3)";
-    var debugLineCount = 7;
+    var debugLineCount = 8;
     var statsLineCount = 2;
 
     var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
@@ -390,6 +394,8 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
     colorText("5. Unlimited Keys: "+ (this.hasUnlimitedKeys ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY;
     colorText("6. No Clip: "+ (this.noClipEnabled ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
+    debugLineY += debugLineSkipY;
+    colorText("7. Zoom Out: "+ (zoom ? "Off" : "On"), startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY*2;
 
     // Stats Menu
@@ -411,28 +417,28 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   }
 
   drawHUD() {
-      
+
     // Set alpha:
     canvasContext.globalAlpha = HUD_OPACITY;
-	
+
     // HP and MP:
 	this.fillHealthOrMana(22, 510, 46, 73, "red", playerOne.health / playerOne.maxHealth);
 	this.fillHealthOrMana(canvas.width-68, 510, 46, 73, "blue", playerOne.mana / playerOne.maxMana);
   	canvasContext.drawImage(healthHUD,10, canvas.height-100);
   	canvasContext.drawImage(manaHUD,canvas.width-80, canvas.height-100);
-    
+
     this.drawItemHUD();
     this.drawAbilityHUD();
   }
-  
+
   fillHealthOrMana(leftX, topY, width, height, fillColor, fillPerc){
 		canvasContext.fillStyle = fillColor;
 		var heightLeft = Math.floor((1.0-fillPerc)*height);
 		canvasContext.fillRect(leftX, topY+heightLeft, width, height-heightLeft);
-	//	colorRect(20, 512, 50,(playerOne.health / playerOne.maxHealth) * 72, "red");  
+	//	colorRect(20, 512, 50,(playerOne.health / playerOne.maxHealth) * 72, "red");
    }
 
-  
+
   drawItemHUD() {
 
   	// Inventory:
@@ -467,7 +473,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       canvasContext.globalAlpha = HUD_OPACITY;
       currentYPos +=iconVerticalSpacing;
     }
-    
+
     if(playerOne.healPotionsHeld >0){
       inventoryCoords.healPotionXPos = iconXPos+2;
       inventoryCoords.healPotionYPos = currentYPos+5;
@@ -495,38 +501,38 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 
     // Abilities:
     var coolDownTimerfont = "bold 25px Arial";
-    
+
     var iconHorizontalSpacing = 45;
     const iconXPos = 280;
   	const iconYPos = canvas.height-80;
     var currentXPos = iconXPos;
-    
+
     // Inventory BG:
     canvasContext.drawImage(abilityHUD,280, canvas.height-80);
-    
+
     inventoryCoords.punchXPos = currentXPos+3;
     inventoryCoords.punchYPos = iconYPos+2;
 
     canvasContext.drawImage(punchHUD,inventoryCoords.punchXPos, inventoryCoords.punchYPos);
     currentXPos +=iconHorizontalSpacing;
-    
+
     if(punchCoolingDown==true){
       canvasContext.drawImage(coolDownHUD,inventoryCoords.punchXPos, inventoryCoords.punchYPos);
-      colorText(punchCoolDownTimer, 
+      colorText(punchCoolDownTimer,
         inventoryCoords.punchXPos+ 15,
         inventoryCoords.punchYPos+ 30, 'red', coolDownTimerfont);
     }
-    
+
     if(playerOne.sword) {
       inventoryCoords.swordXPos = currentXPos+3;
       inventoryCoords.swordYPos = iconYPos+2;
-  
+
       canvasContext.drawImage(swordHUD,inventoryCoords.swordXPos, inventoryCoords.swordYPos);
       currentXPos +=iconHorizontalSpacing;
 
       if(swordCoolingDown==true){
         canvasContext.drawImage(coolDownHUD,inventoryCoords.swordXPos, inventoryCoords.swordYPos);
-        colorText(swordCoolDownTimer, 
+        colorText(swordCoolDownTimer,
           inventoryCoords.swordXPos+ 15,
           inventoryCoords.swordYPos+ 30, 'red', coolDownTimerfont);
       }

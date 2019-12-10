@@ -21,13 +21,13 @@ class Map {
           break;
 		case TILE_SPIDER:
           this.enemyList.push(new Spider());
-          break; 
+          break;
 		case TILE_KINGS_TOMB:
           this.enemyList.push(new SkeletonKingsTomb());
           break;
 		case TILE_SKELETON_KING:
           this.enemyList.push(new SkeletonKing());
-          break; 		  
+          break;
       }
     }
   }
@@ -85,6 +85,9 @@ class Map {
     var isoTileTopEdgeY = 0;
 
     sharedAnimCycle++;
+
+    if (zoom)
+  		canvasContext.scale(zoomFactor, zoomFactor);
 
     for(var eachRow = 0; eachRow < ROOM_ROWS; eachRow++){
   		tileLeftEdgeX = 7;
@@ -202,6 +205,9 @@ class Map {
   		} // end of each col
   		tileTopEdgeY += ROOM_H;
   	} // end of each row
+
+    if (zoom)
+      canvasContext.scale(1, 1);
   }
 
   //This checks player and enemy collisions.  This is called every frame.
