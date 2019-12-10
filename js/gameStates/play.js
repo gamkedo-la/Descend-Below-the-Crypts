@@ -57,7 +57,6 @@ const NORMAL_KEY_MAP = {
   [KEY_D]: null,
   [KEY_P]: function(gameState) {
     gameState.pause = !gameState.pause;
-    gameState.handlePauseMovement();
   },
   [KEY_1]: function(gameState) {
     gameState.debug = !gameState.debug;
@@ -130,6 +129,11 @@ class Play extends GameState {
       this.setup = true;
     }
 
+    var enemyList = this.mapStack[this.level].enemyList;
+    for( var i = 0; i < enemyList.length; ++i )
+      enemyList[i].canMove = !this.pause;
+    playerOne.canMove = !this.pause;
+
     // Debug options
     playerOne.noClipMode = this.noClipEnabled;
 
@@ -151,6 +155,9 @@ class Play extends GameState {
 
     if (this.debug)
       this.drawDebugMenu();
+
+    if(this.pause)
+       this.drawPause()
 
     // Default HUD
     /*
@@ -174,10 +181,6 @@ class Play extends GameState {
 		} else {
 			colorText("CAN'T use Flame Spell", 360, 592, "red", "8px Arial Black");
     }*/
-
-    if( this.pause )  {
-       this.drawPause()
-    }
 
     // Tooltip text:
     if(tooltipTxt != ''){
@@ -352,17 +355,6 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   			playerOne.playWarriorsThoughtsForSecondLevel = false;
   		}
   	}
-  }
-
-  /**
-   *  Handles Pause Movement for enemies and player
-   */
-  handlePauseMovement() {
-    var enemyList = this.mapStack[this.level].enemyList;
-    for( var i = 0; i < enemyList.length; ++i ) {
-      enemyList[i].canMove = !enemyList[i].canMove;
-    }
-    playerOne.canMove = !playerOne.canMove;
   }
 
   drawDebugMenu() {
