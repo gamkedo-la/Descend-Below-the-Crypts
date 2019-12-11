@@ -12,6 +12,6 @@ class Spider extends Enemy {
 
   init() {
     super.init(spiderPic, randFromList(SPIDER_NAMES), TILE_SPIDER);
-	this.enableAnimation = false;
+	this.enableAnimation = true;
   }
 }

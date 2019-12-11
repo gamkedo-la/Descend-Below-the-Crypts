@@ -1,6 +1,6 @@
 const CLERIC_MAX_HEALTH = 4;
 const CLERIC_MOVEMENT_SPEED = 3;
-const CLERIC_WIDTH = 30;
+const CLERIC_WIDTH = 25;
 const CLERIC_HEIGHT = 30;
 
 class Cleric extends Player {

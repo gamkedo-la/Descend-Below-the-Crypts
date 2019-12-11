@@ -61,7 +61,10 @@ class Enemy extends Character {
 	var nextY = this.y;
 
 	if(this.canMove){
-		if(this.myTile == TILE_SKELETON_KING){
+		if(this.myTile == TILE_SKELETON_KING ||
+		   this.myTile == TILE_SPIDER ||
+		   this.myTile == TILE_ORC
+		   ){
 			this.randomMovements();
 		} else {
 			this.wayPointMovement();
@@ -176,7 +179,6 @@ class Enemy extends Character {
   randomMovements() {
     var whichDirection =  Math.round(Math.random() * 10);
 		this.movementTimer--;
-		console.log(this.movementTimer);
 
 		if(this.movementTimer <= 0){
 			switch(whichDirection) {

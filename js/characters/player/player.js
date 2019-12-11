@@ -26,6 +26,7 @@ class Player extends Character {
         this.wayPointList = [];
         this.currentWayPoint = 0;
         this.pathFindingQueue = [];
+		this.movementTimer = 0;
 
         this.keyHeld_North = false;
 		this.keyHeld_East = false;
@@ -109,9 +110,17 @@ class Player extends Character {
                 this.enableAnimation=true;
             } else {
                 // Reset to the first frame in the last movement direction animation:
-                this.offSetWidth = 0;
-                this.enableAnimation=false;
-            }
+                this.movementTimer++;
+				this.offSetWidth = 0;
+				if(this.movementTimer > 100 && this.movementTimer < 115){
+					this.offSetHeight = 0;
+					this.enableAnimation = true;
+				} else if (this.movementTimer > 300){
+					this.movementTimer = 0;
+				} else {
+					this.enableAnimation=false;
+				}
+			}
         }
 
 
