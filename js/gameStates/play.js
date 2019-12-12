@@ -2,6 +2,7 @@ const KEY_W = 87; // "W"
 const KEY_S = 83; // "S"
 const KEY_A = 65; // "A"
 const KEY_D = 68; // "D"
+const KEY_I = 73;
 const KEY_P = 80; // "P"
 const KEY_1 = 49; // "1"
 const KEY_2 = 50; // "2"
@@ -54,6 +55,9 @@ const NORMAL_KEY_MAP = {
   [KEY_W]: null,
   [KEY_S]: null,
   [KEY_A]: null,
+  [KEY_I]: function(gameState) {
+    gameState.inventory = !gameState.inventory;
+  },
   [KEY_D]: null,
   [KEY_P]: function(gameState) {
     gameState.pause = !gameState.pause;
@@ -112,6 +116,7 @@ class Play extends GameState {
 
     this.pause = false;
     this.debug = false;
+    this.inventory = false;
 
     // Debug options
     this.displayTileX_Y = false;
@@ -158,6 +163,10 @@ class Play extends GameState {
 
     if(this.pause)
        this.drawPause()
+    
+    if( this.inventory && !this.pause ) {
+      this.drawInventory();
+    }
 
     // Default HUD
     /*
@@ -406,6 +415,12 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
     colorRect( 0, 0, canvas.width, canvas.height, blackTransparent );
     canvasContext.drawImage(menuScreenPic, ( canvas.width / 2 ) - 150, 0 );
     colorText( "PAUSED", ( canvas.width / 2 ) - 100, canvas.height / 2 , 'black', "52px Arial  Black" );
+  }
+
+
+  drawInventory() {
+    const blackTransparent = 'rgba(0,0,0,0.5)';
+    colorRect( 0, 0, canvas.width, canvas.height, blackTransparent );
   }
 
   drawHUD() {
