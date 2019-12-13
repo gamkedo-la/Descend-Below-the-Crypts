@@ -16,6 +16,7 @@ class Player extends Character {
 
         // Wizard
         this.flameSpell = false;
+		this.fireballSpell = false;
 
         // Cleric
         this.healSpell = false;
@@ -213,8 +214,8 @@ class Player extends Character {
                 //add wizard book
                 if (this instanceof Wizard) {
                     this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                    this.flameSpell = true;
-                    console.log("Wizard Book found");
+                    this.fireballSpell = true;
+                    console.log("Wizard Book of Fireball found");
                 } else {
                     this.x = nextX;
                     this.y = nextY;

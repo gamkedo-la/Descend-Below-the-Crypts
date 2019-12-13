@@ -11,4 +11,8 @@ class Wizard extends Player {
 	this.maxMana = 4;
 	this.enableAnimation = true;
   }
+  
+    attackWithFireBallSpell(){
+		console.log('Attacking with Fireball Spell');
+  }
 }

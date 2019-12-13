@@ -25,14 +25,17 @@ const HUD_OPACITY= 0.7;
 const PUNCH_COOLDOWN_TIME = 1;
 const SWORD_COOLDOWN_TIME = 4;
 const MACE_COOLDOWN_TIME = 5;
+const FIREBALL_SPELL_COOLDOWN_TIME = 10;
 
 var punchCoolingDown = false;
 var swordCoolingDown = false;
 var maceCoolingDown = false;
+var fireballCoolingDown = false;
 
 var punchCoolDownTimer = 0;
 var swordCoolDownTimer = 0;
 var maceCoolDownTimer = 0;
+var fireballCoolDownTimer = 0;
 
 var inventoryCoords = {
   healPotionXPos : 0,
@@ -49,7 +52,8 @@ var inventoryCoords = {
   swordYPos : 0,
   maceXPos : 0,
   maceYPos: 0,
-  
+  fireballXPos: 0,
+  fireballYPos: 0,
 }
 
 // Tooltip:
@@ -243,6 +247,19 @@ class Play extends GameState {
         maceCoolDownTimer = MACE_COOLDOWN_TIME;
 
         playerOne.attackWithMace();
+      }
+   }
+   
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.maceXPos, inventoryCoords.maceYPos) == true &&
+      playerOne.fireballSpell){
+
+      if(fireballCoolingDown == false){
+        fireballCoolingDown = true;
+
+        // Reset cooldown timer:
+        fireballCoolDownTimer = FIREBALL_SPELL_COOLDOWN_TIME;
+
+        playerOne.attackWithFireBallSpell();
       }
    }
    
@@ -571,14 +588,27 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       canvasContext.drawImage(maceHUD,inventoryCoords.maceXPos, inventoryCoords.maceYPos);
       currentXPos +=iconHorizontalSpacing;
 
-	if(maceCoolingDown==true){
-		canvasContext.drawImage(coolDownHUD,inventoryCoords.maceXPos, inventoryCoords.maceYPos);
-		colorText(maceCoolDownTimer,
-		  inventoryCoords.maceXPos+ 15,
-		  inventoryCoords.maceYPos+ 30, 'red', coolDownTimerfont);
-      }
+		if(maceCoolingDown==true){
+			canvasContext.drawImage(coolDownHUD,inventoryCoords.maceXPos, inventoryCoords.maceYPos);
+			colorText(maceCoolDownTimer,
+			inventoryCoords.maceXPos+ 15,
+			inventoryCoords.maceYPos+ 30, 'red', coolDownTimerfont);
+		}
     }
-	
+	if(playerOne.fireballSpell) {
+      inventoryCoords.fireballXPos = currentXPos+3;
+      inventoryCoords.fireballYPos = iconYPos+2;
+
+      canvasContext.drawImage(fireballSpellHUD,inventoryCoords.fireballXPos, inventoryCoords.fireballYPos);
+      currentXPos +=iconHorizontalSpacing;
+
+		if(fireballCoolingDown==true){
+			canvasContext.drawImage(coolDownHUD,inventoryCoords.maceXPos, inventoryCoords.maceYPos);
+			colorText(fireballCoolDownTimer,
+			inventoryCoords.fireballXPos+ 15,
+			inventoryCoords.fireballYPos+ 30, 'red', coolDownTimerfont);
+		}
+    }	
 	
   }
 
