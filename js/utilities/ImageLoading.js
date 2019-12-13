@@ -46,6 +46,7 @@ var manaPotionHUD = document.createElement("img");
 var abilityHUD = document.createElement("img");
 var swordHUD = document.createElement("img");
 var punchHUD = document.createElement("img");
+var maceHUD = document.createElement("img");
 
 
 // FX
@@ -117,6 +118,7 @@ function loadImages() {
 			{varName: manaPotionHUD, theFile: "HUD/MPPotionIcon.png"},
 			{varName: abilityHUD, theFile: "HUD/abilities.png"},
 			{varName: swordHUD, theFile: "HUD/swordIcon.png"},
+			{varName: maceHUD, theFile: "HUD/maceIcon.png"},
 			{varName: punchHUD, theFile: "HUD/punchIcon.png"},
 
 			// FX
