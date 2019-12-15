@@ -169,14 +169,13 @@ class Play extends GameState {
     this.drawMinimap();
 
     if (this.debug)
-      this.drawDebugMenu();
+      DebugMenu.draw(this.displayTileX_Y, this.isInvulnerable, this.moveFast, this.hasUnlimitedKeys, this.noClipEnabled);
 
     if(this.pause)
-       this.drawPause()
-    
-    if( this.inventory && !this.pause ) {
-      this.drawInventory();
-    }
+       Pause.draw();
+
+    if( this.inventory && !this.pause )
+      Inventory.draw();
 
     // Default HUD
     /*
@@ -401,63 +400,6 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   			playerOne.playWarriorsThoughtsForSecondLevel = false;
   		}
   	}
-  }
-
-  drawDebugMenu() {
-    var debugLineY = 50;
-    var debugLineSkipY = 20;
-    var debugFont = "16px Arial Black";
-    var debugColor = "white";
-    var startX = 500;
-
-    var rectColour = "rgba(255, 255, 255, 0.3)";
-    var debugLineCount = 8;
-    var statsLineCount = 2;
-
-    var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
-
-    // Debug Menu
-    colorRect(startX, debugLineY - 20, 250, debugLineSkipY*debugLineCount+1 + 10, rectColour)
-
-    colorText("DEBUG MENU", startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("1. Show/Hide debug menu", startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("2. Tile Coords: " + (this.displayTileX_Y ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("3. Godmode: "+ (this.isInvulnerable ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("4. Fast move: "+ (this.moveFast ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("5. Unlimited Keys: "+ (this.hasUnlimitedKeys ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("6. No Clip: "+ (this.noClipEnabled ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("7. Zoom Out: "+ (zoom ? "Off" : "On"), startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY*2;
-
-    // Stats Menu
-    colorRect(startX, debugLineY - 20, 250, debugLineSkipY*statsLineCount+1 + 10, rectColour)
-
-    colorText("STATS", startX + 10, debugLineY, debugColor, debugFont);
-    debugLineY += debugLineSkipY;
-    colorText("Player tile: " + playerTile, startX + 10, debugLineY, debugColor, debugFont);
-  }
-
-  /**
-   *  Draws the pause screen and menu
-   */
-  drawPause() {
-    const blackTransparent = 'rgba(0,0,0,0.5)';
-    colorRect( 0, 0, canvas.width, canvas.height, blackTransparent );
-    canvasContext.drawImage(menuScreenPic, ( canvas.width / 2 ) - 150, 0 );
-    colorText( "PAUSED", ( canvas.width / 2 ) - 100, canvas.height / 2 , 'black', "52px Arial  Black" );
-  }
-
-
-  drawInventory() {
-    const blackTransparent = 'rgba(0,0,0,0.5)';
-    colorRect( 0, 0, canvas.width, canvas.height, blackTransparent );
   }
 
   drawHUD() {
