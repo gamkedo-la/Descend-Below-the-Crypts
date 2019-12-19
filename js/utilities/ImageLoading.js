@@ -199,6 +199,11 @@ function loadImages() {
 			{tileType: TILE_KINGS_CHAMBER_WALL, theFile: "track_kings_chamber_walls.png"},
 			{tileType: TILE_KINGS_CHAMBER_SNAKE, theFile: "track_kings_chamber_snakes.png"},
 			{tileType: TILE_KINGS_CHAMBER_SPIDER, theFile: "track_kings_chamber_spider.png"},
+			{tileType: TILE_SPIDERWEB_SW, theFile: "spiderweb_SW.png"},
+			{tileType: TILE_SPIDERWEB_NW, theFile: "spiderweb_NW.png"},
+			{tileType: TILE_SPIDERWEB_NE, theFile: "spiderweb_NE.png"},
+			{tileType: TILE_SPIDERWEB_SE, theFile: "spiderweb_SE.png"},
+			{tileType: TILE_ORC_FLAG, theFile: "orc_Flag.png"}
 		];
 
 	picsToLoad = imageList.length;

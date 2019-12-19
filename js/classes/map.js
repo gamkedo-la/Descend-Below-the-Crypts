@@ -169,7 +169,17 @@ class Map {
   				var torchFrames = 4;
   				var animOffset = (eachCol + eachRow + Math.floor(sharedAnimCycle * 0.1) ) % torchFrames;
 
-          canvasContext.drawImage(trackPics[TILE_FIRE_PLACE_LIT],
+				canvasContext.drawImage(trackPics[TILE_FIRE_PLACE_LIT],
+  				animOffset * ISO_TILE_DRAW_W, 0, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H,
+  				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
+
+  			} else if (tileTypeHere == TILE_ORC_FLAG){
+  				canvasContext.drawImage(trackPics[TILE_ROAD], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+
+  				var orcFlagFrames = 4;
+  				var animOffset = (eachCol + eachRow + Math.floor(sharedAnimCycle * 0.1) ) % orcFlagFrames;
+
+				canvasContext.drawImage(trackPics[TILE_ORC_FLAG],
   				animOffset * ISO_TILE_DRAW_W, 0, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H,
   				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
 
