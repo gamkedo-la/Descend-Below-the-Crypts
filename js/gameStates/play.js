@@ -120,9 +120,10 @@ class Play extends GameState {
 
     this.setup = false;
     this.level = 0;
-    this.levelList = [ levelOne, levelTwo ];
-    this.mapStack = [ new Map(levelOne),
-                      new Map(levelTwo) ];
+    this.levelList = [ townArea, levelOne, levelTwo ];
+    this.mapStack = [ 	new Map(townArea),
+						new Map(levelOne),
+						new Map(levelTwo) ];
 
     this.pause = false;
     this.debug = false;

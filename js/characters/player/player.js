@@ -134,6 +134,8 @@ class Player extends Character {
 
         switch (walkIntoTileType) {
             case TILE_ROAD:
+			case TILE_TOWN_ROAD:
+			case TILE_GRASS:
             case TILE_CRYPT_FLOOR:
             case TILE_SEWER:
             case TILE_RED_RUG_TL:

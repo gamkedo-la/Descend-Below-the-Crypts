@@ -127,9 +127,12 @@ function loadImages() {
 			{varName: healFX, theFile: "FX/healEffect.png"},
 
 			//tiles
+			{tileType: TILE_GRASS, theFile: "grass.png"},
 			{tileType: TILE_ROAD, theFile: "track_road.png"},
+			{tileType: TILE_TOWN_ROAD, theFile: "track_town_road.png"},
 			{tileType: TILE_CRYPT_FLOOR, theFile: "track_crypt_floor.png"},
 			{tileType: TILE_WALL, theFile:  "toBeDeleted/track_wall.png"},
+			{tileType: TILE_TOWN_WALL, theFile:  "townWall.png"},
 			{tileType: TILE_CRYPT_WALL, theFile:  "track_crypt_wall.png"},
 			{tileType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},
 			{tileType: TILE_CRYPT_TORCH, theFile:  "track_wall_with_torch.png"},
