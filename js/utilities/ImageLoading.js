@@ -211,7 +211,8 @@ function loadImages() {
 			{tileType: TILE_SPIDERWEB_NW, theFile: "spiderweb_NW.png"},
 			{tileType: TILE_SPIDERWEB_NE, theFile: "spiderweb_NE.png"},
 			{tileType: TILE_SPIDERWEB_SE, theFile: "spiderweb_SE.png"},
-			{tileType: TILE_ORC_FLAG, theFile: "orc_Flag.png"}
+			{tileType: TILE_ORC_FLAG, theFile: "orc_Flag.png"},
+			{tileType: TILE_BED, theFile: "bed.png"},
 		];
 
 	picsToLoad = imageList.length;
