@@ -121,6 +121,9 @@ class Map {
   			else if( tileTypeHasBlueRugTransparency(tileTypeHere) ) {
   				canvasContext.drawImage(trackPics[TILE_BLUE_RUG_CEN], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
   			}
+			else if( tileTypeHasGrassTransparency(tileTypeHere) ) {
+  				canvasContext.drawImage(trackPics[TILE_GRASS], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+  			}
 
 
   			//need a helper function here to eliminate the else if
