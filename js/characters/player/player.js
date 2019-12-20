@@ -256,10 +256,14 @@ class Player extends Character {
                 this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                 break;
             case TILE_FINISH:
-            case TILE_STAIRS_DOWN:
-                enteringSecondLevelNarrative.play();
-                this.playWarriorsThoughtsForSecondLevel = true;
+			case TILE_STAIRS_DOWN_LEVEL_1:
                 gameStateManager.getState().loadLevel(1);
+				basementMusic.startOrStopMusic();
+				break;
+            case TILE_STAIRS_DOWN_LEVEL_2:
+				enteringSecondLevelNarrative.play();
+                this.playWarriorsThoughtsForSecondLevel = true;
+                gameStateManager.getState().loadLevel(2);
 				basementMusic.startOrStopMusic();
 				cryptMusic.loopSong("Into_The_Crypts");
                 break;
