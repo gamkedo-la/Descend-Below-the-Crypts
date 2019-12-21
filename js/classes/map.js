@@ -155,6 +155,20 @@ class Map {
   				canvasContext.drawImage(trackPics[TILE_WALL_WITH_TORCH],
   				animOffset * ISO_TILE_DRAW_W, 0, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H,
   				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
+			} else if (tileTypeHere == TILE_FIREPIT){
+  				if (isWallTransparent(playerOne, tileIndex)) {
+  					canvasContext.globalAlpha = 0.4;
+  				}
+
+  				canvasContext.drawImage(trackPics[TILE_GRASS], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
+  				canvasContext.globalAlpha = 1.0;
+
+  				var torchFrames = 4;
+  				var animOffset = (eachCol + eachRow + Math.floor(sharedAnimCycle * 0.1) ) % torchFrames;
+
+  				canvasContext.drawImage(trackPics[TILE_FIREPIT],
+  				animOffset * ISO_TILE_DRAW_W, 0, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H,
+  				isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y, ISO_TILE_DRAW_W, ISO_TILE_DRAW_H);
   			} else if(tileTypeHere == TILE_GOLD_COINS){
   				canvasContext.drawImage(trackPics[TILE_ROAD], isoDrawX - ISO_GRID_W/2, isoDrawY - ISO_TILE_GROUND_Y);
 
