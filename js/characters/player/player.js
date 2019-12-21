@@ -275,6 +275,7 @@ class Player extends Character {
                     this.takeDamageFromTrap(1);
                     this.roomGrid[walkIntoTileIndex] = TILE_PITTRAP_UNARMED;
                     crashIntoConeSound.play();
+					warriorOuch.play();
                 } else {
                     this.x = nextX;
                     this.y = nextY;
@@ -285,6 +286,7 @@ class Player extends Character {
                     this.takeDamageFromTrap(1);
                     this.roomGrid[walkIntoTileIndex] = TILE_SPIKES_UNARMED;
                     crashIntoConeSound.play();
+					warriorOuch.play();
                 } else {
                     this.x = nextX;
                     this.y = nextY;

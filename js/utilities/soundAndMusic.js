@@ -15,6 +15,11 @@ var enteringSecondLevelNarrative = new SoundOverlapsClass("enteringSecondLevel")
 //Warrior's Voice
 var choosingWarrior = new SoundOverlapsClass("choosingWarrior");
 var warriorEnteringSecondLevel = new SoundOverlapsClass("warriorsThoughtsSecondLevel");
+var warriorOuch = new SoundOverlapsClass("warriorOuch");
+
+//Wizard's Voice
+var choosingWizard = new SoundOverlapsClass("choosingWizard");
+
 
 function setFormat() {
     var audio = new Audio();

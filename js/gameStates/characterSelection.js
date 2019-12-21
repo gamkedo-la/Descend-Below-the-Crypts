@@ -87,13 +87,15 @@ class CharacterSelection extends GameState {
   onMouseClick(mouseX, mouseY) {
     var button = this.checkButton(mouseX, mouseY);
     if (button) {
-      if (button.debugName == "Warrior")
+      if (button.debugName == "Warrior") {
         playerOne = new Warrior();
-      else if (button.debugName == "Cleric")
+		choosingWarrior.play();
+	  } else if (button.debugName == "Cleric") {
         playerOne = new Cleric();
-      else if (button.debugName == "Wizard")
+	  } else if (button.debugName == "Wizard") {
         playerOne = new Wizard();
-
+		choosingWizard.play();
+	  }
       gameStateManager.setState(State.PLAY);
       basementMusic.loopSong("basement_music");
     } else
