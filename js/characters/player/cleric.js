@@ -22,10 +22,14 @@ class Cleric extends Player {
     if(! this.healSpell ) {
       return;
     }
-    this.health += 2;
+    if ( this.health >= CLERIC_MAX_HEALTH - 1 ) {
+      this.health = CLERIC_MAX_HEALTH;
+    } else {
+      this.health += 2;
+    }
     this.mana -= 1;
   }
-  
+
   attackUndead() {
     console.log('Used Undead Attack');
   }
