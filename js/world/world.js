@@ -8,7 +8,6 @@ const ROOM_H = ROOM_W;
 const ROOM_COLS = 40;
 const ROOM_ROWS = 30;
 
-
 var isoDrawX = 0;
 var isoDrawY = 0;
 

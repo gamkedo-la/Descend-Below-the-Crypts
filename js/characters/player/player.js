@@ -73,8 +73,8 @@ class Player extends Character {
                 this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W;
                 this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
 
-				        this.wayPointList = [];
-				        this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60); //to be deleted
+				this.wayPointList = [];
+				       // this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60); //to be deleted
                 break;
             }
         }
@@ -405,6 +405,11 @@ class Player extends Character {
 			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
 		}
     }
+	
+	newWayPoint(targetIndex) {
+		
+		console.log("Target Index " + targetIndex);
+	}
 
 	resetDirections() {
 		this.moveNorth = false;
