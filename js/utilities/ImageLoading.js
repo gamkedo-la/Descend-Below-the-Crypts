@@ -48,6 +48,7 @@ var swordHUD = document.createElement("img");
 var punchHUD = document.createElement("img");
 var maceHUD = document.createElement("img");
 var fireballSpellHUD = document.createElement("img");
+var selectionArrow = document.createElement("img");
 
 
 // FX
@@ -87,6 +88,7 @@ function loadImages() {
 			{varName: ratPic, theFile: "monsters/rat.png"},
 			{varName: spiderPic, theFile: "monsters/spider.png"},
 			{varName: skeletonKingPic, theFile: "monsters/skeletonKing.png"},
+			{varName: selectionArrow, theFile: "HUD/targetSelection.png"},
 			//misc
 			{varName: shadowPic, theFile: "shadow.png"},
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},

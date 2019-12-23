@@ -211,6 +211,7 @@ class Play extends GameState {
   onMouseClick(mouseX,  mouseY) {
     this.mapStack[this.level].onMouseClick(mouseX, mouseY);
     this.detectHUDClicks(mousePosX, mousePosY);
+    this.detectEnemyClicks(mouseClickX, mouseClickY);
   }
 
   detectHUDClicks(mousePosX, mousePosY){
@@ -274,6 +275,19 @@ class Play extends GameState {
       }
  }
 
+}
+
+detectEnemyClicks(mousePosX, mousePosY){
+  var enemyList = this.mapStack[this.level].enemyList;
+  var mouseClickTile = screenCoordToGameCoord(mousePosX, mousePosY);
+
+  for(let i=0; i< enemyList.length; i++){
+    var enemyTile = getTileIndexAtPixelCoord(enemyList[i].x, enemyList[i].y);
+    if(mouseClickTile == enemyTile){
+      // highlight enemy
+      enemyList[i].selected = true;
+    }
+  }
 }
 
 detectHUDHover(mousePosX, mousePosY){

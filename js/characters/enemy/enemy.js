@@ -16,7 +16,10 @@ class Enemy extends Character {
     this.currentRow = 0;
     this.toTileC = 0;
     this.toTileR = 0;
-    this.d = 0; // distance
+	this.d = 0; // distance
+	
+	// HUD
+	this.selected = false;
   }
 
   init(whichGraphic, whichName, whichTile) {
@@ -330,7 +333,10 @@ class Enemy extends Character {
 
     colorText(this.myName, isoDrawX + 20, isoDrawY - 30, "black", "8px Arial Black");
 
-    //displays health
+	//displays health
+		if(this.selected == true){
+			canvasContext.drawImage(selectionArrow,isoDrawX-(this.width/2)+10, isoDrawY-this.height - 40);
+		}
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, 24, 9, "red");
 		colorRect(isoDrawX-(this.width/2) + 3, isoDrawY-this.height - 19, (this.health / this.maxHealth) * 24, 9, "green");
 		canvasContext.drawImage(healthbarPic,isoDrawX-(this.width/2), isoDrawY-this.height - 20);
