@@ -66,7 +66,7 @@ class Map {
 
     onMouseMove(mouseX, mouseY) {
         // Highlight tile based on mouse move
-       this.highlightedTileIndex = isoCoordToGameCoord(mouseX, mouseY);
+       this.highlightedTileIndex = screenCoordToGameCoord(mouseX, mouseY);
     }
 
     onKeyPress(evt) {
@@ -79,7 +79,7 @@ class Map {
 
     drawMap(displayTileX_Y) {
         var tileIndex = 0;
-        var tileLeftEdgeX = 700;
+        var tileLeftEdgeX = 0;
         var tileTopEdgeY = 0;
         var isoTileLeftEdgeX = 0;
         var isoTileTopEdgeY = 0;
@@ -87,7 +87,7 @@ class Map {
         sharedAnimCycle++;
 
         for (var eachRow = 0; eachRow < ROOM_ROWS; eachRow++) {
-            tileLeftEdgeX = 7;
+            tileLeftEdgeX = 0;
 
             for (var eachCol = 0; eachCol < ROOM_COLS; eachCol++) {
                 var tileTypeHere = this.roomGrid[tileIndex];

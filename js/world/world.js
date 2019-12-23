@@ -212,7 +212,7 @@ const TILE_STAIRS_DOWN_LEVEL_2 = 94;
 const TILE_FIREPIT = 95;
 
 function gameCoordToIsoCoord (pixelX, pixelY) {
-	var camPanX = -350;
+	var camPanX = 0;
 	var camPanY = 0;
 	var tileCFraction = pixelX / ROOM_W;
 	var tileRFraction = pixelY / ROOM_H;
@@ -220,23 +220,28 @@ function gameCoordToIsoCoord (pixelX, pixelY) {
 	isoDrawX = -camPanX + tileCFraction * (ISO_GRID_W/2) - tileRFraction * (ISO_GRID_W/2);
 	isoDrawY = -camPanY + tileCFraction * (ISO_GRID_H/2) + tileRFraction * (ISO_GRID_H/2);
 }
-///////////////////////// function is currently being worked on //////////////////////
-function isoCoordToGameCoord (pixelX, pixelY) {
-	var camPanX = -350;
-	var camPanY = 0;
-	var workingX = pixelX + camPanX;
-	var workingY = pixelY + camPanY;
-	var indexUnderPixel = -1;
-	
-	var tileCFraction = pixelX / ROOM_W;
-	var tileRFraction = pixelY / ROOM_H;
 
-	//isoDrawX = tileCFraction * (ISO_GRID_W/2) - tileRFraction * (ISO_GRID_W/2);
-	//isoDrawY = tileCFraction * (ISO_GRID_H/2) + tileRFraction * (ISO_GRID_H/2);
+function screenCoordToGameCoord (pixelX, pixelY) {
+	var workingX = pixelX + camPanX;
+	var workingY = (pixelY + camPanY)*2; // 2X vertical since isometric
+
+	// x and y each affected by other axis to get from screen to game space
+	var unIsoX = workingX+workingY;
+	var unIsoY = workingY-workingX;
+
+	/* // debugging output
+	gameCoordToIsoCoord(unIsoX,unIsoY);
+	var debugCoordX = isoDrawX;
+	var debugCoordY = isoDrawY;
+	colorRect(unIsoX,unIsoY,10,10,"red"); // check if iso motion aligns as up/down, side-side
+	console.log(Math.floor(unIsoX),Math.floor(unIsoY));
+	*/
+
+	var indexUnderPixel = getTileIndexAtPixelCoord(unIsoX,unIsoY);
 	
-	//console.log("calculated Index for IsoCoord to Game Coord is " + indexUnderPixel);
 	return indexUnderPixel;
 }
+
 function tileCoordToIsoCoord(tileC, tileR ) {
 	gameCoordToIsoCoord(tileC * ROOM_W, tileR * ROOM_H);
 }

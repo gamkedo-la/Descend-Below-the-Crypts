@@ -1,6 +1,6 @@
 var camPanX = 0;
 var camPanY = 0;
-var zoom = true;
+var zoom = false; // disabled since complicating calculation of screen->tile inverse, adding back later
 var zoomFactor = 1.8;
 
 function updatedCameraPosition(){

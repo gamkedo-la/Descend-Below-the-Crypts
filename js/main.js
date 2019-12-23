@@ -1,7 +1,7 @@
 var canvas;
 var canvasContext;
 
-var skipToGame = false;
+var skipToGame = true;
 
 // Player
 var playerOne;
