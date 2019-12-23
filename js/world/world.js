@@ -222,12 +222,16 @@ function gameCoordToIsoCoord (pixelX, pixelY) {
 }
 
 function screenCoordToGameCoord (pixelX, pixelY) {
+	// accounting for camera pan, so map origin is 0,0
 	var workingX = pixelX + camPanX;
-	var workingY = (pixelY + camPanY)*2; // 2X vertical since isometric
+	var workingY = (pixelY + camPanY)*2; // 2X vertical, since isometric
 
-	// x and y each affected by other axis to get from screen to game space
+	// accounting for affect of isometric motion on coordinate
 	var unIsoX = workingX+workingY;
 	var unIsoY = workingY-workingX;
+
+	// going from game coordinate to tile index through normal calculation
+	var indexUnderPixel = getTileIndexAtPixelCoord(unIsoX,unIsoY);
 
 	/* // debugging output
 	gameCoordToIsoCoord(unIsoX,unIsoY);
@@ -237,8 +241,6 @@ function screenCoordToGameCoord (pixelX, pixelY) {
 	console.log(Math.floor(unIsoX),Math.floor(unIsoY));
 	*/
 
-	var indexUnderPixel = getTileIndexAtPixelCoord(unIsoX,unIsoY);
-	
 	return indexUnderPixel;
 }
 
