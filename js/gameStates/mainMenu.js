@@ -23,7 +23,7 @@ class MainMenu extends GameState {
     canvasContext.drawImage(menuScreenPic, 250, 0);
     canvasContext.drawImage(titleBarPic, 10, 25);
 
-    colorText("Descend Below the Crypts", 50, 80, 'black', "48px Arial Black");
+    colorText("Descend Below the Crypts", 130, 80, 'black', "60px Brush Script MT");
   	colorText("Start", 360, 255, 'white', "24px Arial Black");
   	colorText("Instructions", 320, 305, 'white', "24px Arial Black");
   	colorText("Credits", 350, 355, 'white', "24px Arial Black");

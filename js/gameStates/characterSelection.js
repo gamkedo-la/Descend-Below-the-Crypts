@@ -55,7 +55,7 @@ class CharacterSelection extends GameState {
     super.draw();
 
     canvasContext.drawImage(characterSelectionBackgroundPic,0, 0);
-  	colorText("Choose your Hero", 175, 225, 'black', "48px Arial Black");
+  	colorText("Choose your Hero", 250, 229, 'black', "60px Brush Script MT");
 
     for (var button of this.buttonList) {
       canvasContext.drawImage(button.image, button.cornerX, button.cornerY);
