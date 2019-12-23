@@ -15,6 +15,7 @@ var ogrePic = document.createElement("img");
 var ratPic = document.createElement("img");
 var spiderPic = document.createElement("img");
 var skeletonKingPic = document.createElement("img");
+var orcBossPic = document.createElement("img");
 //Game States
 var characterSelectionBackgroundPic = document.createElement("img");
 var leftDoorOpenningPic = document.createElement("img");
@@ -88,7 +89,8 @@ function loadImages() {
 			{varName: ratPic, theFile: "monsters/rat.png"},
 			{varName: spiderPic, theFile: "monsters/spider.png"},
 			{varName: skeletonKingPic, theFile: "monsters/skeletonKing.png"},
-			{varName: selectionArrow, theFile: "HUD/targetSelection.png"},
+			{varName: orcBossPic, theFile: "monsters/orcKing.png"},
+			
 			//misc
 			{varName: shadowPic, theFile: "shadow.png"},
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},
@@ -124,6 +126,7 @@ function loadImages() {
 			{varName: maceHUD, theFile: "HUD/maceIcon.png"},
 			{varName: punchHUD, theFile: "HUD/punchIcon.png"},
 			{varName: fireballSpellHUD, theFile: "HUD/fireBallIcon.png"},
+			{varName: selectionArrow, theFile: "HUD/targetSelection.png"},
 
 			// FX
 			{varName: healFX, theFile: "FX/healEffect.png"},
@@ -216,7 +219,8 @@ function loadImages() {
 			{tileType: TILE_SPIDERWEB_SE, theFile: "spiderweb_SE.png"},
 			{tileType: TILE_ORC_FLAG, theFile: "orc_Flag.png"},
 			{tileType: TILE_BED, theFile: "bed.png"},
-			{tileType: TILE_FIREPIT, theFile: "firepit.png"}
+			{tileType: TILE_FIREPIT, theFile: "firepit.png"},
+			{tileType: TILE_THRONE, theFile: "throne.png"},
 		];
 
 	picsToLoad = imageList.length;

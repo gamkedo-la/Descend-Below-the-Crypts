@@ -102,7 +102,10 @@ class Enemy extends Character {
 
 	switch(walkIntoTileType) {
 		case TILE_ROAD:
+		case TILE_TOWN_ROAD:
+		case TILE_GRASS:
 		case TILE_CRYPT_FLOOR:
+		case TILE_SEWER:
 		case TILE_RED_RUG_TL:
 		case TILE_RED_RUG_TR:
 		case TILE_RED_RUG_BL:
@@ -130,7 +133,6 @@ class Enemy extends Character {
 		case TILE_GREEN_RUG_CEN:
 		case TILE_GREEN_RUG_L:
 		case TILE_GREEN_RUG_R:
-		case TILE_CRYPT_FLOOR:
 		case TILE_WIZARD_BOOK:
 		case TILE_CLERIC_BOOK:
 		case TILE_SKILL_BOOK:

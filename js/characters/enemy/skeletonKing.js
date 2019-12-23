@@ -1,6 +1,6 @@
 //////////// SKELETON KING /////////////////////////////
 
-const SKELETON_KING_MAX_HEALTH = 2;
+const SKELETON_KING_MAX_HEALTH = 50;
 const SKELETON_KING_MOVEMENT_SPEED = 5;
 const SKELETON_KING_WIDTH = 33;
 const SKELETON_KING_HEIGHT = 56;

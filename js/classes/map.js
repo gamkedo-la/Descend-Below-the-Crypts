@@ -28,6 +28,9 @@ class Map {
                 case TILE_SKELETON_KING:
                     this.enemyList.push(new SkeletonKing());
                     break;
+				 case TILE_ORC_BOSS:
+                    this.enemyList.push(new OrcBoss());
+                    break;
             }
         }
     }
