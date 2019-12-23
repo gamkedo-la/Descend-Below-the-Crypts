@@ -220,7 +220,23 @@ function gameCoordToIsoCoord (pixelX, pixelY) {
 	isoDrawX = -camPanX + tileCFraction * (ISO_GRID_W/2) - tileRFraction * (ISO_GRID_W/2);
 	isoDrawY = -camPanY + tileCFraction * (ISO_GRID_H/2) + tileRFraction * (ISO_GRID_H/2);
 }
+///////////////////////// function is currently being worked on //////////////////////
+function isoCoordToGameCoord (pixelX, pixelY) {
+	var camPanX = -350;
+	var camPanY = 0;
+	var workingX = pixelX + camPanX;
+	var workingY = pixelY + camPanY;
+	var indexUnderPixel = -1;
+	
+	var tileCFraction = pixelX / ROOM_W;
+	var tileRFraction = pixelY / ROOM_H;
 
+	//isoDrawX = tileCFraction * (ISO_GRID_W/2) - tileRFraction * (ISO_GRID_W/2);
+	//isoDrawY = tileCFraction * (ISO_GRID_H/2) + tileRFraction * (ISO_GRID_H/2);
+	
+	//console.log("calculated Index for IsoCoord to Game Coord is " + indexUnderPixel);
+	return indexUnderPixel;
+}
 function tileCoordToIsoCoord(tileC, tileR ) {
 	gameCoordToIsoCoord(tileC * ROOM_W, tileR * ROOM_H);
 }

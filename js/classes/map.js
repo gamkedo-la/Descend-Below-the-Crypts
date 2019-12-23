@@ -60,12 +60,13 @@ class Map {
     onMouseClick(mouseX, mouseY) {
         mouseClickX = mouseX;
         mouseClickY = mouseY;
+		
         playerOne.newWayPoint(this.highlightedTileIndex);
     }
 
     onMouseMove(mouseX, mouseY) {
         // Highlight tile based on mouse move
-        this.highlightedTileIndex = getTileIndexAtPixelCoord(mouseX, mouseY);
+       this.highlightedTileIndex = isoCoordToGameCoord(mouseX, mouseY);
     }
 
     onKeyPress(evt) {
