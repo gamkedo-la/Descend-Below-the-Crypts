@@ -279,12 +279,14 @@ class Play extends GameState {
 
 detectEnemyClicks(mousePosX, mousePosY){
   var enemyList = this.mapStack[this.level].enemyList;
-  var mouseClickTile = screenCoordToGameCoord(mousePosX, mousePosY);
+  var mouseClickWorldX = screenCoordToGameCoord(mousePosX, mousePosY).unIsoX;
+  var mouseClickWorldY = screenCoordToGameCoord(mousePosX, mousePosY).unIsoY;
+
+  var buffer = 30;
 
   for(let i=0; i< enemyList.length; i++){
-    var enemyTile = getTileIndexAtPixelCoord(enemyList[i].x, enemyList[i].y);
-    if(mouseClickTile == enemyTile){
-      // highlight enemy
+    if(enemyList[i].x > mouseClickWorldX - buffer && enemyList[i].x < mouseClickWorldX +enemyList[i].width + buffer &&
+      enemyList[i].y > mouseClickWorldY - buffer && enemyList[i].y < mouseClickWorldY +enemyList[i].height + buffer){
       enemyList[i].selected = true;
     }
   }

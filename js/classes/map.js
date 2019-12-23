@@ -66,7 +66,7 @@ class Map {
 
     onMouseMove(mouseX, mouseY) {
         // Highlight tile based on mouse move
-       this.highlightedTileIndex = screenCoordToGameCoord(mouseX, mouseY);
+       this.highlightedTileIndex = screenCoordToGameCoord(mouseX, mouseY).indexUnderPixel;
     }
 
     onKeyPress(evt) {

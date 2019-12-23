@@ -241,7 +241,7 @@ function screenCoordToGameCoord (pixelX, pixelY) {
 	console.log(Math.floor(unIsoX),Math.floor(unIsoY));
 	*/
 
-	return indexUnderPixel;
+	return {unIsoX, unIsoY, indexUnderPixel};
 }
 
 function tileCoordToIsoCoord(tileC, tileR ) {
