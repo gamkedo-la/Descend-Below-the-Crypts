@@ -10,4 +10,24 @@ class Cleric extends Player {
 	this.mana = 2;
 	this.maxMana = 2;
   }
+
+  attackMace() {
+    if(! this.mace ) {
+      return;
+    }
+    console.log('Attacked With Mace');
+  }
+
+  cureSpell() {
+    if(! this.healSpell ) {
+      return;
+    }
+    this.health += 2;
+    this.mana -= 1;
+  }
+  
+  attackUndead() {
+    console.log('Used Undead Attack');
+  }
+
 }
