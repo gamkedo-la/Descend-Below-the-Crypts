@@ -12,6 +12,12 @@ const KEY_5 = 53; // "5"
 const KEY_6 = 54; // "6"
 const KEY_7 = 55; // "7"
 
+const KEY_Z = 90;
+const KEY_X = 88;
+const KEY_C = 67;
+const KEY_V = 86;
+const KEY_B = 66;
+
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
 const KEY_RIGHT_ARROW = 39;
@@ -394,7 +400,34 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   				}
   			}
   		}
-  	}
+    }
+    
+    // Ability keyboard keys:
+    if(evt.keyCode == KEY_Z){
+      gameUsedKey = true;
+      // simulate clicks:
+      this.detectHUDClicks(300,540);
+    }
+    if(evt.keyCode == KEY_X){
+      gameUsedKey = true;
+      // simulate clicks:
+      this.detectHUDClicks(350,540);
+    }
+    if(evt.keyCode == KEY_C){
+      gameUsedKey = true;
+      // simulate clicks:
+      this.detectHUDClicks(380,540);
+    }
+    if(evt.keyCode == KEY_V){
+      gameUsedKey = true;
+      // simulate clicks:
+      this.detectHUDClicks(420,540);
+    }
+    if(evt.keyCode == KEY_B){
+      gameUsedKey = true;
+      // simulate clicks:
+      this.detectHUDClicks(470,540);
+    }
 
   	if(gameUsedKey)
   		evt.preventDefault();
@@ -532,9 +565,6 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   	const iconYPos = canvas.height-80;
     var currentXPos = iconXPos;
 
-    // Inventory BG:
-    canvasContext.drawImage(abilityHUD,280, canvas.height-80);
-
     inventoryCoords.punchXPos = currentXPos+3;
     inventoryCoords.punchYPos = iconYPos+2;
 
@@ -589,7 +619,10 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 			inventoryCoords.fireballXPos+ 15,
 			inventoryCoords.fireballYPos+ 30, 'red', coolDownTimerfont);
 		}
-    }	
+    }
+    
+    // Inventory BG:
+    canvasContext.drawImage(abilityHUD,280, canvas.height-80);
 	
   }
 
