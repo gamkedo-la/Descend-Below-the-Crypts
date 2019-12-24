@@ -114,6 +114,9 @@ const DEBUG_KEY_MAP = {
 var mouseClickX = 0;
 var mouseClickY = 0;
 
+var selectedEnemy = null;
+var enemyClicked = false;
+
 class Play extends GameState {
   constructor() {
     super();
@@ -265,13 +268,13 @@ class Play extends GameState {
    }
    
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
-      if(punchCoolingDown == false){
+      if(punchCoolingDown == false && enemyClicked == true){
         punchCoolingDown = true;
 
         // Reset cooldown timer:
         punchCoolDownTimer = PUNCH_COOLDOWN_TIME;
 
-        playerOne.attackWithPunch();
+        playerOne.attackWithPunch(selectedEnemy);
       }
  }
 
@@ -284,10 +287,19 @@ detectEnemyClicks(mousePosX, mousePosY){
 
   var buffer = 30;
 
+  enemyClicked = false;
+
   for(let i=0; i< enemyList.length; i++){
     if(enemyList[i].x > mouseClickWorldX - buffer && enemyList[i].x < mouseClickWorldX +enemyList[i].width + buffer &&
       enemyList[i].y > mouseClickWorldY - buffer && enemyList[i].y < mouseClickWorldY +enemyList[i].height + buffer){
+      // Select enemy:
       enemyList[i].selected = true;
+      selectedEnemy = enemyList[i];
+      enemyClicked = true;
+    }
+    else{
+      // Un-select enemy:
+      enemyList[i].selected = false;
     }
   }
 }

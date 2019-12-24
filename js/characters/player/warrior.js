@@ -3,6 +3,9 @@ const WARRIOR_MOVEMENT_SPEED = 3;
 const WARRIOR_WIDTH = 30;
 const WARRIOR_HEIGHT = 30;
 
+// Attack power:
+const PUNCH_POWER = 1;
+
 class Warrior extends Player {
   constructor() {
     super(WARRIOR_MAX_HEALTH, WARRIOR_MOVEMENT_SPEED, WARRIOR_WIDTH, WARRIOR_HEIGHT);
@@ -13,8 +16,9 @@ class Warrior extends Player {
     console.log('Attacking with sword');
   }
 
-  attackWithPunch(){
+  attackWithPunch(enemy){
     console.log('Attacking with punch');
+    enemy.receiveDamage(PUNCH_POWER);
   }
   
   attackWithMace(){

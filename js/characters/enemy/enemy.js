@@ -371,4 +371,8 @@ class Enemy extends Character {
 		this.moveSouth = false;
 		this.moveEast = false;
   }
+
+  receiveDamage(damagePoints){
+	  this.health -= damagePoints;
+  }
 }
