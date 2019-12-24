@@ -275,6 +275,12 @@ class Play extends GameState {
         punchCoolDownTimer = PUNCH_COOLDOWN_TIME;
 
         playerOne.attackWithPunch(selectedEnemy);
+        console.log(this.mapStack[this.level].enemyList.length);
+        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
+          return enemy.health >0;
+        })
+
+        console.log(this.mapStack[this.level].enemyList.length);
       }
  }
 

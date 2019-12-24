@@ -374,5 +374,8 @@ class Enemy extends Character {
 
   receiveDamage(damagePoints){
 	  this.health -= damagePoints;
+	  if(this.health <= 0){
+		  // play death animation etc..
+	  }
   }
 }
