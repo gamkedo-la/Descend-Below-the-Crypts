@@ -5,6 +5,7 @@ const WARRIOR_HEIGHT = 30;
 
 // Attack power:
 const PUNCH_POWER = 1;
+const SWORD_POWER = 2;
 
 class Warrior extends Player {
   constructor() {
@@ -12,8 +13,9 @@ class Warrior extends Player {
     super.init(warriorPic, "The Warrior");
   }
 
-  attackWithSword(){
+  attackWithSword(enemy){
     console.log('Attacking with sword');
+    enemy.receiveDamage(SWORD_POWER);
   }
 
   attackWithPunch(enemy){

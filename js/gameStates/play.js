@@ -229,7 +229,7 @@ class Play extends GameState {
 		  playerOne.useManaPotion();
     }
     else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true &&
-      playerOne.sword){
+      playerOne.sword && enemyClicked == true){
 
       if(swordCoolingDown == false){
         swordCoolingDown = true;
@@ -237,7 +237,12 @@ class Play extends GameState {
         // Reset cooldown timer:
         swordCoolDownTimer = SWORD_COOLDOWN_TIME;
 
-        playerOne.attackWithSword();
+        playerOne.attackWithSword(selectedEnemy);
+
+        // Check if enemy died. If it did, remove it from the enemy list:
+        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
+        return enemy.health >0;
+        })
       }
    }
    
@@ -254,7 +259,7 @@ class Play extends GameState {
       }
    }
    
-  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.maceXPos, inventoryCoords.maceYPos) == true &&
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.fireballXPos, inventoryCoords.fireballYPos) == true &&
       playerOne.fireballSpell){
 
       if(fireballCoolingDown == false){
