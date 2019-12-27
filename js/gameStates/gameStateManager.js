@@ -3,7 +3,8 @@ const State = {
   CHARSELECT: 1,
   PLAY: 2,
   INSTRUCTIONS: 3,
-  CREDITS: 4
+  CREDITS: 4,
+  QUESTONE: 5
 };
 
 class GameStateManager {
@@ -13,7 +14,8 @@ class GameStateManager {
                         new CharacterSelection(),
                         new Play(),
                         new InstructionMenu(),
-                        new Credits() 
+                        new Credits() ,
+						new QuestOne()
                       ];
   }
 
