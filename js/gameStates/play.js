@@ -11,12 +11,13 @@ const KEY_4 = 52; // "4"
 const KEY_5 = 53; // "5"
 const KEY_6 = 54; // "6"
 const KEY_7 = 55; // "7"
+const KEY_8 = 56; // "8"
 
-const KEY_Z = 90;
-const KEY_X = 88;
-const KEY_C = 67;
-const KEY_V = 86;
-const KEY_B = 66;
+const KEY_Z = 90; // "Z"
+const KEY_X = 88; // "X"
+const KEY_C = 67; // "C"
+const KEY_V = 86; // "V"
+const KEY_B = 66; // "B"
 
 const KEY_LEFT_ARROW = 37;
 const KEY_UP_ARROW = 38;
@@ -116,6 +117,9 @@ const DEBUG_KEY_MAP = {
   },
   [KEY_7]: function(gameState) {
     zoom = !zoom;
+  },
+  [KEY_8]: function(){
+    playerOne.takeDamage(1);
   }
 };
 

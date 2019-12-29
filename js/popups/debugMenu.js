@@ -7,7 +7,7 @@ class DebugMenu {
     var startX = 500;
 
     var rectColour = "rgba(255, 255, 255, 0.3)";
-    var debugLineCount = 8;
+    var debugLineCount = 9;
     var statsLineCount = 2;
 
     var playerTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
@@ -30,6 +30,8 @@ class DebugMenu {
     colorText("6. No Clip: "+ (noClipEnabled ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY;
     colorText("7. Zoom Out: "+ (zoom ? "Off" : "On"), startX + 10, debugLineY, debugColor, debugFont);
+    debugLineY += debugLineSkipY;
+    colorText("8. Receive 1 damage point", startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY*2;
 
     // Stats Menu

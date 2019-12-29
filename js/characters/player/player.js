@@ -443,8 +443,12 @@ class Player extends Character {
 
     takeDamageFromTrap(howMuchDamage) {
         if (this.trapCoolDownCounter == 0)
-            this.health -= howMuchDamage;
+            takeDamage(howMuchDamage);
         this.trapCoolDownTimer = true;
+    }
+
+    takeDamage(howMuchDamage) {
+        this.health -= howMuchDamage;
     }
 
     trapCoolDown() {
