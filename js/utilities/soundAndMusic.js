@@ -20,6 +20,9 @@ var warriorOuch = new SoundOverlapsClass("warriorOuch");
 //Wizard's Voice
 var choosingWizard = new SoundOverlapsClass("choosingWizard");
 
+// Warning message SFX
+var warningSFX = new SoundOverlapsClass("warningSFX");
+
 
 function setFormat() {
     var audio = new Audio();

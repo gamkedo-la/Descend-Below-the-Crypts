@@ -62,6 +62,8 @@ var inventoryCoords = {
   fireballYPos: 0,
 }
 
+var warningMessage="";
+
 // Tooltip:
 var tooltipTxt = '';
 var tooltipPosX = 0;
@@ -279,7 +281,25 @@ class Play extends GameState {
    }
    
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
-      if(punchCoolingDown == false && enemyClicked == true){
+      if(enemyClicked == false){
+
+        warningMessage="Target is not selected!";
+        warningSFX.play();
+        setTimeout(function(){
+          warningMessage="";
+      }, 1500);
+
+      }
+      else if(punchCoolingDown == true){
+
+        warningMessage="Ability is still recharging!";
+        warningSFX.play();
+        setTimeout(function(){
+          warningMessage="";
+      }, 1500);
+
+      }
+      else{
         punchCoolingDown = true;
 
         // Reset cooldown timer:
@@ -475,6 +495,10 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   }
 
   drawHUD() {
+
+    // Warning messages:
+    var font = "bold 20px Arial";
+    colorText(warningMessage,canvas.width/2 - 100, canvas.height/2 , 'red', font);
 
     // Set alpha:
     canvasContext.globalAlpha = HUD_OPACITY;
