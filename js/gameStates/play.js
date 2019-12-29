@@ -511,7 +511,12 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 	this.fillHealthOrMana(22, 510, 46, 73, "red", playerOne.health / playerOne.maxHealth);
 	this.fillHealthOrMana(canvas.width-68, 510, 46, 73, "blue", playerOne.mana / playerOne.maxMana);
   	canvasContext.drawImage(healthHUD,10, canvas.height-100);
-  	canvasContext.drawImage(manaHUD,canvas.width-80, canvas.height-100);
+    canvasContext.drawImage(manaHUD,canvas.width-80, canvas.height-100);
+    
+    if(playerOne.hasShield==true){
+      canvasContext.drawImage(shieldHUD,18, canvas.height-80)
+      colorText(playerOne.calculateRemainingShieldDurablity()+"%",18, canvas.height-40 , 'white', font);
+    }
 
     this.drawItemHUD();
     this.drawAbilityHUD();

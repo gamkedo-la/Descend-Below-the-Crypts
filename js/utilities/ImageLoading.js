@@ -51,6 +51,7 @@ var punchHUD = document.createElement("img");
 var maceHUD = document.createElement("img");
 var fireballSpellHUD = document.createElement("img");
 var selectionArrow = document.createElement("img");
+var shieldHUD = document.createElement("img");
 
 
 // FX
@@ -129,6 +130,7 @@ function loadImages() {
 			{varName: punchHUD, theFile: "HUD/punchIcon.png"},
 			{varName: fireballSpellHUD, theFile: "HUD/fireBallIcon.png"},
 			{varName: selectionArrow, theFile: "HUD/targetSelection.png"},
+			{varName: shieldHUD, theFile: "HUD/shieldHUD.png" },
 
 			// FX
 			{varName: healFX, theFile: "FX/healEffect.png"},

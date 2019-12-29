@@ -1,3 +1,5 @@
+const MAX_SHIELD_DURABILITY = 5; // 5 damage pts (please feel free to adjust)
+
 class Player extends Character {
     constructor(maxHealth, movementSpeed, width, height) {
         super(maxHealth, movementSpeed, width, height);
@@ -45,6 +47,13 @@ class Player extends Character {
         // Etc
         this.noClipMode = false;
         this.collide_bump_mult = 2; // this needs to be improved.  This could potentially cause enemy or player in an illegal position (wall)
+
+        // Shield
+        this.hasShield = false;
+        this.remainingShieldDurability = 0; 
+
+        // For testing only:
+        this.pickUpShield();
     }
 
     init(whichGraphic, whichName) {
@@ -448,7 +457,24 @@ class Player extends Character {
     }
 
     takeDamage(howMuchDamage) {
-        this.health -= howMuchDamage;
+        if(this.hasShield){
+            this.remainingShieldDurability -= howMuchDamage;
+            if(this.remainingShieldDurability <=0){
+                this.hasShield=false;
+            }
+        }
+        else{
+            this.health -= howMuchDamage;
+        }
+    }
+
+    pickUpShield(){
+        this.hasShield = true;
+        this.remainingShieldDurability = MAX_SHIELD_DURABILITY;
+    }
+
+    calculateRemainingShieldDurablity(){
+        return (100 * this.remainingShieldDurability) / MAX_SHIELD_DURABILITY;
     }
 
     trapCoolDown() {
