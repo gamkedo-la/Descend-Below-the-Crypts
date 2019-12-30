@@ -11,7 +11,7 @@ class GameState {
   // Abstract functions
   onMouseClick(mouseX, mouseY) {
 	console.log("Clicked on "+ mouseX, mouseY);
-    //throw new TypeError("Do not call static abstract method from child");
+    throw new TypeError("Do not call static abstract method from child");
   }
 
   onMouseMove(mouseX, mouseY) {
@@ -23,6 +23,6 @@ class GameState {
   }
 
   onKeyReleased(evt) {
-    throw new TypeError("Do not call static abstract method from child");
+   throw new TypeError("Do not call static abstract method from child");
   }
 }

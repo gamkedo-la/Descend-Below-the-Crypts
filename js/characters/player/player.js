@@ -265,6 +265,8 @@ class Player extends Character {
                 this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                 break;
             case TILE_FINISH:
+				gameStateManager.setState( State.QUESTONE)
+				break;
 			case TILE_STAIRS_DOWN_LEVEL_1:
                 gameStateManager.getState().loadLevel(1);
 				basementMusic.startOrStopMusic();

@@ -4,7 +4,8 @@ const State = {
   PLAY: 2,
   INSTRUCTIONS: 3,
   CREDITS: 4,
-  QUESTONE: 5
+  QUESTONE: 5,
+  QUESTTWO: 6,
 };
 
 class GameStateManager {
@@ -15,7 +16,8 @@ class GameStateManager {
                         new Play(),
                         new InstructionMenu(),
                         new Credits() ,
-						new QuestOne()
+						new QuestOne(),
+						new QuestTwo()
                       ];
   }
 

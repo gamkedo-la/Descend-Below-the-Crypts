@@ -26,6 +26,9 @@ var menuScreenPic = document.createElement("img");
 var instructionScreenPic = document.createElement("img");
 var titleBarPic = document.createElement("img");
 var questOneBackgroundPic = document.createElement("img");
+var questTwoBackgroundPic = document.createElement("img");
+var cloudPic = document.createElement("img");
+var scryingPic = document.createElement("img");
 
 //misc
 var shadowPic = document.createElement("img");
@@ -99,6 +102,10 @@ function loadImages() {
 			{varName: healthbarPic, theFile: "healthbar.png"},
 			{varName: characterSelectionBackgroundPic, theFile: "gameStates/characterSelectionPage.png"},
 			{varName: questOneBackgroundPic, theFile: "gameStates/quest1.png"},
+			{varName: cloudPic, theFile: "gameStates/cloud.png"},
+			{varName: scryingPic, theFile: "gameStates/scryingBackground.png"},
+			
+			{varName: questTwoBackgroundPic, theFile: "gameStates/quest2.png"},
 			{varName: mainMenuPic, theFile: "gameStates/titleScreen.png"},
 			{varName: leftDoorOpenningPic, theFile: "gameStates/leftDoor.png"},
 			{varName: rightDoorOpenningPic, theFile: "gameStates/rightDoor.png"},
