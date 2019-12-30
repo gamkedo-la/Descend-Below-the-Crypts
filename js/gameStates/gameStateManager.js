@@ -4,8 +4,7 @@ const State = {
   PLAY: 2,
   INSTRUCTIONS: 3,
   CREDITS: 4,
-  QUESTONE: 5,
-  QUESTTWO: 6,
+  CUTSCENE: 5
 };
 
 class GameStateManager {
@@ -15,14 +14,15 @@ class GameStateManager {
                         new CharacterSelection(),
                         new Play(),
                         new InstructionMenu(),
-                        new Credits() ,
-						new QuestOne(),
-						new QuestTwo()
-                      ];
+                        new Credits(),
+                        new Cutscenes() ];
   }
 
-  setState(newState) {
+  setState(newState, newScene = 0) {
     this.state = newState;
+
+    if (this.state == State.CUTSCENE)
+      this.stateStack[State.CUTSCENE].setCutscene(newScene);
   }
 
   getState() {

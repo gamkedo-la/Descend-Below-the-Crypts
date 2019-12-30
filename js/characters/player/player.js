@@ -50,7 +50,7 @@ class Player extends Character {
 
         // Shield
         this.hasShield = false;
-        this.remainingShieldDurability = 0; 
+        this.remainingShieldDurability = 0;
 
         // For testing only:
         this.pickUpShield();
@@ -265,8 +265,8 @@ class Player extends Character {
                 this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                 break;
             case TILE_FINISH:
-				gameStateManager.setState( State.QUESTONE)
-				break;
+                gameStateManager.setState(State.CUTSCENE, Scene.QUESTONE);
+				        break;
 			case TILE_STAIRS_DOWN_LEVEL_1:
                 gameStateManager.getState().loadLevel(1);
 				basementMusic.startOrStopMusic();
@@ -416,9 +416,9 @@ class Player extends Character {
 			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
 		}
     }
-	
+
 	newWayPoint(targetIndex) {
-		
+
 		console.log("Target Index " + targetIndex);
 	}
 
@@ -495,7 +495,7 @@ class Player extends Character {
     useHealPotion() {
         // This variable need to be global?
         var healPotionRecoveryPercent = this.maxHealth* 0.25; // 25%
-        
+
         this.healPotionsHeld--;
         this.health += healPotionRecoveryPercent;
 
