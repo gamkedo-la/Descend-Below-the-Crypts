@@ -3,6 +3,9 @@ const Scene = {
   QUESTTWO: 1
 };
 
+// Global array
+var cutscenePlayed = [];
+
 class Cutscenes extends GameState {
   constructor() {
     super();
@@ -10,6 +13,9 @@ class Cutscenes extends GameState {
     this.scene = Scene.QUESTONE;
     this.cutsceneStack = [ new QuestOne(),
                            new QuestTwo() ];
+
+    for (var cutscene in this.cutsceneStack)
+      cutscenePlayed.push(false);
   }
 
   setCutscene(newScene) {
@@ -35,7 +41,7 @@ class Cutscenes extends GameState {
   }
 
   onKeyPress(evt) {
-    
+
   }
 
   onKeyRelease(evt) {
@@ -44,5 +50,6 @@ class Cutscenes extends GameState {
 
   skipCutscene() {
     this.cutsceneStack[this.scene].state = SceneState.FINISHED;
+    cutscenePlayed[this.scene] = true;
   }
 }
