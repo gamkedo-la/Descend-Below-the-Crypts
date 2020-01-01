@@ -35,7 +35,7 @@ class Cutscenes extends GameState {
   }
 
   onKeyPress(evt) {
-    this.skipCutscene();
+    
   }
 
   onKeyRelease(evt) {
