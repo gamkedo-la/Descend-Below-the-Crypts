@@ -22,13 +22,12 @@ class Cutscenes extends GameState {
     this.cutsceneStack[this.scene].draw();
 
     // cutscene draw finish handler
-    if (this.cutsceneStack[this.scene].state == SceneState.FINISHED) {
-      console.log("Cutscene finished");
-    }
+    if (this.cutsceneStack[this.scene].state == SceneState.FINISHED)
+      gameStateManager.setState(State.PLAY);
   }
 
   onMouseClick(mouseX, mouseY) {
-
+    this.skipCutscene();
   }
 
   onMouseMove(mouseX, mouseY) {
@@ -36,10 +35,14 @@ class Cutscenes extends GameState {
   }
 
   onKeyPress(evt) {
-
+    this.skipCutscene();
   }
 
   onKeyRelease(evt) {
-    // Probably can do keypress to skip cutscene here
+
+  }
+
+  skipCutscene() {
+    this.cutsceneStack[this.scene].state = SceneState.FINISHED;
   }
 }

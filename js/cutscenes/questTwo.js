@@ -12,20 +12,4 @@ class QuestTwo extends Cutscene {
       // change this.state to SceneState.FINISHED when cutscene is done
     }
   }
-
-  onMouseClick(mouseX, mouseY) {
-
-  }
-
-  onMouseMove(mouseX, mouseY) {
-
-  }
-
-  onKeyPress(evt) {
-
-  }
-
-  onKeyReleased(evt) {
-
-  }
 }
