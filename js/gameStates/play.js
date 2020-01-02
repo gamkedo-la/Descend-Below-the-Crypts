@@ -482,8 +482,9 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 
   loadLevel(level) {
     this.level = level;
-    if (this.level > this.mapStack.length)
-      this.level = 0;
+		if (this.level > this.mapStack.length){
+		  this.level = 0;
+		}
   }
 
   checkForSounds() {

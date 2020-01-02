@@ -232,6 +232,10 @@ function loadImages() {
 			{tileType: TILE_BED, theFile: "bed.png"},
 			{tileType: TILE_FIREPIT, theFile: "firepit.png"},
 			{tileType: TILE_THRONE, theFile: "throne.png"},
+			{tileType: TILE_COUNTER_EMPTY, theFile: "store_counter.png"},
+			{tileType: TILE_COUNTER_POTIONS, theFile: "store_counter_potions.png"},
+			{tileType: TILE_DRESSER, theFile: "dresser.png"}
+
 		];
 
 	picsToLoad = imageList.length;

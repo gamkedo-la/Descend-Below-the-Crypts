@@ -280,8 +280,9 @@ class Player extends Character {
 				cryptMusic.loopSong("Into_The_Crypts");
                 break;
             case TILE_STAIRS:
-                this.reset(this.roomGrid);
-                break;
+                gameStateManager.getState().loadLevel(0);
+				basementMusic.startOrStopMusic();
+				break;
             case TILE_PITTRAP_ARMED:
                 if (!this.noClipMode) {
                     this.takeDamageFromTrap(1);
