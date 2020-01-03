@@ -470,6 +470,9 @@ class Player extends Character {
         else{
             this.health -= howMuchDamage;
         }
+		if(this.health <= 0){
+			gameStateManager.setState(State.GAMEOVER);	
+		}
     }
 
     pickUpShield(){

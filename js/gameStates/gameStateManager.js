@@ -4,7 +4,8 @@ const State = {
   PLAY: 2,
   INSTRUCTIONS: 3,
   CREDITS: 4,
-  CUTSCENE: 5
+  CUTSCENE: 5,
+  GAMEOVER: 6
 };
 
 class GameStateManager {
@@ -15,7 +16,8 @@ class GameStateManager {
                         new Play(),
                         new InstructionMenu(),
                         new Credits(),
-                        new Cutscenes() ];
+                        new Cutscenes(), 
+						new GameOver()];
   }
 
   setState(newState, newScene = 0) {

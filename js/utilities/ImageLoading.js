@@ -29,6 +29,7 @@ var questOneBackgroundPic = document.createElement("img");
 var questTwoBackgroundPic = document.createElement("img");
 var cloudPic = document.createElement("img");
 var scryingPic = document.createElement("img");
+var gameOverPic = document.createElement("img");
 
 //misc
 var shadowPic = document.createElement("img");
@@ -121,6 +122,7 @@ function loadImages() {
 			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},
 			{varName: kingsTombPic, theFile: "kingsTomb.png"},
 			{varName: greenParticlePic, theFile: "greenParticle.png"},
+			{varName: gameOverPic, theFile: "gameStates/deathScreen.png"},
 
 			// HUD
 			{varName: healthHUD, theFile: "HUD/healthHUD.png"},
