@@ -376,6 +376,7 @@ class Enemy extends Character {
 	  this.health -= damagePoints;
 	  if(this.health <= 0){
 		  // play death animation etc..
+		  selectedEnemy = null;
 	  }
   }
 }

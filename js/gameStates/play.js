@@ -127,7 +127,6 @@ var mouseClickX = 0;
 var mouseClickY = 0;
 
 var selectedEnemy = null;
-var enemyClicked = false;
 
 class Play extends GameState {
   constructor() {
@@ -241,7 +240,7 @@ class Play extends GameState {
 		  playerOne.useManaPotion();
     }
     else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true &&
-      playerOne.sword && enemyClicked == true){
+      playerOne.sword && selectedEnemy != null){
 
       if(swordCoolingDown == false){
         swordCoolingDown = true;
@@ -285,7 +284,7 @@ class Play extends GameState {
    }
    
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
-      if(enemyClicked == false){
+      if(selectedEnemy == null){
 
         warningMessage="Target is not selected!";
         warningSFX.play();
@@ -327,19 +326,19 @@ detectEnemyClicks(mousePosX, mousePosY){
 
   var buffer = 30;
 
-  enemyClicked = false;
-
   for(let i=0; i< enemyList.length; i++){
     if(enemyList[i].x > mouseClickWorldX - buffer && enemyList[i].x < mouseClickWorldX +enemyList[i].width + buffer &&
       enemyList[i].y > mouseClickWorldY - buffer && enemyList[i].y < mouseClickWorldY +enemyList[i].height + buffer){
-      // Select enemy:
+     
+       // Deselect current enemy:
+      for(let j=0; j< enemyList.length; j++){
+        enemyList[j].selected = false;
+        selectedEnemy = null;
+      }
+      
+      // Select new enemy:
       enemyList[i].selected = true;
       selectedEnemy = enemyList[i];
-      enemyClicked = true;
-    }
-    else{
-      // Un-select enemy:
-      enemyList[i].selected = false;
     }
   }
 }
