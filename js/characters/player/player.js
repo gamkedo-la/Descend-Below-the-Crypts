@@ -53,7 +53,7 @@ class Player extends Character {
         this.remainingShieldDurability = 0;
 
         // For testing only:
-        this.pickUpShield();
+        //this.pickUpShield();
     }
 
     init(whichGraphic, whichName) {
@@ -210,6 +210,17 @@ class Player extends Character {
                     this.y = nextY;
                 }
                 break;
+                case TILE_SHIELD:
+                    //add shield to the warrior
+                    if (this instanceof Warrior) {
+                        this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+                        this.pickUpShield();
+                        console.log("Shield found");
+                    } else {
+                        this.x = nextX;
+                        this.y = nextY;
+                    }
+                    break;
             case TILE_MACE:
                 //add sword to the warrior
                 if (this instanceof Warrior) {

@@ -236,7 +236,8 @@ function loadImages() {
 			{tileType: TILE_THRONE, theFile: "throne.png"},
 			{tileType: TILE_COUNTER_EMPTY, theFile: "store_counter.png"},
 			{tileType: TILE_COUNTER_POTIONS, theFile: "store_counter_potions.png"},
-			{tileType: TILE_DRESSER, theFile: "dresser.png"}
+			{tileType: TILE_DRESSER, theFile: "dresser.png"},
+			{tileType: TILE_SHIELD, theFile: "shield.png"}
 
 		];
 
