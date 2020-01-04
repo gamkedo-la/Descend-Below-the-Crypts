@@ -17,11 +17,6 @@ class Warrior extends Player {
     console.log('Attacking with sword');
     enemy.receiveDamage(SWORD_POWER);
   }
-
-  attackWithPunch(enemy){
-    console.log('Attacking with punch');
-    enemy.receiveDamage(PUNCH_POWER);
-  }
   
   attackWithMace(){
     console.log('Attacking with mace');

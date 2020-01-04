@@ -535,4 +535,9 @@ class Player extends Character {
         console.log("Mana potion used");
         this.manaPotionsHeld--;
       }
+
+      attackWithPunch(enemy){
+        console.log('Attacking with punch');
+        enemy.receiveDamage(PUNCH_POWER);
+      }
 }
