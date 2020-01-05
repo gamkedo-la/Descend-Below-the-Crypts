@@ -17,9 +17,17 @@ class Enemy extends Character {
     this.toTileC = 0;
     this.toTileR = 0;
 	this.d = 0; // distance
+	this.walkIntoTileIndex = 0;
 	
 	// HUD
 	this.selected = false;
+
+	// Drops:
+	this.drops = [
+		TILE_HEALING_POTION,
+		TILE_MANA_POTION,
+		TILE_SHIELD
+	]
   }
 
   init(whichGraphic, whichName, whichTile) {
@@ -93,11 +101,11 @@ class Enemy extends Character {
 		this.offSetHeight = 0;
 	}
 
-	var walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
+	this.walkIntoTileIndex = getTileIndexAtPixelCoord(nextX,nextY);
 	var walkIntoTileType = TILE_WALL;
 
 	if(walkIntoTileType != undefined) {
-		walkIntoTileType = this.roomGrid[walkIntoTileIndex];
+		walkIntoTileType = this.roomGrid[this.walkIntoTileIndex];
 	}
 
 	switch(walkIntoTileType) {
@@ -375,7 +383,17 @@ class Enemy extends Character {
   receiveDamage(damagePoints){
 	  this.health -= damagePoints;
 	  if(this.health <= 0){
+
 		  // play death animation etc..
+
+		  var dropChance = Math.floor(Math.random() * 100) + 0;  
+
+		  // 50% drop chance:
+		  if(dropChance <= 50){
+			// Fetch a random item:
+			var droppedItemIndex = Math.floor(Math.random() * this.drops.length) + 0;
+			this.roomGrid[this.walkIntoTileIndex] = this.drops[droppedItemIndex];
+		  }
 		  selectedEnemy = null;
 	  }
   }
