@@ -4,10 +4,10 @@ class CharacterSelection extends GameState {
 
     this.warriorBoxX = 106;
     this.warriorBoxY = 313;
-    this.warriorEyes = new eyesAnimationClass(this.warriorBoxX, this.warriorBoxY, 0, warriorEyesPic);
+    this.warriorEyes = new eyesAnimationClass(this.warriorBoxX, this.warriorBoxY, 0, warriorEyesOriginal);
     this.wizardBoxX = 338;
     this.wizardBoxY = 313;
-    this.wizardEyes = new eyesAnimationClass(this.wizardBoxX, this.wizardBoxY, 0, wizardEyesPic);
+    this.wizardEyes = new eyesAnimationClass(this.wizardBoxX, this.wizardBoxY, 0, wizardEyesOriginal);
     this.clericBoxX = 570;
     this.clericBoxY = 313;
     this.clericEyes = new eyesAnimationClass(this.clericBoxX, this.clericBoxY, 0, clericEyesPic);

@@ -4,8 +4,10 @@ var wizardPic =  document.createElement("img");
 var clericPic =  document.createElement("img");
 var warriorProfilePic = document.createElement("img");
 var warriorEyesPic = document.createElement("img");
+var warriorEyesOriginal = document.createElement("img");
 var wizardProfilePic = document.createElement("img");
 var wizardEyesPic = document.createElement("img");
+var wizardEyesOriginal = document.createElement("img");
 var clericProfilePic = document.createElement("img");
 var clericEyesPic = document.createElement("img");
 //enemies
@@ -116,8 +118,10 @@ function loadImages() {
 			{varName: torchFirePic, theFile: "gameStates/torchFire.png"},
 			{varName: warriorProfilePic, theFile: "profilePics/warrior/warriorProfilePic.png"},
 			{varName: warriorEyesPic, theFile: "profilePics/warrior/eyes.png"},
+			{varName: warriorEyesOriginal, theFile: "profilePics/warrior/eyes_original.png"},
 			{varName: wizardProfilePic, theFile: "profilePics/wizard/wizardProfilePic.png"},
 			{varName: wizardEyesPic, theFile: "profilePics/wizard/eyes.png"},
+			{varName: wizardEyesOriginal, theFile: "profilePics/wizard/eyes_original.png"},
 			{varName: clericProfilePic, theFile: "profilePics/cleric/clericProfilePic.png"},
 			{varName: clericEyesPic, theFile: "profilePics/cleric/eyes.png"},
 			{varName: kingsTombPic, theFile: "kingsTomb.png"},
