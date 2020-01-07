@@ -550,4 +550,8 @@ class Player extends Character {
         console.log('Attacking with punch');
         enemy.receiveDamage(PUNCH_POWER);
       }
+
+      notEnoughManaAlert() {
+          console.log("You Don't have enough Mana");
+      }
 }
