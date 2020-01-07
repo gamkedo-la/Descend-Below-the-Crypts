@@ -32,6 +32,10 @@ var questTwoBackgroundPic = document.createElement("img");
 var cloudPic = document.createElement("img");
 var scryingPic = document.createElement("img");
 var gameOverPic = document.createElement("img");
+var gameOverPicWarrior = document.createElement("img");
+var gameOverPicCleric = document.createElement("img");
+var gameOverPicWizard = document.createElement("img");
+
 
 //misc
 var shadowPic = document.createElement("img");
@@ -127,6 +131,9 @@ function loadImages() {
 			{varName: kingsTombPic, theFile: "kingsTomb.png"},
 			{varName: greenParticlePic, theFile: "greenParticle.png"},
 			{varName: gameOverPic, theFile: "gameStates/deathScreen.png"},
+			{varName: gameOverPicWarrior, theFile: "gameStates/deathScreenWarrior.png"},
+			{varName: gameOverPicCleric, theFile: "gameStates/deathScreenCleric.png"},
+			{varName: gameOverPicWizard, theFile: "gameStates/deathScreenWizard.png"},
 
 			// HUD
 			{varName: healthHUD, theFile: "HUD/healthHUD.png"},

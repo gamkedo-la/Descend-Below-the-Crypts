@@ -5,6 +5,8 @@ function pathFinder() {
         frontier.push(start);
         var cameFrom = {};
         cameFrom[start] = "S";
+		
+		console.log(frontier.length);
 
         while (frontier.length > 0) {
             var current = frontier.shift();

@@ -351,10 +351,13 @@ class Player extends Character {
                 return true;
         }
     }
+	
     wayPointMovement() {
        	var destinationTileIndex = getTileIndexAtPixelCoord(mouseClickX, mouseClickY);
-		    var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-		    this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, this.isPassableTile);
+		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
+
+		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, this.isPassableTile);
+		
 
         if (this.currentPath.length > 0) {
             this.currentPathIndex = 0;
@@ -482,7 +485,14 @@ class Player extends Character {
             this.health -= howMuchDamage;
         }
 		if(this.health <= 0){
-			gameStateManager.setState(State.GAMEOVER);	
+			if (this instanceof Warrior){
+				gameOverPic = gameOverPicWarrior;
+			} else if (this instanceof Cleric){
+				gameOverPic = gameOverPicCleric;
+			} else if (this instanceof Wizard){
+				gameOverPic = gameOverPicWizard;
+			}
+			gameStateManager.setState(State.GAMEOVER);
 		}
     }
 
