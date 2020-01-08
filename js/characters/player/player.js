@@ -35,6 +35,7 @@ class Player extends Character {
 		this.keyHeld_East = false;
 		this.keyHeld_South = false;
 		this.keyHeld_West = false;
+		this.keyHeld_Run = false;
 
         // Attributes
         this.trapCoolDownTimer = 0;
@@ -60,11 +61,12 @@ class Player extends Character {
         super.init(whichGraphic, whichName);
     }
 
-    setupControls(northKey, eastKey, southKey, westKey) {
+    setupControls(northKey, eastKey, southKey, westKey, runKey) {
         this.controlKeyForNorth = northKey;
         this.controlKeyForEast = eastKey;
         this.controlKeyForSouth = southKey;
         this.controlKeyForWest = westKey;
+		this.controlKeyForRun = runKey;
     }
 
     reset(roomGrid) {
@@ -102,20 +104,26 @@ class Player extends Character {
         this.wayPointMovement();
 
         if( this.canMove ) {
+			let speedNow = 0;
+			if (this.keyHeld_Run) {
+				speedNow = this.runSpeed;
+			} else {
+			    speedNow = this.movementSpeed;
+			}
             if (this.moveNorth && this.canMoveNorth || this.keyHeld_North && this.canMoveNorth) {
-                nextY -= this.movementSpeed;
+                nextY -= speedNow;
                 this.offSetHeight = this.height * 4;
                 this.enableAnimation=true;
             } else if (this.moveEast && this.canMoveEast || this.keyHeld_East && this.canMoveEast) {
-                nextX += this.movementSpeed;
+                nextX += speedNow;
                 this.offSetHeight = this.height * 1;
                 this.enableAnimation=true;
             } else if (this.moveSouth && this.canMoveSouth || this.keyHeld_South && this.canMoveSouth) {
-                nextY += this.movementSpeed;
+                nextY += speedNow;
                 this.offSetHeight = this.height * 2;
                 this.enableAnimation=true;
             } else if (this.moveWest && this.canMoveWest || this.keyHeld_West && this.canMoveWest) {
-                nextX -= this.movementSpeed;
+                nextX -= speedNow;
                 this.offSetHeight = this.height * 3;
                 this.enableAnimation=true;
             } else {

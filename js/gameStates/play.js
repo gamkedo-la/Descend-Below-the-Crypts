@@ -2,7 +2,8 @@ const KEY_W = 87; // "W"
 const KEY_S = 83; // "S"
 const KEY_A = 65; // "A"
 const KEY_D = 68; // "D"
-const KEY_I = 73;
+const KEY_SHIFT = 16; // "SHIFT"
+const KEY_I = 73; // "I"
 const KEY_P = 80; // "P"
 const KEY_1 = 49; // "1"
 const KEY_2 = 50; // "2"
@@ -78,6 +79,7 @@ const NORMAL_KEY_MAP = {
     gameState.inventory = !gameState.inventory;
   },
   [KEY_D]: null,
+  [KEY_SHIFT]: null,
   [KEY_P]: function(gameState) {
     gameState.pause = !gameState.pause;
   },
@@ -155,7 +157,7 @@ class Play extends GameState {
 
   draw() {
     if (!this.setup) {
-      playerOne.setupControls(KEY_W, KEY_D, KEY_S, KEY_A);
+      playerOne.setupControls(KEY_W, KEY_D, KEY_S, KEY_A, KEY_SHIFT);
       this.setup = true;
     }
 
@@ -475,6 +477,9 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
         break;
       case (playerOne.controlKeyForWest):
         playerOne.keyHeld_West = setTo;
+        break;
+	  case (playerOne.controlKeyForRun):
+        playerOne.keyHeld_Run = setTo;
         break;
     }
   }

@@ -1,3 +1,5 @@
+const RUN_MULT = 2.0; // how much faster when running than walking
+
 class Character {
   constructor(maxHealth, movementSpeed, width, height) {
     // Draw
@@ -15,6 +17,7 @@ class Character {
     this.maxHealth = maxHealth;
     this.health = this.maxHealth;
   	this.movementSpeed = movementSpeed;
+	this.runSpeed = this.movementSpeed*RUN_MULT;
 	this.mana = 0;
 	this.maxMana = 0;
 
