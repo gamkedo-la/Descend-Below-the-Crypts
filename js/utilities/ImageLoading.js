@@ -35,6 +35,7 @@ var gameOverPic = document.createElement("img");
 var gameOverPicWarrior = document.createElement("img");
 var gameOverPicCleric = document.createElement("img");
 var gameOverPicWizard = document.createElement("img");
+var inventoryScreenPic = document.createElement("img");
 
 
 //misc
@@ -151,6 +152,7 @@ function loadImages() {
 			{varName: fireballSpellHUD, theFile: "HUD/fireBallIcon.png"},
 			{varName: selectionArrow, theFile: "HUD/targetSelection.png"},
 			{varName: shieldHUD, theFile: "HUD/shieldHUD.png" },
+			{varName: inventoryScreenPic, theFile: "HUD/InventoryUISketch.png"},
 
 			// FX
 			{varName: healFX, theFile: "FX/healEffect.png"},
