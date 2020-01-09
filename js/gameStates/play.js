@@ -31,9 +31,9 @@ const INVENTORY_ICON_HEIGHT=40;
 const HUD_OPACITY= 0.7;
 
 const PUNCH_COOLDOWN_TIME = 1;
-const SWORD_COOLDOWN_TIME = 4;
-const MACE_COOLDOWN_TIME = 5;
-const FIREBALL_SPELL_COOLDOWN_TIME = 10;
+const SWORD_COOLDOWN_TIME = 3;
+const MACE_COOLDOWN_TIME = 4;
+const FIREBALL_SPELL_COOLDOWN_TIME = 5;
 
 var punchCoolingDown = false;
 var swordCoolingDown = false;
@@ -260,7 +260,7 @@ class Play extends GameState {
    }
    
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.maceXPos, inventoryCoords.maceYPos) == true &&
-      playerOne.mace){
+      playerOne.mace && selectedEnemy != null){
 
       if(maceCoolingDown == false){
         maceCoolingDown = true;
@@ -273,7 +273,7 @@ class Play extends GameState {
    }
    
   else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.fireballXPos, inventoryCoords.fireballYPos) == true &&
-      playerOne.fireballSpell){
+      playerOne.fireballSpell && selectedEnemy != null){
 
       if(fireballCoolingDown == false){
         fireballCoolingDown = true;
@@ -281,7 +281,12 @@ class Play extends GameState {
         // Reset cooldown timer:
         fireballCoolDownTimer = FIREBALL_SPELL_COOLDOWN_TIME;
 
-        playerOne.attackWithFireBallSpell();
+        playerOne.attackWithFireBallSpell(selectedEnemy);
+
+        // Check if enemy died. If it did, remove it from the enemy list:
+        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
+          return enemy.health >0;
+        })
       }
    }
    
@@ -652,7 +657,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       currentXPos +=iconHorizontalSpacing;
 
 		if(fireballCoolingDown==true){
-			canvasContext.drawImage(coolDownHUD,inventoryCoords.maceXPos, inventoryCoords.maceYPos);
+			canvasContext.drawImage(coolDownHUD,inventoryCoords.fireballXPos, inventoryCoords.fireballYPos);
 			colorText(fireballCoolDownTimer,
 			inventoryCoords.fireballXPos+ 15,
 			inventoryCoords.fireballYPos+ 30, 'red', coolDownTimerfont);
@@ -677,6 +682,12 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       }
       else{
         swordCoolingDown = false;
+      }
+      if(fireballCoolDownTimer >0){
+        fireballCoolDownTimer--;
+      }
+      else{
+        fireballCoolingDown = false;
       }
     }, 1000);
   }

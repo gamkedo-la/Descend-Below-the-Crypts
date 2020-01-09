@@ -14,7 +14,7 @@ class Wizard extends Player {
     this.FLAME_DAMAGE = 2;
   }
   
-  attackWithFireBallSpell(){
+  attackWithFireBallSpell(enemy){
     if( !this.fireballSpell ) {
       return;
     }
