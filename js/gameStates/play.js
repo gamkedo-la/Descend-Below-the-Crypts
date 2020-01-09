@@ -189,6 +189,7 @@ class Play extends GameState {
     drawMouseIndicators();
     this.drawHUD();
     this.drawMinimap();
+	newLevelTitle.draw();
 
     if (this.debug)
       DebugMenu.draw(this.displayTileX_Y, this.isInvulnerable, this.moveFast, this.hasUnlimitedKeys, this.noClipEnabled);

@@ -25,6 +25,20 @@ function colorText(showWords, textX, textY, fillColor, fontStyle) {
   canvasContext.fillText(showWords, textX, textY);
 }
 
+function drawTextWithShadow(text, x,y, color, font="13px sans-serif")
+{
+	canvasContext.textAlign = "center";
+	canvasContext.font = font;
+	canvasContext.shadowBlur = 8;
+	canvasContext.shadowColor = "black";
+	// if these are both 0, it's more like a "glow"
+	canvasContext.shadowOffsetX = 0;
+	canvasContext.shadowOffsetY = 0;
+	canvasContext.fillStyle = color;
+	canvasContext.fillText(text, x,y);
+	canvasContext.shadowBlur = 0;
+}
+
 function toolTipText(txt, font, x, y) {
 	/// lets save current state as we make a lot of changes        
 	canvasContext.save();

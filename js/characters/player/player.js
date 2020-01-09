@@ -290,6 +290,7 @@ class Player extends Character {
 			case TILE_STAIRS_DOWN_LEVEL_1:
                 gameStateManager.getState().loadLevel(1);
 				basementMusic.startOrStopMusic();
+				newLevelTitle.begin("The Castle");
 				break;
             case TILE_STAIRS_DOWN_LEVEL_2:
 				enteringSecondLevelNarrative.play();
@@ -297,10 +298,12 @@ class Player extends Character {
                 gameStateManager.getState().loadLevel(2);
 				basementMusic.startOrStopMusic();
 				cryptMusic.loopSong("Into_The_Crypts");
+				newLevelTitle.begin("The Crypts Level 1");
                 break;
             case TILE_STAIRS:
                 gameStateManager.getState().loadLevel(0);
 				basementMusic.startOrStopMusic();
+				newLevelTitle.begin("The Town");
 				break;
             case TILE_PITTRAP_ARMED:
                 if (!this.noClipMode) {
