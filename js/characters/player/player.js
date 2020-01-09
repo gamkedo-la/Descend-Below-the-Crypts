@@ -552,6 +552,13 @@ class Player extends Character {
       useManaPotion() {
         console.log("Mana potion used");
         this.manaPotionsHeld--;
+
+        // play FX:
+        _this.showHealFX=true;
+
+        setTimeout(function(){
+            _this.showHealFX = false;
+        }, 1000);
       }
 
       attackWithPunch(enemy){

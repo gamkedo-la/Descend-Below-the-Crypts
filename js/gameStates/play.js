@@ -34,16 +34,19 @@ const PUNCH_COOLDOWN_TIME = 1;
 const SWORD_COOLDOWN_TIME = 3;
 const MACE_COOLDOWN_TIME = 4;
 const FIREBALL_SPELL_COOLDOWN_TIME = 5;
+const HEAL_SPELL_COOLDOWN_TIME = 3;
 
 var punchCoolingDown = false;
 var swordCoolingDown = false;
 var maceCoolingDown = false;
 var fireballCoolingDown = false;
+var healSpellCoolingDown = false;
 
 var punchCoolDownTimer = 0;
 var swordCoolDownTimer = 0;
 var maceCoolDownTimer = 0;
 var fireballCoolDownTimer = 0;
+var healSpellCoolDownTimer = 0;
 
 var inventoryCoords = {
   healPotionXPos : 0,
@@ -62,6 +65,8 @@ var inventoryCoords = {
   maceYPos: 0,
   fireballXPos: 0,
   fireballYPos: 0,
+  healSpellXPos: 0,
+  healSpellYPos: 0,
 }
 
 var warningMessage="";
@@ -194,29 +199,6 @@ class Play extends GameState {
     if( this.inventory && !this.pause )
       Inventory.draw();
 
-    // Default HUD
-    /*
-    canvasContext.drawImage(feedbackGUIPic,200, canvas.height-50);
-		colorText("Keys: " + playerOne.keysHeld, 220, 582, "black", "14px Arial Black");
-		colorText("Gold: " + playerOne.goldCoins, 300, 582, "black", "14px Arial Black");
-		if(playerOne.sword) {
-			colorText("Can use Sword", 360, 572, "black", "8px Arial Black");
-		} else {
-			colorText("CAN'T use Sword", 360, 572, "red", "8px Arial Black");
-		}
-
-		if(playerOne.mace) {
-			colorText("Can use Mace", 360, 582, "black", "8px Arial Black");
-		} else {
-			colorText("CAN'T use Mace", 360, 582, "red", "8px Arial Black");
-		}
-
-		if(playerOne.flameSpell) {
-			colorText("Can use Flame Spell", 360, 592, "black", "8px Arial Black");
-		} else {
-			colorText("CAN'T use Flame Spell", 360, 592, "red", "8px Arial Black");
-    }*/
-
     // Tooltip text:
     if(tooltipTxt != ''){
       var bufferSpace = 10;
@@ -242,9 +224,24 @@ class Play extends GameState {
 		  playerOne.useManaPotion();
     }
     else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true &&
-      playerOne.sword && selectedEnemy != null){
+      playerOne.sword){
 
-      if(swordCoolingDown == false){
+          if(selectedEnemy == null){
+            warningMessage="Target is not selected!";
+            warningSFX.play();
+            setTimeout(function(){
+              warningMessage="";
+          }, 1500);
+        }
+        else if(swordCoolingDown == true){
+            warningMessage="Ability is still recharging!";
+            warningSFX.play();
+            setTimeout(function(){
+              warningMessage="";
+          }, 1500);
+  
+        }
+      else{
         swordCoolingDown = true;
 
         // Reset cooldown timer:
@@ -273,9 +270,24 @@ class Play extends GameState {
    }
    
   else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.fireballXPos, inventoryCoords.fireballYPos) == true &&
-      playerOne.fireballSpell && selectedEnemy != null){
+      playerOne.fireballSpell){
 
-      if(fireballCoolingDown == false){
+      if(selectedEnemy == null){
+          warningMessage="Target is not selected!";
+          warningSFX.play();
+          setTimeout(function(){
+            warningMessage="";
+        }, 1500);
+      }
+      else if(fireballCoolingDown == true){
+
+          warningMessage="Ability is still recharging!";
+          warningSFX.play();
+          setTimeout(function(){
+            warningMessage="";
+        }, 1500);
+      }
+      else{
         fireballCoolingDown = true;
 
         // Reset cooldown timer:
@@ -323,6 +335,26 @@ class Play extends GameState {
         })
       }
  }
+
+ else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healSpellXPos, inventoryCoords.healSpellYPos) == true){
+    if(healSpellCoolingDown == true){
+
+      warningMessage="Ability is still recharging!";
+      warningSFX.play();
+      setTimeout(function(){
+        warningMessage="";
+    }, 1500);
+
+    }
+    else{
+      healSpellCoolingDown = true;
+
+      // Reset cooldown timer:
+      healSpellCoolDownTimer = HEAL_SPELL_COOLDOWN_TIME;
+
+      playerOne.cureSpell();
+    }
+}
 
 }
 
@@ -663,6 +695,21 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 			inventoryCoords.fireballYPos+ 30, 'red', coolDownTimerfont);
 		}
     }
+
+    if(playerOne.healSpell== true) {
+      inventoryCoords.healSpellXPos = currentXPos+3;
+      inventoryCoords.healSpellYPos = iconYPos+2;
+
+      canvasContext.drawImage(healSpellHUD,inventoryCoords.healSpellXPos, inventoryCoords.healSpellYPos);
+      currentXPos +=iconHorizontalSpacing;
+
+		if(healSpellCoolingDown==true){
+			canvasContext.drawImage(coolDownHUD,inventoryCoords.healSpellXPos, inventoryCoords.healSpellYPos);
+			colorText(healSpellCoolDownTimer,
+			inventoryCoords.healSpellXPos+ 15,
+			inventoryCoords.healSpellYPos+ 30, 'red', coolDownTimerfont);
+		}
+    }
     
     // Inventory BG:
     canvasContext.drawImage(abilityHUD,280, canvas.height-80);
@@ -688,6 +735,12 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       }
       else{
         fireballCoolingDown = false;
+      }
+      if(healSpellCoolDownTimer >0){
+        healSpellCoolDownTimer--;
+      }
+      else{
+        healSpellCoolingDown = false;
       }
     }, 1000);
   }

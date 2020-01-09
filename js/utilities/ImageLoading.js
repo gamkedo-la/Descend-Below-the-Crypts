@@ -63,6 +63,7 @@ var maceHUD = document.createElement("img");
 var fireballSpellHUD = document.createElement("img");
 var selectionArrow = document.createElement("img");
 var shieldHUD = document.createElement("img");
+var healSpellHUD = document.createElement("img");
 
 
 // FX
@@ -153,6 +154,7 @@ function loadImages() {
 			{varName: selectionArrow, theFile: "HUD/targetSelection.png"},
 			{varName: shieldHUD, theFile: "HUD/shieldHUD.png" },
 			{varName: inventoryScreenPic, theFile: "HUD/InventoryUISketch.png"},
+			{varName: healSpellHUD, theFile: "HUD/HealIcon.png"},
 
 			// FX
 			{varName: healFX, theFile: "FX/healEffect.png"},
