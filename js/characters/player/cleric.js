@@ -37,6 +37,16 @@ class Cleric extends Player {
     }
     
     this.mana -= 1;
+    
+    // We have to write this in order to reference this correctly inside setTimeout()
+    var _this = this;
+
+    // play FX:
+    _this.showHealFX=true;
+
+    setTimeout(function(){
+      _this.showHealFX = false;
+    }, 1000);
   }
 
   attackUndead() {
