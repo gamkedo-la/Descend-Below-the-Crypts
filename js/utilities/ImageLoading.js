@@ -196,7 +196,6 @@ function loadImages() {
 			{tileType: TILE_WIZARD_BOOK, theFile: "wizardBook.png"},
 			{tileType: TILE_CLERIC_BOOK, theFile: "clericBook.png"},
 			{tileType: TILE_SKILL_BOOK, theFile: "skillBook.png"},
-			{tileType: TILE_FLAME_SPELL_BOOK, theFile: "flameSpellBook.png"},
 			{tileType: TILE_STAIRS_DOWN_LEVEL_1, theFile: "stairsDown.png"},
 			{tileType: TILE_STAIRS_DOWN_LEVEL_2, theFile: "stairsDown.png"},
 			{tileType: TILE_SWORD, theFile: "sword.png"},
@@ -255,7 +254,8 @@ function loadImages() {
 			{tileType: TILE_COUNTER_EMPTY, theFile: "store_counter.png"},
 			{tileType: TILE_COUNTER_POTIONS, theFile: "store_counter_potions.png"},
 			{tileType: TILE_DRESSER, theFile: "dresser.png"},
-			{tileType: TILE_SHIELD, theFile: "shield.png"}
+			{tileType: TILE_SHIELD, theFile: "shield.png"},
+			{tileType: TILE_FLAME_SPELL_BOOK, theFile: "flameSpellBook.png"},
 
 		];
 

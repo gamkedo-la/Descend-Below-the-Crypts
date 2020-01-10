@@ -216,6 +216,7 @@ const TILE_COUNTER_EMPTY = 98;
 const TILE_COUNTER_POTIONS = 99;
 const TILE_DRESSER = 100;
 const TILE_SHIELD = 101;
+const TILE_FLAME_SPELL_BOOK = 102;
 
 
 function gameCoordToIsoCoord (pixelX, pixelY) {
