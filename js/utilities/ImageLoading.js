@@ -64,6 +64,7 @@ var fireballSpellHUD = document.createElement("img");
 var selectionArrow = document.createElement("img");
 var shieldHUD = document.createElement("img");
 var healSpellHUD = document.createElement("img");
+var flameSpellHUD = document.createElement("img");
 
 
 // FX
@@ -155,6 +156,7 @@ function loadImages() {
 			{varName: shieldHUD, theFile: "HUD/shieldHUD.png" },
 			{varName: inventoryScreenPic, theFile: "HUD/InventoryUISketch.png"},
 			{varName: healSpellHUD, theFile: "HUD/HealIcon.png"},
+			{varName: flameSpellHUD, theFile: "HUD/flameIcon.png"},
 
 			// FX
 			{varName: healFX, theFile: "FX/healEffect.png"},
@@ -194,6 +196,7 @@ function loadImages() {
 			{tileType: TILE_WIZARD_BOOK, theFile: "wizardBook.png"},
 			{tileType: TILE_CLERIC_BOOK, theFile: "clericBook.png"},
 			{tileType: TILE_SKILL_BOOK, theFile: "skillBook.png"},
+			{tileType: TILE_FLAME_SPELL_BOOK, theFile: "flameSpellBook.png"},
 			{tileType: TILE_STAIRS_DOWN_LEVEL_1, theFile: "stairsDown.png"},
 			{tileType: TILE_STAIRS_DOWN_LEVEL_2, theFile: "stairsDown.png"},
 			{tileType: TILE_SWORD, theFile: "sword.png"},

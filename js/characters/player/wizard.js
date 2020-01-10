@@ -31,7 +31,7 @@ class Wizard extends Player {
   }
 
   
-  attackFlameSpell() {
+  attackFlameSpell(enemy) {
     if( !this.flameSpell ) {
       return;
     }
