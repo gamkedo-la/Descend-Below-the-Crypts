@@ -12,7 +12,7 @@ class Cleric extends Player {
     this.MACE_DAMAGE = 1;
   }
 
-  attackMace() {
+  attackMace(enemy) {
     if(! this.mace ) {
       return;
     }

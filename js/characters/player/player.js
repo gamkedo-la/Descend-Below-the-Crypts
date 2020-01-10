@@ -230,8 +230,8 @@ class Player extends Character {
                     }
                     break;
             case TILE_MACE:
-                //add sword to the warrior
-                if (this instanceof Warrior) {
+                //add sword to the cleric
+                if (this instanceof Cleric) {
                     this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                     this.mace = true;
                     console.log("Mace found");

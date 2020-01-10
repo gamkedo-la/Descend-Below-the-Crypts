@@ -259,15 +259,37 @@ class Play extends GameState {
    }
    
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.maceXPos, inventoryCoords.maceYPos) == true &&
-      playerOne.mace && selectedEnemy != null){
+      playerOne.mace){
 
-      if(maceCoolingDown == false){
+        
+      if(selectedEnemy == null){
+        warningMessage="Target is not selected!";
+        warningSFX.play();
+        setTimeout(function(){
+          warningMessage="";
+      }, 1500);
+    }
+    else if(maceCoolingDown == true){
+
+        warningMessage="Ability is still recharging!";
+        warningSFX.play();
+        setTimeout(function(){
+          warningMessage="";
+      }, 1500);
+    }
+
+    else{
         maceCoolingDown = true;
 
         // Reset cooldown timer:
         maceCoolDownTimer = MACE_COOLDOWN_TIME;
 
-        playerOne.attackWithMace();
+        playerOne.attackMace(selectedEnemy);
+        
+        // Check if enemy died. If it did, remove it from the enemy list:
+        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
+          return enemy.health >0;
+        })
       }
    }
    
@@ -750,6 +772,12 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       }
       else{
         healSpellCoolingDown = false;
+      }
+      if(maceCoolDownTimer >0){
+        maceCoolDownTimer--;
+      }
+      else{
+        maceCoolingDown = false;
       }
     }, 1000);
   }
