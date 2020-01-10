@@ -1,3 +1,16 @@
+var pathDebugIndexList = [82,121,122,162,163,203,243,283,323,363];
+
+function drawDebugPath(){
+	var toTileC;
+	var toTileR;
+	for(var i = 0; i < pathDebugIndexList.length; i++){
+		toTileC = pathDebugIndexList[i]%ROOM_COLS;
+		toTileR = Math.floor(pathDebugIndexList[i]/ROOM_COLS);
+		tileCoordToIsoCoord(toTileC, toTileR );
+		colorText(""+i, isoDrawX - 0.25*ISO_TILE_DRAW_W, isoDrawY + 0.1 * ISO_TILE_DRAW_W, "cyan", "24px Arial Black");
+	}
+}
+
 function pathFinder() {
     this.pathFrom_To_ = function(start, target, isPassableFunction) {
 
@@ -60,7 +73,7 @@ function pathFinder() {
          }
 
          //        console.log(string); */
-
+		console.log(path);
         return path;
     };
 
@@ -137,4 +150,24 @@ function pathFinder() {
             return result;
         }
     }
+	
+	
 }
+
+function isPassableTile(aTile) {
+	switch (aTile) { // THE TILES THAT CAN'T BE PASSED THROUGH FOR PATHFINDING
+		case TILE_WALL:
+		case TILE_FINISH:
+		case TILE_YELLOW_DOOR:
+		case TILE_RED_DOOR:
+		case TILE_BLUE_DOOR:
+		case TILE_TABLE:
+		case TILE_TOMB:
+		case TILE_TOMB_2:
+			return false;
+		default:
+			return true;
+	}
+}
+
+

@@ -347,27 +347,12 @@ class Player extends Character {
         this.trapCoolDown();
     }
 
-    isPassableTile(aTile) {
-        switch (aTile) { // THE TILES THAT CAN'T BE PASSED THROUGH FOR PATHFINDING
-            case TILE_WALL:
-            case TILE_FINISH:
-            case TILE_YELLOW_DOOR:
-            case TILE_RED_DOOR:
-            case TILE_BLUE_DOOR:
-            case TILE_TABLE:
-            case TILE_TOMB:
-            case TILE_TOMB_2:
-                return false;
-            default:
-                return true;
-        }
-    }
 	
     wayPointMovement() {
        	var destinationTileIndex = getTileIndexAtPixelCoord(mouseClickX, mouseClickY);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-
-		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, this.isPassableTile);
+		return; // bailing out early until Pathfinding is debugged
+		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isPassableTile);
 		
 
         if (this.currentPath.length > 0) {

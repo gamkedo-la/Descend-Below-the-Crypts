@@ -50,6 +50,7 @@ class Map {
         this.checkAllPlayerAndEnemyCollisions();
         shiftForCameraPan();
         this.drawMap(displayTileX_Y);
+		drawDebugPath();
         finishedCameraPan();
     }
 

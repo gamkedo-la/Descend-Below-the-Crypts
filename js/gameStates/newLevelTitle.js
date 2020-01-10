@@ -8,11 +8,9 @@ var newLevelTitle = new function(){
 	
 		transparency = 1.2;
 		levelName = levelDisplay;
-		console.log("reached begin");
 	}
 	
 	this.draw = function(){
-		console.log(transparency);
 		if(transparency > 0){
 			
 			var centerX = Math.round(canvas.width/2);

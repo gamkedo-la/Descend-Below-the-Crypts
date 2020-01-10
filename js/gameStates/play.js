@@ -13,6 +13,7 @@ const KEY_5 = 53; // "5"
 const KEY_6 = 54; // "6"
 const KEY_7 = 55; // "7"
 const KEY_8 = 56; // "8"
+const KEY_9 = 57; // "9"
 
 const KEY_Z = 90; // "Z"
 const KEY_X = 88; // "X"
@@ -463,6 +464,13 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   				}
   			}
   		}
+		if(evt.keyCode == KEY_9){
+			gameUsedKey = true;
+			var currentTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
+			var destinationTile = getTileIndexAtPixelCoord(mousePosX, mousePosY);
+			//pathDebugIndexList = [currentTile, destinationTile]; 
+			pathDebugIndexList = playerOne.pather.pathFrom_To_(currentTile,destinationTile, isPassableTile);
+		}
     }
     
     // Ability keyboard keys:

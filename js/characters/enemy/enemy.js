@@ -233,8 +233,8 @@ class Enemy extends Character {
 		gameCoordToIsoCoord(this.x,this.y);
 		var playerTileIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, this.isPassableTile);
-
+		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, isPassableTile);
+		return; // bailing out early until Pathfinding is debugged
 		/*if (this.currentPath.length > 0) {
 			this.currentPathIndex = 0;
 
