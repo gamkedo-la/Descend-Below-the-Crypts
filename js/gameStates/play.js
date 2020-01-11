@@ -37,6 +37,7 @@ const MACE_COOLDOWN_TIME = 4;
 const FIREBALL_SPELL_COOLDOWN_TIME = 5;
 const FLAME_SPELL_COOLDOWN_TIME = 5;
 const HEAL_SPELL_COOLDOWN_TIME = 3;
+const FREEZE_SPELL_COOLDOWN_TIME = 3;
 
 var punchCoolingDown = false;
 var swordCoolingDown = false;
@@ -44,6 +45,7 @@ var maceCoolingDown = false;
 var fireballCoolingDown = false;
 var flameCoolingDown = false;
 var healSpellCoolingDown = false;
+var freezeSpellCoolingDown = false;
 
 var punchCoolDownTimer = 0;
 var swordCoolDownTimer = 0;
@@ -51,6 +53,7 @@ var maceCoolDownTimer = 0;
 var fireballCoolDownTimer = 0;
 var flameCoolDownTimer = 0;
 var healSpellCoolDownTimer = 0;
+var freezeSpellCoolDownTimer = 0;
 
 var inventoryCoords = {
   healPotionXPos : 0,
@@ -72,7 +75,9 @@ var inventoryCoords = {
   healSpellXPos: 0,
   healSpellYPos: 0,
   flameSpellXPos: 0,
-  flameSpellYPos: 0
+  flameSpellYPos: 0,
+  freezeSpellXPos: 0,
+  freezeSpellYPos: 0
 }
 
 var warningMessage="";
@@ -440,6 +445,47 @@ class Play extends GameState {
 
       playerOne.cureSpell();
     }
+}
+
+else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.freezeSpellXPos, inventoryCoords.freezeSpellYPos) == true &&
+playerOne.freezeSpell){
+
+if(selectedEnemy == null){
+    warningMessage="Target is not selected!";
+    warningSFX.play();
+    setTimeout(function(){
+      warningMessage="";
+  }, 1500);
+}
+else if(playerOne.mana<=FREEZE_MANA_COST){
+ playerOne.notEnoughManaAlert();
+ warningMessage="No enough mana!";
+ warningSFX.play();
+ setTimeout(function(){
+   warningMessage="";
+}, 1500);
+}
+else if(freezeSpellCoolingDown == true){
+
+    warningMessage="Ability is still recharging!";
+    warningSFX.play();
+    setTimeout(function(){
+      warningMessage="";
+  }, 1500);
+}
+else{
+  freezeSpellCoolingDown = true;
+
+  // Reset cooldown timer:
+  freezeSpellCoolDownTimer = FREEZE_SPELL_COOLDOWN_TIME;
+
+  playerOne.attackFreezeSpell(selectedEnemy);
+
+  // Check if enemy died. If it did, remove it from the enemy list:
+  this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
+    return enemy.health >0;
+  })
+}
 }
 
 }
@@ -818,6 +864,21 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 			inventoryCoords.flameSpellYPos+ 30, 'red', coolDownTimerfont);
 		}
     }
+
+    if(playerOne.freezeSpell== true) {
+      inventoryCoords.freezeSpellXPos = currentXPos+3;
+      inventoryCoords.freezeSpellYPos = iconYPos+2;
+
+      canvasContext.drawImage(freezeSpellHUD,inventoryCoords.freezeSpellXPos, inventoryCoords.freezeSpellYPos);
+      currentXPos +=iconHorizontalSpacing;
+
+		if(freezeSpellCoolingDown==true){
+			canvasContext.drawImage(coolDownHUD,inventoryCoords.freezeSpellXPos, inventoryCoords.freezeSpellYPos);
+			colorText(freezeSpellCoolDownTimer,
+			inventoryCoords.freezeSpellXPos+ 15,
+			inventoryCoords.freezeSpellYPos+ 30, 'red', coolDownTimerfont);
+		}
+    }
     
     // Inventory BG:
     canvasContext.drawImage(abilityHUD,280, canvas.height-80);
@@ -861,6 +922,12 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       }
       else{
         flameCoolingDown = false;
+      }
+      if(freezeSpellCoolDownTimer >0){
+        freezeSpellCoolDownTimer--;
+      }
+      else{
+        freezeSpellCoolingDown = false;
       }
     }, 1000);
   }

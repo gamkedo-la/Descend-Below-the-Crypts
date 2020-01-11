@@ -18,7 +18,8 @@ class Player extends Character {
 
         // Wizard
         this.flameSpell = false;
-		this.fireballSpell = false;
+        this.fireballSpell = false;
+        this.freezeSpell = false;
 
         // Cleric
         this.healSpell = false;
@@ -252,7 +253,7 @@ class Player extends Character {
                 }
                 break;
             case TILE_FLAME_SPELL_BOOK:
-                    //add wizard spell book
+                    //add wizard flame book
                     if (this instanceof Wizard) {
                         this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                         this.flameSpell = true;
@@ -262,6 +263,17 @@ class Player extends Character {
                         this.y = nextY;
                     }
                     break;
+            case TILE_FREEZE_SPELL_BOOK:
+                        //add wizard freeze book
+                        if (this instanceof Wizard) {
+                            this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+                            this.freezeSpell = true;
+                            console.log("Wizard Book of Freeze found");
+                        } else {
+                            this.x = nextX;
+                            this.y = nextY;
+                        }
+                        break;
             case TILE_CLERIC_BOOK:
                 //add cleric book
                 if (this instanceof Cleric) {

@@ -65,6 +65,7 @@ var selectionArrow = document.createElement("img");
 var shieldHUD = document.createElement("img");
 var healSpellHUD = document.createElement("img");
 var flameSpellHUD = document.createElement("img");
+var freezeSpellHUD = document.createElement("img");
 
 
 // FX
@@ -157,6 +158,7 @@ function loadImages() {
 			{varName: inventoryScreenPic, theFile: "HUD/InventoryUISketch.png"},
 			{varName: healSpellHUD, theFile: "HUD/HealIcon.png"},
 			{varName: flameSpellHUD, theFile: "HUD/flameIcon.png"},
+			{varName: freezeSpellHUD, theFile: "HUD/freezeIcon.png"},
 
 			// FX
 			{varName: healFX, theFile: "FX/healEffect.png"},
@@ -256,6 +258,7 @@ function loadImages() {
 			{tileType: TILE_DRESSER, theFile: "dresser.png"},
 			{tileType: TILE_SHIELD, theFile: "shield.png"},
 			{tileType: TILE_FLAME_SPELL_BOOK, theFile: "flameSpellBook.png"},
+			{tileType: TILE_FREEZE_SPELL_BOOK, theFile: "freezeSpellBook.png"},
 
 		];
 

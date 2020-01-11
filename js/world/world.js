@@ -53,7 +53,7 @@ var levelOne = [
 					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 					 1, 1, 1,11, 1, 1, 1,11, 1, 1, 1,11, 1, 0, 0, 1, 1, 1, 1, 7, 1,11,43,11,44, 1, 1, 1, 1, 1, 3, 1, 1, 1, 1, 1, 1, 1, 6, 1,
 					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,13,26,10, 0, 102, 0, 0, 0,82, 1,81, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,23, 0, 1,13,24, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
+					 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,23, 0, 1,13,24, 0, 0, 103, 0, 0, 0, 0, 1, 0, 0, 101, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 					 1, 0, 0, 1, 1, 6, 1, 1, 3,43, 1, 1, 1, 1, 7, 1,13, 0, 0,45,49,49,46, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 					11, 0, 0, 1, 1, 0,10, 1, 0,14,10,44,10,15, 0, 1,13,25, 0,52,63,51,53, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
 					 1, 0, 0, 1, 1, 0, 0,43, 0, 0, 0, 1, 5, 0, 0, 1,13, 0, 0,47,50,50,48, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -217,6 +217,7 @@ const TILE_COUNTER_POTIONS = 99;
 const TILE_DRESSER = 100;
 const TILE_SHIELD = 101;
 const TILE_FLAME_SPELL_BOOK = 102;
+const TILE_FREEZE_SPELL_BOOK = 103;
 
 
 function gameCoordToIsoCoord (pixelX, pixelY) {
@@ -277,7 +278,8 @@ function tileTypeHasRoadTransparency(checkTileType) {
 			checkTileType == TILE_COUNTER_POTIONS ||
 			checkTileType == TILE_DRESSER ||
 			checkTileType == TILE_SHIELD ||
-			checkTileType == TILE_FLAME_SPELL_BOOK
+			checkTileType == TILE_FLAME_SPELL_BOOK ||
+			checkTileType == TILE_FREEZE_SPELL_BOOK
 			);
 }
 
