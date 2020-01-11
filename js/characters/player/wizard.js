@@ -3,6 +3,9 @@ const WIZARD_MOVEMENT_SPEED = 3;
 const WIZARD_WIDTH = 25;
 const WIZARD_HEIGHT = 30;
 
+const FIREBALL_MANA_COST =1;
+const FLAME_MANA_COST = 2;
+
 class Wizard extends Player {
   constructor() {
     super(WIZARD_MAX_HEALTH, WIZARD_MOVEMENT_SPEED, WIZARD_WIDTH, WIZARD_HEIGHT);
@@ -19,13 +22,13 @@ class Wizard extends Player {
       return;
     }
 
-    if( this.mana < 1 ) {
+    /*if( this.mana < 1 ) {
       this.notEnoughManaAlert();
       return;
-    }
+    }*/
 
     console.log('Attacking with Fireball Spell');
-    this.mana -= 1;
+    this.mana -= FIREBALL_MANA_COST;
     enemy.receiveDamage(this.FIREBALL_DAMAGE);
     
   }
@@ -36,13 +39,13 @@ class Wizard extends Player {
       return;
     }
 
-    if( this.mana < 2 ) {
+    /*if( this.mana < 2 ) {
       this.notEnoughManaAlert();
       return;
-    }
+    }*/
     
     console.log('Attacking with Flame Spell');
-    this.mana -= 2;
+    this.mana -= FLAME_MANA_COST;
     enemy.receiveDamage(this.FLAME_DAMAGE);
   }
 }

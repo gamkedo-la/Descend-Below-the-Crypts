@@ -3,6 +3,8 @@ const CLERIC_MOVEMENT_SPEED = 3;
 const CLERIC_WIDTH = 25;
 const CLERIC_HEIGHT = 30;
 
+const HEAL_MANA_COST =1;
+
 class Cleric extends Player {
   constructor() {
     super(CLERIC_MAX_HEALTH, CLERIC_MOVEMENT_SPEED, CLERIC_WIDTH, CLERIC_HEIGHT);
@@ -25,10 +27,10 @@ class Cleric extends Player {
       return;
     }
 
-    if( this.mana < 1 ) {
+    /*if( this.mana < HEAL_MANA_COST ) {
       this.notEnoughManaAlert();
       return;
-    }
+    }*/
 
     if ( this.health >= CLERIC_MAX_HEALTH - 1 ) {
       this.health = CLERIC_MAX_HEALTH;
@@ -36,7 +38,7 @@ class Cleric extends Player {
       this.health += 2;
     }
     
-    this.mana -= 1;
+    this.mana -= HEAL_MANA_COST;
     
     // We have to write this in order to reference this correctly inside setTimeout()
     var _this = this;

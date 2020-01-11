@@ -241,7 +241,7 @@ class Player extends Character {
                 }
                 break;
             case TILE_WIZARD_BOOK:
-                //add wizard book
+                //add wizard fireball book
                 if (this instanceof Wizard) {
                     this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
                     this.fireballSpell = true;
@@ -251,6 +251,17 @@ class Player extends Character {
                     this.y = nextY;
                 }
                 break;
+            case TILE_FLAME_SPELL_BOOK:
+                    //add wizard spell book
+                    if (this instanceof Wizard) {
+                        this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+                        this.flameSpell = true;
+                        console.log("Wizard Book of Flame found");
+                    } else {
+                        this.x = nextX;
+                        this.y = nextY;
+                    }
+                    break;
             case TILE_CLERIC_BOOK:
                 //add cleric book
                 if (this instanceof Cleric) {
@@ -540,13 +551,8 @@ class Player extends Character {
       useManaPotion() {
         console.log("Mana potion used");
         this.manaPotionsHeld--;
+        this.mana +=2
 
-        // play FX:
-        _this.showHealFX=true;
-
-        setTimeout(function(){
-            _this.showHealFX = false;
-        }, 1000);
       }
 
       attackWithPunch(enemy){

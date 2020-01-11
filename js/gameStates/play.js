@@ -35,18 +35,21 @@ const PUNCH_COOLDOWN_TIME = 1;
 const SWORD_COOLDOWN_TIME = 3;
 const MACE_COOLDOWN_TIME = 4;
 const FIREBALL_SPELL_COOLDOWN_TIME = 5;
+const FLAME_SPELL_COOLDOWN_TIME = 5;
 const HEAL_SPELL_COOLDOWN_TIME = 3;
 
 var punchCoolingDown = false;
 var swordCoolingDown = false;
 var maceCoolingDown = false;
 var fireballCoolingDown = false;
+var flameCoolingDown = false;
 var healSpellCoolingDown = false;
 
 var punchCoolDownTimer = 0;
 var swordCoolDownTimer = 0;
 var maceCoolDownTimer = 0;
 var fireballCoolDownTimer = 0;
+var flameCoolDownTimer = 0;
 var healSpellCoolDownTimer = 0;
 
 var inventoryCoords = {
@@ -68,6 +71,8 @@ var inventoryCoords = {
   fireballYPos: 0,
   healSpellXPos: 0,
   healSpellYPos: 0,
+  flameSpellXPos: 0,
+  flameSpellYPos: 0
 }
 
 var warningMessage="";
@@ -303,6 +308,14 @@ class Play extends GameState {
             warningMessage="";
         }, 1500);
       }
+      else if(playerOne.mana<=FIREBALL_MANA_COST){
+        playerOne.notEnoughManaAlert();
+        warningMessage="No enough mana!";
+        warningSFX.play();
+        setTimeout(function(){
+          warningMessage="";
+      }, 1500);
+      }
       else if(fireballCoolingDown == true){
 
           warningMessage="Ability is still recharging!";
@@ -325,6 +338,47 @@ class Play extends GameState {
         })
       }
    }
+
+  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.flameSpellXPos, inventoryCoords.flameSpellYPos) == true &&
+   playerOne.flameSpell){
+
+   if(selectedEnemy == null){
+       warningMessage="Target is not selected!";
+       warningSFX.play();
+       setTimeout(function(){
+         warningMessage="";
+     }, 1500);
+   }
+   else if(playerOne.mana<=FLAME_MANA_COST){
+    playerOne.notEnoughManaAlert();
+    warningMessage="No enough mana!";
+    warningSFX.play();
+    setTimeout(function(){
+      warningMessage="";
+  }, 1500);
+  }
+   else if(flameCoolingDown == true){
+
+       warningMessage="Ability is still recharging!";
+       warningSFX.play();
+       setTimeout(function(){
+         warningMessage="";
+     }, 1500);
+   }
+   else{
+    flameCoolingDown = true;
+
+     // Reset cooldown timer:
+     flameCoolDownTimer = FLAME_SPELL_COOLDOWN_TIME;
+
+     playerOne.attackFlameSpell(selectedEnemy);
+
+     // Check if enemy died. If it did, remove it from the enemy list:
+     this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
+       return enemy.health >0;
+     })
+   }
+}
    
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
       if(selectedEnemy == null){
@@ -369,6 +423,14 @@ class Play extends GameState {
         warningMessage="";
     }, 1500);
 
+    }
+    else if(playerOne.mana<=HEAL_MANA_COST){
+      playerOne.notEnoughManaAlert();
+      warningMessage="No enough mana!";
+      warningSFX.play();
+      setTimeout(function(){
+        warningMessage="";
+    }, 1500);
     }
     else{
       healSpellCoolingDown = true;
@@ -741,6 +803,21 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 			inventoryCoords.healSpellYPos+ 30, 'red', coolDownTimerfont);
 		}
     }
+
+    if(playerOne.flameSpell== true) {
+      inventoryCoords.flameSpellXPos = currentXPos+3;
+      inventoryCoords.flameSpellYPos = iconYPos+2;
+
+      canvasContext.drawImage(flameSpellHUD,inventoryCoords.flameSpellXPos, inventoryCoords.flameSpellYPos);
+      currentXPos +=iconHorizontalSpacing;
+
+		if(flameCoolingDown==true){
+			canvasContext.drawImage(coolDownHUD,inventoryCoords.flameSpellXPos, inventoryCoords.flameSpellYPos);
+			colorText(flameCoolDownTimer,
+			inventoryCoords.flameSpellXPos+ 15,
+			inventoryCoords.flameSpellYPos+ 30, 'red', coolDownTimerfont);
+		}
+    }
     
     // Inventory BG:
     canvasContext.drawImage(abilityHUD,280, canvas.height-80);
@@ -778,6 +855,12 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
       }
       else{
         maceCoolingDown = false;
+      }
+      if(flameCoolDownTimer >0){
+        flameCoolDownTimer--;
+      }
+      else{
+        flameCoolingDown = false;
       }
     }, 1000);
   }
