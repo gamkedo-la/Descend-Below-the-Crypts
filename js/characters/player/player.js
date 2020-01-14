@@ -86,8 +86,9 @@ class Player extends Character {
                 this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
 
 				this.wayPointList = [];
-				       // this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60); //to be deleted
-                break;
+				//this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60); //to be deleted
+                
+				break;
             }
         }
 
@@ -374,19 +375,14 @@ class Player extends Character {
     wayPointMovement() {
        	var destinationTileIndex = getTileIndexAtPixelCoord(mouseClickX, mouseClickY);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-		return; // bailing out early until Pathfinding is debugged
+		//return; // bailing out early until Pathfinding is debugged
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isPassableTile);
-		
 
         if (this.currentPath.length > 0) {
             this.currentPathIndex = 0;
 
-			//console.log("Pathing");
-
             var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
             var nextTile = this.currentPath[this.currentPathIndex];
-           // console.log(nextTile);
-
 
             if (currentTile == nextTile) {
                 this.currentPathIndex++;
@@ -408,47 +404,14 @@ class Player extends Character {
                 this.resetDirections();
                 this.moveEast = true;
             }
-        } else {
-			/*var toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
-			var toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
-			var columnDistance = Math.abs(this.currentCol - this.toTileC);
-			var rowDistance = Math.abs(this.currentRow - this.toTileR);
-			tileCoordToIsoCoord(toTileC, toTileR );
-
-			//console.log("C: " + columnDistance + " R: " + rowDistance);
-
-			if(this.currentWayPoint > this.wayPointList.length){
-				this.currentWayPoint = 0;
-			}
-
-			if(this.currentCol == this.toTileC && this.currentRow == this.toTileR){
-				this.currentWayPoint++;
-				if(this.currentWayPoint > this.wayPointList.length){
-					this.currentWayPoint = 0;
-				}
-			} else if (rowDistance > columnDistance){
-				if(this.currentRow > this.toTileR){ //North
-					this.resetDirections();
-					this.moveNorth = true;
-				} else {
-					this.resetDirections(); //South
-					this.moveSouth = true;
-				}
-			} else if (columnDistance > rowDistance){
-				if(this.currentCol> this.toTileC){ //West
-					this.resetDirections();
-					this.moveWest = true;
-				} else {
-					this.resetDirections(); //East
-					this.moveEast = true;
-				}
-			} */
-
+        } else {			
 			this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
 			this.currentCol = this.currentTile%ROOM_COLS;
 			this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
-			this.toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
+			this.toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS; //need to update this.currentWayPoint
 			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
+			
+			console.log("Path 0 " + "Current Tile: " + this.currentTile + " Current Col: " + this.currentCol + " Current Row: " + this.currentRow + " To tile C: " + this.toTileC + " To tile R: " + this.toTileR);
 		}
     }
 
