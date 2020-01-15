@@ -78,15 +78,15 @@ function pathFinder() {
     };
 
     var neighborsForIndex = function(index, isPassable) {
-    var result = [];
+		var result = [];
 
-    var above = indexAboveIndex(index);
-    var below = indexBelowIndex(index);
+		var above = indexAboveIndex(index);
+		var below = indexBelowIndex(index);
 		var left = indexLeftofIndex(index);
 		var right = indexRightOfIndex(index);
 
-    var roomGrid = gameStateManager.getState().levelList[gameStateManager.getState().level];
-
+		var roomGrid = gameStateManager.getState().levelList[gameStateManager.getState().level];
+		//console.log(roomGrid);
 		//console.log("A: " + above + " B: " + below + " L: " + left + " R: " + right);
 		if (above != null) { //checking if tile above is present and adding it to result
             if (isPassable(roomGrid[above])) {
@@ -126,7 +126,7 @@ function pathFinder() {
 
     var indexBelowIndex = function(index) {
         var result = index + ROOM_COLS;
-        if (result >= 0){//levelList[levelNow].length) {
+        if (result >= ROOM_COLS * ROOM_ROWS) { // WARNING:  NEED TO TEST FOR LEFT MOST EDGE
             return null;
         } else {
             return result;
@@ -144,7 +144,7 @@ function pathFinder() {
 
     var indexRightOfIndex = function(index) {
         var result = index + 1;
-        if ((result >= 0)){//levelList[levelNow].length) || (result % ROOM_COLS == 0)) {
+        if ((result >= ROOM_COLS * ROOM_ROWS) || (result % ROOM_COLS == 0)) {
             return null;
         } else {
             return result;
@@ -164,6 +164,7 @@ function isPassableTile(aTile) {
 		case TILE_TABLE:
 		case TILE_TOMB:
 		case TILE_TOMB_2:
+		case TILE_WALL_WITH_TORCH:
 			return false;
 		default:
 			return true;

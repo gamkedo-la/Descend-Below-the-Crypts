@@ -375,7 +375,7 @@ class Player extends Character {
     wayPointMovement() {
        	var destinationTileIndex = getTileIndexAtPixelCoord(mouseClickX, mouseClickY);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-		//return; // bailing out early until Pathfinding is debugged
+		return; // bailing out early until Pathfinding is debugged
 		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isPassableTile);
 
         if (this.currentPath.length > 0) {
@@ -411,13 +411,13 @@ class Player extends Character {
 			this.toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS; //need to update this.currentWayPoint
 			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
 			
-			console.log("Path 0 " + "Current Tile: " + this.currentTile + " Current Col: " + this.currentCol + " Current Row: " + this.currentRow + " To tile C: " + this.toTileC + " To tile R: " + this.toTileR);
+			//console.log("Path 0 " + "Current Tile: " + this.currentTile + " Current Col: " + this.currentCol + " Current Row: " + this.currentRow + " To tile C: " + this.toTileC + " To tile R: " + this.toTileR);
 		}
     }
 
 	newWayPoint(targetIndex) {
 
-		console.log("Target Index " + targetIndex);
+	//	console.log("Target Index " + targetIndex);
 	}
 
 	resetDirections() {
