@@ -183,6 +183,7 @@ class Enemy extends Character {
   		case TILE_TABLE:
   		case TILE_TOMB:
   		case TILE_TOMB_2:
+		case TILE_TOWN_WALL:
   			return false;
   		default:
   			return true;

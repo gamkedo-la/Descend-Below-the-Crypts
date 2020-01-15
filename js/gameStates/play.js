@@ -597,7 +597,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 		if(evt.keyCode == KEY_9){
 			gameUsedKey = true;
 			var currentTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
-			var destinationTile = getTileIndexAtPixelCoord(mousePosX, mousePosY);
+			var destinationTile = gameStateManager.getState().mapStack[gameStateManager.getState().level].highlightedTileIndex;
 			//pathDebugIndexList = [currentTile, destinationTile]; 
 			pathDebugIndexList = playerOne.pather.pathFrom_To_(currentTile,destinationTile, isPassableTile);
 		}
