@@ -1,4 +1,4 @@
-var pathDebugIndexList = [82,121,122,162,163,203,243,283,323,363];
+var pathDebugIndexList = [11,21,31,41,51];
 
 function drawDebugPath(){
 	var toTileC;
@@ -73,7 +73,7 @@ function pathFinder() {
          }
 
          //        console.log(string); */
-		console.log(path);
+		//console.log(path);
         return path;
     };
 
