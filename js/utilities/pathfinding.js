@@ -155,16 +155,49 @@ function pathFinder() {
 }
 
 function isPassableTile(aTile) {
+	console.log(aTile);
 	switch (aTile) { // THE TILES THAT CAN'T BE PASSED THROUGH FOR PATHFINDING
-		case TILE_WALL:
-		case TILE_FINISH:
-		case TILE_YELLOW_DOOR:
-		case TILE_RED_DOOR:
-		case TILE_BLUE_DOOR:
-		case TILE_TABLE:
-		case TILE_TOMB:
-		case TILE_TOMB_2:
-		case TILE_WALL_WITH_TORCH:
+			case TILE_YELLOW_DOOR:
+			case TILE_RED_DOOR:
+			case TILE_BLUE_DOOR:
+			case TILE_TREASURE:
+			case TILE_GOLD_COINS:
+			case TILE_SWORD:
+			case TILE_SHIELD:
+			case TILE_MACE:
+			case TILE_WIZARD_BOOK:
+			case TILE_FLAME_SPELL_BOOK:
+			case TILE_FREEZE_SPELL_BOOK:
+			case TILE_CLERIC_BOOK:
+			case TILE_SKILL_BOOK:
+			case TILE_HEALING_POTION:
+			case TILE_MANA_POTION:
+			case TILE_YELLOW_KEY:
+			case TILE_FINISH:
+			case TILE_STAIRS_DOWN_LEVEL_1:
+			case TILE_STAIRS_DOWN_LEVEL_2:
+			case TILE_STAIRS:
+			case TILE_PITTRAP_ARMED:
+			case TILE_SPIKES_ARMED:
+			case TILE_WALL:
+			case TILE_WALL_WITH_TORCH:
+			case TILE_TABLE:
+			case TILE_BOOKSHELF:
+			case TILE_TOMB:
+			case TILE_TOMB_2:
+			case TILE_COLUMN:
+			case TILE_TOWN_WALL:
+			case TILE_WALL_SWORD:
+			case TILE_TREE:
+			case TILE_BUSH:
+			case TILE_BED:
+			case TILE_THRONE:
+			case TILE_COUNTER_EMPTY:
+			case TILE_COUNTER_POTIONS:
+			case TILE_DRESSER:
+			case TILE_SHIELD:
+			case TILE_FLAME_SPELL_BOOK:
+			case TILE_FREEZE_SPELL_BOOK:
 			return false;
 		default:
 			return true;

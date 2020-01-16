@@ -173,7 +173,7 @@ class Enemy extends Character {
 		}
 	}
 
-  isPassableTile(aTile) {
+  /*isPassableTile(aTile) {
     switch (aTile) { // THE TILES THAT CAN'T BE PASSED THROUGH FOR PATHFINDING
   		case TILE_WALL:
   		case TILE_FINISH:
@@ -188,7 +188,7 @@ class Enemy extends Character {
   		default:
   			return true;
     }
-  }
+  } */
 
   randomMovements() {
     var whichDirection =  Math.round(Math.random() * 10);

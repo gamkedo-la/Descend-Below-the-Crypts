@@ -151,221 +151,190 @@ class Player extends Character {
             walkIntoTileType = this.roomGrid[walkIntoTileIndex];
         }
 
-        switch (walkIntoTileType) {
-            case TILE_ROAD:
-			case TILE_TOWN_ROAD:
-			case TILE_GRASS:
-            case TILE_CRYPT_FLOOR:
-            case TILE_SEWER:
-            case TILE_RED_RUG_TL:
-            case TILE_RED_RUG_TR:
-            case TILE_RED_RUG_BL:
-            case TILE_RED_RUG_BR:
-            case TILE_RED_RUG_TOP:
-            case TILE_RED_RUG_BOT:
-            case TILE_RED_RUG_CEN:
-            case TILE_RED_RUG_L:
-            case TILE_RED_RUG_R:
-            case TILE_BLUE_RUG_TL:
-            case TILE_BLUE_RUG_TR:
-            case TILE_BLUE_RUG_BL:
-            case TILE_BLUE_RUG_BR:
-            case TILE_BLUE_RUG_TOP:
-            case TILE_BLUE_RUG_BOT:
-            case TILE_BLUE_RUG_CEN:
-            case TILE_BLUE_RUG_L:
-            case TILE_BLUE_RUG_R:
-            case TILE_GREEN_RUG_TL:
-            case TILE_GREEN_RUG_TR:
-            case TILE_GREEN_RUG_BL:
-            case TILE_GREEN_RUG_BR:
-            case TILE_GREEN_RUG_TOP:
-            case TILE_GREEN_RUG_BOT:
-            case TILE_GREEN_RUG_CEN:
-            case TILE_GREEN_RUG_L:
-            case TILE_GREEN_RUG_R:
-            case TILE_SPIKES_UNARMED:
-            case TILE_PITTRAP_UNARMED:
-                this.x = nextX;
-                this.y = nextY;
-                break;
-            case TILE_YELLOW_DOOR:
-            case TILE_RED_DOOR:
-            case TILE_BLUE_DOOR:
-                if (this.noClipMode) {
-                    this.x = nextX;
-                    this.y = nextY;
-                } else if (this.keysHeld > 0) {
-                    this.keysHeld--;
-                    this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                }
-                break;
-            case TILE_TREASURE:
-                this.keysHeld--;
-                this.goldCoins++;
-                this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                break;
-            case TILE_GOLD_COINS:
-                this.goldCoins++;
-                this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                break;
-            case TILE_SWORD:
-                //add sword to the warrior
-                if (this instanceof Warrior) {
-                    this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                    this.sword = true;
-                    console.log("Sword found");
-                } else {
-                    this.x = nextX;
-                    this.y = nextY;
-                }
-                break;
-                case TILE_SHIELD:
-                    //add shield to the warrior
-                    if (this instanceof Warrior) {
-                        this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                        this.pickUpShield();
-                        console.log("Shield found");
-                    } else {
-                        this.x = nextX;
-                        this.y = nextY;
-                    }
-                    break;
-            case TILE_MACE:
-                //add sword to the cleric
-                if (this instanceof Cleric) {
-                    this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                    this.mace = true;
-                    console.log("Mace found");
-                } else {
-                    this.x = nextX;
-                    this.y = nextY;
-                }
-                break;
-            case TILE_WIZARD_BOOK:
-                //add wizard fireball book
-                if (this instanceof Wizard) {
-                    this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                    this.fireballSpell = true;
-                    console.log("Wizard Book of Fireball found");
-                } else {
-                    this.x = nextX;
-                    this.y = nextY;
-                }
-                break;
-            case TILE_FLAME_SPELL_BOOK:
-                    //add wizard flame book
-                    if (this instanceof Wizard) {
-                        this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                        this.flameSpell = true;
-                        console.log("Wizard Book of Flame found");
-                    } else {
-                        this.x = nextX;
-                        this.y = nextY;
-                    }
-                    break;
-            case TILE_FREEZE_SPELL_BOOK:
-                        //add wizard freeze book
-                        if (this instanceof Wizard) {
-                            this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                            this.freezeSpell = true;
-                            console.log("Wizard Book of Freeze found");
-                        } else {
-                            this.x = nextX;
-                            this.y = nextY;
-                        }
-                        break;
-            case TILE_CLERIC_BOOK:
-                //add cleric book
-                if (this instanceof Cleric) {
-                    this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                    this.healSpell = true;
-                    console.log("Cleric Book found");
-                } else {
-                    this.x = nextX;
-                    this.y = nextY;
-                }
-                break;
-            case TILE_SKILL_BOOK:
-                //add skill book
-                this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                console.log("Skill Book found");
-                break;
-            case TILE_HEALING_POTION:
-                //add healing potion
-                this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                console.log("Healing Potion found");
-                this.healPotionsHeld++;
-                break;
-            case TILE_MANA_POTION:
-                //add mana potion
-                this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                console.log("Mana Potion found");
-                this.manaPotionsHeld++;
-                break;
-            case TILE_YELLOW_KEY:
-                this.keysHeld++;
-                this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
-                break;
-            case TILE_FINISH:
-                if (!cutscenePlayed[Scene.QUESTONE])
-                  gameStateManager.setState(State.CUTSCENE, Scene.QUESTONE);
-				        break;
-			case TILE_STAIRS_DOWN_LEVEL_1:
-                gameStateManager.getState().loadLevel(1);
-				basementMusic.startOrStopMusic();
-				newLevelTitle.begin("The Castle");
+		if(isPassableTile(walkIntoTileType)){
+			   this.x = nextX;
+               this.y = nextY;
+		} else {
+			switch (walkIntoTileType) {
+				case TILE_YELLOW_DOOR:
+				case TILE_RED_DOOR:
+				case TILE_BLUE_DOOR:
+					if (this.noClipMode) {
+						this.x = nextX;
+						this.y = nextY;
+					} else if (this.keysHeld > 0) {
+						this.keysHeld--;
+						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					}
+					break;
+				case TILE_TREASURE:
+					this.keysHeld--;
+					this.goldCoins++;
+					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					break;
+				case TILE_GOLD_COINS:
+					this.goldCoins++;
+					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					break;
+				case TILE_SWORD:
+					//add sword to the warrior
+					if (this instanceof Warrior) {
+						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						this.sword = true;
+						console.log("Sword found");
+					} else {
+						this.x = nextX;
+						this.y = nextY;
+					}
+					break;
+					case TILE_SHIELD:
+						//add shield to the warrior
+						if (this instanceof Warrior) {
+							this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+							this.pickUpShield();
+							console.log("Shield found");
+						} else {
+							this.x = nextX;
+							this.y = nextY;
+						}
+						break;
+				case TILE_MACE:
+					//add sword to the cleric
+					if (this instanceof Cleric) {
+						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						this.mace = true;
+						console.log("Mace found");
+					} else {
+						this.x = nextX;
+						this.y = nextY;
+					}
+					break;
+				case TILE_WIZARD_BOOK:
+					//add wizard fireball book
+					if (this instanceof Wizard) {
+						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						this.fireballSpell = true;
+						console.log("Wizard Book of Fireball found");
+					} else {
+						this.x = nextX;
+						this.y = nextY;
+					}
+					break;
+				case TILE_FLAME_SPELL_BOOK:
+						//add wizard flame book
+						if (this instanceof Wizard) {
+							this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+							this.flameSpell = true;
+							console.log("Wizard Book of Flame found");
+						} else {
+							this.x = nextX;
+							this.y = nextY;
+						}
+						break;
+				case TILE_FREEZE_SPELL_BOOK:
+							//add wizard freeze book
+							if (this instanceof Wizard) {
+								this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+								this.freezeSpell = true;
+								console.log("Wizard Book of Freeze found");
+							} else {
+								this.x = nextX;
+								this.y = nextY;
+							}
+							break;
+				case TILE_CLERIC_BOOK:
+					//add cleric book
+					if (this instanceof Cleric) {
+						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						this.healSpell = true;
+						console.log("Cleric Book found");
+					} else {
+						this.x = nextX;
+						this.y = nextY;
+					}
+					break;
+				case TILE_SKILL_BOOK:
+					//add skill book
+					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					console.log("Skill Book found");
+					break;
+				case TILE_HEALING_POTION:
+					//add healing potion
+					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					console.log("Healing Potion found");
+					this.healPotionsHeld++;
+					break;
+				case TILE_MANA_POTION:
+					//add mana potion
+					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					console.log("Mana Potion found");
+					this.manaPotionsHeld++;
+					break;
+				case TILE_YELLOW_KEY:
+					this.keysHeld++;
+					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					break;
+				case TILE_FINISH:
+					if (!cutscenePlayed[Scene.QUESTONE])
+					  gameStateManager.setState(State.CUTSCENE, Scene.QUESTONE);
+							break;
+				case TILE_STAIRS_DOWN_LEVEL_1:
+					gameStateManager.getState().loadLevel(1);
+					basementMusic.startOrStopMusic();
+					newLevelTitle.begin("The Castle");
+					console.log("stairs");
+					break;
+				case TILE_STAIRS_DOWN_LEVEL_2:
+					enteringSecondLevelNarrative.play();
+					this.playWarriorsThoughtsForSecondLevel = true;
+					gameStateManager.getState().loadLevel(2);
+					basementMusic.startOrStopMusic();
+					cryptMusic.loopSong("Into_The_Crypts");
+					newLevelTitle.begin("The Crypts Level 1");
+					break;
+				case TILE_STAIRS:
+					gameStateManager.getState().loadLevel(0);
+					basementMusic.startOrStopMusic();
+					newLevelTitle.begin("The Town");
+					break;
+				case TILE_PITTRAP_ARMED:
+					if (!this.noClipMode) {
+						this.takeDamageFromTrap(1);
+						this.roomGrid[walkIntoTileIndex] = TILE_PITTRAP_UNARMED;
+						crashIntoConeSound.play();
+						warriorOuch.play();
+					} else {
+						this.x = nextX;
+						this.y = nextY;
+					}
+					break;
+				case TILE_SPIKES_ARMED:
+					if (!this.noClipMode) {
+						this.takeDamageFromTrap(1);
+						this.roomGrid[walkIntoTileIndex] = TILE_SPIKES_UNARMED;
+						crashIntoConeSound.play();
+						warriorOuch.play();
+					} else {
+						this.x = nextX;
+						this.y = nextY;
+					}
+					break;
+				case TILE_WALL:
+				case TILE_WALL_WITH_TORCH:
+				case TILE_TABLE:
+				case TILE_BOOKSHELF:
+				case TILE_TOMB:
+				case TILE_TOMB_2:
+				case TILE_COLUMN:
+				default:
+					if (this.noClipMode) {
+						if (getTileIndexAtPixelCoord(nextX, nextY) != undefined) {
+							this.x = nextX;
+							this.y = nextY;
+						}
+					}
 				break;
-            case TILE_STAIRS_DOWN_LEVEL_2:
-				enteringSecondLevelNarrative.play();
-                this.playWarriorsThoughtsForSecondLevel = true;
-                gameStateManager.getState().loadLevel(2);
-				basementMusic.startOrStopMusic();
-				cryptMusic.loopSong("Into_The_Crypts");
-				newLevelTitle.begin("The Crypts Level 1");
-                break;
-            case TILE_STAIRS:
-                gameStateManager.getState().loadLevel(0);
-				basementMusic.startOrStopMusic();
-				newLevelTitle.begin("The Town");
-				break;
-            case TILE_PITTRAP_ARMED:
-                if (!this.noClipMode) {
-                    this.takeDamageFromTrap(1);
-                    this.roomGrid[walkIntoTileIndex] = TILE_PITTRAP_UNARMED;
-                    crashIntoConeSound.play();
-					warriorOuch.play();
-                } else {
-                    this.x = nextX;
-                    this.y = nextY;
-                }
-                break;
-            case TILE_SPIKES_ARMED:
-                if (!this.noClipMode) {
-                    this.takeDamageFromTrap(1);
-                    this.roomGrid[walkIntoTileIndex] = TILE_SPIKES_UNARMED;
-                    crashIntoConeSound.play();
-					warriorOuch.play();
-                } else {
-                    this.x = nextX;
-                    this.y = nextY;
-                }
-                break;
-            case TILE_WALL:
-            case TILE_WALL_WITH_TORCH:
-            case TILE_TABLE:
-            case TILE_BOOKSHELF:
-            case TILE_TOMB:
-            case TILE_TOMB_2:
-            case TILE_COLUMN:
-            default:
-                if (this.noClipMode) {
-                    if (getTileIndexAtPixelCoord(nextX, nextY) != undefined) {
-                        this.x = nextX;
-                        this.y = nextY;
-                    }
-                }
-                break;
+			}
         }
 
         this.trapCoolDown();
