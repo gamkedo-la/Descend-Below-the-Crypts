@@ -198,6 +198,13 @@ function isNotAPassableTile(aTile) {
 			case TILE_FLAME_SPELL_BOOK:
 			case TILE_FREEZE_SPELL_BOOK:
 			case TILE_CAVE_WALL:
+			case TILE_TOWN_WALL_NORTH:
+			case TILE_TOWN_WALL_SOUTH:
+			case TILE_CRYPT_WALL_NORTH:
+			case TILE_TOWN_WALL_WEST:
+			case TILE_TOWN_WALL_EAST:
+			case TILE_TOWN_WALL_NW:
+			case TILE_TOWN_WALL_NE:9
 			return false;
 		default:
 			return true;
