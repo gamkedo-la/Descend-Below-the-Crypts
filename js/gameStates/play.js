@@ -152,10 +152,11 @@ class Play extends GameState {
 
     this.setup = false;
     this.level = 0;
-    this.levelList = [ townArea, levelOne, levelTwo ];
+    this.levelList = [ townArea, levelOne, levelTwo, caveLevelOne];
     this.mapStack = [ 	new Map(townArea),
 						new Map(levelOne),
-						new Map(levelTwo) ];
+						new Map(levelTwo),
+						new Map(caveLevelOne)];
 
     this.pause = false;
     this.debug = false;
@@ -599,7 +600,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 			var currentTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 			var destinationTile = gameStateManager.getState().mapStack[gameStateManager.getState().level].highlightedTileIndex;
 			//pathDebugIndexList = [currentTile, destinationTile]; 
-			pathDebugIndexList = playerOne.pather.pathFrom_To_(currentTile,destinationTile, isPassableTile);
+			pathDebugIndexList = playerOne.pather.pathFrom_To_(currentTile,destinationTile, isNotAPassableTile);
 		}
     }
     

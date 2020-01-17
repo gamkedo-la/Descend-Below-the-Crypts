@@ -173,6 +173,7 @@ function loadImages() {
 			{tileType: TILE_ROCK, theFile: "rock.png"},
 			{tileType: TILE_CRYPT_FLOOR, theFile: "track_crypt_floor.png"},
 			{tileType: TILE_WALL, theFile:  "toBeDeleted/track_wall.png"},
+			{tileType: TILE_CAVE_WALL, theFile:  "toBeDeleted/cave_wall.png"},
 			{tileType: TILE_TOWN_WALL, theFile:  "townWall.png"},
 			{tileType: TILE_CRYPT_WALL, theFile:  "track_crypt_wall.png"},
 			{tileType: TILE_WALL_WITH_TORCH, theFile:  "track_wall_with_torch.png"},

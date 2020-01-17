@@ -173,7 +173,7 @@ class Enemy extends Character {
 		}
 	}
 
-  /*isPassableTile(aTile) {
+  /*isNotAPassableTile(aTile) {
     switch (aTile) { // THE TILES THAT CAN'T BE PASSED THROUGH FOR PATHFINDING
   		case TILE_WALL:
   		case TILE_FINISH:
@@ -234,7 +234,7 @@ class Enemy extends Character {
 		gameCoordToIsoCoord(this.x,this.y);
 		var playerTileIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, isPassableTile);
+		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, isNotAPassableTile);
 		return; // bailing out early until Pathfinding is debugged
 		/*if (this.currentPath.length > 0) {
 			this.currentPathIndex = 0;

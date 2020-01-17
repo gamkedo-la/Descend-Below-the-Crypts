@@ -154,8 +154,7 @@ function pathFinder() {
 	
 }
 
-function isPassableTile(aTile) {
-	console.log(aTile);
+function isNotAPassableTile(aTile) {
 	switch (aTile) { // THE TILES THAT CAN'T BE PASSED THROUGH FOR PATHFINDING
 			case TILE_YELLOW_DOOR:
 			case TILE_RED_DOOR:
@@ -198,6 +197,7 @@ function isPassableTile(aTile) {
 			case TILE_SHIELD:
 			case TILE_FLAME_SPELL_BOOK:
 			case TILE_FREEZE_SPELL_BOOK:
+			case TILE_CAVE_WALL:
 			return false;
 		default:
 			return true;

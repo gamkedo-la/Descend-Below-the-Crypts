@@ -86,7 +86,7 @@ class Player extends Character {
                 this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
 
 				this.wayPointList = [];
-				//this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60); //to be deleted
+				this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60); //to be deleted
                 
 				break;
             }
@@ -151,7 +151,7 @@ class Player extends Character {
             walkIntoTileType = this.roomGrid[walkIntoTileIndex];
         }
 
-		if(isPassableTile(walkIntoTileType)){
+		if(isNotAPassableTile(walkIntoTileType)){
 			   this.x = nextX;
                this.y = nextY;
 		} else {
@@ -345,9 +345,10 @@ class Player extends Character {
        	var destinationTileIndex = getTileIndexAtPixelCoord(mouseClickX, mouseClickY);
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 		return; // bailing out early until Pathfinding is debugged
-		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isPassableTile);
-
-        if (this.currentPath.length > 0) {
+		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isNotAPassableTile);
+		console.log(this.currentPath);
+		
+       // if (this.currentPath.length > 0) {
             this.currentPathIndex = 0;
 
             var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
@@ -373,7 +374,7 @@ class Player extends Character {
                 this.resetDirections();
                 this.moveEast = true;
             }
-        } else {			
+      /*  } else {			
 			this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
 			this.currentCol = this.currentTile%ROOM_COLS;
 			this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
@@ -381,7 +382,7 @@ class Player extends Character {
 			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
 			
 			//console.log("Path 0 " + "Current Tile: " + this.currentTile + " Current Col: " + this.currentCol + " Current Row: " + this.currentRow + " To tile C: " + this.toTileC + " To tile R: " + this.toTileR);
-		}
+		} */
     }
 
 	newWayPoint(targetIndex) {
