@@ -341,48 +341,56 @@ class Player extends Character {
     }
 
 	
-    wayPointMovement() {
-       	var destinationTileIndex = getTileIndexAtPixelCoord(mouseClickX, mouseClickY);
-		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-		return; // bailing out early until Pathfinding is debugged
-		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isNotAPassableTile);
-		console.log(this.currentPath);
-		
-       // if (this.currentPath.length > 0) {
-            this.currentPathIndex = 0;
-
-            var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
-            var nextTile = this.currentPath[this.currentPathIndex];
-
-            if (currentTile == nextTile) {
-                this.currentPathIndex++;
-                if (this.currentPathIndex == this.currentPath.length) {
-                    return null;
-                }
-            }
-
-            if (nextTile - currentTile > 1) {
-                this.resetDirections();
-                this.moveSouth = true;
-            } else if (nextTile - currentTile < -1) {
-                this.resetDirections();
-                this.moveNorth = true;
-            } else if (nextTile - currentTile == -1) {
-                this.resetDirections();
-                this.moveWest = true;
-            } else if (nextTile - currentTile == 1) {
-                this.resetDirections();
-                this.moveEast = true;
-            }
-      /*  } else {			
-			this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
-			this.currentCol = this.currentTile%ROOM_COLS;
-			this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
-			this.toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS; //need to update this.currentWayPoint
-			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
+    wayPointMovement() {	
+		if(gameStateManager.getState().debug==true){
+			var destinationTileIndex = gameStateManager.getState().mapStack[gameStateManager.getState().level].highlightedTileIndex;
+			var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 			
-			//console.log("Path 0 " + "Current Tile: " + this.currentTile + " Current Col: " + this.currentCol + " Current Row: " + this.currentRow + " To tile C: " + this.toTileC + " To tile R: " + this.toTileR);
-		} */
+			this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isNotAPassableTile);
+			pathDebugIndexList = this.currentPath;
+
+			if (this.currentPath.length > 0) {
+				console.log(this.currentPath);
+	
+				for(var i=0; i<this.currentPath.length; i++)
+				{
+					var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
+					var nextTile = this.currentPath[i];
+		
+					if (currentTile == nextTile) {
+						continue;
+					}
+		
+					// Should be a constant:
+					var mapArrayColumn = 40;
+	
+					if(currentTile-1 == nextTile) // Left
+					{
+						this.resetDirections();
+						this.moveWest = true;
+					}
+					else if(currentTile+1 == nextTile) // Right
+					{
+						this.resetDirections();
+						this.moveEast = true;
+					}
+					else if(currentTile-mapArrayColumn == nextTile) // Up
+					{
+						this.resetDirections();
+						this.moveNorth = true;
+					}
+					else if(currentTile+mapArrayColumn == nextTile) // Down
+					{
+						this.resetDirections();
+						this.moveSouth = true;
+					}
+				}
+	
+		   } 
+		}
+		else {
+			this.resetDirections();
+		}
     }
 
 	newWayPoint(targetIndex) {
