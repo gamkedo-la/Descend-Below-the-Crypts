@@ -1,10 +1,10 @@
 class Cave2 extends Map {
   constructor() {
-
+    super(caveLevelTwo, false)
   }
 
   prepareLevel() {
-
+    newLevelTitle.begin("The Cave Level 2");
   }
 
   // Function to retrieve NPC replacement tile or decoration tile base

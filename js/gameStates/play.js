@@ -189,7 +189,8 @@ class Play extends GameState {
     mapStack = [ new Town(),
                  new Crypt1(),
                  new Crypt2(),
-                 new Cave1() ];
+                 new Cave1(),
+				 new Cave2()];
 
     this.coolDown();
   }
