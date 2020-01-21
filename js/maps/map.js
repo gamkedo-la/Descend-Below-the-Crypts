@@ -44,6 +44,9 @@ class Map {
         case TILE_ORC_BOSS:
             this.addChar(i, new OrcBoss());
             break;
+		case TILE_WIZARD_BOSS:
+            this.addChar(i, new WizardBoss());
+            break;
 
         // Friendly NPCs
 

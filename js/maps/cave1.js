@@ -18,6 +18,7 @@ class Cave1 extends Map {
       case TILE_SPIDER:
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
+	  case TILE_WIZARD_BOSS:
       case TILE_PLAYER:
         return TILE_ROAD;
 
