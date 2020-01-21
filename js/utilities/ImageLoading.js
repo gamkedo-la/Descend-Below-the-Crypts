@@ -267,7 +267,9 @@ function loadImages() {
 			{tileType: TILE_SHIELD, theFile: "shield.png"},
 			{tileType: TILE_FLAME_SPELL_BOOK, theFile: "flameSpellBook.png"},
 			{tileType: TILE_FREEZE_SPELL_BOOK, theFile: "freezeSpellBook.png"},
-
+			{tileType: TILE_MINE_TRACK, theFile: "mine_track.png"},
+			{tileType: TILE_CAVE_ROCK, theFile: "cave_Rock.png"},
+			{tileType: TILE_CAVE_ROCK2, theFile: "cave_Rock2.png"}
 		];
 
 	picsToLoad = imageList.length;

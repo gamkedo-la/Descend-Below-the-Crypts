@@ -204,7 +204,10 @@ function isNotAPassableTile(aTile) {
 			case TILE_TOWN_WALL_WEST:
 			case TILE_TOWN_WALL_EAST:
 			case TILE_TOWN_WALL_NW:
-			case TILE_TOWN_WALL_NE:9
+			case TILE_TOWN_WALL_NE:
+			case TILE_CAVE_ROCK:
+			case TILE_CAVE_ROCK2:
+			case TILE_MINE_TRACK:
 			return false;
 		default:
 			return true;
