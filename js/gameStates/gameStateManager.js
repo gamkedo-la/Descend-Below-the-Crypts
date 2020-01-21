@@ -16,8 +16,8 @@ class GameStateManager {
                         new Play(),
                         new InstructionMenu(),
                         new Credits(),
-                        new Cutscenes(), 
-						new GameOver()];
+                        new Cutscenes(),
+						            new GameOver()];
   }
 
   setState(newState, newScene = 0) {

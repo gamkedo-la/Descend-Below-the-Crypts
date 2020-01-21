@@ -8,12 +8,13 @@ const GOBLIN_WIDTH = 30;
 const GOBLIN_HEIGHT = 31;
 
 class Goblin extends Enemy {
-  constructor() {
-    super(GOBLIN_MAX_HEALTH, GOBLIN_MOVEMENT_SPEED, GOBLIN_WIDTH, GOBLIN_HEIGHT)
+  constructor(location) {
+    super(GOBLIN_MAX_HEALTH, GOBLIN_MOVEMENT_SPEED, GOBLIN_WIDTH, GOBLIN_HEIGHT);
+		this.init();
   }
 
   init() {
     super.init(goblinPic, randFromList(GOBLIN_NAMES), TILE_GOBLIN);
-	this.enableAnimation = true;
+		this.enableAnimation = true;
   }
 }

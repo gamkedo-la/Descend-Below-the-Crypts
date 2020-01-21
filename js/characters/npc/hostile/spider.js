@@ -8,6 +8,7 @@ const SPIDER_HEIGHT = 24;
 class Spider extends Enemy {
   constructor() {
     super(SPIDER_MAX_HEALTH, SPIDER_MOVEMENT_SPEED, SPIDER_WIDTH, SPIDER_HEIGHT);
+    this.init();
   }
 
   init() {

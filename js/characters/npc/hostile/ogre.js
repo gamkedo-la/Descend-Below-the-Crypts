@@ -8,6 +8,7 @@ const OGRE_HEIGHT = 30;
 class Ogre extends Enemy {
   constructor() {
     super(OGRE_MAX_HEALTH, OGRE_MOVEMENT_SPEED, OGRE_WIDTH, OGRE_HEIGHT);
+    this.init();
   }
 
   init() {

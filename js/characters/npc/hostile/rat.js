@@ -8,6 +8,7 @@ const RAT_HEIGHT = 29;
 class Rat extends Enemy {
   constructor() {
     super(RAT_MAX_HEALTH, RAT_MOVEMENT_SPEED, RAT_WIDTH, RAT_HEIGHT);
+    this.init();
   }
 
   init() {

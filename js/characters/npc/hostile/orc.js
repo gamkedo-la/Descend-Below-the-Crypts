@@ -8,6 +8,7 @@ const ORC_HEIGHT = 35;
 class Orc extends Enemy {
   constructor() {
     super(ORC_MAX_HEALTH, ORC_MOVEMENT_SPEED, ORC_WIDTH, ORC_HEIGHT);
+    this.init();
   }
 
   init() {

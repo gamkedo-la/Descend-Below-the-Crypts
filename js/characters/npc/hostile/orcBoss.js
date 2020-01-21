@@ -8,6 +8,7 @@ const ORC_BOSS_HEIGHT = 56;
 class OrcBoss extends Enemy {
   constructor() {
     super(ORC_BOSS_MAX_HEALTH, ORC_BOSS_MOVEMENT_SPEED, ORC_BOSS_WIDTH, ORC_BOSS_HEIGHT);
+    this.init();
   }
 
   init() {

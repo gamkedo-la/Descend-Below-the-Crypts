@@ -8,6 +8,7 @@ const SKELETON_KING_HEIGHT = 56;
 class SkeletonKing extends Enemy {
   constructor() {
     super(SKELETON_KING_MAX_HEALTH, SKELETON_KING_MOVEMENT_SPEED, SKELETON_KING_WIDTH, SKELETON_KING_HEIGHT);
+    this.init();
   }
 
   init() {
@@ -26,17 +27,18 @@ const SKELTONKINGS_TOMB_HEIGHT = 59;
 
 class SkeletonKingsTomb extends Enemy {
   constructor() {
-    super(SKELTONKINGS_TOMB_MAX_HEALTH, SKELTONKINGS_TOMB_MOVEMENT_SPEED, SKELTONKINGS_TOMB_WIDTH, SKELTONKINGS_TOMB_HEIGHT)
+    super(SKELTONKINGS_TOMB_MAX_HEALTH, SKELTONKINGS_TOMB_MOVEMENT_SPEED, SKELTONKINGS_TOMB_WIDTH, SKELTONKINGS_TOMB_HEIGHT);
+    this.init();
   }
 
   init() {
     super.init(kingsTombPic, "", TILE_KINGS_TOMB);
 	this.canMove = false;
   }
-  
+
   draw(){
 	super.draw();
-	
+
 	var toAddParticle = getRndInteger(0, 10);
 	if(toAddParticle > 9.5){
 		addGreenMagic(317, 82, 20);
@@ -44,7 +46,7 @@ class SkeletonKingsTomb extends Enemy {
 	}
 	moveGreenMagic();
     drawGreenMagic();
-	
+
   }
 }
 
@@ -99,7 +101,7 @@ function addGreenMagic(greenMagicX, greenMagicY, amount) {
 		tempSmoke.myColor = "black";
 	} else {
 		tempSmoke.myColor = "green"; */
-	} 
+	}
 
 	greenMagicList.push(tempSmoke);
 }
@@ -110,7 +112,7 @@ function removeGreenMagic() {
 			greenMagicList[i].x < remX+remW &&
 			greenMagicList[i].y > remY &&
 			greenMagicList[i].y < remY+remH) {
-			
+
 			greenMagicList[i].readyToRemove = true;
 		}
 	}
@@ -133,4 +135,3 @@ function drawGreenMagic() {
 		greenMagicList[i].draw();
 	}
 }
-

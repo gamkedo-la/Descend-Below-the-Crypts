@@ -18,7 +18,7 @@ function pathFinder() {
         frontier.push(start);
         var cameFrom = {};
         cameFrom[start] = "S";
-		
+
 		//console.log(frontier.length);
 
         while (frontier.length > 0) {
@@ -85,29 +85,29 @@ function pathFinder() {
 		var left = indexLeftofIndex(index);
 		var right = indexRightOfIndex(index);
 
-		var roomGrid = gameStateManager.getState().levelList[gameStateManager.getState().level];
+		var roomGrid = mapStack[currentMap].level;
 		//console.log(roomGrid);
 		//console.log("A: " + above + " B: " + below + " L: " + left + " R: " + right);
 		if (above != null) { //checking if tile above is present and adding it to result
-            if (isPassable(roomGrid[above])) {
+            if (isPassable(roomGrid[above].getTileType())) {
                 result.push(above);
             }
         }
 
         if (below != null) { //checking if tile below is present and adding it to result
-            if (isPassable(roomGrid[below])) {
+            if (isPassable(roomGrid[below].getTileType())) {
                 result.push(below);
             }
         }
 
         if (left != null) { //checking if tile to the left is present and adding it to result
-            if (isPassable(roomGrid[left])) {
+            if (isPassable(roomGrid[left].getTileType())) {
                 result.push(left);
             }
         }
 
         if (right != null) { //checking if tile to the right is present and adding it to result
-            if (isPassable(roomGrid[right])) {
+            if (isPassable(roomGrid[right].getTileType())) {
                 result.push(right);
             }
         }
@@ -150,8 +150,8 @@ function pathFinder() {
             return result;
         }
     }
-	
-	
+
+
 }
 
 function isNotAPassableTile(aTile) {
@@ -173,8 +173,7 @@ function isNotAPassableTile(aTile) {
 			case TILE_MANA_POTION:
 			case TILE_YELLOW_KEY:
 			case TILE_FINISH:
-			case TILE_STAIRS_DOWN_LEVEL_1:
-			case TILE_STAIRS_DOWN_LEVEL_2:
+			case TILE_STAIRS_DOWN:
 			case TILE_STAIRS:
 			case TILE_PITTRAP_ARMED:
 			case TILE_SPIKES_ARMED:
@@ -213,5 +212,3 @@ function isNotAPassableTile(aTile) {
 			return true;
 	}
 }
-
-

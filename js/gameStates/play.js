@@ -111,6 +111,7 @@ const NORMAL_KEY_MAP = {
       gameState.noClipEnabled = false;
 
       playerOne.movementSpeed = playerOne.originalMovementSpeed;
+      playerOne.resetDirections();
     }
   }
 };
@@ -146,17 +147,32 @@ var mouseClickY = 0;
 
 var selectedEnemy = null;
 
+/*const Map = {
+  CASTLE: 0,
+  TOWN: 1,
+  CRYPT_ONE: 2,
+  CRYPT_TWO: 3,
+  CAVE_ONE: 4,
+  CAVE_TWO: 5
+};*/
+
+const Maps = {
+  //CASTLE: 0,
+  TOWN: 0,
+  CRYPT_ONE: 1,
+  CRYPT_TWO: 2,
+  CAVE_ONE: 3,
+  CAVE_TWO: 4
+};
+
+var currentMap;
+var mapStack;
+
 class Play extends GameState {
   constructor() {
     super();
 
     this.setup = false;
-    this.level = 0;
-    this.levelList = [ townArea, levelOne, levelTwo, caveLevelOne];
-    this.mapStack = [ 	new Map(townArea),
-						new Map(levelOne),
-						new Map(levelTwo),
-						new Map(caveLevelOne)];
 
     this.pause = false;
     this.debug = false;
@@ -169,6 +185,12 @@ class Play extends GameState {
     this.hasUnlimitedKeys = false;
     this.noClipEnabled = false;
 
+    currentMap = Maps.TOWN;
+    mapStack = [ new Town(),
+                 new Crypt1(),
+                 new Crypt2(),
+                 new Cave1() ];
+
     this.coolDown();
   }
 
@@ -178,9 +200,9 @@ class Play extends GameState {
       this.setup = true;
     }
 
-    var enemyList = this.mapStack[this.level].enemyList;
-    for( var i = 0; i < enemyList.length; ++i )
-      enemyList[i].canMove = !this.pause;
+    var npcList = mapStack[currentMap].npcList;
+    for( var i = 0; i < npcList.length; ++i )
+      npcList[i].canMove = !this.pause;
     playerOne.canMove = !this.pause;
 
     // Debug options
@@ -195,13 +217,13 @@ class Play extends GameState {
     this.checkForSounds();
 
     super.draw();
-    this.mapStack[this.level].draw(this.displayTileX_Y);
-    this.mapStack[this.level].move();
+    mapStack[currentMap].draw(this.displayTileX_Y);
+    mapStack[currentMap].move();
 
     drawMouseIndicators();
     this.drawHUD();
     this.drawMinimap();
-	newLevelTitle.draw();
+	  newLevelTitle.draw();
 
     if (this.debug)
       DebugMenu.draw(this.displayTileX_Y, this.isInvulnerable, this.moveFast, this.hasUnlimitedKeys, this.noClipEnabled);
@@ -220,7 +242,7 @@ class Play extends GameState {
     }
   }
   onMouseClick(mouseX,  mouseY) {
-    this.mapStack[this.level].onMouseClick(mouseX, mouseY);
+    mapStack[currentMap].onMouseClick(mouseX, mouseY);
     this.detectHUDClicks(mousePosX, mousePosY);
     this.detectEnemyClicks(mouseClickX, mouseClickY);
   }
@@ -252,7 +274,7 @@ class Play extends GameState {
             setTimeout(function(){
               warningMessage="";
           }, 1500);
-  
+
         }
       else{
         swordCoolingDown = true;
@@ -263,16 +285,16 @@ class Play extends GameState {
         playerOne.attackWithSword(selectedEnemy);
 
         // Check if enemy died. If it did, remove it from the enemy list:
-        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
-        return enemy.health >0;
+        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
+          return npc.health >0;
         })
       }
    }
-   
+
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.maceXPos, inventoryCoords.maceYPos) == true &&
       playerOne.mace){
 
-        
+
       if(selectedEnemy == null){
         warningMessage="Target is not selected!";
         warningSFX.play();
@@ -296,14 +318,14 @@ class Play extends GameState {
         maceCoolDownTimer = MACE_COOLDOWN_TIME;
 
         playerOne.attackMace(selectedEnemy);
-        
+
         // Check if enemy died. If it did, remove it from the enemy list:
-        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
-          return enemy.health >0;
+        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
+          return npc.health >0;
         })
       }
    }
-   
+
   else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.fireballXPos, inventoryCoords.fireballYPos) == true &&
       playerOne.fireballSpell){
 
@@ -339,8 +361,8 @@ class Play extends GameState {
         playerOne.attackWithFireBallSpell(selectedEnemy);
 
         // Check if enemy died. If it did, remove it from the enemy list:
-        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
-          return enemy.health >0;
+        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
+          return npc.health >0;
         })
       }
    }
@@ -380,12 +402,12 @@ class Play extends GameState {
      playerOne.attackFlameSpell(selectedEnemy);
 
      // Check if enemy died. If it did, remove it from the enemy list:
-     this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
-       return enemy.health >0;
+     mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
+       return npc.health >0;
      })
    }
 }
-   
+
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
       if(selectedEnemy == null){
 
@@ -414,8 +436,8 @@ class Play extends GameState {
         playerOne.attackWithPunch(selectedEnemy);
 
         // Check if enemy died. If it did, remove it from the enemy list:
-        this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
-          return enemy.health >0;
+        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
+          return npc.health >0;
         })
       }
  }
@@ -483,8 +505,8 @@ else{
   playerOne.attackFreezeSpell(selectedEnemy);
 
   // Check if enemy died. If it did, remove it from the enemy list:
-  this.mapStack[this.level].enemyList = this.mapStack[this.level].enemyList.filter(function(enemy){
-    return enemy.health >0;
+  mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc) {
+    return npc.health >0;
   })
 }
 }
@@ -492,25 +514,25 @@ else{
 }
 
 detectEnemyClicks(mousePosX, mousePosY){
-  var enemyList = this.mapStack[this.level].enemyList;
+  var npcList = mapStack[currentMap].npcList;
   var mouseClickWorldX = screenCoordToGameCoord(mousePosX, mousePosY).unIsoX;
   var mouseClickWorldY = screenCoordToGameCoord(mousePosX, mousePosY).unIsoY;
 
   var buffer = 30;
 
-  for(let i=0; i< enemyList.length; i++){
-    if(enemyList[i].x > mouseClickWorldX - buffer && enemyList[i].x < mouseClickWorldX +enemyList[i].width + buffer &&
-      enemyList[i].y > mouseClickWorldY - buffer && enemyList[i].y < mouseClickWorldY +enemyList[i].height + buffer){
-     
-       // Deselect current enemy:
-      for(let j=0; j< enemyList.length; j++){
-        enemyList[j].selected = false;
+  for(let i=0; i< npcList.length; i++){
+    if(npcList[i].x > mouseClickWorldX - buffer && npcList[i].x < mouseClickWorldX +npcList[i].width + buffer &&
+      npcList[i].y > mouseClickWorldY - buffer && npcList[i].y < mouseClickWorldY +npcList[i].height + buffer){
+
+      // Deselect current enemy:
+      for(let j=0; j< npcList.length; j++){
+        npcList[j].selected = false;
         selectedEnemy = null;
       }
-      
+
       // Select new enemy:
-      enemyList[i].selected = true;
-      selectedEnemy = enemyList[i];
+      npcList[i].selected = true;
+      selectedEnemy = npcList[i];
     }
   }
 }
@@ -569,7 +591,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 }
 
   onMouseMove(mouseX, mouseY) {
-    this.mapStack[this.level].onMouseMove(mouseX, mouseY);
+    mapStack[currentMap].onMouseMove(mouseX, mouseY);
     this.detectHUDHover(mouseX, mouseY);
   }
 
@@ -599,11 +621,11 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 			gameUsedKey = true;
 			var currentTile = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 			var destinationTile = gameStateManager.getState().mapStack[gameStateManager.getState().level].highlightedTileIndex;
-			//pathDebugIndexList = [currentTile, destinationTile]; 
-			pathDebugIndexList = playerOne.pather.pathFrom_To_(currentTile,destinationTile, isNotAPassableTile);
+			//pathDebugIndexList = [currentTile, destinationTile];
+			pathDebugIndexList = playerOne.pather.pathFrom_To_(currentTile,destinationTile, isPassableTile);
 		}
     }
-    
+
     // Ability keyboard keys:
     if(evt.keyCode == KEY_Z){
       gameUsedKey = true;
@@ -662,9 +684,9 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   }
 
   loadLevel(level) {
-    this.level = level;
-		if (this.level > this.mapStack.length){
-		  this.level = 0;
+    currentMap = level;
+		if (currentMap > mapStack.length){
+		  currentMap = 0;
 		}
   }
 
@@ -694,7 +716,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 	this.fillHealthOrMana(canvas.width-68, 510, 46, 73, "blue", playerOne.mana / playerOne.maxMana);
   	canvasContext.drawImage(healthHUD,10, canvas.height-100);
     canvasContext.drawImage(manaHUD,canvas.width-80, canvas.height-100);
-    
+
     if(playerOne.hasShield==true){
       canvasContext.drawImage(shieldHUD,18, canvas.height-80)
       colorText(playerOne.calculateRemainingShieldDurablity()+"%",18, canvas.height-40 , 'white', font);
@@ -880,10 +902,10 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
 			inventoryCoords.freezeSpellYPos+ 30, 'red', coolDownTimerfont);
 		}
     }
-    
+
     // Inventory BG:
     canvasContext.drawImage(abilityHUD,280, canvas.height-80);
-	
+
   }
 
   coolDown(){
@@ -934,8 +956,8 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   }
 
   drawMinimap() {
-    var roomGrid = this.mapStack[this.level].roomGrid;
-    var enemyList = this.mapStack[this.level].enemyList;
+    var map = mapStack[currentMap];
+    var npcList = mapStack[currentMap].npcList;
 
     var miniMapPosX = 10;
   	var miniMapPosY = 30;
@@ -964,13 +986,13 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   			}
 
   			// Enemies
-  				for(var i = 0; i < enemyList.length; i++){
-  					var enemyTile = getTileIndexAtPixelCoord(enemyList[i].x, enemyList[i].y);
+  				for(var i = 0; i < npcList.length; i++){
+  					var enemyTile = getTileIndexAtPixelCoord(npcList[i].x, npcList[i].y);
 
   					// Calculate distance between enemy and player:
   					// I'm experiementing this feature, might remove it later
-  					var x = playerOne.x - enemyList[i].x;
-  					var y = playerOne.y - enemyList[i].y;
+  					var x = playerOne.x - npcList[i].x;
+  					var y = playerOne.y - npcList[i].y;
   					var distance = Math.sqrt( x*x + y*y );
 
   					if( tileIndex == enemyTile && distance <= renderDistance){
@@ -979,29 +1001,29 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   				}
 
   			// Walls:
-  			if(roomGrid[tileIndex] == TILE_WALL ||
-  			roomGrid[tileIndex] == TILE_WALL_WITH_TORCH ||
-  			roomGrid[tileIndex] == TILE_CRYPT_WALL ||
-  			roomGrid[tileIndex] == TILE_WALL_ART ||
-  			roomGrid[tileIndex] == TILE_WALL_SHIELD ||
-  			roomGrid[tileIndex] == TILE_CRYPT ||
-  			roomGrid[tileIndex] == TILE_CRYPT_TORCH ||
-  			roomGrid[tileIndex] == TILE_CRYPT_BODY) {
+  			if(map.getTileType(tileIndex) == TILE_WALL ||
+  			map.getTileType(tileIndex) == TILE_WALL_WITH_TORCH ||
+  			map.getTileType(tileIndex) == TILE_CRYPT_WALL ||
+  			map.getTileType(tileIndex) == TILE_WALL_ART ||
+  			map.getTileType(tileIndex) == TILE_WALL_SHIELD ||
+  			map.getTileType(tileIndex) == TILE_CRYPT ||
+  			map.getTileType(tileIndex) == TILE_CRYPT_TORCH ||
+  			map.getTileType(tileIndex) == TILE_CRYPT_BODY) {
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
   			}
 
   			// Yellow doors:
-  			else if(roomGrid[tileIndex]== TILE_YELLOW_DOOR){
+  			else if(map.getTileType(tileIndex) == TILE_YELLOW_DOOR){
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "yellow");
   			}
 
   			// Red doors:
-  			else if(roomGrid[tileIndex]== TILE_RED_DOOR){
+  			else if(map.getTileType(tileIndex) == TILE_RED_DOOR){
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "red");
   			}
 
   			// Blue doors:
-  			else if(roomGrid[tileIndex]== TILE_BLUE_DOOR){
+  			else if(map.getTileType(tileIndex) == TILE_BLUE_DOOR){
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "blue");
   			}
 

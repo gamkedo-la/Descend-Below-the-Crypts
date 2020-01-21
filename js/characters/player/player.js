@@ -70,40 +70,13 @@ class Player extends Character {
 		this.controlKeyForRun = runKey;
     }
 
-    reset(roomGrid) {
-        this.roomGrid = roomGrid;
-
-        for (var i = 0; i < this.roomGrid.length; i++) {
-            if (this.roomGrid[i] == TILE_PLAYER) {
-                this.roomGrid[i] = TILE_ROAD;
-
-                var tileRow = Math.floor(i / ROOM_COLS);
-                var tileCol = i % ROOM_COLS;
-                var tileLeftEdgeX = 700
-                var tileTopEdgeY = 0;
-
-                this.homeX = tileCol * ROOM_W + 0.5 * ROOM_W;
-                this.homeY = tileRow * ROOM_H + 0.5 * ROOM_H;
-
-				this.wayPointList = [];
-				this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60); //to be deleted
-                
-				break;
-            }
-        }
-
-        this.x = this.homeX;
-        this.y = this.homeY;
-        this.pather = new pathFinder();
-    }
-
     movement() {
         var nextX = this.x;
         var nextY = this.y;
         var collisionX = nextX;
         var collisionY = nextY;
 
-        this.wayPointMovement();
+        //this.wayPointMovement();
 
         if( this.canMove ) {
 			let speedNow = 0;
@@ -148,7 +121,7 @@ class Player extends Character {
         var walkIntoTileType = TILE_WALL;
 
         if (walkIntoTileType != undefined) {
-            walkIntoTileType = this.roomGrid[walkIntoTileIndex];
+            walkIntoTileType = mapStack[currentMap].getTileType(walkIntoTileIndex);
         }
 
 		if(isNotAPassableTile(walkIntoTileType)){
@@ -164,22 +137,22 @@ class Player extends Character {
 						this.y = nextY;
 					} else if (this.keysHeld > 0) {
 						this.keysHeld--;
-						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 					}
 					break;
 				case TILE_TREASURE:
 					this.keysHeld--;
 					this.goldCoins++;
-					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 					break;
 				case TILE_GOLD_COINS:
 					this.goldCoins++;
-					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 					break;
 				case TILE_SWORD:
 					//add sword to the warrior
 					if (this instanceof Warrior) {
-						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 						this.sword = true;
 						console.log("Sword found");
 					} else {
@@ -190,7 +163,7 @@ class Player extends Character {
 					case TILE_SHIELD:
 						//add shield to the warrior
 						if (this instanceof Warrior) {
-							this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+							mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 							this.pickUpShield();
 							console.log("Shield found");
 						} else {
@@ -201,7 +174,7 @@ class Player extends Character {
 				case TILE_MACE:
 					//add sword to the cleric
 					if (this instanceof Cleric) {
-						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 						this.mace = true;
 						console.log("Mace found");
 					} else {
@@ -212,7 +185,7 @@ class Player extends Character {
 				case TILE_WIZARD_BOOK:
 					//add wizard fireball book
 					if (this instanceof Wizard) {
-						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 						this.fireballSpell = true;
 						console.log("Wizard Book of Fireball found");
 					} else {
@@ -223,7 +196,7 @@ class Player extends Character {
 				case TILE_FLAME_SPELL_BOOK:
 						//add wizard flame book
 						if (this instanceof Wizard) {
-							this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+							mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 							this.flameSpell = true;
 							console.log("Wizard Book of Flame found");
 						} else {
@@ -234,7 +207,7 @@ class Player extends Character {
 				case TILE_FREEZE_SPELL_BOOK:
 							//add wizard freeze book
 							if (this instanceof Wizard) {
-								this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+								mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 								this.freezeSpell = true;
 								console.log("Wizard Book of Freeze found");
 							} else {
@@ -245,7 +218,7 @@ class Player extends Character {
 				case TILE_CLERIC_BOOK:
 					//add cleric book
 					if (this instanceof Cleric) {
-						this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 						this.healSpell = true;
 						console.log("Cleric Book found");
 					} else {
@@ -255,52 +228,39 @@ class Player extends Character {
 					break;
 				case TILE_SKILL_BOOK:
 					//add skill book
-					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 					console.log("Skill Book found");
 					break;
 				case TILE_HEALING_POTION:
 					//add healing potion
-					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 					console.log("Healing Potion found");
 					this.healPotionsHeld++;
 					break;
 				case TILE_MANA_POTION:
 					//add mana potion
-					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 					console.log("Mana Potion found");
 					this.manaPotionsHeld++;
 					break;
 				case TILE_YELLOW_KEY:
 					this.keysHeld++;
-					this.roomGrid[walkIntoTileIndex] = TILE_ROAD;
+					mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 					break;
 				case TILE_FINISH:
 					if (!cutscenePlayed[Scene.QUESTONE])
 					  gameStateManager.setState(State.CUTSCENE, Scene.QUESTONE);
 							break;
-				case TILE_STAIRS_DOWN_LEVEL_1:
-					gameStateManager.getState().loadLevel(1);
-					basementMusic.startOrStopMusic();
-					newLevelTitle.begin("The Castle");
-					console.log("stairs");
-					break;
-				case TILE_STAIRS_DOWN_LEVEL_2:
-					enteringSecondLevelNarrative.play();
-					this.playWarriorsThoughtsForSecondLevel = true;
-					gameStateManager.getState().loadLevel(2);
-					basementMusic.startOrStopMusic();
-					cryptMusic.loopSong("Into_The_Crypts");
-					newLevelTitle.begin("The Crypts Level 1");
+				case TILE_STAIRS_DOWN:
+          levelDescend();
 					break;
 				case TILE_STAIRS:
-					gameStateManager.getState().loadLevel(0);
-					basementMusic.startOrStopMusic();
-					newLevelTitle.begin("The Town");
+					levelAscend();
 					break;
 				case TILE_PITTRAP_ARMED:
 					if (!this.noClipMode) {
 						this.takeDamageFromTrap(1);
-						this.roomGrid[walkIntoTileIndex] = TILE_PITTRAP_UNARMED;
+            mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_PITTRAP_UNARMED);
 						crashIntoConeSound.play();
 						warriorOuch.play();
 					} else {
@@ -311,7 +271,7 @@ class Player extends Character {
 				case TILE_SPIKES_ARMED:
 					if (!this.noClipMode) {
 						this.takeDamageFromTrap(1);
-						this.roomGrid[walkIntoTileIndex] = TILE_SPIKES_UNARMED;
+            mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_PITTRAP_UNARMED);
 						crashIntoConeSound.play();
 						warriorOuch.play();
 					} else {
@@ -340,30 +300,29 @@ class Player extends Character {
         this.trapCoolDown();
     }
 
-	
-    wayPointMovement() {	
-		if(gameStateManager.getState().debug==true){
-			var destinationTileIndex = gameStateManager.getState().mapStack[gameStateManager.getState().level].highlightedTileIndex;
+
+    wayPointMovement(destinationTileIndex) {
+		if (gameStateManager.getState().debug==true) {
 			var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-			
+
 			this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isNotAPassableTile);
 			pathDebugIndexList = this.currentPath;
 
 			if (this.currentPath.length > 0) {
 				console.log(this.currentPath);
-	
+
 				for(var i=0; i<this.currentPath.length; i++)
 				{
 					var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
 					var nextTile = this.currentPath[i];
-		
+
 					if (currentTile == nextTile) {
 						continue;
 					}
-		
+
 					// Should be a constant:
 					var mapArrayColumn = 40;
-	
+
 					if(currentTile-1 == nextTile) // Left
 					{
 						this.resetDirections();
@@ -385,13 +344,9 @@ class Player extends Character {
 						this.moveSouth = true;
 					}
 				}
-	
-		   } 
+      }
 		}
-		else {
-			this.resetDirections();
-		}
-    }
+  }
 
 	newWayPoint(targetIndex) {
 
@@ -430,7 +385,7 @@ class Player extends Character {
 
     takeDamageFromTrap(howMuchDamage) {
         if (this.trapCoolDownCounter == 0)
-            takeDamage(howMuchDamage);
+            this.takeDamage(howMuchDamage);
         this.trapCoolDownTimer = true;
     }
 

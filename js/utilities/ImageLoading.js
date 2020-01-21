@@ -106,7 +106,7 @@ function loadImages() {
 			{varName: spiderPic, theFile: "monsters/spider.png"},
 			{varName: skeletonKingPic, theFile: "monsters/skeletonKing.png"},
 			{varName: orcBossPic, theFile: "monsters/orcKing.png"},
-			
+
 			//misc
 			{varName: shadowPic, theFile: "shadow.png"},
 			{varName: feedbackGUIPic, theFile: "feedbackGUI.png"},
@@ -115,7 +115,7 @@ function loadImages() {
 			{varName: questOneBackgroundPic, theFile: "gameStates/Quest1.png"},
 			{varName: cloudPic, theFile: "gameStates/cloud.png"},
 			{varName: scryingPic, theFile: "gameStates/scryingBackground.png"},
-			
+
 			{varName: questTwoBackgroundPic, theFile: "gameStates/Quest2.png"},
 			{varName: mainMenuPic, theFile: "gameStates/titleScreen.png"},
 			{varName: leftDoorOpenningPic, theFile: "gameStates/leftDoor.png"},
@@ -206,8 +206,7 @@ function loadImages() {
 			{tileType: TILE_WIZARD_BOOK, theFile: "wizardBook.png"},
 			{tileType: TILE_CLERIC_BOOK, theFile: "clericBook.png"},
 			{tileType: TILE_SKILL_BOOK, theFile: "skillBook.png"},
-			{tileType: TILE_STAIRS_DOWN_LEVEL_1, theFile: "stairsDown.png"},
-			{tileType: TILE_STAIRS_DOWN_LEVEL_2, theFile: "stairsDown.png"},
+			{tileType: TILE_STAIRS_DOWN, theFile: "stairsDown.png"},
 			{tileType: TILE_SWORD, theFile: "sword.png"},
 			{tileType: TILE_MACE, theFile: "mace.png"},
 			{tileType: TILE_GOLD_COINS, theFile: "goldCoins.png"},
