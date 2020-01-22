@@ -11,8 +11,10 @@ class WizardBoss extends Enemy {
 
   init() {
     super.init(wizardBossPic, "Nameless", TILE_WIZARD_BOSS);
-	this.enableAnimation = false;
-	this.canMove = false;
+	this.enableAnimation = true;
+	this.canMove = true;
+    this.wayPointList = [];
+    this.wayPointList.push(46,55,77,117,100,460,449,369,364,84,98,458,449,529,522);
   }
 }
 
