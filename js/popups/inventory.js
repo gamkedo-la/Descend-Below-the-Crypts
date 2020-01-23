@@ -1,7 +1,7 @@
 class Inventory {
   static draw() {
     const blackTransparent = 'rgba(0,0,0,0.5)';
-    // colorRect( 0, 0, canvas.width, canvas.height, blackTransparent );
+    colorRect( 0, 0, canvas.width, canvas.height, blackTransparent );
     canvasContext.drawImage(inventoryScreenPic, 0, 0);
     
     if( !playerOne ) {
