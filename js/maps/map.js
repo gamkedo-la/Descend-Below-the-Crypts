@@ -23,6 +23,9 @@ class Map {
         case TILE_GOBLIN:
             this.addChar(i, new Goblin());
             break;
+		case TILE_SKELETON:
+            this.addChar(i, new Skeleton());
+            break;
         case TILE_ORC:
             this.addChar(i, new Orc());
             break;

@@ -16,6 +16,7 @@ var orcPic = document.createElement("img");
 var ogrePic = document.createElement("img");
 var ratPic = document.createElement("img");
 var spiderPic = document.createElement("img");
+var skeletonPic = document.createElement("img");
 var skeletonKingPic = document.createElement("img");
 var orcBossPic = document.createElement("img");
 var wizardBossPic = document.createElement("img");
@@ -102,6 +103,7 @@ function loadImages() {
 			//enemies
 			{varName: orcPic, theFile: "monsters/orc1.png"},
 			{varName: goblinPic, theFile: "monsters/goblinAnim.png"},
+			{varName: skeletonPic, theFile: "monsters/skeleton.png"},
 			{varName: ogrePic, theFile: "monsters/ogre.png"},
 			{varName: ratPic, theFile: "monsters/rat.png"},
 			{varName: spiderPic, theFile: "monsters/spider.png"},

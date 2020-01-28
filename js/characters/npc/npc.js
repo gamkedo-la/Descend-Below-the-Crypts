@@ -37,6 +37,7 @@ class NPC extends Character {
     		if(this.myTile == TILE_SKELETON_KING ||
     		   this.myTile == TILE_SPIDER ||
 			   this.myTile == TILE_WIZARD_BOSS ||
+			   this.myTile == TILE_SKELETON ||
     		   this.myTile == TILE_ORC){
     			this.randomMovements();
     		} else {

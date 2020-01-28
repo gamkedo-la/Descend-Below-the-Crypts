@@ -20,6 +20,7 @@ class Cave1 extends Map {
       case TILE_ORC_BOSS:
 	  case TILE_WIZARD_BOSS:
       case TILE_PLAYER:
+	  case TILE_SKELETON:
         return TILE_ROAD;
 
       // Wall Decors
