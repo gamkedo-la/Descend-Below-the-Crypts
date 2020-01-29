@@ -187,6 +187,7 @@ class Play extends GameState {
 
     currentMap = Maps.TOWN;
     mapStack = [ new Town(),
+				 new CryptIntro(),
                  new Crypt1(),
                  new Crypt2(),
                  new Cave1(),
