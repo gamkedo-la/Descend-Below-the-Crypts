@@ -1,4 +1,4 @@
-const SKELETON_NAMES = [ "Vince, Gino, Bobby"];
+const SKELETON_NAMES = [ "Vince", "Gino", "Tim","Aaron"];
 
 const SKELETON_MAX_HEALTH = 2;
 const SKELETON_MOVEMENT_SPEED = 3;
