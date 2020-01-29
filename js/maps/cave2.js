@@ -20,6 +20,13 @@ class Cave2 extends Map {
       case TILE_ORC_BOSS:
 	  case TILE_WIZARD_BOSS:
       case TILE_PLAYER:
+	  // Floor Decors:
+      case TILE_FIREPIT:
+      case TILE_FIRE_PLACE_LIT:
+      case TILE_ORC_FLAG:
+	  case TILE_BOX:
+	  case TILE_BARREL:
+	  case TILE_BARREL_3:
         return TILE_ROAD;
 
       // Wall Decors
@@ -28,12 +35,6 @@ class Cave2 extends Map {
       case TILE_WALL_SHIELD:
       case TILE_WALL_SWORD:
         return TILE_WALL;
-
-      // Floor Decors:
-      case TILE_FIREPIT:
-      case TILE_FIRE_PLACE_LIT:
-      case TILE_ORC_FLAG:
-        return TILE_ROAD;
 
       // Returns tile if no base tile is found
       default:

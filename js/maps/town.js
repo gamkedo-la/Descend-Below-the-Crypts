@@ -15,6 +15,10 @@ class Town extends Map {
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
       case TILE_PLAYER:
+	  //Inside building floor decoration
+	  case TILE_BOX:
+	  case TILE_BARREL:
+	  case TILE_BARREL_3:
         return TILE_ROAD;
 
       // Wall Decors
@@ -22,9 +26,10 @@ class Town extends Map {
       case TILE_CRYPT_TORCH:
       case TILE_WALL_SHIELD:
       case TILE_WALL_SWORD:
+
         return TILE_WALL;
 
-      // Floor Decors:
+      // Grass Decors:
       case TILE_FIREPIT:
         return TILE_GRASS;
 

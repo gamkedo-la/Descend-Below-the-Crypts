@@ -16,7 +16,7 @@ class CastleFloor extends Map {
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
       case TILE_PLAYER:
-        return TILE_ROAD;
+        return TILE_CRYPT_FLOOR;
 
       // Wall Decors
       case TILE_WALL_WITH_TORCH:
@@ -24,14 +24,14 @@ class CastleFloor extends Map {
       case TILE_WALL_SHIELD:
       case TILE_WALL_SWORD:
       case TILE_WALL_ART:
-        return TILE_WALL;
+        return TILE_CRYPT_WALL;
 
       // Floor Decors:
       case TILE_FIREPIT:
       case TILE_FIRE_PLACE_LIT:
       case TILE_ORC_FLAG:
       case TILE_THRONE:
-        return TILE_ROAD;
+        return TILE_CRYPT_FLOOR;
 
       // Returns tile if no base tile is found
       default:

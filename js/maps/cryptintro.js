@@ -34,7 +34,10 @@ class CryptIntro extends Map {
       case TILE_FIREPIT:
       case TILE_FIRE_PLACE_LIT:
       case TILE_ORC_FLAG:
-        return TILE_ROAD;
+	  case TILE_BOX:
+	  case TILE_BARREL:
+	  case TILE_BARREL_3:
+        return TILE_CRYPT_FLOOR;
 
       // Returns tile if no base tile is found
       default:

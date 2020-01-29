@@ -195,6 +195,7 @@ function loadImages() {
 			{tileType: TILE_BLUE_DOOR, theFile:  "track_bluedoor.png"},
 			{tileType: TILE_YELLOW_KEY, theFile:  "track_yellowKey.png"},
 			{tileType: TILE_TREASURE, theFile:  "track_treasure.png"},
+			{tileType: TILE_BARREL, theFile:  "barrell.png"},
 			{tileType: TILE_TABLE, theFile:  "track_table.png"},
 			{tileType: TILE_TABLE_2, theFile:  "table2.png"},
 			{tileType: TILE_TABLE_3, theFile:  "table2.png"},
@@ -272,7 +273,9 @@ function loadImages() {
 			{tileType: TILE_FREEZE_SPELL_BOOK, theFile: "freezeSpellBook.png"},
 			{tileType: TILE_MINE_TRACK, theFile: "mine_track.png"},
 			{tileType: TILE_CAVE_ROCK, theFile: "cave_Rock.png"},
-			{tileType: TILE_CAVE_ROCK2, theFile: "cave_Rock2.png"}
+			{tileType: TILE_CAVE_ROCK2, theFile: "cave_Rock2.png"},
+			{tileType: TILE_BOX, theFile: "box.png"},
+			{tileType: TILE_BARREL_3, theFile: "multibarrel.png"},
 		];
 
 	picsToLoad = imageList.length;

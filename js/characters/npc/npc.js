@@ -119,6 +119,7 @@ class NPC extends Character {
 		case TILE_PITTRAP_ARMED:
 		case TILE_PITTRAP_UNARMED:
 		case TILE_TREASURE:
+		case TILE_BARREL:
 			this.x = nextX;
 			this.y = nextY;
 			break;
@@ -130,6 +131,9 @@ class NPC extends Character {
 		case TILE_TABLE:
 		case TILE_TOMB:
 		case TILE_TOMB_2:
+		case TILE_BOX:
+		case TILE_BARREL:
+		case TILE_BARREL_3:
 		default:
 			this.movementTimer = 0;
 			break;

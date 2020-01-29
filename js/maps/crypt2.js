@@ -19,6 +19,9 @@ class Crypt2 extends Map {
       case TILE_FIREPIT:
       case TILE_FIRE_PLACE_LIT:
       case TILE_ORC_FLAG:
+	  case TILE_BOX:
+	  case TILE_BARREL:
+	  case TILE_BARREL_3:
         return TILE_CRYPT_FLOOR;
 
       case TILE_SKELETON_KING:
