@@ -14,7 +14,12 @@ class Crypt2 extends Map {
       case TILE_SPIDER:
       case TILE_ORC_BOSS:
       case TILE_PLAYER:
-        return TILE_ROAD;
+	  case TILE_SKELETON:
+	  // Floor Decors:
+      case TILE_FIREPIT:
+      case TILE_FIRE_PLACE_LIT:
+      case TILE_ORC_FLAG:
+        return TILE_CRYPT_FLOOR;
 
       case TILE_SKELETON_KING:
       case TILE_KINGS_TOMB:
@@ -25,13 +30,7 @@ class Crypt2 extends Map {
       case TILE_CRYPT_TORCH:
       case TILE_WALL_SHIELD:
       case TILE_WALL_SWORD:
-        return TILE_WALL;
-
-      // Floor Decors:
-      case TILE_FIREPIT:
-      case TILE_FIRE_PLACE_LIT:
-      case TILE_ORC_FLAG:
-        return TILE_ROAD;
+        return TILE_CRYPT_WALL;
 
       // Returns tile if no base tile is found
       default:

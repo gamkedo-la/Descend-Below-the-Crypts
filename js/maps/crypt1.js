@@ -1,6 +1,6 @@
-class Crypt1 extends Map {
+class CastleFloor extends Map {
   constructor() {
-    super(levelOne, false);
+    super(castleLevel, false);
   }
 
   // Function to retrieve NPC replacement tile or decoration tile base
@@ -12,6 +12,7 @@ class Crypt1 extends Map {
       case TILE_OGRE:
       case TILE_RAT:
       case TILE_SPIDER:
+	  case TILE_SKELETON:
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
       case TILE_PLAYER:

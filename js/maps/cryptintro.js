@@ -21,14 +21,14 @@ class CryptIntro extends Map {
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
       case TILE_PLAYER:
-        return TILE_ROAD;
+        return TILE_CRYPT_FLOOR;
 
       // Wall Decors
       case TILE_WALL_WITH_TORCH:
       case TILE_CRYPT_TORCH:
       case TILE_WALL_SHIELD:
       case TILE_WALL_SWORD:
-        return TILE_WALL;
+        return TILE_CRYPT_WALL;
 
       // Floor Decors:
       case TILE_FIREPIT:

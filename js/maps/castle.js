@@ -1,6 +1,6 @@
 class Castle extends Map {
   constructor() {
-    
+     super(castleLevel, false);
   }
 
   prepareLevel() {
