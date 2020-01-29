@@ -4,7 +4,7 @@ class Friend extends NPC {
 
     // Assuming friendly npcs do not move
     this.canMove = false;
-
+      //checking how to commit, will erase this - Alfonso Salinas
     this.questStarted = false;
     this.questOnGoing = false;
   }
