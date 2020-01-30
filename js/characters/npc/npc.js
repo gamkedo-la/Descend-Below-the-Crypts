@@ -134,6 +134,8 @@ class NPC extends Character {
 		case TILE_BOX:
 		case TILE_BARREL:
 		case TILE_BARREL_3:
+		case TILE_CHAIR_2:
+		case TILE_WALL_ART:
 		default:
 			this.movementTimer = 0;
 			break;

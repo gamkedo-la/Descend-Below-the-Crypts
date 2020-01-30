@@ -276,6 +276,7 @@ function loadImages() {
 			{tileType: TILE_CAVE_ROCK2, theFile: "cave_Rock2.png"},
 			{tileType: TILE_BOX, theFile: "box.png"},
 			{tileType: TILE_BARREL_3, theFile: "multibarrel.png"},
+			{tileType: TILE_CHAIR_2, theFile: "chair.png"}
 		];
 
 	picsToLoad = imageList.length;

@@ -22,6 +22,7 @@ class Crypt2 extends Map {
 	  case TILE_BOX:
 	  case TILE_BARREL:
 	  case TILE_BARREL_3:
+	  case TILE_CHAIR_2:
         return TILE_CRYPT_FLOOR;
 
       case TILE_SKELETON_KING:
@@ -33,6 +34,7 @@ class Crypt2 extends Map {
       case TILE_CRYPT_TORCH:
       case TILE_WALL_SHIELD:
       case TILE_WALL_SWORD:
+	  case TILE_WALL_ART:
         return TILE_CRYPT_WALL;
 
       // Returns tile if no base tile is found

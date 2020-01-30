@@ -289,6 +289,8 @@ class Player extends Character {
 				case TILE_COLUMN:
 				case TILE_BARREL:
 				case TILE_BARREL_3:
+				case TILE_WALL_ART:
+				case TILE_CHAIR_2:
 				default:
 					if (this.noClipMode) {
 						if (getTileIndexAtPixelCoord(nextX, nextY) != undefined) {

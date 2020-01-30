@@ -28,6 +28,7 @@ class Cave1 extends Map {
       case TILE_CRYPT_TORCH:
       case TILE_WALL_SHIELD:
       case TILE_WALL_SWORD:
+	  case TILE_WALL_ART:
         return TILE_WALL;
 
       // Floor Decors:
@@ -37,6 +38,7 @@ class Cave1 extends Map {
 	  case TILE_BOX:
 	  case TILE_BARREL:
 	  case TILE_BARREL_3:
+	  case TILE_CHAIR_2:
         return TILE_ROAD;
 
       // Returns tile if no base tile is found

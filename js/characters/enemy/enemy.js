@@ -171,6 +171,7 @@ class Enemy extends Character {
 		case TILE_BOX:
 		case TILE_BARREL:
 		case TILE_BARREL_3:
+		case TILE_CHAIR_2:
 		default:
 			this.movementTimer = 0;
 			break;
