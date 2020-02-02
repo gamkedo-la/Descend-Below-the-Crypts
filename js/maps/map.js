@@ -227,7 +227,7 @@ class Map {
 
     if (this.highlightedTileIndex != null)
       if (isAFloor(this.level[this.highlightedTileIndex].getTileType()))
-        playerOne.wayPointMovement(this.highlightedTileIndex);
+        playerOne.destinationTileIndex= this.highlightedTileIndex;
   }
 
   onMouseMove(mouseX, mouseY) {

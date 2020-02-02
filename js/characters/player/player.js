@@ -31,6 +31,7 @@ class Player extends Character {
         this.currentWayPoint = 0;
         this.pathFindingQueue = [];
 		this.movementTimer = 0;
+		this.destinationTileIndex = 0;
 
         this.keyHeld_North = false;
 		this.keyHeld_East = false;
@@ -76,7 +77,7 @@ class Player extends Character {
         var collisionX = nextX;
         var collisionY = nextY;
 
-        //this.wayPointMovement();
+        this.wayPointMovement();
 
         if( this.canMove ) {
 			let speedNow = 0;
@@ -306,14 +307,14 @@ class Player extends Character {
     }
 
 
-    wayPointMovement(destinationTileIndex) {
+    wayPointMovement() {
 		if (gameStateManager.getState().debug==true) {
 			var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
 
-			this.currentPath = this.pather.pathFrom_To_(thisTileIndex, destinationTileIndex, isNotAPassableTile);
+			this.currentPath = this.pather.pathFrom_To_(thisTileIndex, this.destinationTileIndex, isNotAPassableTile);
 			pathDebugIndexList = this.currentPath;
 
-			if (this.currentPath.length > 0) {
+			if (this.currentPath.length > 1) {
 				console.log(this.currentPath);
 
 				for(var i=0; i<this.currentPath.length; i++)
@@ -349,7 +350,11 @@ class Player extends Character {
 						this.moveSouth = true;
 					}
 				}
-      }
+	  		}
+	  		else
+	  		{
+		  		this.resetDirections();
+	  		}
 		}
   }
 
