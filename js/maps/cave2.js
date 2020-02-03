@@ -20,6 +20,7 @@ class Cave2 extends Map {
       case TILE_ORC_BOSS:
 	  case TILE_WIZARD_BOSS:
       case TILE_PLAYER:
+	  case TILE_TENTACLE:
 	  // Floor Decors:
       case TILE_FIREPIT:
       case TILE_FIRE_PLACE_LIT:

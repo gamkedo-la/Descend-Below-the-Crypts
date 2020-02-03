@@ -20,6 +20,7 @@ var skeletonPic = document.createElement("img");
 var skeletonKingPic = document.createElement("img");
 var orcBossPic = document.createElement("img");
 var wizardBossPic = document.createElement("img");
+var tentaclePic = document.createElement("img");
 //Game States
 var characterSelectionBackgroundPic = document.createElement("img");
 var leftDoorOpenningPic = document.createElement("img");
@@ -110,6 +111,7 @@ function loadImages() {
 			{varName: skeletonKingPic, theFile: "monsters/skeletonKing.png"},
 			{varName: orcBossPic, theFile: "monsters/orcKing.png"},
 			{varName: wizardBossPic, theFile: "monsters/wizardBoss.png"},
+			{varName: tentaclePic, theFile: "monsters/tentacle.png"},
 
 			//misc
 			{varName: shadowPic, theFile: "shadow.png"},

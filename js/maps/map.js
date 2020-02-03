@@ -50,6 +50,9 @@ class Map {
 		case TILE_WIZARD_BOSS:
             this.addChar(i, new WizardBoss());
             break;
+		case TILE_TENTACLE:
+			this.addChar(i, new TentacleBoss());
+			break;
 
         // Friendly NPCs
 
