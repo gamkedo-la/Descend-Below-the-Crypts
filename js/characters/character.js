@@ -1,4 +1,3 @@
-// Practicing using git. Will remove -Victor Albenor
 const RUN_MULT = 2.0; // how much faster when running than walking
 
 class Character {
