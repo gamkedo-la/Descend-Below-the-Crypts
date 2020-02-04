@@ -14,7 +14,8 @@ class TentacleBoss extends Enemy {
 	this.enableAnimation = true;
 	this.canMove = false;
     this.wayPointList = [];
-	
+	this.numberOfFrames = 8;
+	this.frameIndex = Math.round(Math.random() * 8);
   }
 }
 

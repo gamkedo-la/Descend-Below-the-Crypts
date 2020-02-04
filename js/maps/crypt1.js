@@ -31,6 +31,11 @@ class CastleFloor extends Map {
       case TILE_FIRE_PLACE_LIT:
       case TILE_ORC_FLAG:
       case TILE_THRONE:
+	  case TILE_BLUE_DOOR:
+	  case TILE_BLUE_DOOR_SIDE:
+	  case TILE_YELLOW_KEY:
+	  case TILE_HEALING_POTION:
+	  case TILE_MANA_POTION:
         return TILE_CRYPT_FLOOR;
 
       // Returns tile if no base tile is found

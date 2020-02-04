@@ -133,6 +133,7 @@ class Player extends Character {
 				case TILE_YELLOW_DOOR:
 				case TILE_RED_DOOR:
 				case TILE_BLUE_DOOR:
+				case TILE_BLUE_DOOR_SIDE:
 					if (this.noClipMode) {
 						this.x = nextX;
 						this.y = nextY;

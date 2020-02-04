@@ -1025,7 +1025,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   			}
 
   			// Blue doors:
-  			else if(map.getTileType(tileIndex) == TILE_BLUE_DOOR){
+  			else if(map.getTileType(tileIndex) == TILE_BLUE_DOOR || map.getTileType(tileIndex) == TILE_BLUE_DOOR_SIDE){
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "blue");
   			}
 
