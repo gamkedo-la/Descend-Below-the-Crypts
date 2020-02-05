@@ -183,6 +183,7 @@ function isNotAPassableTile(aTile) {
 			case TILE_STAIRS_DOWN:
 			case TILE_STAIRS:
 			case TILE_PITTRAP_ARMED:
+			case TILE_ACTIVATE_SKELETON_KING_VOICE:
 			case TILE_SPIKES_ARMED:
 			case TILE_WALL:
 			case TILE_WALL_WITH_TORCH:

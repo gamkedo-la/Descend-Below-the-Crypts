@@ -131,6 +131,16 @@ class Player extends Character {
                this.y = nextY;
 		} else {
 			switch (walkIntoTileType) {
+				case TILE_PITTRAP_ARMED:
+					if (!this.noClipMode) {
+						this.takeDamageFromTrap(1);
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_PITTRAP_UNARMED);
+						warriorOuch.play();
+					} else {
+						this.x = nextX;
+						this.y = nextY;
+					}				
+					break;
 				case TILE_YELLOW_DOOR:
 				case TILE_RED_DOOR:
 				case TILE_BLUE_DOOR:
@@ -141,6 +151,7 @@ class Player extends Character {
 					} else if (this.keysHeld > 0) {
 						this.keysHeld--;
 						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
+						doorClosing1.play();
 					}
 					break;
 				case TILE_TREASURE:
@@ -255,17 +266,15 @@ class Player extends Character {
 					  gameStateManager.setState(State.CUTSCENE, Scene.QUESTONE);
 							break;
 				case TILE_STAIRS_DOWN:
-          levelDescend();
+					levelDescend();
 					break;
 				case TILE_STAIRS:
 					levelAscend();
 					break;
-				case TILE_PITTRAP_ARMED:
+				case TILE_ACTIVATE_SKELETON_KING_VOICE:
 					if (!this.noClipMode) {
-						this.takeDamageFromTrap(1);
-            mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_PITTRAP_UNARMED);
-						crashIntoConeSound.play();
-						warriorOuch.play();
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_CRYPT_FLOOR);
+						skeletonKing1.play();
 					} else {
 						this.x = nextX;
 						this.y = nextY;
@@ -274,9 +283,7 @@ class Player extends Character {
 				case TILE_SPIKES_ARMED:
 					if (!this.noClipMode) {
 						this.takeDamageFromTrap(1);
-            mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_PITTRAP_UNARMED);
-						crashIntoConeSound.play();
-						warriorOuch.play();
+						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_PITTRAP_UNARMED);
 					} else {
 						this.x = nextX;
 						this.y = nextY;

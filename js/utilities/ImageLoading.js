@@ -121,7 +121,6 @@ function loadImages() {
 			{varName: questOneBackgroundPic, theFile: "gameStates/Quest1.png"},
 			{varName: cloudPic, theFile: "gameStates/cloud.png"},
 			{varName: scryingPic, theFile: "gameStates/scryingBackground.png"},
-
 			{varName: questTwoBackgroundPic, theFile: "gameStates/Quest2.png"},
 			{varName: mainMenuPic, theFile: "gameStates/titleScreen.png"},
 			{varName: leftDoorOpenningPic, theFile: "gameStates/leftDoor.png"},
@@ -178,6 +177,7 @@ function loadImages() {
 			{tileType: TILE_BUSH_2, theFile: "bush_2.png"},
 			{tileType: TILE_ROCK, theFile: "rock.png"},
 			{tileType: TILE_CRYPT_FLOOR, theFile: "track_crypt_floor.png"},
+			{tileType: TILE_ACTIVATE_SKELETON_KING_VOICE, theFile: "track_crypt_floor.png"},
 			{tileType: TILE_WALL, theFile:  "toBeDeleted/track_wall.png"},
 			{tileType: TILE_TOWN_WALL_NORTH, theFile: "townNorthWall.png"},
 			{tileType: TILE_TOWN_WALL_SOUTH, theFile: "townNorthWall.png"},

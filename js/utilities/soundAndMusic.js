@@ -3,7 +3,6 @@ var isMuted = false;
 var soundSetforMeetings = true; //make false to hear at normal level
 
 //sounds
-var crashIntoConeSound = new SoundOverlapsClass("crashCone");
 var basementMusic = new BackgroundMusicClass();
 var cryptMusic = new BackgroundMusicClass();
 
@@ -20,8 +19,17 @@ var warriorOuch = new SoundOverlapsClass("warriorOuch");
 //Wizard's Voice
 var choosingWizard = new SoundOverlapsClass("choosingWizard");
 
-// Warning message SFX
+//Sound Effects
 var warningSFX = new SoundOverlapsClass("warningSFX");
+var doorClosing1 = new SoundOverlapsClass("DoorClosing");
+var doorClosing2 = new SoundOverlapsClass("DoorClosingGirl");
+var doorClosing3 = new SoundOverlapsClass("DoorClosingWing&Girl");
+
+//Skeleton King
+var skeletonKing1 = new SoundOverlapsClass("skeletalKing1");
+var skeletonKing2 = new SoundOverlapsClass("skeletalKing2");
+var skeletonKing3 = new SoundOverlapsClass("skeletalKing3");
+
 
 
 function setFormat() {
