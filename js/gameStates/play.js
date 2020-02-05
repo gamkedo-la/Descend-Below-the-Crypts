@@ -1035,7 +1035,14 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   			// Blue doors:
   			else if(map.getTileType(tileIndex) == TILE_BLUE_DOOR){
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "blue");
-  			}
+        }
+        
+        // Stairs
+        else if(map.getTileType(tileIndex) == TILE_STAIRS ||
+        map.getTileType(tileIndex) == TILE_STAIRS_DOWN ||
+        map.getTileType(tileIndex) == TILE_STAIRS_DOWN_LEVEL_2 ){
+          colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "pink");
+        }
 
   			// Background:
   			else {
