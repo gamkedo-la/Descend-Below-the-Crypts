@@ -196,6 +196,7 @@ function loadImages() {
 			{tileType: TILE_RED_DOOR, theFile:  "track_reddoor.png"},
 			{tileType: TILE_BLUE_DOOR, theFile:  "track_bluedoor.png"},
 			{tileType: TILE_BLUE_DOOR_SIDE, theFile:  "track_bluedoor_side.png"},
+			{tileType: TILE_CAVE_MINE_CAR, theFile:  "mine_track_cart.png"},
 			{tileType: TILE_YELLOW_KEY, theFile:  "track_yellowKey.png"},
 			{tileType: TILE_TREASURE, theFile:  "track_treasure.png"},
 			{tileType: TILE_BARREL, theFile:  "barrell.png"},

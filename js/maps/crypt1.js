@@ -33,6 +33,7 @@ class CastleFloor extends Map {
       case TILE_THRONE:
 	  case TILE_BLUE_DOOR:
 	  case TILE_BLUE_DOOR_SIDE:
+	  case TILE_CAVE_MINE_CAR:
 	  case TILE_YELLOW_KEY:
 	  case TILE_HEALING_POTION:
 	  case TILE_MANA_POTION:

@@ -37,6 +37,7 @@ class CryptIntro extends Map {
       case TILE_ORC_FLAG:
 	  case TILE_BLUE_DOOR:
 	  case TILE_BLUE_DOOR_SIDE:
+	  case TILE_CAVE_MINE_CAR:
 	  case TILE_BOX:
 	  case TILE_BARREL:
 	  case TILE_BARREL_3:

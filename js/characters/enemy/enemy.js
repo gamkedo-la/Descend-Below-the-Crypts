@@ -166,6 +166,7 @@ class Enemy extends Character {
 		case TILE_RED_DOOR:
 		case TILE_BLUE_DOOR:
 		case TILE_BLUE_DOOR_SIDE:
+		case TILE_CAVE_MINE_CAR:
 		case TILE_TABLE:
 		case TILE_TOMB:
 		case TILE_TOMB_2:
