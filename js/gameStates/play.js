@@ -1010,7 +1010,15 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   			map.getTileType(tileIndex) == TILE_WALL_SHIELD ||
   			map.getTileType(tileIndex) == TILE_CRYPT ||
   			map.getTileType(tileIndex) == TILE_CRYPT_TORCH ||
-  			map.getTileType(tileIndex) == TILE_CRYPT_BODY) {
+        map.getTileType(tileIndex) == TILE_CRYPT_BODY ||
+        map.getTileType(tileIndex) == TILE_CAVE_WALL ||
+        map.getTileType(tileIndex) == TILE_TOWN_WALL_NORTH ||
+        map.getTileType(tileIndex) == TILE_TOWN_WALL_SOUTH ||
+        map.getTileType(tileIndex) == TILE_TOWN_WALL_WEST ||
+        map.getTileType(tileIndex) == TILE_TOWN_WALL_EAST ||
+        map.getTileType(tileIndex) == TILE_TOWN_WALL_NW ||
+        map.getTileType(tileIndex) == TILE_TOWN_WALL_NE ||
+        map.getTileType(tileIndex) == TILE_TOWN_WALL) {
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "rgba(100, 100, 100, 0.5)");
   			}
 
