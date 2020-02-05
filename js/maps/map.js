@@ -230,7 +230,10 @@ class Map {
 
     if (this.highlightedTileIndex != null)
       if (isAFloor(this.level[this.highlightedTileIndex].getTileType()))
+      {
+        playerOne.finishedMoving = false;
         playerOne.destinationTileIndex= this.highlightedTileIndex;
+      }
   }
 
   onMouseMove(mouseX, mouseY) {

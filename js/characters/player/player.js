@@ -32,6 +32,7 @@ class Player extends Character {
         this.pathFindingQueue = [];
 		this.movementTimer = 0;
 		this.destinationTileIndex = 0;
+		this.finishedMoving = true;
 
         this.keyHeld_North = false;
 		this.keyHeld_East = false;
@@ -316,7 +317,7 @@ class Player extends Character {
 			this.currentPath = this.pather.pathFrom_To_(thisTileIndex, this.destinationTileIndex, isNotAPassableTile);
 			pathDebugIndexList = this.currentPath;
 
-			if (this.currentPath.length > 1) {
+			if (this.currentPath.length > 1 && this.finishedMoving==false) {
 				console.log(this.currentPath);
 
 				for(var i=0; i<this.currentPath.length; i++)
@@ -355,7 +356,8 @@ class Player extends Character {
 	  		}
 	  		else
 	  		{
-		  		this.resetDirections();
+				  this.resetDirections();
+				  this.finishedMoving = true;
 	  		}
 		}
   }
