@@ -128,6 +128,7 @@ class NPC extends Character {
 		case TILE_YELLOW_DOOR:
 		case TILE_RED_DOOR:
 		case TILE_BLUE_DOOR:
+		case TILE_BLUE_DOOR_SIDE:
 		case TILE_TABLE:
 		case TILE_TOMB:
 		case TILE_TOMB_2:
@@ -148,6 +149,7 @@ class NPC extends Character {
   		case TILE_FINISH:
   		case TILE_YELLOW_DOOR:
   		case TILE_RED_DOOR:
+		case TILE_BLUE_DOOR_SIDE:
   		case TILE_BLUE_DOOR:
   		case TILE_TABLE:
   		case TILE_TOMB:

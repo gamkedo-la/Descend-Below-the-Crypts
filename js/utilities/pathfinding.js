@@ -159,6 +159,7 @@ function isNotAPassableTile(aTile) {
 			case TILE_YELLOW_DOOR:
 			case TILE_RED_DOOR:
 			case TILE_BLUE_DOOR:
+			case TILE_BLUE_DOOR_SIDE:
 			case TILE_TREASURE:
 			case TILE_BOX:
 			case TILE_BARREL:

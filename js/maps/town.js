@@ -20,6 +20,9 @@ class Town extends Map {
 	  case TILE_BARREL:
 	  case TILE_BARREL_3:
 	  case TILE_CHAIR_2:
+	  case TILE_YELLOW_KEY:
+	  case TILE_HEALING_POTION:
+	  case TILE_MANA_POTION:
         return TILE_ROAD;
 
       // Wall Decors

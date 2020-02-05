@@ -22,7 +22,7 @@ class Character {
 	  this.maxMana = 0;
 
     // Movement
-	  this.canMove = true // meant for classes that can move
+	this.canMove = true // meant for classes that can move
   	this.canMoveNorth = true;
   	this.canMoveEast = true;
   	this.canMoveSouth = true;

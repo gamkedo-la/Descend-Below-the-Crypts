@@ -336,6 +336,7 @@ const TILE_BARREL = 118;
 const TILE_BARREL_3 = 119;
 const TILE_CHAIR_2 = 120;
 const TILE_TENTACLE = 121;
+const TILE_BLUE_DOOR_SIDE = 122;
 
 
 function gameCoordToIsoCoord (pixelX, pixelY) {
@@ -385,8 +386,6 @@ function tileTypeHasRoadTransparency(checkTileType) {
 			checkTileType == TILE_SWORD ||
 			checkTileType == TILE_MACE ||
 			checkTileType == TILE_SEWER ||
-			checkTileType == TILE_HEALING_POTION ||
-			checkTileType == TILE_MANA_POTION ||
 			checkTileType == TILE_SPIDERWEB_SW ||
 			checkTileType == TILE_SPIDERWEB_NW ||
 			checkTileType == TILE_SPIDERWEB_NE ||
@@ -401,7 +400,6 @@ function tileTypeHasRoadTransparency(checkTileType) {
 			checkTileType == TILE_CAVE_WALL ||
 			checkTileType == TILE_TOWN_WALL_SOUTH ||
 			checkTileType == TILE_YELLOW_DOOR ||
-			checkTileType == TILE_YELLOW_KEY ||
 			checkTileType == TILE_BLUE_DOOR ||
 			checkTileType == TILE_RED_DOOR ||
 			checkTileType == TILE_TABLE ||
