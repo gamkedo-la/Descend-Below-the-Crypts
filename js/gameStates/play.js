@@ -251,31 +251,22 @@ class Play extends GameState {
 
   detectHUDClicks(mousePosX, mousePosY){
 		if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos) == true &&
-			playerOne.healPotionsHeld >0 ){
+			playerOne.healPotionsHeld > 0 ){
 
 		   playerOne.useHealPotion();
 	   }
 	   else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.manaPotionXPos, inventoryCoords.manaPotionYPos) == true &&
 		   playerOne.manaPotionsHeld >0 ){
-
-		  playerOne.useManaPotion();
+       playerOne.useManaPotion();
     }
     else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.swordXPos, inventoryCoords.swordYPos) == true &&
       playerOne.sword){
 
           if(selectedEnemy == null){
-            warningMessage="Target is not selected!";
-            warningSFX.play();
-            setTimeout(function(){
-              warningMessage="";
-          }, 1500);
+            this.displayTargetNotSelectedMessage();
         }
         else if(swordCoolingDown == true){
-            warningMessage="Ability is still recharging!";
-            warningSFX.play();
-            setTimeout(function(){
-              warningMessage="";
-          }, 1500);
+            this.displayAbilityRechargingMessage();
 
         }
       else{
@@ -286,10 +277,7 @@ class Play extends GameState {
 
         playerOne.attackWithSword(selectedEnemy);
 
-        // Check if enemy died. If it did, remove it from the enemy list:
-        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
-          return npc.health >0;
-        })
+        this.removeDeadEnemiesFromStack();
       }
    }
 
@@ -298,22 +286,12 @@ class Play extends GameState {
 
 
       if(selectedEnemy == null){
-        warningMessage="Target is not selected!";
-        warningSFX.play();
-        setTimeout(function(){
-          warningMessage="";
-      }, 1500);
+        this.displayTargetNotSelectedMessage();
     }
     else if(maceCoolingDown == true){
-
-        warningMessage="Ability is still recharging!";
-        warningSFX.play();
-        setTimeout(function(){
-          warningMessage="";
-      }, 1500);
+      this.displayAbilityRechargingMessage();
     }
-
-    else{
+    else {
         maceCoolingDown = true;
 
         // Reset cooldown timer:
@@ -321,10 +299,7 @@ class Play extends GameState {
 
         playerOne.attackMace(selectedEnemy);
 
-        // Check if enemy died. If it did, remove it from the enemy list:
-        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
-          return npc.health >0;
-        })
+        removeDeadEnemiesFromStack();
       }
    }
 
@@ -332,27 +307,13 @@ class Play extends GameState {
       playerOne.fireballSpell){
 
       if(selectedEnemy == null){
-          warningMessage="Target is not selected!";
-          warningSFX.play();
-          setTimeout(function(){
-            warningMessage="";
-        }, 1500);
+        this.displayTargetNotSelectedMessage();
       }
       else if(playerOne.mana<=FIREBALL_MANA_COST){
-        playerOne.notEnoughManaAlert();
-        warningMessage="No enough mana!";
-        warningSFX.play();
-        setTimeout(function(){
-          warningMessage="";
-      }, 1500);
+        this.displayNotEnoughManaMessage();
       }
       else if(fireballCoolingDown == true){
-
-          warningMessage="Ability is still recharging!";
-          warningSFX.play();
-          setTimeout(function(){
-            warningMessage="";
-        }, 1500);
+        this.displayAbilityRechargingMessage();
       }
       else{
         fireballCoolingDown = true;
@@ -362,10 +323,7 @@ class Play extends GameState {
 
         playerOne.attackWithFireBallSpell(selectedEnemy);
 
-        // Check if enemy died. If it did, remove it from the enemy list:
-        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
-          return npc.health >0;
-        })
+        this.removeDeadEnemiesFromStack();
       }
    }
 
@@ -373,27 +331,13 @@ class Play extends GameState {
    playerOne.flameSpell){
 
    if(selectedEnemy == null){
-       warningMessage="Target is not selected!";
-       warningSFX.play();
-       setTimeout(function(){
-         warningMessage="";
-     }, 1500);
+    this.displayTargetNotSelectedMessage();
    }
    else if(playerOne.mana<=FLAME_MANA_COST){
-    playerOne.notEnoughManaAlert();
-    warningMessage="No enough mana!";
-    warningSFX.play();
-    setTimeout(function(){
-      warningMessage="";
-  }, 1500);
+    this.displayNotEnoughManaMessage();
   }
    else if(flameCoolingDown == true){
-
-       warningMessage="Ability is still recharging!";
-       warningSFX.play();
-       setTimeout(function(){
-         warningMessage="";
-     }, 1500);
+    this.displayAbilityRechargingMessage();
    }
    else{
     flameCoolingDown = true;
@@ -403,31 +347,16 @@ class Play extends GameState {
 
      playerOne.attackFlameSpell(selectedEnemy);
 
-     // Check if enemy died. If it did, remove it from the enemy list:
-     mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
-       return npc.health >0;
-     })
+     this.removeDeadEnemiesFromStack();
    }
 }
 
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.punchXPos, inventoryCoords.punchYPos) == true){
       if(selectedEnemy == null){
-
-        warningMessage="Target is not selected!";
-        warningSFX.play();
-        setTimeout(function(){
-          warningMessage="";
-      }, 1500);
-
+        this.displayTargetNotSelectedMessage();
       }
       else if(punchCoolingDown == true){
-
-        warningMessage="Ability is still recharging!";
-        warningSFX.play();
-        setTimeout(function(){
-          warningMessage="";
-      }, 1500);
-
+        this.displayAbilityRechargingMessage();
       }
       else{
         punchCoolingDown = true;
@@ -437,30 +366,16 @@ class Play extends GameState {
 
         playerOne.attackWithPunch(selectedEnemy);
 
-        // Check if enemy died. If it did, remove it from the enemy list:
-        mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc){
-          return npc.health >0;
-        })
+        this.removeDeadEnemiesFromStack();
       }
  }
 
  else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healSpellXPos, inventoryCoords.healSpellYPos) == true){
     if(healSpellCoolingDown == true){
-
-      warningMessage="Ability is still recharging!";
-      warningSFX.play();
-      setTimeout(function(){
-        warningMessage="";
-    }, 1500);
-
+      this.displayAbilityRechargingMessage();
     }
     else if(playerOne.mana<=HEAL_MANA_COST){
-      playerOne.notEnoughManaAlert();
-      warningMessage="No enough mana!";
-      warningSFX.play();
-      setTimeout(function(){
-        warningMessage="";
-    }, 1500);
+      this.displayNotEnoughManaMessage();
     }
     else{
       healSpellCoolingDown = true;
@@ -476,27 +391,13 @@ else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.freezeSpellXPo
 playerOne.freezeSpell){
 
 if(selectedEnemy == null){
-    warningMessage="Target is not selected!";
-    warningSFX.play();
-    setTimeout(function(){
-      warningMessage="";
-  }, 1500);
+  this.displayTargetNotSelectedMessage();
 }
 else if(playerOne.mana<=FREEZE_MANA_COST){
- playerOne.notEnoughManaAlert();
- warningMessage="No enough mana!";
- warningSFX.play();
- setTimeout(function(){
-   warningMessage="";
-}, 1500);
+  this.displayNotEnoughManaMessage();
 }
 else if(freezeSpellCoolingDown == true){
-
-    warningMessage="Ability is still recharging!";
-    warningSFX.play();
-    setTimeout(function(){
-      warningMessage="";
-  }, 1500);
+  this.displayAbilityRechargingMessage();
 }
 else{
   freezeSpellCoolingDown = true;
@@ -506,13 +407,36 @@ else{
 
   playerOne.attackFreezeSpell(selectedEnemy);
 
-  // Check if enemy died. If it did, remove it from the enemy list:
-  mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc) {
-    return npc.health >0;
-  })
+  this.removeDeadEnemiesFromStack();
+}
 }
 }
 
+displayNotEnoughManaMessage() {
+  this.displayWarningMessage( "Not enough mana!" );
+}
+
+displayAbilityRechargingMessage() {
+  this.displayWarningMessage( "Ability is still recharging!" );
+}
+
+displayTargetNotSelectedMessage() {
+  this.displayWarningMessage( "Target is not selected!" );
+}
+
+displayWarningMessage( message ) {
+  warningMessage = message;
+  warningSFX.play();
+  setTimeout(function(){
+    warningMessage="";
+  }, 1500);
+}
+
+removeDeadEnemiesFromStack() {
+    // Check if enemy died. If it did, remove it from the enemy list:
+    mapStack[currentMap].npcList = mapStack[currentMap].npcList.filter(function(npc) {
+      return npc.health >0;
+    });
 }
 
 detectEnemyClicks(mousePosX, mousePosY){
