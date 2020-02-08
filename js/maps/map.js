@@ -55,7 +55,9 @@ class Map {
 			break;
 
         // Friendly NPCs
-
+		case TILE_BARTENDER:
+			this.addChar(i, new Bartender());
+			break;
         // Player
         case TILE_PLAYER:
             this.initialPlayerLocation = i;

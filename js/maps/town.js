@@ -14,6 +14,7 @@ class Town extends Map {
       case TILE_SPIDER:
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
+	  case TILE_BARTENDER:
       case TILE_PLAYER:
 	  //Inside building floor decoration
 	  case TILE_BOX:

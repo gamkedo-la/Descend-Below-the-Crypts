@@ -21,13 +21,20 @@ class Enemy extends NPC {
 		  // play death animation etc..
 
 		  var dropChance = Math.floor(Math.random() * 100) + 0;
+		  
+		  if (this instanceof WizardBoss) {
+				mapStack[currentMap].replaceTile(50, TILE_TENTACLE);
+				loadNpcs();
+		  }
 
 		  // 50% drop chance:
-		  if(dropChance <= 50){
+		  if(dropChance <= 10){
 			   // Fetch a random item:
 			   var droppedItemIndex = Math.floor(Math.random() * this.drops.length) + 0;
 			   // this.roomGrid[this.walkIntoTileIndex] = this.drops[droppedItemIndex];
-         mapStack[currentMap].dropItem(getTileIndexAtPixelCoord(this.x, this.y), this.drops[droppedItemIndex]);
+				mapStack[currentMap].dropItem(getTileIndexAtPixelCoord(this.x, this.y), this.drops[droppedItemIndex]);
+		 
+		 
 		  }
 		  selectedEnemy = null;
 	  }

@@ -21,6 +21,7 @@ class Castle extends Map {
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
       case TILE_PLAYER:
+	  case TILE_BARTENDER:
         return TILE_ROAD;
 
       // Wall Decors
