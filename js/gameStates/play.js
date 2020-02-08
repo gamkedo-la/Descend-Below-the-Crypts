@@ -39,6 +39,13 @@ const FLAME_SPELL_COOLDOWN_TIME = 5;
 const HEAL_SPELL_COOLDOWN_TIME = 3;
 const FREEZE_SPELL_COOLDOWN_TIME = 3;
 
+const PUNCH_ATTACK_RANGE = 2;
+const SWORD_ATTACK_RANGE = 2;
+const MACE_ATTACK_RANGE = 2;
+const FIREBALL_ATTACK_RANGE = 6;
+const FLAME_ATTACK_RANGE = 4;
+const FREEZE_ATTACK_RANGE = 5;
+
 var punchCoolingDown = false;
 var swordCoolingDown = false;
 var maceCoolingDown = false;
@@ -249,6 +256,13 @@ class Play extends GameState {
     this.detectEnemyClicks(mouseClickX, mouseClickY);
   }
 
+  calculateEnemyToPlayerDistance(enemy){
+    var playerTileIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
+    var enemyTileIndex = getTileIndexAtPixelCoord(enemy.x, enemy.y);
+    var path = playerOne.pather.pathFrom_To_(playerTileIndex, enemyTileIndex, isNotAPassableTile);
+    return path.length;
+  }
+
   detectHUDClicks(mousePosX, mousePosY){
 		if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.healPotionXPos, inventoryCoords.healPotionYPos) == true &&
 			playerOne.healPotionsHeld > 0 ){
@@ -269,6 +283,9 @@ class Play extends GameState {
             this.displayAbilityRechargingMessage();
 
         }
+        else if(this.calculateEnemyToPlayerDistance(selectedEnemy)> SWORD_ATTACK_RANGE){
+          this.displayWarningMessage( "Target is not in range!" );
+        }
       else{
         swordCoolingDown = true;
 
@@ -284,12 +301,14 @@ class Play extends GameState {
    else if(this.checkMouseHover(mousePosX, mousePosY,inventoryCoords.maceXPos, inventoryCoords.maceYPos) == true &&
       playerOne.mace){
 
-
-      if(selectedEnemy == null){
+        if(selectedEnemy == null){
         this.displayTargetNotSelectedMessage();
     }
     else if(maceCoolingDown == true){
       this.displayAbilityRechargingMessage();
+    }
+    else if(this.calculateEnemyToPlayerDistance(selectedEnemy)> MACE_ATTACK_RANGE){
+      this.displayWarningMessage( "Target is not in range!" );
     }
     else {
         maceCoolingDown = true;
@@ -315,6 +334,9 @@ class Play extends GameState {
       else if(fireballCoolingDown == true){
         this.displayAbilityRechargingMessage();
       }
+      else if(this.calculateEnemyToPlayerDistance(selectedEnemy)> FIREBALL_ATTACK_RANGE){
+        this.displayWarningMessage( "Target is not in range!" );
+      }
       else{
         fireballCoolingDown = true;
 
@@ -339,6 +361,9 @@ class Play extends GameState {
    else if(flameCoolingDown == true){
     this.displayAbilityRechargingMessage();
    }
+   else if(this.calculateEnemyToPlayerDistance(selectedEnemy)> FLAME_ATTACK_RANGE){
+    this.displayWarningMessage( "Target is not in range!" );
+  }
    else{
     flameCoolingDown = true;
 
@@ -357,6 +382,9 @@ class Play extends GameState {
       }
       else if(punchCoolingDown == true){
         this.displayAbilityRechargingMessage();
+      }
+      else if(this.calculateEnemyToPlayerDistance(selectedEnemy)> PUNCH_ATTACK_RANGE){
+        this.displayWarningMessage( "Target is not in range!" );
       }
       else{
         punchCoolingDown = true;
@@ -398,6 +426,9 @@ else if(playerOne.mana<=FREEZE_MANA_COST){
 }
 else if(freezeSpellCoolingDown == true){
   this.displayAbilityRechargingMessage();
+}
+else if(this.calculateEnemyToPlayerDistance(selectedEnemy)> FREEZE_ATTACK_RANGE){
+  this.displayWarningMessage( "Target is not in range!" );
 }
 else{
   freezeSpellCoolingDown = true;
