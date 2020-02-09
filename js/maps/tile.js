@@ -76,13 +76,6 @@ class Tile {
         canvasContext.drawImage(decor, isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
     }
 
-    if (this.fog && this.state == TileState.NOTINVIEW) {
-      if (isAWall(this.tileType))
-        darkenWall(isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
-      else
-        darkenFloor(isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
-    }
-
     /*if (this.state == TileState.NOTINVIEW)
       colorText("1", isoDrawX, isoDrawY, "black", "6px Arial Black");
     else if (this.state == TileState.INVIEW)

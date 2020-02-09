@@ -187,9 +187,6 @@ class Map {
           if (floor != null) {
             canvasContext.drawImage(floor, isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
 
-            if (this.fog && this.level[tileIndex].getState() == TileState.NOTINVIEW)
-              darkenFloor(isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
-
             if (displayTileX_Y)
               colorText("X: " + isoDrawX, isoDrawX, isoDrawY, "black", "6px Arial Black");
           }
@@ -230,6 +227,9 @@ class Map {
           if(getTileIndexAtPixelCoord(npc.x, npc.y) == tileIndex)
             if(tileIsInPlayerVision(tileIndex) || !this.fog)
               npc.draw();
+
+        if (this.fog && this.level[tileIndex].getState() == TileState.NOTINVIEW && !isAWall(this.level[tileIndex].getTileType()))
+          darken(tileIndex, isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
 
         tileIndex++;
       } // end of each col
@@ -284,10 +284,10 @@ function levelAscend() {
 function tileIsInPlayerVision(tileIndex) {
   var playerIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
 
-  if ((tileIndex >= playerIndex - playerOne.vision*42 && (tileIndex <= playerIndex + playerOne.vision*42))) {
+  if ((tileIndex >= playerIndex - playerOne.vision*41 && (tileIndex <= playerIndex + playerOne.vision*41))) {
     var left = playerIndex - playerOne.vision;
     while (left <= playerIndex + playerOne.vision) {
-      if(left%40 == tileIndex%40)
+      if (left%40 == tileIndex%40)
         return true;
       left++;
     }
@@ -296,7 +296,28 @@ function tileIsInPlayerVision(tileIndex) {
   return false;
 }
 
-function darkenWall(x, y) {
+function darken(tileIndex, x, y) {
+  var playerIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
+
+  // Left, drawLeftBox
+  // Up, drawUpBox
+  // Right, dont draw
+  // else, drawOverhead
+  if (((tileIndex >= playerIndex - playerOne.vision*42) && (tileIndex <= playerIndex + playerOne.vision*42))) {
+    var left = playerIndex - playerOne.vision - 1;
+    var right = playerIndex + playerOne.vision + 1;
+
+    if (left%40 == tileIndex%40) {
+      drawLeftBox(x, y);
+      return;
+    }
+    else if (right%40 == tileIndex%40)
+      return;
+  }
+  drawOverhead(x, y);
+}
+
+function drawOverhead(x, y) {
   canvasContext.globalAlpha = 0.5;
 
   // offset
@@ -307,12 +328,10 @@ function darkenWall(x, y) {
 
   canvasContext.fillStyle = '#000';
   canvasContext.beginPath();
-  canvasContext.moveTo(x, y + increment);
-  canvasContext.lineTo(x + increment*2, y + increment*2);
-  canvasContext.lineTo(x + increment*2, y + increment*4 + 2);
-  canvasContext.lineTo(x, y + increment*5 + 4);
-  canvasContext.lineTo(x - increment*2 - 2, y + increment*4 + 3);
-  canvasContext.lineTo(x - increment*2 - 2, y + increment*2 + 1);
+  canvasContext.moveTo(x - 1, y + increment - 1);
+  canvasContext.lineTo(x + increment*2 + 2, y + increment*2);
+  canvasContext.lineTo(x, y + increment*3 + 1);
+  canvasContext.lineTo(x - increment*2 - 2, y + increment*2);
   canvasContext.fill();
   canvasContext.closePath();
 
@@ -320,42 +339,73 @@ function darkenWall(x, y) {
   canvasContext.globalAlpha = 1;
 }
 
-function darkenFloor(x, y) {
+function drawLeftBox(x, y) {
   canvasContext.globalAlpha = 0.5;
 
   // offset
-  x += 26.5;
-  y -= 12;
+  x += 26;
+  y -= 13;
 
   var increment = 12;
 
   canvasContext.fillStyle = '#000';
-
   canvasContext.beginPath();
-  canvasContext.moveTo(x+1, y + increment - 0.5);
-  canvasContext.lineTo(x + increment*2 + 1.5, y + increment*2);
-  canvasContext.lineTo(x, y + increment*3 + 1);
-  canvasContext.lineTo(x - increment*2 - 1, y + increment*2);
+  canvasContext.moveTo(x - 1, y + increment - 1);
+  canvasContext.lineTo(x + increment*2, y + increment*2);
+  canvasContext.lineTo(x + increment*2, y + increment*4 - 1);
+  canvasContext.lineTo(x - 1, y + increment*5 - 1);
+  canvasContext.lineTo(x - 1, y + increment*3 + 1);
+  canvasContext.lineTo(x - increment*2 - 2, y + increment*2);
   canvasContext.fill();
   canvasContext.closePath();
 
+  // Reset
+  canvasContext.globalAlpha = 1;
+}
+
+function drawUpBox(x, y) {
   canvasContext.globalAlpha = 0.5;
 
   // offset
-  /*x += 26.5;
-  y += 36;
+  x += 26;
+  y -= 13;
 
   var increment = 12;
 
   canvasContext.fillStyle = '#000';
-
   canvasContext.beginPath();
-  canvasContext.moveTo(x+1, y + increment - 0.5);
-  canvasContext.lineTo(x + increment*2 + 1.5, y + increment*2);
-  canvasContext.lineTo(x, y + increment*3 + 1);
-  canvasContext.lineTo(x - increment*2 - 1, y + increment*2);
+  canvasContext.moveTo(x - 1, y + increment - 1);
+  canvasContext.lineTo(x + increment*2, y + increment*2);
+  canvasContext.lineTo(x - 1, y + increment*3 + 1);
+  canvasContext.lineTo(x - 1, y + increment*5 - 1);
+  canvasContext.lineTo(x - increment*2 - 2, y + increment*4 - 1);
+  canvasContext.lineTo(x - increment*2 - 2, y + increment*2);
   canvasContext.fill();
-  canvasContext.closePath();*/
+  canvasContext.closePath();
+
+  // Reset
+  canvasContext.globalAlpha = 1;
+}
+
+function drawBox(x, y) {
+  canvasContext.globalAlpha = 0.5;
+
+  // offset
+  x += 26;
+  y -= 13;
+
+  var increment = 12;
+
+  canvasContext.fillStyle = '#000';
+  canvasContext.beginPath();
+  canvasContext.moveTo(x - 1, y + increment - 1);
+  canvasContext.lineTo(x + increment*2, y + increment*2);
+  canvasContext.lineTo(x + increment*2, y + increment*4 - 1);
+  canvasContext.lineTo(x, y + increment*5 - 1);
+  canvasContext.lineTo(x - increment*2 - 2, y + increment*4 - 1);
+  canvasContext.lineTo(x - increment*2 - 2, y + increment*2 - 1);
+  canvasContext.fill();
+  canvasContext.closePath();
 
   // Reset
   canvasContext.globalAlpha = 1;
