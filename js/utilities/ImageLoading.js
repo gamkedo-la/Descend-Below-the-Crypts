@@ -23,6 +23,7 @@ var wizardBossPic = document.createElement("img");
 var tentaclePic = document.createElement("img");
 //Friendly
 var bartenderPic = document.createElement("img");
+var fortuneTellerPic = document.createElement("img");
 
 //Game States
 var characterSelectionBackgroundPic = document.createElement("img");
@@ -116,6 +117,7 @@ function loadImages() {
 			{varName: wizardBossPic, theFile: "monsters/wizardBoss.png"},
 			{varName: tentaclePic, theFile: "monsters/tentacle.png"},
 			{varName: bartenderPic, theFile: "NPC/bartender.png"},
+			{varName: fortuneTellerPic, theFile: "NPC/fortuneTeller.png"},
 
 			//misc
 			{varName: shadowPic, theFile: "shadow.png"},

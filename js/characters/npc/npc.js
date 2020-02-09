@@ -26,7 +26,6 @@ class NPC extends Character {
   init(whichGraphic, whichName, whichTile) {
     super.init(whichGraphic, whichName, whichTile);
     this.wayPointList = [];
-    this.wayPointList.push(85, 125, 130, 90, 47, 92, 57, 60);
   }
 
   movement() {

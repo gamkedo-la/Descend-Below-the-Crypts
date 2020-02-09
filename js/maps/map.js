@@ -58,6 +58,9 @@ class Map {
 		case TILE_BARTENDER:
 			this.addChar(i, new Bartender());
 			break;
+		case TILE_FORTUNE_TELLER:
+			this.addChar(i, new FortuneTeller());
+			break;	
         // Player
         case TILE_PLAYER:
             this.initialPlayerLocation = i;
