@@ -43,6 +43,7 @@ var gameOverPicWarrior = document.createElement("img");
 var gameOverPicCleric = document.createElement("img");
 var gameOverPicWizard = document.createElement("img");
 var inventoryScreenPic = document.createElement("img");
+var gameWonPic = document.createElement("img"); 
 
 
 //misc
@@ -149,6 +150,8 @@ function loadImages() {
 			{varName: gameOverPicWarrior, theFile: "gameStates/deathScreenWarrior.png"},
 			{varName: gameOverPicCleric, theFile: "gameStates/deathScreenCleric.png"},
 			{varName: gameOverPicWizard, theFile: "gameStates/deathScreenWizard.png"},
+			{varName: gameWonPic, theFile: "gameStates/winScreen.png"},
+
 
 			// HUD
 			{varName: healthHUD, theFile: "HUD/healthHUD.png"},

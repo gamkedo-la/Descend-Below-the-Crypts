@@ -4,7 +4,17 @@ class Player extends Character {
     constructor(maxHealth, movementSpeed, width, height) {
         super(maxHealth, movementSpeed, width, height);
 
-        // Equipment
+        //Statistics
+		this.finalBossKilled = false;
+		this.skeletonKingKilled = false;
+		this.orcKingKilled = false;
+		this.tentacleKilled = 0;
+		this.goblinKilled = 0;
+		this.orcKilled = 0;
+		this.orgeKilled = 0;
+		this.spiderKilled = 0;
+		
+		// Equipment
         this.goldCoins = 0;
         this.keysHeld = 0;
 
@@ -52,6 +62,7 @@ class Player extends Character {
         // Etc
         this.noClipMode = false;
         this.collide_bump_mult = 2; // this needs to be improved.  This could potentially cause enemy or player in an illegal position (wall)
+		
 
         // Shield
         this.hasShield = false;
