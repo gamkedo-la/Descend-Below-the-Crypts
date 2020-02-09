@@ -106,7 +106,7 @@ const NORMAL_KEY_MAP = {
   [KEY_P]: function(gameState) {
     gameState.pause = !gameState.pause;
   },
-  [KEY_1]: function(gameState) {
+  /*[KEY_1]: function(gameState) {   /////////// This is only used for testing the game \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     gameState.debug = !gameState.debug;
 
     // Reset
@@ -120,7 +120,7 @@ const NORMAL_KEY_MAP = {
       playerOne.movementSpeed = playerOne.originalMovementSpeed;
       playerOne.resetDirections();
     }
-  }
+  } */
 };
 
 const DEBUG_KEY_MAP = {
