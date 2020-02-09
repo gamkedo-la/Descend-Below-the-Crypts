@@ -17,6 +17,7 @@ class Cave2 extends Map {
       case TILE_RAT:
       case TILE_SPIDER:
       case TILE_SKELETON_KING:
+	  case TILE_SKELETON:
       case TILE_ORC_BOSS:
 	  case TILE_WIZARD_BOSS:
       case TILE_PLAYER:

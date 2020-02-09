@@ -150,6 +150,7 @@ class Player extends Character {
 						this.y = nextY;
 					} else if (this.keysHeld > 0) {
 						this.keysHeld--;
+						console.log(mapStack[currentMap]);
 						mapStack[currentMap].replaceTile(walkIntoTileIndex, TILE_ROAD);
 						doorClosing1.play();
 					}

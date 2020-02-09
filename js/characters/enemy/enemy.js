@@ -74,7 +74,8 @@ class Enemy extends Character {
 	if(this.canMove){
 		if(this.myTile == TILE_SKELETON_KING ||
 		   this.myTile == TILE_SPIDER ||
-		   this.myTile == TILE_ORC
+		   this.myTile == TILE_ORC ||
+		   this.myTile == TILE_GOBLIN
 		   ){
 			this.randomMovements();
 		} else {

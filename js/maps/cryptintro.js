@@ -17,6 +17,7 @@ class CryptIntro extends Map {
       case TILE_ORC:
       case TILE_OGRE:
       case TILE_RAT:
+	  case TILE_SKELETON:
       case TILE_SPIDER:
       case TILE_SKELETON_KING:
       case TILE_ORC_BOSS:
