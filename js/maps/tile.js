@@ -1,21 +1,16 @@
-// Initial code for fog of war
 const TileState = {
   UNEXPLORED: 0,
   NOTINVIEW: 1,
   INVIEW: 2
 }
 
-const Brightness = {
-  NOTINVIEW: 20,
-  INVIEW: 60,
-  RESET: 100
-}
-
 class Tile {
-  constructor(tileType, getBaseTile, hostileMap) {
-    //this.state = hostileMap ? TileState.UNEXPLORED : TileState.INVIEW;
+  constructor(tileType, tileIndex, getBaseTile, hostileMap) {
+    this.fog = hostileMap;
+    this.tileIndex = tileIndex;
+    this.state = this.fog ? TileState.UNEXPLORED : TileState.INVIEW;
     this.getBaseTileFunction = getBaseTile;
-    this.drawn = false;
+    this.needsRedraw = true;
     this.transparency = 1;
     this.changeTile(tileType);
   }
@@ -28,16 +23,24 @@ class Tile {
     return this.tileType;
   }
 
-  setDrawn() {
-    this.drawn = true;
+  getTileIndex() {
+    return this.tileIndex;
   }
 
-  resetDrawn() {
-    this.drawn = false;
+  onRedraw() {
+    this.needsRedraw = true;
   }
 
-  changeState(newState) {
+  offRedraw() {
+    this.needsRedraw = false;
+  }
+
+  setState(newState) {
     this.state = newState;
+  }
+
+  getState() {
+    return this.state;
   }
 
   draw(col, row, tileIndex) {
@@ -48,24 +51,10 @@ class Tile {
     if (decor == bitmap)
       decor = null;
 
-    if (!this.drawn) {
-      /*switch(this.state) {
-        case TileState.UNEXPLORED:
-          return; // Do not draw
-        case TileState.NOTINVIEW:
-          canvasContext.filter = `brightness(${Brightness.NOTINVIEW}%)`;
-          break;
-        case TileState.INVIEW:
-          canvasContext.filter = `brightness(${Brightness.INVIEW}%)`;
-          break;
-      }*/
-
+    if (this.needsRedraw) {
       if (isWallTransparent(playerOne, tileIndex) &&
             isAWall(this.getBaseTileFunction(this.tileType)))
         canvasContext.globalAlpha = 0.5;
-
-      //if (mouseOver)
-        //canvasContext.globalAlpha = 0.5;
 
       // Draw base
       if (!isAFloor(this.getBaseTileFunction(this.tileType)))
@@ -87,8 +76,18 @@ class Tile {
         canvasContext.drawImage(decor, isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
     }
 
-    // Reset
-    //canvasContext.filter = `brightness(${Brightness.RESET}%)`;
+    if (this.fog && this.state == TileState.NOTINVIEW) {
+      if (isAWall(this.tileType))
+        darkenWall(isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
+      else
+        darkenFloor(isoDrawX - ISO_GRID_W / 2, isoDrawY - ISO_TILE_GROUND_Y);
+    }
+
+    /*if (this.state == TileState.NOTINVIEW)
+      colorText("1", isoDrawX, isoDrawY, "black", "6px Arial Black");
+    else if (this.state == TileState.INVIEW)
+      colorText("2", isoDrawX, isoDrawY, "black", "6px Arial Black");*/
+
   }
 
   onMouseClick() {
@@ -115,6 +114,7 @@ function isAWall(tile) {
           tile == TILE_WALL_SWORD ||
           tile == TILE_WALL_SHIELD ||
           tile == TILE_WALL_WITH_TORCH ||
+          tile == TILE_CRYPT ||
           tile == TILE_CRYPT_WALL ||
           tile == TILE_CRYPT_TORCH ||
           tile == TILE_KINGS_CHAMBER_WALL ||
@@ -126,7 +126,8 @@ function isAWall(tile) {
           tile == TILE_TOWN_WALL_WEST ||
           tile == TILE_TOWN_WALL_EAST ||
           tile == TILE_TOWN_WALL_NW ||
-          tile == TILE_TOWN_WALL_NE);
+          tile == TILE_TOWN_WALL_NE ||
+          tile == TILE_CRYPT_BODY);
 }
 
 // Check if tile is a half wall

@@ -29,7 +29,7 @@ class DebugMenu {
     debugLineY += debugLineSkipY;
     colorText("6. No Clip: "+ (noClipEnabled ? "On" : "Off"), startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY;
-    colorText("7. Zoom Out: "+ (zoom ? "Off" : "On"), startX + 10, debugLineY, debugColor, debugFont);
+    colorText("7. Reveal this map", startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY;
     colorText("8. Receive 1 damage point", startX + 10, debugLineY, debugColor, debugFont);
     debugLineY += debugLineSkipY*2;

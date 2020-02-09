@@ -110,14 +110,12 @@ class Character {
     }
     this.animateHealFX();
     gameCoordToIsoCoord(this.x, this.y);
-    try {
-      if (!isAHalfWall(mapStack[currentMap].level[getTileIndexAtPixelCoord(this.x, this.y) + 1].getTileType()))
+
+    if (!isAHalfWall(mapStack[currentMap].level[getTileIndexAtPixelCoord(this.x, this.y) + 1].getTileType()))
         canvasContext.drawImage(shadowPic,isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY);
-  		canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height,
-                  isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY, this.width, this.height);
-    } catch(err) {
-      console.log(`Character: ${this.myBitmap}`);
-    }
+
+    canvasContext.drawImage(this.myBitmap, this.offSetWidth, this.offSetHeight, this.width, this.height,
+      isoDrawX-(this.width/2), isoDrawY-this.height - this.isoFootY, this.width, this.height);
 
 
     if(this.showHealFX == true){

@@ -44,6 +44,7 @@ class Player extends Character {
         this.trapCoolDownTimer = 0;
         this.trapCoolDownCounter = 0;
         this.originalMovementSpeed = this.movementSpeed;
+        this.vision = 3;
 
         // Conditions
         this.playWarriorsThoughtsForSecondLevel = false;
@@ -139,7 +140,7 @@ class Player extends Character {
 					} else {
 						this.x = nextX;
 						this.y = nextY;
-					}				
+					}
 					break;
 				case TILE_YELLOW_DOOR:
 				case TILE_RED_DOOR:

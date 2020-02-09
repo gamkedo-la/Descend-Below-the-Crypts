@@ -142,7 +142,12 @@ const DEBUG_KEY_MAP = {
     gameState.noClipEnabled = !gameState.noClipEnabled;
   },
   [KEY_7]: function(gameState) {
-    zoom = !zoom;
+    mapStack[currentMap].fog = false;
+
+    for (var tileIndex = 0; tileIndex < mapStack[currentMap].level.length; tileIndex++) {
+      mapStack[currentMap].level[tileIndex].setState(TileState.INVIEW);
+      mapStack[currentMap].level[tileIndex].fog = false;
+    }
   },
   [KEY_8]: function(){
     playerOne.takeDamage(1);
@@ -153,15 +158,6 @@ var mouseClickX = 0;
 var mouseClickY = 0;
 
 var selectedEnemy = null;
-
-/*const Map = {
-  CASTLE: 0,
-  TOWN: 1,
-  CRYPT_ONE: 2,
-  CRYPT_TWO: 3,
-  CAVE_ONE: 4,
-  CAVE_TWO: 5
-};*/
 
 const Maps = {
   //CASTLE: 0,
@@ -991,7 +987,7 @@ checkMouseHover(mousePosX, mousePosY, iconXPos, iconYPos){
   			else if(map.getTileType(tileIndex) == TILE_BLUE_DOOR || map.getTileType(tileIndex) == TILE_BLUE_DOOR_SIDE){
   				colorRect(elementXPos,elementYPos,rowSpacing,colSpacing, "blue");
         }
-        
+
         // Stairs
         else if(map.getTileType(tileIndex) == TILE_STAIRS ||
         map.getTileType(tileIndex) == TILE_STAIRS_DOWN ||
