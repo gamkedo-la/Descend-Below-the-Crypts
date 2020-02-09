@@ -16,5 +16,6 @@ class Goblin extends Enemy {
   init() {
     super.init(goblinPic, randFromList(GOBLIN_NAMES), TILE_GOBLIN);
 		this.enableAnimation = true;
+		this.canMove = true;
   }
 }

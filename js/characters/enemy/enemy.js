@@ -9,6 +9,7 @@ class Enemy extends Character {
     this.currentWayPoint = 0;
     this.movementTimer = 0;
     this.pathFindingQueue = [];
+	this.destinationTileIndex = 0;
 
     // Position
     this.currentTile = 0;
@@ -74,8 +75,8 @@ class Enemy extends Character {
 	if(this.canMove){
 		if(this.myTile == TILE_SKELETON_KING ||
 		   this.myTile == TILE_SPIDER ||
-		   this.myTile == TILE_ORC ||
-		   this.myTile == TILE_GOBLIN
+		   //this.myTile == TILE_ORC ||
+		   //this.myTile == TILE_GOBLIN
 		   ){
 			this.randomMovements();
 		} else {
@@ -200,6 +201,7 @@ class Enemy extends Character {
   } */
 
   randomMovements() {
+	 console.log("Random Movement");
     var whichDirection =  Math.round(Math.random() * 10);
 		this.movementTimer--;
 
@@ -239,82 +241,58 @@ class Enemy extends Character {
 		}
   }
 
-  wayPointMovement() {
-		gameCoordToIsoCoord(this.x,this.y);
-		var playerTileIndex = getTileIndexAtPixelCoord(playerOne.x, playerOne.y);
+    wayPointMovement() {
+		console.log("wayPoint called");
 		var thisTileIndex = getTileIndexAtPixelCoord(this.x, this.y);
-		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, playerTileIndex, isNotAPassableTile);
-		return; // bailing out early until Pathfinding is debugged
-		/*if (this.currentPath.length > 0) {
-			this.currentPathIndex = 0;
+		
+		this.destinationTileIndex = screenCoordToGameCoord(playerOne.x, playerOne.y).indexUnderPixel;
 
-			var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
-			var nextTile = this.currentPath[ this.currentPathIndex ];
-			//console.log(nextTile);
+		this.currentPath = this.pather.pathFrom_To_(thisTileIndex, this.destinationTileIndex, isNotAPassableTile);
+		pathDebugIndexList = this.currentPath;
 
+		if (this.currentPath.length > 1 && this.finishedMoving==false) {
+			console.log(this.currentPath);
 
-			if (currentTile == nextTile) {
-				this.currentPathIndex++;
-				if (this.currentPathIndex == this.currentPath.length) {
-					return null;
+			for(var i=0; i<this.currentPath.length; i++)
+			{
+				var currentTile = getTileIndexAtPixelCoord(this.x, this.y);
+				var nextTile = this.currentPath[i];
+
+				if (currentTile == nextTile) {
+					continue;
 				}
-			}
 
-			if (nextTile - currentTile > 1) {
-				this.resetDirections();
-				this.moveSouth = true;
-			} else if (nextTile - currentTile < -1) {
-				this.resetDirections();
-				this.moveNorth = true;
-			} else if (nextTile - currentTile == -1) {
-				this.resetDirections();
-				this.moveWest = true;
-			} else if (nextTile - currentTile == 1) {
-				this.resetDirections();
-				this.moveEast = true;
-			}
-		}
-		else {*/
-			var enemyXLocation = isoDrawX;
-			var enemyYLocation = isoDrawY;
-			var toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
-			var toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
-			var columnDistance = Math.abs(this.currentCol - this.toTileC);
-			var rowDistance = Math.abs(this.currentRow - this.toTileR);
-			tileCoordToIsoCoord(toTileC, toTileR );
+				// Should be a constant:
+				var mapArrayColumn = 40;
 
-			//console.log("C: " + columnDistance + " R: " + rowDistance);
-
-			if(this.currentCol == this.toTileC && this.currentRow == this.toTileR){
-				this.currentWayPoint++;
-				if(this.currentWayPoint > this.wayPointList.length){
-					this.currentWayPoint = 0;
-				}
-			} else if (rowDistance > columnDistance){
-				if(this.currentRow > this.toTileR){ //North
-					this.resetDirections();
-					this.moveNorth = true;
-				} else {
-					this.resetDirections(); //South
-					this.moveSouth = true;
-				}
-			} else if (columnDistance > rowDistance){
-				if(this.currentCol> this.toTileC){ //West
+				if(currentTile-1 == nextTile) // Left
+				{
 					this.resetDirections();
 					this.moveWest = true;
-				} else {
-					this.resetDirections(); //East
+				}
+				else if(currentTile+1 == nextTile) // Right
+				{
+					this.resetDirections();
 					this.moveEast = true;
 				}
+				else if(currentTile-mapArrayColumn == nextTile) // Up
+				{
+					this.resetDirections();
+					this.moveNorth = true;
+				}
+				else if(currentTile+mapArrayColumn == nextTile) // Down
+				{
+					this.resetDirections();
+					this.moveSouth = true;
+				}
 			}
-
-			this.currentTile = getTileIndexAtPixelCoord(this.x,this.y);
-			this.currentCol = this.currentTile%ROOM_COLS;
-			this.currentRow = Math.floor(this.currentTile/ROOM_COLS);
-			this.toTileC = this.wayPointList[this.currentWayPoint]%ROOM_COLS;
-			this.toTileR = Math.floor(this.wayPointList[this.currentWayPoint]/ROOM_COLS);
-		//}
-  }
+		}
+		else
+		{
+			  this.resetDirections();
+			  this.finishedMoving = true;
+		}
+	}
 
   checkCollisionsAgainst(otherHumanoid) {
     if (!otherHumanoid.noClipMode && super.collisionTest(otherHumanoid)) {
